@@ -1,0 +1,25 @@
+
+echo $1
+
+FILE=$1
+CHAP=cap01
+
+
+SRC=$FILE.cpp
+OBJ=../../obj/$FILE.o
+BIN=../../bin/$CHAP/$FILE.sh
+OBJ=../../obj/$CHAP/$FILE.o
+
+rm $OBJ
+rm $BIN
+
+g++ -Wall -fexceptions -O2  -c $SRC -o $OBJ
+g++  -o $BIN $OBJ  -s
+
+
+echo "******************************"
+echo "** Execução "$1
+echo "******************************"
+
+$BIN
+

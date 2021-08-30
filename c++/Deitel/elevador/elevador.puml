@@ -1,0 +1,62 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor Pessoa
+rectangle sistemaElevador {
+  Pessoa -- (Ir para outro andar)
+}
+@enduml
+
+
+
+@startuml
+[*] --> Nãopressionado
+Nãopressionado -> Pressionado :apertaBotão
+Pressionado -> Nãopressionado :soltaBotão
+@enduml
+
+
+@startuml
+Clock "1" --* "1" Bulding
+Bulding "1" *-- "1" Scheduler
+Scheduler "1" -- "0..*"Person
+Person "0..1" -- "1" Floor
+Person "0..1" -- "1" Elevator
+Bulding "1" *-- "2" Floor
+Bulding "1" *-- "1" Elevator
+Floor "1" *-- "1" Ligth
+Floor "1" *-- "1" FloorButton
+Elevator "1" *-- "1" ElevatorButton
+Elevator "1" *-- "1" Bell
+Elevator "1" *-- "1" Door
+@enduml
+
+
+@startuml
+object Schedule 
+object Building
+object Clock
+object Elevator
+object Door
+object Bell
+object ElevatorButton
+
+Schedule  --* Building
+Building  *-- Clock
+Elevator --* Building
+Door *-- Elevator
+Bell *-- Elevator
+ElevatorButton *-- Elevator
+@enduml
+
+
+@startuml
+[*] ->Esperando
+Esperando -up-> Movendo_se : apertarBotão [no outro andar] arrivalTime=currentTime+5
+Esperando -> Atendendo_andar : apertarBotão [no andar em que está]
+Atendendo_andar -> Esperando : [nunhuma chamada adicional]
+Atendendo_andar -> Movendo_se : apertarBotao[precisa se mover]
+Movendo_se -> Atendendo_andar : quando [currentTime = arrivalTime]
+@enduml
+
+
