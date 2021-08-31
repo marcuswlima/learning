@@ -4,9 +4,9 @@ print("*********************************")
 
 numero_secreto = 42
 total_de_tentativas = 3
-rodada = 1
 
-while rodada <= total_de_tentativas:
+
+for rodada in range(1,total_de_tentativas + 1):
     #print("Tentativa", rodada, " de ", total_de_tentativas)
     print("Tentativa {} de {}".format(rodada, total_de_tentativas))
     chute_string = input("Digite o seu palpite: ")
