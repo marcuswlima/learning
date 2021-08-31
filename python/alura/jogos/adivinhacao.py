@@ -2,7 +2,7 @@ print("*********************************")
 print("Bem vindo ao jogo de Adivinhação!")
 print("*********************************")
 
-numero_secreto=42
+numero_secreto=50
 
 chute_string = input("Digite o seu palpite: ")
 
