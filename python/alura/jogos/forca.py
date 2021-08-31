@@ -6,3 +6,4 @@ def jogar():
     print("*********************************")
 
     print("Fim do jogo")
+
