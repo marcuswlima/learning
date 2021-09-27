@@ -1,13 +1,9 @@
 
-echo $1
 
 FILE=$1
-CHAP=cap03
 
 
 SRC=$FILE.cpp
-#BIN=../../bin/$CHAP/$FILE.sh
-#OBJ=../../obj/$CHAP/$FILE.o
 
 BIN=/home/marcus/Developer/dados/c++/$FILE.sh
 OBJ=/home/marcus/Developer/dados/c++/$FILE.o
