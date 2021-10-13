@@ -59,14 +59,14 @@ int main()
 double calculateCharges (double in_horas) {
 
     int    iHorasTaxaMinima=3;
-    double dTaxaMinima=2, dResposta;
+    double dTaxaMinima=2, dResposta, dExcedido;
 
     if ( in_horas < 24 ) {
-        if ( in_horas <= iHorasTaxaMinima ) 
-            dResposta = dTaxaMinima;
-        else {
-            double dExcedido (in_horas - iHorasTaxaMinima);
-            dResposta = dTaxaMinima + (dExcedido*0.5);
+
+        dResposta = dTaxaMinima;
+        if ( in_horas > iHorasTaxaMinima ) {
+            dExcedido = (in_horas - iHorasTaxaMinima);
+            dResposta += (dExcedido*0.5);
         }
     }
     else
