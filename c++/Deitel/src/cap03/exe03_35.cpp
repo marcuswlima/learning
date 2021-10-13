@@ -18,11 +18,13 @@ using std::ios;
 //setiosflags( ios::fixed | ios::showpoint )
 ////static_cast< double > ()
 
+void testeMultiplicacao();
 
 int main()
 {
     srand( time(0) );
 
+    testeMultiplicacao();
 
 //--------------------------------------------
     cout << endl << endl ;
@@ -37,4 +39,20 @@ int gerarInteiro(int menor, int maior) {
     return menor + (gerado-1);
 
 }
+
+void testeMultiplicacao(){
+    int a = gerarInteiro(1,9), b = gerarInteiro(1,9), resultado;
+
+    cout << "Quanto é " << a <<" vezes " << b << " ? ";
+    cin >> resultado ; 
+
+    if (resultado == (a*b))
+        cout << "acertou !!!";
+    else    {
+        cout << "errou !!!" << endl;
+        testeMultiplicacao();
+    }
+
+}
+
 

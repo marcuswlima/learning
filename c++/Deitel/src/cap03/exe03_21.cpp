@@ -1,3 +1,4 @@
+
 #include <iostream>
 
 using std::cout;
@@ -18,10 +19,22 @@ using std::ios;
 //setiosflags( ios::fixed | ios::showpoint )
 ////static_cast< double > ()
 
+int gerarInteiro(int menor, int maior);
+bool multiple (int n1, int n2);
 
 int main()
 {
+
+    int n1 ;
     srand( time(0) );
+
+    for (int i=1;i<=50;i++){ 
+
+        n1 = gerarInteiro(1,10);
+
+        cout << n1 << " " << multiple(n1,2) << endl;
+    }
+
 
 
 //--------------------------------------------
@@ -36,5 +49,19 @@ int gerarInteiro(int menor, int maior) {
 
     return menor + (gerado-1);
 
+}
+
+bool multiple (int n1, int n2){
+    int resto;
+    // n1 é multiplo de n2 ???
+    if ( n2 > n1 )
+        return false;
+    else {
+        resto = n1 % n2 ;
+        if ( resto == 0 )
+            return true;
+        else    
+            return false;
+    }
 }
 
