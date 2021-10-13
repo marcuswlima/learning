@@ -42,11 +42,11 @@ int main()
     }
 
     inteiro = gerarInteiro(1,32767);
+    inteiro = 1500;
 
     cout << inteiro << endl;
 
     separar(inteiro);
-//    cout << decimal << endl;
 
 
 
@@ -93,13 +93,9 @@ void separar(int inteiro ){
     if (decimal==1)
         cout << inteiro << endl;
     else {
-        cout << quociente (inteiro,decimal) << endl;
+        cout << quociente (inteiro,decimal) << " ";
         inteiro = resto (inteiro,decimal);
         separar(inteiro);
     }
-
-
-
-    cout << inteiro << endl;
 }
 
