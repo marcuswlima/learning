@@ -15,6 +15,3 @@
 ## Lunix
 - Packing System
 - Initialization
-
-## Produção 
-- Eduardo Branco
