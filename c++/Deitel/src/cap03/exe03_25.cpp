@@ -42,7 +42,7 @@ int main()
     }
 
     inteiro = gerarInteiro(1,32767);
-    inteiro = 1500;
+    inteiro = 15001;
 
     cout << inteiro << endl;
 

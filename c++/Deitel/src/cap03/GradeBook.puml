@@ -1,0 +1,9 @@
+@startuml
+skinparam classAttributeIconSize 0
+class GradeBook {
+  - courseName : String
+  + setCourseName(name:String)
+  + getCourseName(): String
+  + displayMessage()
+}
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+left to right direction
+actor "Usuário" as fc
+rectangle ATM {
+  usecase "Visualizar saldo em conta" as UC1
+  usecase "Sacar Dinheiro" as UC2
+  usecase "Depositar Fundos" as UC3
+}
+fc --> UC1
+fc --> UC2
+fc --> UC3
+@enduml
