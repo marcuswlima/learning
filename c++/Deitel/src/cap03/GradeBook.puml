@@ -1,6 +1,7 @@
 @startuml
 skinparam classAttributeIconSize 0
 class GradeBook {
+  <<constructor>> + GradeBook (name:String)
   - courseName : String
   + setCourseName(name:String)
   + getCourseName(): String
