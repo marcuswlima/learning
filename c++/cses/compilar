@@ -1,0 +1,24 @@
+
+
+FILE=$1
+
+
+SRC=$FILE.cpp
+
+BIN=/home/marcus/Developer/dados/c++/$FILE.sh
+OBJ=/home/marcus/Developer/dados/c++/$FILE.o
+
+
+rm $OBJ
+rm $BIN
+
+g++ -Wall -fexceptions -O2  -c $SRC -o $OBJ
+g++  -o $BIN $OBJ  -s
+
+
+echo "******************************"
+echo "** Execução "$1
+echo "******************************"
+
+$BIN
+
