@@ -1,0 +1,60 @@
+@startuml
+skinparam classAttributeIconSize 0
+class GradeBook {
+}
+class ATM {
+
+}
+
+class Screen {
+
+}
+
+class Keypad{
+
+}
+class CashDispenser{
+
+}
+class DepositSlot{
+
+}
+class Account{
+
+}
+class BankDatabase{
+
+}
+class BalanceInquiry{
+
+}
+class Withdrawal{
+
+}
+class Deposit{
+
+}
+
+
+
+
+ATM "1" --> "1" BankDatabase : Autentica o usuário contra
+ATM "1" -- "0..1" Withdrawal : Executa->
+ATM "1" *-- "1" Screen
+ATM "1" *-- "1" Keypad
+ATM "1" *-- "1" CashDispenser
+ATM "1" *-- "1" DepositSlot
+BankDatabase "1" *-- "0..*" Account : Contém
+Withdrawal "0..1" -- BankDatabase
+Withdrawal "0..1" -- "1" Keypad
+Withdrawal "0..1" -- "1" CashDispenser
+Withdrawal "0..1" -- "1" Screen
+
+Deposit "0..1" -- BankDatabase
+Deposit "0..1" -- "1" Keypad
+Deposit "0..1" -- "1" CashDispenser
+Deposit "0..1" -- "1" Screen
+ATM "1" -- "0..1" Deposit : Executa->
+
+
+@enduml
