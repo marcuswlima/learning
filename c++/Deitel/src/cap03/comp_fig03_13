@@ -1,0 +1,20 @@
+echo "******************************"
+echo "** Deletando"
+echo "******************************"
+
+rm ~/Developer/dados/c++/fig03_13.sh
+
+echo "******************************"
+echo "** Compilando ... "
+echo "******************************"
+
+
+g++ GradeBook.cpp fig03_13.cpp -o ~/Developer/dados/c++/fig03_13.sh
+
+echo "******************************"
+echo "** Executando ... "
+echo "******************************"
+
+
+~/Developer/dados/c++/fig03_13.sh
+

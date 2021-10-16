@@ -14,10 +14,12 @@ int main()
     // cria dois objetos GradeBook
     GradeBook gradeBook1( "CS101 Introduction to C++ Programming" );
     GradeBook gradeBook2( "CS102 Data Structures in C++" );
+    GradeBook gradeBook3( "CS103 Compilers" );
 
     // exibe valor inicial de courseName para cada GradeBook
     cout << "gradeBook1 created for course: " << gradeBook1.getCourseName()
          << "\ngradeBook2 created for course: " << gradeBook2.getCourseName()
+         << "\ngradeBook2 created for course: " << gradeBook3.getCourseName()
         << endl;
 
     return 0; // indica terminação bem-sucedida
