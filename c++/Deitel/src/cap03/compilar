@@ -12,6 +12,7 @@ OBJ=/home/marcus/Developer/dados/c++/$FILE.o
 rm $OBJ
 rm $BIN
 
+echo "******************************"
 g++ -Wall -fexceptions -O2  -c $SRC -o $OBJ
 g++  -o $BIN $OBJ  -s
 
