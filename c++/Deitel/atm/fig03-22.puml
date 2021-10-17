@@ -1,20 +1,28 @@
 @startuml
 skinparam classAttributeIconSize 0
-class ATM {
+
+class Screen {
 
 }
 
-class Screen {
+
+class ATM {
+    -numero-serie
+    -interno()
+    +ligar()
+    +desligar()
+    +realizarSaque()
+    +realizarDepoisito()
 
 }
 
 class Keypad{
 
 }
-class CashDispenser{
+class DepositSlot{
 
 }
-class DepositSlot{
+class CashDispenser{
 
 }
 
