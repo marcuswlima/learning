@@ -1,0 +1,27 @@
+@startuml
+skinparam classAttributeIconSize 0
+class ATM {
+
+}
+
+class Screen {
+
+}
+
+class Keypad{
+
+}
+class CashDispenser{
+
+}
+class DepositSlot{
+
+}
+
+ATM "1" *-- "1" DepositSlot
+ATM "1" *-- "1" Keypad
+ATM "1" *-- "1" CashDispenser
+ATM "1" *-- "1" Screen
+
+
+@enduml
