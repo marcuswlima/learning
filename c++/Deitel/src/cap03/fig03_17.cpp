@@ -11,8 +11,8 @@ int main()
 {
     // cria dois objetos GradeBook;
     // nome inicial de curso de gradeBook1 é muito longo
-    GradeBook gradeBook1( "CS101 Introduction to Programming in C++" );
-    GradeBook gradeBook2( "CS102 C++ Data Structures" );
+    GradeBook gradeBook1( "CS101 Introduction to Programming in C++", "Marcus William" );
+    GradeBook gradeBook2( "CS102 C++ Data Structures", "Santos Lima" );
 
     // exibe courseName de cada GradeBook
     cout << "gradeBook1’s initial course name is: "

@@ -2,8 +2,11 @@
 class GradeBook {
   <<constructor>> + GradeBook (name:String)
   - courseName : String
+  - instrutor : String
   + setCourseName(name:String)
   + getCourseName(): String
+  + setInstrutor(name:String)
+  + getInstrutor(): String
   + displayMessage()
 }
 @enduml

@@ -8,9 +8,10 @@ using std::endl;
 #include "GradeBook.h" // inclui a definição de classe GradeBook
 
 // o construtor inicializa courseName com a string fornecida como argumento
-GradeBook::GradeBook( string name )
+GradeBook::GradeBook( string name, string instructorName )
 {
     setCourseName( name ); // chama a função set para inicializar courseName
+    setInstrutor(instructorName);
 } // fim do construtor GradeBook
 
 // função que configura o nome do curso;
@@ -35,10 +36,22 @@ string GradeBook::getCourseName()
     return courseName; // retorna courseName do objeto
 } // fim da função getCourseName
 
+void GradeBook::setInstrutor( string instrutorName )
+{
+    instrutor = instrutorName;
+} 
+
+
+string  GradeBook::getInstrutor(){
+    return instrutor;
+}
+
+
+
 // exibe uma mensagem de boas-vindas para o usuário GradeBook
 void GradeBook::displayMessage()
 {
     // chama getCourseName para obter o courseName
     cout << "Welcome to the grade book for " << getCourseName()
-    << "!!!" << endl;
+    << " qhe será ministradas por " << getInstrutor() << " !!!" << endl;
 } // fim da função displayMessage

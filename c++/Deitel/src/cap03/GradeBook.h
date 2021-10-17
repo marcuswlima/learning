@@ -9,10 +9,13 @@ using std::string;
 class GradeBook
 {
 public:
-    GradeBook( string ); // chama a função set para inicializar courseName
+    GradeBook( string, string ); // chama a função set para inicializar courseName
     void setCourseName( string ); // armazena o nome do curso no objeto
     string getCourseName(); // retorna courseName do objeto
+    void setInstrutor( string );
+    string getInstrutor(); 
     void displayMessage(); //função que exibe uma mensagem de boas-vinda
 private:
     string courseName; // nome do curso para esse GradeBook
+    string instrutor; // nome do curso para esse GradeBook
 }; //
