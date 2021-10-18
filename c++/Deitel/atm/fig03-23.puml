@@ -2,6 +2,11 @@
 skinparam classAttributeIconSize 0
 
 class Account{
+    - int saldo
+    <<constructor >>Account(int saldoInicial)
+    void credit(int valor)
+    void debit(int valor)
+    int getBalance()
 
 }
 
