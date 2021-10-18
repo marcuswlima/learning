@@ -38,6 +38,7 @@ class Employee {
   + getSobreNome():string
   + setSalarioMensal(int salario):void
   + getSalarioMensal():int
+  + showEmployee():void
   
 }
 @enduml
