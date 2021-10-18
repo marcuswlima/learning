@@ -23,7 +23,7 @@ using std::ios;
 
 int main()
 {
-    Invoice invoiceTest1("15","primeiro item",2,30);
+    Invoice invoiceTest1("1","primeiro item",2,30);
     cout << "id -> " << invoiceTest1.getId() << endl; 
     cout << "descricao -> " << invoiceTest1.getDescricao() << endl; 
     cout << "quantidade -> " << invoiceTest1.getQuantidade() << endl; 

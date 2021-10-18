@@ -26,4 +26,18 @@ class Invoice{
   + getPrecoPorItem():int
   + getInvoiceAmmount():int
 }
+
+class Employee {
+  - nome : string
+  - sobreNome : string
+  - salarioMensal: int
+  <<constructor>> +Employee (nome : String, sobrenome : String, salarioMensal : int)
+  + setNome(string nome):void
+  + getNome():string
+  + setSobreNome(string nome):void
+  + getSobreNome():string
+  + setSalarioMensal(int salario):void
+  + getSalarioMensal():int
+  
+}
 @enduml
