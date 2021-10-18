@@ -1,4 +1,7 @@
 @startuml
+
+skinparam classAttributeIconSize 0
+
 class GradeBook {
   <<constructor>> + GradeBook (name:String)
   - courseName : String
@@ -39,6 +42,19 @@ class Employee {
   + setSalarioMensal(int salario):void
   + getSalarioMensal():int
   + showEmployee():void
-  
+}
+
+class Date{
+  - mes: int
+  - dia: int
+  - ano: int
+  <<constructor>> +Date (mes:int, dia:int, ano:int)
+  +setDia(int dia):void
+  +getDia():int
+  +setMes(int Mes):void
+  +getMes():int
+  +setAno(int Mes):void
+  +getAno():int
+  +displayDate():string
 }
 @enduml
