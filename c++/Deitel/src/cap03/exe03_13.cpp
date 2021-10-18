@@ -18,37 +18,34 @@ using std::ios;
 //setiosflags( ios::fixed | ios::showpoint )
 ////static_cast< double > ()
 
+#include "Invoice.h" 
 
-double f_exe03_12 (double in_numero);
 
 int main()
 {
-    double cein = 0;
+    Invoice invoiceTest1("15","primeiro item",2,30);
+    cout << "id -> " << invoiceTest1.getId() << endl; 
+    cout << "descricao -> " << invoiceTest1.getDescricao() << endl; 
+    cout << "quantidade -> " << invoiceTest1.getQuantidade() << endl; 
+    cout << "PrecoPorItem -> " << invoiceTest1.getPrecoPorItem() << endl; 
+    cout << "Total -> " << invoiceTest1.getInvoiceAmmount() << endl; 
 
-    while (cein != -1) {
+    Invoice invoiceTest2("2","segundo",-2,30);
+    cout << "id -> " << invoiceTest2.getId() << endl; 
+    cout << "descricao -> " << invoiceTest2.getDescricao() << endl; 
+    cout << "quantidade -> " << invoiceTest2.getQuantidade() << endl; 
+    cout << "PrecoPorItem -> " << invoiceTest2.getPrecoPorItem() << endl; 
+    cout << "Total -> " << invoiceTest2.getInvoiceAmmount() << endl; 
 
-        cout << "informe: ";
-        cin >> cein;
-
-        cout <<  cein 
-            << "\tf_exe03_12: " << f_exe03_12(cein) 
-            << "\tround: "      << round(cein) 
-            << "\tfloor: "      << floor(cein) 
-            << "\tceil: "       << ceil(cein) 
-            << "\ttrunc: "      << trunc(cein) 
-        << endl;
-
-    }
-
-
+    Invoice invoiceTest3("3","terceiro",2,-30);
+    cout << "id -> " << invoiceTest3.getId() << endl; 
+    cout << "descricao -> " << invoiceTest3.getDescricao() << endl; 
+    cout << "quantidade -> " << invoiceTest3.getQuantidade() << endl; 
+    cout << "PrecoPorItem -> " << invoiceTest3.getPrecoPorItem() << endl; 
+    cout << "Total -> " << invoiceTest3.getInvoiceAmmount() << endl; 
 
 //--------------------------------------------
     cout << endl << endl ;
     return 0;
 }
-
-double f_exe03_12 (double in_numero){
-        return floor( in_numero + .5) ;
-
-    }
 

@@ -9,4 +9,21 @@ class GradeBook {
   + getInstrutor(): String
   + displayMessage()
 }
+
+class Invoice{
+  <<constructor>> +Invoice (id : String, descricao : String, quantidade : int, preco-por-item : int)
+  - id : String
+  - descricao : String
+  - quantidade : int
+  - preco-por-item : int
+  + setId(id:string)
+  + getId():string 
+  + setDescricao(id:string)
+  + getDescricao():string 
+  + setQuantidade(id:int)
+  + getQuantidade():int
+  + setPrecoPorItem(id:int)
+  + getPrecoPorItem():int
+  + getInvoiceAmmount():int
+}
 @enduml
