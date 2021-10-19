@@ -1,0 +1,27 @@
+@startuml
+start
+repeat
+    :exibe o menu de quantias de \nretirada e opção para cancelar;
+    :entrada da seleção de menu;
+    if () then ([usuário selecionou \numa quantia])
+        : configura o atributo quantia;
+        : obtém saldo disponível da conta\n de usuário a partir do banco de dados;
+        if () then ([quantia > saldo disponível])
+            :exibe mensagem de erro; 
+        else ([quantia <= saldo disponível])
+            :testa se dinheiro suficiente está\n disponível no dispensador de cédulas;
+            if () then ([dinheiro disponível\n insuficiente])
+                :exibe mensagem de erro;
+            else ([dinheiro disponível\n suficiente])
+                :interage com banco de dados para \ndebitar a quantia da conta do usuário;
+                :dispensador de cédulas;
+                :instrui o usuário a pegar o dinheiro;
+            endif
+        endif
+    else ([usuário cancelou \na transação])
+        : exibe mensagem de cancelamento;
+    endif
+repeat while () is ([dinheiro não fornecido e \nusuário não fez \no cancelamento])
+-> [dinheiro fornecido ou \nusuário cancelou \na transação];
+stop;
+@enduml

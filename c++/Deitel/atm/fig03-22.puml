@@ -7,8 +7,8 @@ class Screen {
 
 
 class ATM {
-    -numero-serie
-    -interno()
+    - numeroSerie: int
+    - userAuthenticated : Boolean = false
     +ligar()
     +desligar()
     +realizarSaque()

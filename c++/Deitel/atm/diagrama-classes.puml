@@ -2,23 +2,31 @@
 skinparam classAttributeIconSize 0
 
 class Account{
+    - accountNumber : Integer
+    - pin : Integer
+    - avaliableBalance : Double
+    - totalBalance : Double
 
 }
 class ATM {
+    - userAuthenticated : Boolean = false
 
 }
 class BalanceInquiry{
+    - accountNumber : Integer
 
 }
 class BankDatabase{
 
 }
 class CashDispenser{
+    count : Integer = 500
 
 }
 
 class Deposit{
-
+    - accountNumber : Integer
+    - amount : double
 }
 
 class DepositSlot{
@@ -33,7 +41,8 @@ class Screen {
 }
 
 class Withdrawal{
-
+    - accountNumber : Integer
+    - amount : double
 }
 
 
