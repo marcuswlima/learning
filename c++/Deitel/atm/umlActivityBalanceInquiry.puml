@@ -1,0 +1,8 @@
+@startuml
+start
+:obter saldo disponível da \nconta de usuário a partir \ndo banco de dados;
+:obter o saldo total da conta\n do usuário a partir \ndo banco de dados;
+:exibir saldos na tela;
+stop
+@enduml
+
