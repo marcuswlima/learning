@@ -2,9 +2,9 @@
 left to right direction
 actor "Usuário" as fc
 rectangle ATM {
-  usecase "Visualizar saldo em conta" as UC1
-  usecase "to withdrawal" as UC2
-  usecase "to deposit" as UC3
+  usecase "Balance Inquiry" as UC1
+  usecase "Withdrawal" as UC2
+  usecase "Deposit" as UC3
 }
 fc --> UC1
 fc --> UC2

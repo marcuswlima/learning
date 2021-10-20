@@ -1,0 +1,18 @@
+@startuml
+start
+:solicita para o usuário inserir \numa quantia de depósito ou cancelar;
+:recebe a entrada fornecida pelo usuário;
+if () then ([usuário cancelou a transação])
+    :exibe mensagem de cancelamento;
+else ([usuário inseriu uma quantia])
+    :configura o atributo quantia;
+    :instrui o usuário a inserir o envelope de depósito;
+    :tenta receber o envelope de depósito;
+    if () then ([envelope de depósito não recebido])
+        :exibe mensagem de erro;
+    else ([envelope de depósito recebido])
+        :interagir com banco de dados para \ncreditar o valor na conta do usuário;
+    endif
+endif
+stop
+@enduml
