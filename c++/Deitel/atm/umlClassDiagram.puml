@@ -26,11 +26,11 @@ class Account{
 }
 
 class BankDatabase{
-    + authenticateUser( userAccountNUmber:Integer, userPIN:Integer):Boolean
-    + getAvailableBalance(userAccountNUmber:Integer):Double
-    + getTotalBalance(userAccountNUmber:Integer):Double
-    + credit(userAccountNUmber:Integer,amount:Double)
-    + debit(userAccountNUmber:Integer,amount:Double)
+    + authenticateUser( userAccountNumber:Integer, userPIN:Integer):Boolean
+    + getAvailableBalance(userAccountNumber:Integer):Double
+    + getTotalBalance(userAccountNumber:Integer):Double
+    + credit(userAccountNumber:Integer,amount:Double)
+    + debit(userAccountNumber:Integer,amount:Double)
 }
 
 
