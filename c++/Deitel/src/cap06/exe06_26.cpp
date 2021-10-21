@@ -6,6 +6,8 @@ using std::endl;
 
 #include "MarcusTools.h"
 
+int countSecond(int hora, int minuto, int segundo);
+
 int main(){
 
     srand( time(0) );
@@ -21,8 +23,12 @@ int main(){
         minuto = gerarInteiro(0,59);
         segundo = gerarInteiro(0,59);
 
-        cout << hora << ":" << minuto << ":" << segundo << endl;
+        cout << hora << ":" << minuto << ":" << segundo << " -> " << countSecond(hora,minuto,segundo) << endl;
     }
 
 
+}
+
+int countSecond(int hora, int minuto, int segundo){
+    return (hora*60*60) + (minuto*60) + segundo;
 }
