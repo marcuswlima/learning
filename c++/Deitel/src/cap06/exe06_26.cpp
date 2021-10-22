@@ -4,8 +4,6 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-#include "MarcusTools.h"
-
 #include <ctime>
 
 #include <iomanip>
