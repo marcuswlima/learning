@@ -34,8 +34,6 @@ double calculateCharges (double in_horas) {
 **********************************/
 int gerarInteiro(int menor, int maior) {
 
-    int resposta;
-
     if (maior > menor){
         int faixa  = (maior - menor + 1);
         int gerado = (1 + rand() % faixa);
