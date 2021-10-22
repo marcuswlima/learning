@@ -15,8 +15,7 @@ using std::setprecision;
 using std::setiosflags;
 using std::setw;
 
-double calculateCharges (double in_horas);
-
+#include "cap06.h"
 
 int main()
 {
@@ -54,24 +53,5 @@ int main()
 
     cout << endl << endl ;
     return 0;
-}
-
-double calculateCharges (double in_horas) {
-
-    int    iHorasTaxaMinima=3;
-    double dTaxaMinima=2, dResposta, dExcedido;
-
-    if ( in_horas < 24 ) {
-
-        dResposta = dTaxaMinima;
-        if ( in_horas > iHorasTaxaMinima ) {
-            dExcedido = (in_horas - iHorasTaxaMinima);
-            dResposta += (dExcedido*0.5);
-        }
-    }
-    else
-       dResposta = 10 ;
-
-    return dResposta;
 }
 

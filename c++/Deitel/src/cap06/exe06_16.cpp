@@ -14,11 +14,7 @@ using std::setw;
 
 using std::ios;
 
-#include "MarcusTools.h"
-
-//setprecision(5) 
-//setiosflags( ios::fixed | ios::showpoint )
-////static_cast< double > ()
+#include "cap06.h"
 
 void imprimir_aleatorios(int menor, int maior);
 
