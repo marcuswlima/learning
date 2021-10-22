@@ -10,6 +10,8 @@ using std::endl;
 using std::setw; // permite que o programa configure a largura de um campo
 using std::setprecision;
 
+#include "cap06.h"
+
 class Tempo{
 public:
     void setHora(int);
