@@ -9,6 +9,11 @@ Gera numeros aleatórios dentro de uma faixa de inteiros
 int gerarInteiro(int, int);
 
 /*
+Gera numeros aleatórios dentro de uma faixa de inteiros
+*/
+double gerarDouble(int, int);
+
+/*
 Indica se o numero é par
 */
 bool ehPar(int);
@@ -37,4 +42,16 @@ void imprimirQuadrado(int, char);
 /*
 Projeta em cout uma versão do inteiro onde cada algarismo estará separado por espaço em branco
 */
-void separaInteiro (int entrou);
+void separaInteiro (int);
+
+/*
+Recebe 3 valores double e indica qual é o menor
+*/
+
+double menorDe3 (double, double, double);
+
+/*
+indica se um numero é primo ou não
+*/
+
+bool prime(int);

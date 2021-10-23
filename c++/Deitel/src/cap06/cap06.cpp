@@ -45,6 +45,16 @@ int gerarInteiro(int menor, int maior) {
 }
 
 /**********************************
+ ** gerarDouble
+**********************************/
+double gerarDouble(int menor, int maior){
+
+    return gerarInteiro(menor, maior)+ static_cast< double >(gerarInteiro(0,9999))/10000;
+
+}
+
+
+/**********************************
  ** ehPar(int entrada)
 **********************************/
 bool ehPar(int entrada){
@@ -111,4 +121,42 @@ void imprimirQuadrado(int lado, char caracterDePreenchimento){
         cout << endl;
     }
     cout << endl;
+}
+
+
+/********************************************************
+** double menorDe3 (double d1, double d2, double d3)
+*********************************************************/
+double menorDe3 (double d1, double d2, double d3) {
+    double resposta ;
+
+    if ((d1 < d2) && (d1 < d3))
+        resposta = d1;
+
+    if ((d2 < d1) && (d2 < d3))
+        resposta = d2;
+
+    if ((d3 < d1) && (d3 < d2))
+        resposta = d3;
+    
+    return resposta;
+
+}
+
+/********************************************************
+** bool prime(int entrou)
+*********************************************************/
+bool prime(int entrou){
+    bool isPrime=true;
+
+    if (entrou!= 0 && entrou!=1){
+        for (int i=2 ; i<=entrou/2 ; ++i){
+
+            if (entrou%i==0){ 
+                isPrime = false;
+                break;
+            }
+        };
+    }
+    return isPrime;
 }

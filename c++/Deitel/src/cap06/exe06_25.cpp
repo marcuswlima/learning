@@ -2,7 +2,9 @@
 using std::cout;
 using std::endl;
 #include <iomanip>
+
 using std::setw;
+
 #include "cap06.h"
 
 void separaInteiro (int entrou);
