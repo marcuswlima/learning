@@ -143,20 +143,11 @@ double menorDe3 (double d1, double d2, double d3) {
 
 }
 
-/********************************************************
-** bool prime(int entrou)
-*********************************************************/
-bool prime(int entrou){
-    bool isPrime=true;
+void separarAndInverter (int entrou){
 
-    if (entrou!= 0 && entrou!=1){
-        for (int i=2 ; i<=entrou/2 ; ++i){
-
-            if (entrou%i==0){ 
-                isPrime = false;
-                break;
-            }
-        };
+    cout << entrou%10 << " ";
+    if ( entrou/10 != 0 ){ 
+        separarAndInverter(entrou/10);
     }
-    return isPrime;
-}
+
+} 

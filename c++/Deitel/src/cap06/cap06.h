@@ -53,5 +53,13 @@ double menorDe3 (double, double, double);
 /*
 indica se um numero é primo ou não
 */
-
 bool prime(int);
+
+/*
+Projeta em cout uma versão do inteiro onde cada algarismo estará separado por espaço em branco, 
+porém invertido
+*/
+
+void separarAndInverter (int);
+
+
