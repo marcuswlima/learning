@@ -7,6 +7,9 @@ using std::setw;
 
 #include "cap06.h"
 
+#include <string>
+using std::string;
+
 void separaInteiro (int entrou);
 
 int gExpoente;
@@ -18,9 +21,10 @@ int main()
     srand( time(0) );
 
 
-    for (int i=1;i<=100;i++){
+    for (int i=1;i<=1;i++){
 
         inteiro = gerarInteiro(1,32767);
+        inteiro = 123;
 
         if (inteiro > 10000)
             gExpoente = 4;
@@ -42,7 +46,6 @@ int main()
 
         cout << endl; 
     }
-
 
 
 //--------------------------------------------

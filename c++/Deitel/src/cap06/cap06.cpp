@@ -143,6 +143,9 @@ double menorDe3 (double d1, double d2, double d3) {
 
 }
 
+/********************************************************
+** separarAndInverter (int entrou)
+*********************************************************/
 void separarAndInverter (int entrou){
 
     cout << entrou%10 << " ";
@@ -151,3 +154,46 @@ void separarAndInverter (int entrou){
     }
 
 } 
+
+
+/********************************************************
+** bool prime(int entrou)
+*********************************************************/
+bool prime(int entrou){
+    bool isPrime=true;
+
+    if (entrou!= 0 && entrou!=1){
+        for (int i=2 ; i<=entrou/2 ; ++i){
+
+            if (entrou%i==0){ 
+                isPrime = false;
+                break;
+            }
+        };
+    }
+    return isPrime;
+} 
+
+/********************************************************
+** int mdc(int pri, int seg)
+*********************************************************/
+int mdc(int pri, int seg){
+    int maior,menor;
+
+    if (pri>seg){
+        maior=pri;
+        menor=seg;
+    }
+    else
+        if (pri<seg){
+            maior=seg;
+            menor=pri;
+        };
+
+    for (int i=menor/2;i>=1;i--){
+        if (multiple(maior,i) && multiple(menor,i))
+            return i;
+    }
+
+    return 0;
+}

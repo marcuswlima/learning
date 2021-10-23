@@ -59,7 +59,10 @@ bool prime(int);
 Projeta em cout uma versão do inteiro onde cada algarismo estará separado por espaço em branco, 
 porém invertido
 */
-
 void separarAndInverter (int);
+
+/*
+Calcula o MDC de dois numeros inteiros*/
+int mdc(int pri, int seg);
 
 
