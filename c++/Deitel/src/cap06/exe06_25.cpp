@@ -1,29 +1,13 @@
 #include <iostream>
-
 using std::cout;
-using std::cin;
 using std::endl;
-using std::string;
-
 #include <iomanip>
-
-using std::setprecision;
-using std::setiosflags;
 using std::setw;
-
-#include <cmath>
-
-using std::ios;
-
 #include "cap06.h"
 
-//setprecision(5) 
-//setiosflags( ios::fixed | ios::showpoint )
-////static_cast< double > ()
+void separaInteiro (int entrou);
 
-int quociente(int a, int b);
-int resto(int a, int b);
-void separar(int inteiro);
+int gExpoente;
 
 int main()
 {
@@ -32,65 +16,48 @@ int main()
     srand( time(0) );
 
 
-    inteiro = gerarInteiro(1,32767);
-    inteiro = 12045;
-    string asda;
+    for (int i=1;i<=100;i++){
 
-    separar(inteiro);
+        inteiro = gerarInteiro(1,32767);
 
+        if (inteiro > 10000)
+            gExpoente = 4;
+        else
+            if (inteiro > 1000)
+                gExpoente = 3;
+            else
+                if (inteiro > 100)
+                    gExpoente = 2;
+                else 
+                    if (inteiro > 10)
+                        gExpoente = 1;
+                    else 
+                        gExpoente = 0;
+
+        cout << setw(3) << i       << " - " 
+             << setw(5) << inteiro << " - ";
+        separaInteiro(inteiro) ;
+
+        cout << endl; 
+    }
 
 
 
 //--------------------------------------------
     cout << endl << endl ;
     return 0;
+
 }
 
-
-int quociente(int a, int b){
-    return a / b;
-}
-
-int resto(int a, int b){
-    return a % b;
-}
-
-void separar(int inteiro ){
-    int decimal, resto, isolado;
-
-    cout << "-------" << endl;
-    cout << "Entrou " << inteiro << endl;
-
-
-    if (inteiro > 10000)
-        decimal = 10000;
-    else
-        if (inteiro > 1000)
-            decimal = 1000;
-        else
-            if (inteiro > 100)
-                decimal = 100;
-            else 
-                if (inteiro > 10)
-                    decimal = 10;
-                else 
-                    decimal = 1;
-
-    cout << "decimal " << decimal << endl;
-
-    if (decimal==1)
-        cout << inteiro << endl;
-    else {
-        //cout << quociente (inteiro,decimal) << " ";
-        resto = inteiro % decimal ;
-        cout << "resto " << resto << endl;
-        isolado = (inteiro - resto) / decimal;
-        cout << "isolado " << isolado << endl;
-        separar(resto);
+void separaInteiro (int entrou){
+    int separado, resto ;
+    if (gExpoente==0)
+        cout << entrou;
+    else{
+        separado = entrou/integerPower(10,gExpoente);
+        resto = entrou%integerPower(10,gExpoente);
+        cout << separado << " ";
+        gExpoente--;
+        separaInteiro(resto);
     }
-
-
-    cout <<  endl;
 }
-
-

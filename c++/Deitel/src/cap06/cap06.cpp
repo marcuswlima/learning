@@ -112,4 +112,3 @@ void imprimirQuadrado(int lado, char caracterDePreenchimento){
     }
     cout << endl;
 }
-

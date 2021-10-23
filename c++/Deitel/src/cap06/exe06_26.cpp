@@ -74,10 +74,10 @@ int main(){
 
     Tempo h1, h2;
 
-    cout << "Hora1\t\tcsfz1\tHora2\t\tcsfz2\tDiff" << endl;
-    cout << "--------\t-----\t-----\t\t-----\t----" << endl;
+    cout << "Hora1\t\tcsfz1\tHora2\t\tcsfz2\tDiff"     << endl;
+    cout << "--------\t-----\t---------\t-----\t-----" << endl;
 
-    for (int i=1; i<=500; i++){
+    for (int i=1; i<=5; i++){
 
         h1.setTempo(gerarInteiro(0,11)
                    ,gerarInteiro(0,59)
@@ -90,28 +90,14 @@ int main(){
                    );
 
         h1.apresentar();
-        cout << "\t" << countSecondFromZero2(h1);
+        cout << "\t" << setw(5) << countSecondFromZero2(h1);
         cout << "\t" ;
         h2.apresentar();
-        cout << "\t" << countSecondFromZero2(h2);
-        cout << "\t" << diferencaEmSegundos2(h1,h2);
+        cout << "\t" << setw(5) << countSecondFromZero2(h2);
+        cout << "\t" << setw(5) << diferencaEmSegundos2(h1,h2);
         cout << endl;
     }
     cout << endl;
-
-
-
-    h1.setTempo(0,1,0);
-    h2.setTempo(11,59,59);
-
-    h1.apresentar();
-    cout << "\t" << countSecondFromZero2(h1);
-    cout << "\t" ;
-    h2.apresentar();
-    cout << "\t" << countSecondFromZero2(h2);
-    cout << "\t" << diferencaEmSegundos2(h1,h2);
-    cout << endl;
-
 }
 
 int countSecondFromZero2 (Tempo h1){

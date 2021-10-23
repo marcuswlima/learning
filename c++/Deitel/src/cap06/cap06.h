@@ -32,3 +32,9 @@ bool multiple (int, int);
 Imprime um quadrado no cout
 */
 void imprimirQuadrado(int, char);
+
+
+/*
+Projeta em cout uma versão do inteiro onde cada algarismo estará separado por espaço em branco
+*/
+void separaInteiro (int entrou);

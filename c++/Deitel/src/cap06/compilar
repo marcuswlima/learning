@@ -21,12 +21,10 @@ rm -v $OBJ6
 echo "******************************"
 echo "** Compilando ...."
 echo "******************************"
-#g++ -Wall -fexceptions -O2  -c $SRC -o $OBJ
-#g++  -o $BIN $OBJ  -s
 
 g++ -c cap06.cpp -o $OBJ6
 g++ -c $1.cpp    -o $OBJ
-g++ $OBJ6 $OBJ -o $BIN
+g++ $OBJ6 $OBJ   -o $BIN
 
 echo "******************************"
 echo "** Execução $1 " 
