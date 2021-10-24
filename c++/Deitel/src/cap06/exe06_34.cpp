@@ -1,24 +1,7 @@
 #include <iostream>
-
 using std::cout;
-using std::cin;
 using std::endl;
-
-#include <iomanip>
-
-using std::setprecision;
-using std::setiosflags;
-using std::setw;
-
-#include <cmath>
-
-using std::ios;
-
-//setprecision(5) 
-//setiosflags( ios::fixed | ios::showpoint )
-////static_cast< double > ()
-
-int flip();
+#include "cap06.h"
 
 int main()
 {
@@ -26,7 +9,7 @@ int main()
     srand( time(0) );
 
     int cara=0, coroa=0, jogada;
-    for (int i=1;i<=100;i++){
+    for (int i=1;i<=10000;i++){
         jogada = flip();
 
         switch (jogada) {
@@ -49,17 +32,4 @@ int main()
 //--------------------------------------------
     cout << endl << endl ;
     return 0;
-}
-
-int gerarInteiro(int menor, int maior) {
- 
-    int faixa  = (maior - menor + 1);
-    int gerado = (1 + rand() % faixa);
-
-    return menor + (gerado-1);
-
-}
-
-int flip() {
-    return gerarInteiro(0,1);
 }

@@ -62,7 +62,22 @@ porém invertido
 void separarAndInverter (int);
 
 /*
-Calcula o MDC de dois numeros inteiros*/
+Calcula o MDC de dois numeros inteiros
+*/
 int mdc(int pri, int seg);
 
+
+/*
+Informa a faixa de media de uma media de nota
+90>=nota<=100 -> 4
+80>=nota<= 89 -> 3
+70>=nota<= 79 -> 2
+60>=nota<= 69 -> 1
+    nota<  60 -> 0
+*/
+int qualityPoints (double);
+
+/* Simula uma jogada de moeda caraXcoroa*/
+
+int flip();
 

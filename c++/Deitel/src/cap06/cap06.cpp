@@ -197,3 +197,30 @@ int mdc(int pri, int seg){
 
     return 0;
 }
+
+/********************************************************
+** int qualityPoints
+*********************************************************/
+int qualityPoints (double media){
+
+    if (media>=90 && media <=100)
+        return 4;
+    
+    if (media>=80 && media <=89)
+        return 3;
+
+    if (media>=70 && media <=79)
+        return 2;
+
+    if (media>=60 && media <=69)
+        return 1;
+    
+    return 0;
+}
+
+/********************************************************
+** int flip()
+*********************************************************/
+int flip() {
+    return gerarInteiro(0,1);
+}
