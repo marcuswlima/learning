@@ -8,6 +8,7 @@ SRC=$FILE.cpp
 BIN=/home/marcus/Developer/dados/c++/$FILE.sh
 OBJ=/home/marcus/Developer/dados/c++/$FILE.o
 OBJ6=/home/marcus/Developer/dados/c++/cap06.o
+CAI=/home/marcus/Developer/dados/c++/cai.o
 
 
 echo "******************************"
@@ -17,14 +18,16 @@ echo "******************************"
 rm -v $OBJ
 rm -v $BIN
 rm -v $OBJ6
+rm -v $CAI
 
 echo "******************************"
 echo "** Compilando ...."
 echo "******************************"
 
 g++ -c cap06.cpp -o $OBJ6
+g++ -c cai.cpp   -o $CAI
 g++ -c $1.cpp    -o $OBJ
-g++ $OBJ6 $OBJ   -o $BIN
+g++ $OBJ6 $OBJ $CAI -o $BIN
 
 echo "******************************"
 echo "** Execução $1 " 
