@@ -23,6 +23,12 @@ Realiza a potencia
 */
 int integerPower(int, int);
 
+
+/*
+Realiza a potencia (recursivo)
+*/
+int power(int, int);
+
 /*
 Calcula o comprimento da hipotenusa de um triangulo retangulo
 */
@@ -78,6 +84,5 @@ Informa a faixa de media de uma media de nota
 int qualityPoints (double);
 
 /* Simula uma jogada de moeda caraXcoroa*/
-
 int flip();
 

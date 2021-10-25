@@ -83,6 +83,19 @@ int integerPower(int base, int expoent){
 
 }
 
+/**********************************
+** int power
+**********************************/
+int power(int base, int expoent){
+
+    if (expoent==0) 
+        return 1;
+    else
+        return base * power(base,expoent-1);
+
+}
+
+
 
 /**********************************
 ** double hypotenuse
