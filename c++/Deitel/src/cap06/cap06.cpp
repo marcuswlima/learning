@@ -5,7 +5,6 @@ using std::endl;
 #include <cmath>
 #include "cap06.h"
 
-
 /**********************************
  ** calculateCharges
 **********************************/
