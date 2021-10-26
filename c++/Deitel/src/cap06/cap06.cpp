@@ -161,9 +161,8 @@ double menorDe3 (double d1, double d2, double d3) {
 void separarAndInverter (int entrou){
 
     cout << entrou%10 << " ";
-    if ( entrou/10 != 0 ){ 
+    if ( entrou/10 != 0 )
         separarAndInverter(entrou/10);
-    }
 
 } 
 

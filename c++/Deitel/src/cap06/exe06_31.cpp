@@ -19,7 +19,7 @@ int main(){
         x = gerarInteiro(0,99999);
 
         cout << setw(3) << i << "\t";
-        cout << setw(4) << x << "\t";
+        cout << setw(5) << x << "\t";
         separarAndInverter(x);
         cout << endl;
 

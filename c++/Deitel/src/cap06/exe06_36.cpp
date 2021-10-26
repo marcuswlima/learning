@@ -7,7 +7,7 @@ using std::endl;
 
 int main()
 {
-    srand( time(0) );
+    srand( ftime(0) );
 
     testeMultiplicacao();
 

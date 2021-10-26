@@ -10,7 +10,7 @@ using std::srand;
 
 #include <ctime> // contém protótipo para a função time
 using std::time;
-
+#include "cap06.h"
 int rollDice(); // lança o dado, calcula e exibe a soma
 
 int main()
@@ -71,8 +71,8 @@ int main()
 int rollDice()
 {
     // seleciona valores aleatórios do dado
-    int die1 = 1 + rand() % 6; // primeiro lançamento do dado
-    int die2 = 1 + rand() % 6; // segundo lançamento do dado
+    int die1 = gerarInteiro(1,6); //1 + rand() % 6; // primeiro lançamento do dado
+    int die2 = gerarInteiro(1,6); //1 + rand() % 6; // segundo lançamento do dado
 
     int sum = die1 + die2; // calcula a soma de valores do dado
 
