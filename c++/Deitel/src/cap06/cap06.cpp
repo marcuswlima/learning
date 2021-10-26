@@ -236,3 +236,25 @@ int qualityPoints (double media){
 int flip() {
     return gerarInteiro(0,1);
 }
+
+/********************************************************
+** int mdc_r(int pri, int seg)
+*********************************************************/
+int mdc_r(int x, int y){
+    int maior,menor;
+
+    if (x>y){
+        maior=x;
+        menor=y;
+    }else if (x<y){
+        maior=y;
+        menor=x;
+    };
+
+    if (menor==0)
+        return maior;
+    else {
+        return mdc_r(menor, maior % menor);
+    }
+
+}

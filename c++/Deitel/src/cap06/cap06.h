@@ -23,7 +23,6 @@ Realiza a potencia
 */
 int integerPower(int, int);
 
-
 /*
 Realiza a potencia (recursivo)
 */
@@ -44,7 +43,6 @@ Imprime um quadrado no cout
 */
 void imprimirQuadrado(int, char);
 
-
 /*
 Projeta em cout uma versão do inteiro onde cada algarismo estará separado por espaço em branco
 */
@@ -53,7 +51,6 @@ void separaInteiro (int);
 /*
 Recebe 3 valores double e indica qual é o menor
 */
-
 double menorDe3 (double, double, double);
 
 /*
@@ -86,3 +83,7 @@ int qualityPoints (double);
 /* Simula uma jogada de moeda caraXcoroa*/
 int flip();
 
+/*
+Calcula o MDC de dois numeros inteiros por recursão
+*/
+int mdc_r(int, int);
