@@ -27,7 +27,7 @@ void respostaCerta(){
     cout << endl;
 }
 
-void respostaErrada(){
+void respostaErrada(int resposta){
     int nResposta = gerarInteiro(1,4);
 
     switch (nResposta) {
@@ -46,30 +46,64 @@ void respostaErrada(){
         default:
             break;
     }
-    cout << endl;
+    cout << " o certo é "<< resposta << endl;
 }
 
-void testeMultiplicacao(){
+void testeMultiplicacao(int nivel, int operacaoDesejada){
 
 
-    int a , b , resposta, certas=0, erradas=0;
+    int a , b , respostaInformada, resposta, certas=0, erradas=0, operacao;
+
 
     for (int i=1;i<=10;i++){
 
-        a = gerarInteiro(1,9);
-        b = gerarInteiro(1,9);
+        if (operacaoDesejada=5)
+            operacao=gerarInteiro(1,4);
+        else
+            operacao=operacaoDesejada;
 
-        cout << i << "- Quanto é " << a <<" vezes " << b << " ? ";
-        cin >> resposta ; 
+        if (nivel==1){
+            a = gerarInteiro(1,9);
+            b = gerarInteiro(1,9);
+        } else {
+            a = gerarInteiro(1,100);
+            b = gerarInteiro(1,100);
 
-        if (resposta == (a*b)){
+        }
+
+        switch (operacao)
+        {
+        case 1:
+            cout << i << "- Quanto é " << a <<" + " << b << " ? ";
+            resposta = a+b;
+            break;
+        case 2:
+            cout << i << "- Quanto é " << a <<" - " << b << " ? ";
+            resposta = a-b;
+            break;
+        case 3:
+            cout << i << "- Quanto é " << a <<" * " << b << " ? ";
+            resposta = a*b;
+            break;
+        case 4:
+            cout << i << "- Quanto é " << a <<" / " << b << " ? ";
+            resposta = a/b;
+            break;
+        default:
+            break;
+        }
+
+        cin >> respostaInformada ; 
+
+        if ( respostaInformada == resposta ) {
             respostaCerta();
             certas++;
         }
         else    {
-            respostaErrada();
+            respostaErrada(resposta);
             erradas++;
         }
+
     }
 
     cout << endl;

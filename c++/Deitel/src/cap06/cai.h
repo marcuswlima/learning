@@ -1,4 +1,4 @@
 void respostaCerta();
-void respostaErrada();
-void testeMultiplicacao();
+void respostaErrada(int);
+void testeMultiplicacao(int, int);
 
