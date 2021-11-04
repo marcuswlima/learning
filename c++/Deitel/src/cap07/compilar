@@ -1,0 +1,31 @@
+
+
+FILE=$1
+
+BIN=/home/marcus/Developer/dados/c++/$FILE.sh
+OBJ=/home/marcus/Developer/dados/c++/$FILE.o
+ML=/home/marcus/Developer/dados/c++/marcusLib.o
+
+
+echo "******************************"
+echo "** Deletando...."
+echo "******************************"
+
+rm -v $OBJ
+rm -v $BIN
+rm -v $ML
+
+echo "******************************"
+echo "** Compilando ...."
+echo "******************************"
+
+g++ -c ../lib/marcusLib.cpp -o $ML
+g++ -c $1.cpp               -o $OBJ
+g++ $OBJ $ML                -o $BIN
+
+echo "******************************"
+echo "** Execução $1 " 
+echo "******************************"
+
+$BIN
+
