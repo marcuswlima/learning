@@ -257,3 +257,15 @@ int mdc_r(int x, int y){
     }
 
 }
+
+
+/********************************************************
+** int mdc_r(int pri, int seg)
+*********************************************************/
+void mostarArrayInt( const int array[], int sizeOfArray ){
+    for (int i=0;i<sizeOfArray;i++)
+        cout << "[" << i << "]=" << array[i] << " ";
+
+    cout << "\n";
+
+}

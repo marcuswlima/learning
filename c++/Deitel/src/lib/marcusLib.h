@@ -87,3 +87,9 @@ int flip();
 Calcula o MDC de dois numeros inteiros por recursão
 */
 int mdc_r(int, int);
+
+
+/*
+Imprime os valores de um array de inteiros e de uma dimensão
+*/
+void mostarArrayInt( const int [], int );
