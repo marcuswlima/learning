@@ -14,13 +14,16 @@ using std::setw;
 #include "GradeBook.h" // definição da classe GradeBook
 
 // o construtor inicializa courseName e o array grades
-GradeBook::GradeBook( string name, const int gradesArray[] )
+GradeBook::GradeBook( string name, const int gradesArray[] [ tests ])
 {
     setCourseName( name ); // inicializa courseName
 
-    // copia notas de gradeArray para membro de dados grades
-    for ( int grade = 0; grade < students; grade++ )
-        grades[ grade ] = gradesArray[ grade ];
+    // copia notas de gradeArray para grades
+    for ( int student = 0; student < students; student++ )
+
+        for ( int test = 0; test < tests; test++ )
+            grades[ student ][ test ] = gradesArray[ student ][ test ];
+
 } // fim do construtor GradeBook
 
 // função para configurar o nome do curso
@@ -51,14 +54,9 @@ void GradeBook::processGrades()
     outputGrades();
 
     // chama função getAverage para calcular a nota média
-    cout << "\nClass average is " << setprecision( 2 ) << fixed << getAverage() << endl;
+    cout << "\nLowest grade in the grade book is " << getMinimum()
+         << "\nHighest grade in the grade book is " << getMaximum() << endl;
     
-
-    // chama funções getMinimum e getMaximum
-    cout << "Lowest grade is " << getMinimum() << "\nHighest grade is " << getMaximum() << endl;
-    // chama outputBarChart para imprimir gráfico de distribuição de notas
-
-
     outputBarChart();
 } // fim da função processGrades
 
@@ -67,14 +65,18 @@ int GradeBook::getMinimum()
 {
     int lowGrade = 100; // supõe que a nota mais baixa é 100
 
-    // faz um loop pelo array de notas
-    for ( int grade = 0; grade < students; grade++ )
+    // faz um loop pelas linhas do array de notas
+    for ( int student = 0; student < students; student++ )
     {
-        // se nota for mais baixa que lowGrade, ela é atribuída a lowGrade
-        if ( grades[ grade ] < lowGrade )
-            lowGrade = grades[ grade ]; // nova nota mais baixa
-    } // fim do for
-    
+        // faz um loop pelas colunas da linha atual
+        for ( int test = 0; test < tests; test++ )
+        {
+            // se a nota for menor que lowGrade, atribui a nota a lowGrade
+            if ( grades[ student ][ test ] < lowGrade )
+                lowGrade = grades[ student ][ test ]; // nova nota mais baixa
+        } // fim do for interno
+    } // fim do for externo
+
     return lowGrade; // retorna nota mais baixa
 } // fim da função getMinimum
 
@@ -83,25 +85,29 @@ int GradeBook::getMaximum()
 {
     int highGrade = 0; // supõe que a nota mais alta é 0
 
-    // faz um loop pelo array de notas
-    for ( int grade = 0; grade < students; grade++ )
+    // faz um loop pelas linhas do array de notas
+    for ( int student = 0; student < students; student++ )
     {
-        // se a nota atual for mais alta que highGrade, ela é atribuída a highGrade
-        if ( grades[ grade ] > highGrade )
-            highGrade = grades[ grade ]; // nova nota mais alta
-    } // fim do for
+        // faz um loop pelas colunas da linha atual
+        for ( int test = 0; test < tests; test++ )
+        {
+            // se a nota atual for maior que lowGrade, atribui essa nota a highGrade
+            if ( grades[ student ][ test ] > highGrade )
+                highGrade = grades[ student ][ test ]; // nova nota mais alta
+        } // fim do for interno
+    } // fim do for externo
 
     return highGrade; // retorna nota mais alta
 } // fim da função getMaximum
 
 // determina média para o teste
-double GradeBook::getAverage()
+double GradeBook::getAverage(const int setOfGrades[], const int grades)
 {
     int total = 0; // inicializa o total
 
     // soma notas no array
     for ( int grade = 0; grade < students; grade++ )
-        total += grades[ grade ];
+        total += setOfGrades[ grade ];
 
     // retorna média de notas
     return static_cast< double >( total ) / students;
@@ -117,8 +123,9 @@ void GradeBook::outputBarChart()
     int frequency[ frequencySize ] = { 0 };
 
     // para cada nota, incrementa a freqüência apropriada
-    for ( int grade = 0; grade < students; grade++ )
-        frequency[ grades[ grade ] / 10 ]++;
+    for ( int student = 0; student < students; student++ )
+        for ( int test = 0; test < tests; test++ )
+            ++frequency[ grades[ student ][ test ] / 10 ];
 
     // para cada freqüência de nota, imprime barra no gráfico
     for ( int count = 0; count < frequencySize; count++ )
@@ -144,8 +151,26 @@ void GradeBook::outputGrades()
 {
     cout << "\nThe grades are:\n\n";
 
-    // gera a saída da nota de cada aluno
-    for ( int student = 0; student < students; student++ )
-        cout << "Student " << setw( 2 ) << student + 1 << ": " << setw( 3 )  << grades[ student ] << endl;
+    cout << "            "; // alinha títulos de coluna
 
+    // cria um título de coluna para cada um dos testes
+    for ( int test = 0; test < tests; test++ )
+        cout << "Test " << test + 1 << " ";
+    
+    cout << "Average" << endl; // título da coluna de média do aluno
+    
+    // cria linhas/colunas de texto que representam notas de array
+    for ( int student = 0; student < students; student++ )
+    {
+        cout << "Student " << setw( 2 ) << student + 1;
+
+        // gera saída de notas do aluno
+        for ( int test = 0; test < tests; test++ )
+            cout << setw( 8 ) << grades[ student ][ test ];
+
+        // chama a função-membro getAverage para calcular a média do aluno;
+        // passa linha de notas e o valor dos testes como argumentos
+        double average = getAverage( grades[ student ], tests );
+        cout << setw( 9 ) << setprecision( 2 ) << fixed << average << endl;
+    } // fim do for externo
 } // fim da função outputGrades

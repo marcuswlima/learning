@@ -5,6 +5,7 @@ FILE=$1
 BIN=/home/marcus/Developer/dados/c++/$FILE.sh
 OBJ=/home/marcus/Developer/dados/c++/$FILE.o
 ML=/home/marcus/Developer/dados/c++/marcusLib.o
+GB=/home/marcus/Developer/dados/c++/GradeBook.o
 
 
 echo "******************************"
@@ -21,7 +22,9 @@ echo "******************************"
 
 g++ -c ../lib/marcusLib.cpp -o $ML
 g++ -c $1.cpp               -o $OBJ
-g++ $OBJ $ML                -o $BIN
+g++ -c GradeBook.cpp        -o $GB
+
+g++ $OBJ $ML $GB            -o $BIN
 
 echo "******************************"
 echo "** Execução $1 " 
