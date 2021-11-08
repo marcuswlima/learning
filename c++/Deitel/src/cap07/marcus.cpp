@@ -4,24 +4,30 @@ using std::endl;
 
 #include <string>
 using std::string;
+#include "../lib/marcusLib.h"
 
+void imprimirArrayBiInt(int a[4]);
 
 int main(){
-    int n[3]={3};
+
+    const int tamanhoTabela = 3; 
+    const int qtdLinhas = tamanhoTabela+1; 
+    const int qtdColunas = tamanhoTabela+1; 
+
+    int tabela[ qtdLinhas ][ qtdColunas ];
+
+    for (int x=1;x<qtdLinhas;x++)
+        for (int y=1;y<qtdColunas;y++)
+            tabela[x][y]=gerarInteiro(1,10);
     
-    for (int i=0;i<=3;i++){
-        cout << n[i] << endl;
+    imprimirArrayBiInt(tabela);
 
-    }
+    return 0;
+}
 
-    char string1[] = "arrayDeCaracteres";
-    string string2 = "stringDeCaracteres";
+void imprimirArrayBiInt(int a[4]){
+    for (int x=1;x<4;x++)
+        for (int y=1;y<4;y++)
+            cout << a[x];
 
-    for (int i=0;i<=6;i++){
-        cout << string1[i] << endl;
-
-    }
-
-    cout << string1 << "\n";
-    cout << string2 << "\n";
 }
