@@ -1,7 +1,7 @@
-// Figura 7.16: GradeBook.h
-// Definição da classe GradeBook que usa um array para armazenar notas de teste.
+// Figura 7.23: GradeBook.h
+// Definição da classe GradeBook que utiliza um
+// array bidimensional para armazenar notas de teste.
 // As funções-membro são definidas em GradeBook.cpp
-
 #include <string> // o programa utiliza a classe string da C++ Standard Library
 using std::string;
 

@@ -1,6 +1,6 @@
-// Figura 7.17: GradeBook.cpp
+// Figura 7.24: GradeBook.cpp
 // Definições de função-membro para a classe GradeBook que
-// utiliza um array para armazenar notas de teste.
+// utiliza um array bidimensional para armazenar notas.
 #include <iostream>
 using std::cout;
 using std::cin;
@@ -106,7 +106,7 @@ double GradeBook::getAverage(const int setOfGrades[], const int grades)
     int total = 0; // inicializa o total
 
     // soma notas no array
-    for ( int grade = 0; grade < students; grade++ )
+    for ( int grade = 0; grade < grades; grade++ )
         total += setOfGrades[ grade ];
 
     // retorna média de notas
@@ -132,11 +132,11 @@ void GradeBook::outputBarChart()
     {
         // gera a saída do rótulo das barras ("0-9:", ..., "90-99:", "100:" )
         if ( count == 0 )
-            cout << " 0-9: ";
+            cout << " 0-009: ";
         else if ( count == 10 )
-            cout << " 100: ";
+            cout << "   100: ";
         else
-            cout << count * 10 << "-" << ( count * 10 ) + 9 << ": ";
+            cout << count * 10 << "-0" << ( count * 10 ) + 9 << ": ";
 
         // imprime a barra de asteriscos
         for ( int stars = 0; stars < frequency[ count ]; stars++ )
