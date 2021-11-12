@@ -92,4 +92,9 @@ int mdc_r(int, int);
 /*
 Imprime os valores de um array de inteiros e de uma dimensão
 */
-void mostarArrayInt( const int [], int );
+void mostarArray( const int [], int );
+
+/*
+Imprime os valores de um array de double e de uma dimensão
+*/
+void mostarArray( const double[], int );

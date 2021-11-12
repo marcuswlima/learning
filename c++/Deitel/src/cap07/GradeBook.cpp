@@ -110,7 +110,7 @@ double GradeBook::getAverage(const int setOfGrades[], const int grades)
         total += setOfGrades[ grade ];
 
     // retorna média de notas
-    return static_cast< double >( total ) / students;
+    return static_cast< double >( total ) / grades;
 } // fim da função getAverage
 
 // gera a saída do gráfico de barras exibindo distribuição de notas

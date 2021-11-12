@@ -11,7 +11,7 @@ class GradeBook
 public:
     // constante -- número de alunos que fizeram o teste
     const static int students = 10; // note os dados públicos
-    const static int tests = 3; // número de testes
+    const static int tests = 3; // número de testes de cada aluno
 
     // construtor inicializa o nome do curso e o array de notas
     GradeBook( string, const int [] [ tests ]);
@@ -27,5 +27,5 @@ public:
     void outputGrades(); // gera a saída do conteúdo do array de notas
 private:
     string courseName; // nome do curso para esse livro de notas
-    int grades[ students ][ tests ]; // array de notas de aluno
+    int grades[ students ][ tests ]; // array de notas dos alunos
 }; // fim da classe GradeBook
