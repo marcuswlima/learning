@@ -35,5 +35,30 @@ int main(){
 
     ///e)
     cout << "***** e) ********\n";
+    int arreiSaiseA=11;
+    int arreiSaiseB=34;
+    double aa[arreiSaiseA];
+    double bb[arreiSaiseB];
+    for (int i=0; i<arreiSaiseA; i++)
+        aa[i]=gerarDouble(1,100);
+    cout << "*aa ";
+    mostarArray(aa,arreiSaiseA);
+    for (int i=0; i<arreiSaiseB; i++)
+        bb[i]=gerarDouble(1,100);
+    cout << "*bb ";
+    mostarArray(bb,arreiSaiseB);
+    for (int i=0; i<arreiSaiseA; i++)
+        bb[i] = aa[i];
+    cout << "*bb ";
+    mostarArray(bb,arreiSaiseB);
+
+    ///f)
+    cout << "***** f) ********\n";
+    const int sizeW=9;
+    double w[sizeW];
+    for (int i=0; i<sizeW; i++)
+        w[i]=gerarDouble(0,1);
+    cout << "*w ";
+    mostarArray(w,sizeW);
 
 }
