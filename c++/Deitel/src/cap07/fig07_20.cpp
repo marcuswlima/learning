@@ -6,9 +6,7 @@ using std::endl;
 
 #include <iomanip>
 using std::setw;
-
 #include "/home/marcus/Developer/learning/c++/Deitel/src/lib/marcusLib.h"
-
 int main()
 {
     const int arraySize = 10; // tamanho do array a
@@ -18,8 +16,7 @@ int main()
     cout << "Unsorted array:\n";
     
     // gera saída do array original
-    for ( int i = 0; i < arraySize; i++ )
-        cout << setw( 4 ) << data[ i ];
+    mostarArray(data,arraySize);
     
     // classificação por inserção
     // itera pelos elementos do array
@@ -43,8 +40,7 @@ int main()
     cout << "\nSorted array:\n";
 
     // gera a saída do array classificado
-    for ( int i = 0; i < arraySize; i++ )
-        cout << setw( 4 ) << data[ i ];
+    mostarArray(data,arraySize);
 
     cout << endl;
     return 0; // indica terminação bem-sucedida

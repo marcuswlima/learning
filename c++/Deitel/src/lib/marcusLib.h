@@ -102,8 +102,8 @@ void mostarArray( const double[], int );
 /*
 Imprime os valores de um array de int e de 2 dimensões 2 coluna
 */
-void mostraArr2D(const int arrei[][2],int linhas, int colunas);
+void mostraArr2D(const int arrei[][2],int , int );
 /*
 Imprime os valores de um array de int e de 2 dimensões 3 coluna
 */
-void mostraArr2D(const int arrei[][3],int linhas, int colunas);
+void mostraArr2D(const int arrei[][3],int , int );

@@ -9,11 +9,12 @@ using std::setw;
 int main(){
     srand( time(0) );
 
-    const int tamanhoFaixas=11;
-    const int tamanhoVendas=1;
-    int faixas[tamanhoFaixas]={0};
-    int vendas[tamanhoVendas];
-    int subscrito;
+    const int tamanhoFaixas=11
+             ,tamanhoVendas=100;
+
+    int faixas[tamanhoFaixas]={0}
+       ,vendas[tamanhoVendas]
+       ,subscrito;
 
     for (int i=0; i<tamanhoVendas; i++)
         vendas[i]=gerarInteiro(1,1099);
