@@ -308,3 +308,15 @@ void mostraArr2D(const int arrei[][3],int linhas, int colunas){
     }
 
 }
+
+void mostraArr2D(const int arrei[][5],int linhas, int colunas){
+    cout << "\n";
+    // copia notas de gradeArray para grades
+    for ( int linha = 0; linha < linhas; linha++ ) {
+        for ( int coluna = 0; coluna < colunas; coluna++ )
+            cout << "[" << linha << "," << coluna << "]="  << arrei[ linha ][ coluna ] << " ";
+
+        cout << "\n";
+    }
+
+}
