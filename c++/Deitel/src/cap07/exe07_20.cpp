@@ -3,7 +3,6 @@ using std::cout;
 
 #include "../lib/marcusLib.h"
 
-
 class Cliente{
 public:
     Cliente(int,int,bool);
@@ -157,9 +156,9 @@ int main(){
 
     Atendimento atendimento;
 
+    atendimento.mostrarAssentos();
 
-
-    for (int i=1; i<=3; i++){
+    for (int i=1; i<=1; i++){
 
         int TipoPassagem;
         int preferenciaAssento;
@@ -182,6 +181,8 @@ int main(){
         atendimento.mostrarAssentos();
 
     }
+
+
 
 }
 
