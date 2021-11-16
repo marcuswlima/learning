@@ -1,16 +1,24 @@
 echo off
-
-set BIN=D:\Users\marcus.william\Developer\dados\%1
-set OBJ=D:\Users\marcus.william\Developer\dados\%1.o
-set OBJ6=D:\Users\marcus.william\Developer\dados\cap06.o
+set dados=D:\Users\marcus.william\Developer\dados
+set BIN=%dados%\%1.exe
+set OBJ=%dados%\%1.o
+set ML=%dados%\marcusLib.o
 
 echo Deletando...
-del D:\Users\marcus.william\Developer\dados\%1.exe
+del %BIN%
+del %OBJ%
+del %ML%
 
-echo Compilando...
-g++ -Wextra -Werror cap06.cpp cai.cpp %1.cpp -o D:\Users\marcus.william\Developer\dados\%1
+echo Compiling and Liking...
+
+g++ -c ../lib/marcusLib.cpp -o %ML%
+g++ -c %1.cpp               -o %OBJ%
+
+g++ -Wextra -Werror %ML% %OBJ% -o %BIN%
 
 echo Executando...
 echo -------------------------
 
-D:\Users\marcus.william\Developer\dados\%1
+%BIN%
+
+

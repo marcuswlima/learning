@@ -17,7 +17,7 @@ rm -v $BIN
 rm -v $ML
 
 echo "******************************"
-echo "** Compilando ...."
+echo "** Compilando e Linkando....  "
 echo "******************************"
 
 g++ -c ../lib/marcusLib.cpp -o $ML
