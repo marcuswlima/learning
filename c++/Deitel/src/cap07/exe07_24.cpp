@@ -64,6 +64,20 @@ int main(){
     currentColumn += horizontal[ moveNumber ];
     posicioar(board,currentRow,currentColumn,'3');
 
+    moveNumber=4;
+    currentRow=3;
+    currentColumn=3;
+    currentRow += vertical[ moveNumber ];
+    currentColumn += horizontal[ moveNumber ];
+    posicioar(board,currentRow,currentColumn,'4');
+
+    moveNumber=5;
+    currentRow=3;
+    currentColumn=3;
+    currentRow += vertical[ moveNumber ];
+    currentColumn += horizontal[ moveNumber ];
+    posicioar(board,currentRow,currentColumn,'5');
+
     imprimir(board,colunas);
 
 }
