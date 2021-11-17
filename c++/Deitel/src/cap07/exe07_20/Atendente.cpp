@@ -105,13 +105,13 @@ void Atendente::atender(Cliente cliente){
         } else { //o desejado não está livre
             if (cliente.getAceitaSugestao()){
                 assentoLivre = obterUmaVaga(cliente.getTipoPassagem());
-                if (assentoLivre > 0){ //Se ainda existe vaga
+                 if (assentoLivre > 0){ //Se ainda existe vaga
                     queimarAssento(assentoLivre);
                     emitirBilhete(cliente);
                 } else {
                     cout << "Lotado\n";
                 }
-            } else 
+            } else   
              cout << "Proximo\n";
         }
 
