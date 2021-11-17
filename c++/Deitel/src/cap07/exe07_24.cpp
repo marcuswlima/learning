@@ -2,7 +2,8 @@
 using std::cout;
 
 void imprimir(char arrei[][8],int colunas);
-void posicioar(char arrei[][8], int x, int y, char valor);
+void posicionar(char arrei[][8],int x, int y, int  valor);
+void posicionar(char arrei[][8],int x, int y, char  valor);
 
 int main(){
     const int colunas=(1+7);
@@ -32,78 +33,55 @@ int main(){
         for (int y=0; y<colunas; y++)
             board[x][y]=' ';
     
-    int currentRow=3, currentColumn=3, moveNumber=0;
 
-    posicioar(board,currentRow,currentColumn,'x');
+    int currentRow=3, currentColumn=4;
 
-    moveNumber=0;
-    currentRow=3;
-    currentColumn=3;
-    currentRow += vertical[ moveNumber ];
-    currentColumn += horizontal[ moveNumber ];
-    posicioar(board,currentRow,currentColumn,'0');
+    posicionar(board,currentRow,currentColumn,'x');
 
-    moveNumber=1;
-    currentRow=3;
-    currentColumn=3;
-    currentRow += vertical[ moveNumber ];
-    currentColumn += horizontal[ moveNumber ];
-    posicioar(board,currentRow,currentColumn,'1');
-
-    moveNumber=2;
-    currentRow=3;
-    currentColumn=3;
-    currentRow += vertical[ moveNumber ];
-    currentColumn += horizontal[ moveNumber ];
-    posicioar(board,currentRow,currentColumn,'2');
-
-    moveNumber=3;
-    currentRow=3;
-    currentColumn=3;
-    currentRow += vertical[ moveNumber ];
-    currentColumn += horizontal[ moveNumber ];
-    posicioar(board,currentRow,currentColumn,'3');
-
-    moveNumber=4;
-    currentRow=3;
-    currentColumn=3;
-    currentRow += vertical[ moveNumber ];
-    currentColumn += horizontal[ moveNumber ];
-    posicioar(board,currentRow,currentColumn,'4');
-
-    moveNumber=5;
-    currentRow=3;
-    currentColumn=3;
-    currentRow += vertical[ moveNumber ];
-    currentColumn += horizontal[ moveNumber ];
-    posicioar(board,currentRow,currentColumn,'5');
+    for (int moveNumber=0 ; moveNumber < 8 ; moveNumber++){
+        currentRow=3;
+        currentColumn=4;
+        currentRow += vertical[ moveNumber ];
+        currentColumn += horizontal[ moveNumber ];
+        posicionar(board,currentRow,currentColumn,moveNumber);
+    }
 
     imprimir(board,colunas);
+
+    return 0;
 
 }
 
 void imprimir(char arrei[][8],int colunas){
-    cout << "/";
-    for (int i=1;i<=colunas;i++)
-        cout << "-";
+    cout << "  /";
+    for (int i=0;i<colunas;i++)
+        cout << i;
     cout << "\\";
     cout << "\n";
 
     for (int x=0; x<colunas; x++){
-        cout << "|";
+        cout << "  ";
+        cout << x;
         for (int y=0; y<colunas; y++)
             cout << arrei[x][y];
         cout << "|";
         cout << "\n";
     }
 
-    cout << "\\";
+    cout << "  \\";
     for (int i=1;i<=(colunas);i++)
         cout << "-";
     cout << "/";
     cout << "\n";
 }
 
-void posicioar(char arrei[][8],int x, int y, char valor){
+void posicionar(char arrei[][8],int x, int y, int valor){
+    char cValue = '0' + valor;
+    arrei[x][y]=cValue;
+}
+
+void posicionar(char arrei[][8],int x, int y, char valor){
     arrei[x][y]=valor;
 }
+
+
