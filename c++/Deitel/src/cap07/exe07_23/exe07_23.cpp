@@ -13,14 +13,22 @@ int main(){
 
     Tabuleiro tabuleiro;
 
-    int comandos[40][2]={{5,12},
-                         {9   }
+    int comandos[40][2]={{2},
+                         {5,4},
+                         {1},
+                         {5,1},
+                         {2},
+                         {5,3},
+                         {9  }
                         };    
-    int x_inicial = 18;
-    int y_inicial = 4;
+    int x=10, y=10, orientacao=2;
 
-
-    tabuleiro.plotar(comandos,x_inicial, y_inicial);
+    tabuleiro.plotar(comandos
+                    ,x
+                    ,y
+                    ,orientacao
+                    );
+    cout << "\n";
     tabuleiro.imprimir();
 
 
