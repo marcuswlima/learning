@@ -49,7 +49,7 @@ bool posicaoValida(int x, int y){
 
 void Board::movimentar(){
     int newCurrentRow, newCurrentColumn;
-    bool faz;
+    bool faz,fez;
 
     cout << "[" << getCurrentRow() << "," << getCurrentColumn() << "] ";
 
@@ -71,7 +71,9 @@ void Board::movimentar(){
             }
         }
 
-        if(!faz){
+        fez = faz;
+
+        if(!fez){
             cout << i << " movimentacoes\n";
             break;
         }
@@ -115,11 +117,21 @@ void Board::marcar(int x ,int y, int ordem){
 }
 
 void Board::imprimirOrdem(){
+    cout << "\n";
+    cout <<"------------------------------------------\n"; 
+    cout <<" |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |\n";
+    cout <<"------------------------------------------\n"; 
+
+
     for (int x=0; x<colunas; x++){
+        cout << x << "| ";
         for (int y=0; y<colunas; y++)
             cout << setw(2) << board[x][y]<< " | ";
         cout << "\n";
     }
+
+    cout <<"------------------------------------------\n"; 
+
 }
 
 void Board::zerar(){

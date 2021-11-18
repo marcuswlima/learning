@@ -5,8 +5,8 @@ public:
     void setOrdem(int);
      int getOrdem();
 private:
-    int bit;
-    int ordem;
+     int bit;
+     int ordem;
 };
 
 class Board{

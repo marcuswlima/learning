@@ -1,5 +1,7 @@
 #include "Board.h"
 
+#include "..\..\lib\marcusLib.h"
+
 int main(){
     Board board;
 
@@ -11,6 +13,11 @@ int main(){
             //board.imprimirOrdem();
 
         }
-    
+
+
+    board.zerar();
+    board.setInicio(2,1);
+    board.movimentar();
+    board.imprimirOrdem();
     return 0;
 }

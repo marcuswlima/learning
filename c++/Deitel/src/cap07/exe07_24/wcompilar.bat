@@ -10,13 +10,14 @@ del %dados%\Board.o
 echo ***************************
 echo ** Compilando...
 echo ***************************
-g++ -c Board.cpp     -o %dados%\Board.o
-g++ -c exe07_24.cpp  -o %dados%\exe07_23.o
+g++ -c Board.cpp               -o %dados%\Board.o
+g++ -c exe07_24.cpp            -o %dados%\exe07_23.o
+g++ -c ..\..\lib\marcusLib.cpp -o %dados%\marcusLib.o
 
 echo ***************************
 echo ** Linkando...
 echo ***************************
-g++ %dados%\Board.o  %dados%\exe07_23.o -o %dados%\exe07_24.exe
+g++ %dados%\marcusLib.o %dados%\Board.o  %dados%\exe07_23.o -o %dados%\exe07_24.exe
 
 echo ***************************
 echo ** Executando...
