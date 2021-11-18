@@ -25,7 +25,7 @@ public:
     void zerar();
 private:
   static const int colunas=8;
-     int board[colunas][colunas][2];
+     int board[colunas][colunas];
   Celula board2[colunas][colunas];
      int currentRow;
      int currentColumn;

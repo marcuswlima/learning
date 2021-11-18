@@ -88,7 +88,7 @@ void Board::setInicio(int x ,int y){
 }
 
 int Board::marcado(int x ,int y){
-    return board[x][y][0]>0;
+    return board[x][y]>0;
 }
 
 void Board::imprimirOcupacao(){
@@ -103,7 +103,7 @@ void Board::imprimirOcupacao(){
         cout << x;
         for (int y=0; y<colunas; y++)
             if (marcado(x,y))
-                cout << board[x][y][0];
+                cout << board[x][y];
             else
                 cout << "|" ;
         cout << "\n";
@@ -111,16 +111,13 @@ void Board::imprimirOcupacao(){
 }
 
 void Board::marcar(int x ,int y, int ordem){
-    board[x][y][0]++;
-    board[x][y][1]=ordem;
-    //cout << x << " " << y << "\n";
-    //imprimirOcupacao();
+    board[x][y]=ordem;
 }
 
 void Board::imprimirOrdem(){
     for (int x=0; x<colunas; x++){
         for (int y=0; y<colunas; y++)
-            cout << setw(2) << board[x][y][1]<< " | ";
+            cout << setw(2) << board[x][y]<< " | ";
         cout << "\n";
     }
 }
@@ -128,7 +125,6 @@ void Board::imprimirOrdem(){
 void Board::zerar(){
     for (int x=0; x<colunas; x++)
         for (int y=0; y<colunas; y++){
-            board[x][y][0]=0;
-            board[x][y][1]=0;
+            board[x][y]=0;
         }
 }
