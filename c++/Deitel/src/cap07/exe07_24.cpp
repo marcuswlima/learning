@@ -1,13 +1,24 @@
 #include <iostream>
 using std::cout;
 
-void imprimir(char arrei[][8],int colunas);
-void posicionar(char arrei[][8],int x, int y, int  valor);
-void posicionar(char arrei[][8],int x, int y, char  valor);
+#include "../lib/marcusLib.h"
+
+#include <iomanip>
+using std::setw;
+
+void imprimir(char [][8],int);
+void posicionar(char [][8],int, int, int);
+void posicionar(char [][8],int, int, char);
+bool posicaoValida(int, int);
+void marcar(char [][8],int , int);
+bool marcado(char [][8],int, int);
 
 int main(){
+    srand( time(0) );
+
     const int colunas=(1+7);
     char board[colunas][colunas];
+    int board2[colunas][colunas][2];
 
     int horizontal[colunas];
     int vertical[colunas];
@@ -33,44 +44,91 @@ int main(){
         for (int y=0; y<colunas; y++)
             board[x][y]=' ';
     
+/*
 
-    int currentRow=3, currentColumn=4;
+    int rand_currentRow=gerarInteiro(0,7), 
+        rand_currentColumn=gerarInteiro(0,7),
+        currentRow,
+        currentColumn;
+    posicionar(board,rand_currentRow,rand_currentColumn,'x');
 
-    posicionar(board,currentRow,currentColumn,'x');
 
-    for (int moveNumber=0 ; moveNumber < 8 ; moveNumber++){
-        currentRow=3;
-        currentColumn=4;
-        currentRow += vertical[ moveNumber ];
-        currentColumn += horizontal[ moveNumber ];
-        posicionar(board,currentRow,currentColumn,moveNumber);
+    for (int moveNumber=0 ; moveNumber <= 7 ; moveNumber++){
+        currentRow = rand_currentRow;
+        currentColumn = rand_currentColumn;
+        if (posicaoValida(currentRow+vertical[ moveNumber ], currentColumn + horizontal[ moveNumber ])){
+            currentRow += vertical[ moveNumber ];
+            currentColumn += horizontal[ moveNumber ];
+            posicionar(board,currentRow,currentColumn,moveNumber);
+        }
     }
 
     imprimir(board,colunas);
+
+----------------------------------------------
+    int currentRow=0, currentColumn=1;
+    bool faz;
+    marcar(board,currentRow,currentColumn);
+    for (int i=1; i<=10; i++) {
+        for (int moveNumber=0; moveNumber<7; moveNumber++){
+            faz = posicaoValida(currentRow+vertical[ moveNumber ], currentColumn + horizontal[ moveNumber ])&&
+                  !marcado(board,currentRow+vertical[ moveNumber ], currentColumn + horizontal[ moveNumber ]);
+            if (faz){
+                currentRow += vertical[ moveNumber ];
+                currentColumn += horizontal[ moveNumber ];
+                marcar(board,currentRow,currentColumn);
+                break;
+            }
+
+        }
+    }
+
+
+    int currentRow=0, currentColumn=1;
+    bool faz;
+    marcar(board,currentRow,currentColumn);
+    for (int i=1; i<=10; i++) {
+        for (int moveNumber=0; moveNumber<7; moveNumber++){
+            faz = posicaoValida(currentRow+vertical[ moveNumber ], currentColumn + horizontal[ moveNumber ])&&
+                  !marcado(board,currentRow+vertical[ moveNumber ], currentColumn + horizontal[ moveNumber ]);
+            if (faz){
+                currentRow += vertical[ moveNumber ];
+                currentColumn += horizontal[ moveNumber ];
+                marcar(board,currentRow,currentColumn);
+                break;
+            }
+
+        }
+    }
+
+*/
+
 
     return 0;
 
 }
 
 void imprimir(char arrei[][8],int colunas){
-    cout << "  /";
-    for (int i=0;i<colunas;i++)
-        cout << i;
+    cout << "/";
+    for (int i=0;i<colunas;i++){
+        cout << " " << i << " ";
+        if (i<7)
+            cout << "|";
+    }
     cout << "\\";
     cout << "\n";
 
     for (int x=0; x<colunas; x++){
-        cout << "  ";
         cout << x;
         for (int y=0; y<colunas; y++)
-            cout << arrei[x][y];
+            cout << setw(3) << arrei[x][y] ;
         cout << "|";
         cout << "\n";
     }
 
-    cout << "  \\";
+    cout << "\\";
     for (int i=1;i<=(colunas);i++)
-        cout << "-";
+        cout << "----";
     cout << "/";
     cout << "\n";
 }
@@ -83,5 +141,32 @@ void posicionar(char arrei[][8],int x, int y, int valor){
 void posicionar(char arrei[][8],int x, int y, char valor){
     arrei[x][y]=valor;
 }
+
+bool posicaoValida(int x, int y){
+    return x>=0 && x<=7 && y>=0 && y<=7;
+}
+
+bool marcado(char arrei[][8],int x, int y){
+    return arrei[x][y]=='*';
+}
+
+
+bool aindaExisteVazio(char arrei[][8]){
+    for (int x=0 ; x<7 ; x++)
+        for (int y=0 ; y<7 ; y++)
+            if (arrei[x][y] ==' ')
+                return true;
+    return false;
+}
+
+void imprimir(int x, int y){
+    cout << x << " " << y << "\n";
+}
+
+void marcar(char arrei[][8],int x, int y){
+    arrei[x][y]='*';
+    imprimir(x,y);
+}
+
 
 
