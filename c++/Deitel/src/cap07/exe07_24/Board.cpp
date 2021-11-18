@@ -1,10 +1,13 @@
 #include "Board.h"
 
+#include <iostream>
+using std::cout;
+
+#include <iomanip>
+using std::setw;
 
 Board::Board(){
-    for (int x=0; x<colunas; x++)
-        for (int y=0; y<colunas; y++)
-            board[x][y][0]=0;
+    zerar();
 
     horizontal[ 0 ] = 2;
     horizontal[ 1 ] = 1;
@@ -34,34 +37,98 @@ int Board::getCurrentRow(){
 
 void Board::setCurrentColumn(int y){
     currentColumn = y;
-
 }
 
 int Board::getCurrentColumn(){
     return currentColumn;
 }
 
-
 bool posicaoValida(int x, int y){
     return x>=0 && x<=7 && y>=0 && y<=7;
 }
 
-
 void Board::movimentar(){
     int newCurrentRow, newCurrentColumn;
-    for (int i=1; i<=3; i++){
+    bool faz;
+
+    cout << "[" << getCurrentRow() << "," << getCurrentColumn() << "] ";
+
+    for (int i=1; i<=100; i++){
+
+        faz = false; 
+
         for (int moveNumber=0; moveNumber<7; moveNumber++){
             newCurrentRow    = getCurrentRow()    + vertical  [ moveNumber ];
             newCurrentColumn = getCurrentColumn() + horizontal[ moveNumber ];
 
-            if (posicaoValida(newCurrentRow, newCurrentColumn));
+            faz = posicaoValida(newCurrentRow, newCurrentColumn) && !marcado(newCurrentRow, newCurrentColumn);
+
+            if (faz){
+                setCurrentRow(newCurrentRow);
+                setCurrentColumn(newCurrentColumn);
+                marcar(getCurrentRow(),getCurrentColumn(),i+1);
+                break;
+            }
         }
 
-    };
+        if(!faz){
+            cout << i << " movimentacoes\n";
+            break;
+        }
+
+    }
 
 }
+
 
 void Board::setInicio(int x ,int y){
     setCurrentRow(x);
     setCurrentColumn(y);
+    marcar(x,y,1);
+}
+
+int Board::marcado(int x ,int y){
+    return board[x][y][0]>0;
+}
+
+void Board::imprimirOcupacao(){
+    cout << "/";
+    for (int i=0;i<=7;i++){
+        cout <<  i ;
+    }
+    cout << "\\";
+    cout << "\n";
+
+    for (int x=0; x<colunas; x++){
+        cout << x;
+        for (int y=0; y<colunas; y++)
+            if (marcado(x,y))
+                cout << board[x][y][0];
+            else
+                cout << "|" ;
+        cout << "\n";
+    }
+}
+
+void Board::marcar(int x ,int y, int ordem){
+    board[x][y][0]++;
+    board[x][y][1]=ordem;
+    //cout << x << " " << y << "\n";
+    //imprimirOcupacao();
+}
+
+void Board::imprimirOrdem(){
+    for (int x=0; x<colunas; x++){
+        for (int y=0; y<colunas; y++)
+            cout << setw(2) << board[x][y][1]<< " | ";
+        cout << "\n";
+    }
+}
+
+void Board::zerar(){
+    for (int x=0; x<colunas; x++)
+        for (int y=0; y<colunas; y++){
+            board[x][y][0]=0;
+            board[x][y][1]=0;
+        }
 }

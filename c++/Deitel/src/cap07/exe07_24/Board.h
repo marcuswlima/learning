@@ -18,6 +18,11 @@ public:
      int getCurrentColumn();
     void movimentar();
     void setInicio(int,int);
+    void marcar(int,int,int);
+     int marcado(int,int);
+    void imprimirOcupacao();
+    void imprimirOrdem();
+    void zerar();
 private:
   static const int colunas=8;
      int board[colunas][colunas][2];
