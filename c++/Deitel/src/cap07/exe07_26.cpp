@@ -5,32 +5,27 @@ using std::cout;
 using std::setw;
 
 void imprimirTabuleiro(int [][8]);
-void marcarAlcancaveis(int [][8], int , int );
+void marcarAlcancaveis(int [][8], int , int, int [][8] );
 
 const int lado=8;
 
 int main(){
 
     int tabuleiro[lado][lado];
-
-    for(int x=0;x<lado;x++)
-        for(int y=0 ; y<lado ; y++){
-            tabuleiro[x][y]=x+y;
-        }
-
-    imprimirTabuleiro(tabuleiro);
-
+    int alcancados[lado][lado];
 
     // zerar tabuleiro
     for(int x=0;x<lado;x++)
         for(int y=0 ; y<lado ; y++){
             tabuleiro[x][y]=0;
+            alcancados[x][y]=0;
         }
 
 
-    int x=3,y=4;
-    marcarAlcancaveis(tabuleiro, x, y);
+    int x=0,y=0;
+    marcarAlcancaveis(tabuleiro, x, y, alcancados);
     imprimirTabuleiro(tabuleiro);
+    imprimirTabuleiro(alcancados);
 
     return 0;
    
@@ -67,7 +62,7 @@ bool EstaoMesmaLinha(int x1,int y1, int x2, int y2){
 }
 
 bool EstaoMesmaDiagonal(int x1,int y1, int x2, int y2){
-    return (x1+y1==x2+y2);
+    return (x1+y1==x2+y2) || (x1-y1==x2-y2);
 }
 
 int quantosAlcanca(int x, int y){
@@ -80,12 +75,14 @@ int quantosAlcanca(int x, int y){
     return contador;
 }
 
-void marcarAlcancaveis(int arrei[][8], int x, int y){
+void marcarAlcancaveis(int tabuleiro[][8], int x, int y, int alcancados[][8]){
     int iQuantosAlcanca=quantosAlcanca(x,y);
+
+    marcar(tabuleiro,x,y,1);
 
     for(int row=0 ; row<lado ; row++)
         for(int col=0 ; col<lado ; col++)
             if (EstaoMesmaColuna(x,y,row,col) || EstaoMesmaLinha(x,y,row,col) || EstaoMesmaDiagonal(x,y,row,col)) 
-                marcar(arrei,row,col,iQuantosAlcanca);
+                marcar(alcancados,row,col,iQuantosAlcanca);
 
 }
