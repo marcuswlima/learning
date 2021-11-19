@@ -28,7 +28,7 @@ int main(){
         }
 
 
-    int x=0,y=7;
+    int x=3,y=4;
     marcarAlcancaveis(tabuleiro, x, y);
     imprimirTabuleiro(tabuleiro);
 
