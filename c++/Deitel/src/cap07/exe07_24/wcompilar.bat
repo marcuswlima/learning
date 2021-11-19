@@ -1,3 +1,5 @@
+cls
+
 echo off
 set dados=D:\Users\marcus.william\Developer\dados
 
