@@ -1,4 +1,4 @@
-
+clear
 
 dados=/home/marcus/Developer/dados/c++
 
@@ -15,5 +15,7 @@ echo Linkando...
 g++ $dados/Board.o $dados/exe07_24.o -o $dados/exe07_24.sh
 
 echo Executando...
+echo "*****************************************"
+
 $dados/exe07_24.sh
 
