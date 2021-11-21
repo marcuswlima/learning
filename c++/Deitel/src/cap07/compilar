@@ -1,4 +1,4 @@
-
+clear
 
 FILE=$1
 
@@ -8,27 +8,39 @@ ML=/home/marcus/Developer/dados/c++/marcusLib.o
 GB=/home/marcus/Developer/dados/c++/GradeBook.o
 
 
+echo " "
 echo "******************************"
 echo "** Deletando...."
 echo "******************************"
+echo " "
 
 rm -v $OBJ
 rm -v $BIN
 rm -v $ML
 
+echo " "
 echo "******************************"
-echo "** Compilando e Linkando....  "
+echo "** Criando compilados         "
 echo "******************************"
+echo " "
 
 g++ -c ../lib/marcusLib.cpp -o $ML
 g++ -c $1.cpp               -o $OBJ
 g++ -c GradeBook.cpp        -o $GB
 
+echo " "
+echo "******************************"
+echo "** Linkando....               "
+echo "******************************"
+echo " "
+
 g++ $OBJ $ML $GB            -o $BIN
 
+echo " "
 echo "******************************"
 echo "** Execução $1 " 
 echo "******************************"
+echo " "
 
 $BIN
 
