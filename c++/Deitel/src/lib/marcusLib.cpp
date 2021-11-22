@@ -60,10 +60,8 @@ double gerarDouble(int menor, int maior){
 bool ehPar(int entrada){
     int resto = entrada % 2;
 
-    if (resto == 0)
-        return true;
-    else
-        return false;
+    return resto == 0;
+
 }
 
 
