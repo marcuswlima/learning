@@ -13,9 +13,10 @@ void imprimirTabuleiro(int [][8], string titulo="tabela[8][8]");
 void marcar(int [][8], int , int , int );
 bool EhAlcancavel(int ,int , int , int );
 void posicionarDama(int, int , int);
-void posicionarDamas(int , int, bool mostraTabuleiro=false ) ;
 bool estahEliminado(int, int);
-void posicionarDamasComHeuristica(int , int , bool );
+ int posicionarDamasSemHeuristica(int , int, bool mostraTabuleiro=false ) ;
+ int posicionarDamasComHeuristica(int , int , bool mostraTabuleiro=false);
+void comparativo();
 
 // Variáveis globais
 const int lado=8;
@@ -41,8 +42,11 @@ int main(){
 
 //    posicionarDamas(5,0,true);
 //    posicionarDamas(5,2,true);
-    posicionarDamas(4,4,true);
-    posicionarDamasComHeuristica(4,4,true);
+//    posicionarDamasSemHeuristica(4,4,true);
+//    posicionarDamasComHeuristica(4,4,true);
+
+    comparativo();
+
 
 
 
@@ -123,7 +127,6 @@ void zerarTabuleiros(){
     for(int x=0;x<lado;x++)
         for(int y=0 ; y<lado ; y++){
             tabuleiro[x][y]=0;
-            alcancados[x][y]=0;
             eliminados[x][y]=0;
         }
 }
@@ -150,14 +153,12 @@ string descricaoVolta(int volta){
 
 
 
-void posicionarDamas(int currentX, int currentY, bool mostraTabuleiro){
+int posicionarDamasSemHeuristica(int currentX, int currentY, bool mostraTabuleiro){
 
     bool fazer;
     int voltas=0;
 
     zerarTabuleiros();
-
-    cout << "[" << currentX << "," << currentY << "] ";
 
     for(int volta=1;volta<=10; volta++){
 
@@ -194,63 +195,101 @@ void posicionarDamas(int currentX, int currentY, bool mostraTabuleiro){
 
     }
 
-    cout << "voltas: " << voltas << "\n";
-
     if (mostraTabuleiro){
         imprimirTabuleiro(tabuleiro,"s/ heuristica");
         cout << "\n";
     }
+
+    return voltas;
 }
 
-void posicionarDamasComHeuristica(int currentX, int currentY, bool mostraTabuleiro){
-    bool fazer;
+int posicionarDamasComHeuristica(int currentX, int currentY, bool mostraTabuleiro){
+
+    bool fazer, fez;
     int voltas=0;
 
-    int smallest  = 99999,
+    int smallest  = 30,
         smallestX = currentX,
         smallestY = currentY;
 
     zerarTabuleiros();
 
-    cout << "[" << smallestX << "," << smallestY << "] \n";
 
-    for(int posicionamento=1;posicionamento<=2; posicionamento++){
+    for(int posicionamento=1 ; posicionamento<=7; posicionamento++){
 
         voltas++;
-
+    
         posicionarDama(smallestX,smallestY,posicionamento);
 
+        fez=false;
+        smallest=30;
+    
         for(int x=0 ; x<lado ; x++){
+
             for(int y=0 ; y<lado ; y++){
 
 
-                fazer = tabuleiro[x][y]==0 && 
+                fazer = tabuleiro[x][y]==0                     && 
                         !EhAlcancavel(smallestX,smallestY,x,y) &&
-                        !estahEliminado(x,y) &&
-                        alcancados[x][y] < smallest
+                        !estahEliminado(x,y)                   &&
+                        alcancados[x][y] <= smallest
                         ;
-
-                cout << posicionamento << " " << smallestX << " " << smallestY << " " << x << " " << y << "-" << fazer << "\n";
-
 
                 if (fazer){ // sair do laço de coluna
                     smallest = alcancados[x][y];
                     smallestX = x;
                     smallestY = y;
+                    fez=true;
                 };
+
+/*
+                cout << posicionamento   << " " 
+                     << smallestX        << " " 
+                     << smallestY        << " " 
+                     << x                << " " 
+                     << y                << " " 
+                     << smallest         << " " 
+                     << alcancados[x][y] << " " 
+                     << fazer            << "\n";
+*/
+
 
             }
 
         }
 
+        if (!fez)
+            break;
+
     }
 
 
-
-    cout << "voltas: " << voltas << "\n";
 
     if (mostraTabuleiro){
         imprimirTabuleiro(tabuleiro,"c/ heuristica");
         cout << "\n";
     }
+
+    return voltas;
+
+}
+
+void comparativo(){
+    cout << "coord\ts/h\tc/h\n";
+
+    for(int x=0;x<lado;x++){
+        for(int y=0 ; y<lado ; y++){
+            cout << "[" << x << "," << y << "]" << "\t";
+
+            cout << posicionarDamasSemHeuristica(x,y) << "\t";
+
+            cout << posicionarDamasComHeuristica(x,y) << "\t";
+
+        cout << "\n";
+
+        }
+
+
+    }
+
 }
