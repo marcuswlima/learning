@@ -3,54 +3,28 @@
 #include <iostream>
 using std::cout;
 
-const int arraySize=3;
-int unidimensional[arraySize]={97,3,100};
-int buckets[10][arraySize]={0};
+#include <iomanip>
 
-int unidade(int);
-int dezena(int);
-int centena(int);
-int milhar(int);
+#define TAM 5000 /*Tamanho do vetor*/
 
-void bucketSort(const int [], const int );
+int unidimensional[TAM];
+
+void bucketSort( int [], const int );
 
 int main(){
 
-    mostarArray(unidimensional,arraySize);
+    srand( time(0) );
 
-    for (int subscrito=0 ; subscrito<arraySize ; subscrito++){
-        cout << subscrito 
-             << " " 
-             << milhar(unidimensional[subscrito])
-             << " " 
-             << centena(unidimensional[subscrito])
-             << " " 
-             << dezena(unidimensional[subscrito])
-             << " " 
-             << unidade(unidimensional[subscrito])
-             ;
-
-        cout << "\n";
+    
+    for (int subscrito=0 ; subscrito<TAM ; subscrito++){
+        unidimensional[subscrito] = gerarInteiro(1,999);
     }
 
-    bucketSort(unidimensional,arraySize);
-
-    mostraArr2D(buckets,10,3);
+    mostarArray(unidimensional,TAM);
+    bucketSort(unidimensional,TAM);
+    mostarArray(unidimensional,TAM);
 
 }    
-
-
-void bucketSort(const int arrei[], const int arraySize){
-    for (int subscrito=0 ; subscrito<arraySize ; subscrito++){
-        buckets[unidade(arrei[subscrito])][0] = arrei[subscrito];
-    }
-/*
-    for (int subscrito=0 ; subscrito<10 ; subscrito++){
-        if (buckets[subscrito]!=0);
-
-    }
-*/
-}
 
 int unidade(int valor){
     return valor % 10;
@@ -67,3 +41,51 @@ int centena(int valor){
 int milhar(int valor){
     return unidade(valor/1000);
 }
+
+void zerarBuckets(int arrei [10][TAM], const int arraySize){
+    for (int x=0 ; x < 10 ; x++ )
+        for (int y=0 ; y < arraySize ; y++ )
+            arrei[x][y]=0;
+
+}
+
+void passagemColeta(int buckets[10][TAM], int arrei[]) {
+    int subscrito=0;
+    for (int x=0 ; x < 10 ; x++ )
+        for (int y=0 ; y < TAM ; y++ )
+            if (buckets[x][y]>0) {
+                arrei[subscrito]= buckets[x][y] ;
+                subscrito ++;
+            }
+
+}
+
+void bucketSort( int arrei[], const int arraySize){
+
+    int subscrito, buckets[10][TAM]={0};
+
+    for (int volta=1; volta<=3; volta++){
+        
+        zerarBuckets(buckets, arraySize);
+
+        // passagem de distribuição
+        switch (volta)
+        {
+            case 1:
+                for (subscrito=0 ; subscrito<arraySize ; subscrito++)
+                    buckets[unidade(arrei[subscrito])][subscrito] = arrei[subscrito];
+                break;
+            case 2:
+                for (subscrito=0 ; subscrito<arraySize ; subscrito++)
+                    buckets[dezena(arrei[subscrito])][subscrito] = arrei[subscrito];
+                break;
+            case 3:
+                for (subscrito=0 ; subscrito<arraySize ; subscrito++)
+                    buckets[centena(arrei[subscrito])][subscrito] = arrei[subscrito];
+                break;
+        }
+
+        passagemColeta(buckets, arrei);
+    }
+}
+
