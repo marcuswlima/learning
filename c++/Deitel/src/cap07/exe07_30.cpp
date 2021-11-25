@@ -5,29 +5,34 @@ using std::cout;
 
 #include <iomanip>
 
-#define TAM 45000 /*Tamanho do vetor*/
+#define TAM 40000 /*Tamanho do vetor*/
 
-void bucketSort( int [], const int );
+int bucketSort( int [], const int );
+int bubbleSort( int [], const int );
+int insertionSort( int [], const int );
 
 int main(){
 
-    int tinicio,tfim,tempo;
-    int arrBucketSort[TAM];
-
-
     srand( time(0) );
 
+
+    int arrInsertionSort[TAM], arrBucketSort[TAM], arrBubbleSort[TAM], tempo;
     
     for (int subscrito=0 ; subscrito<TAM ; subscrito++){
-        arrBucketSort[subscrito] = gerarInteiro(1,999);
+        int numero = gerarInteiro(1,999);
+        arrBucketSort[subscrito] = numero;
+        arrBubbleSort[subscrito] = numero;
+        arrInsertionSort[subscrito] = numero;
     }
 
-    tinicio=time(NULL);
-    bucketSort(arrBucketSort,TAM);
-    tfim=time(NULL);
-    tempo=difftime(tfim,tinicio);
+    tempo = bucketSort(arrBucketSort,TAM);
     cout << "bucketSort - Tempo de execucao " << tempo/60 << " Minutos e " << tempo%60 << " segundos.\n";
 
+    tempo = bubbleSort(arrBubbleSort,TAM);
+    cout << "bubbleSort - Tempo de execucao " << tempo/60 << " Minutos e " << tempo%60 << " segundos.\n";
+
+    tempo = insertionSort(arrInsertionSort,TAM);
+    cout << "insertionSort - Tempo de execucao " << tempo/60 << " Minutos e " << tempo%60 << " segundos.\n";
 }    
 
 int unidade(int valor){
@@ -64,9 +69,12 @@ void passagemColeta(int buckets[10][TAM], int arrei[]) {
 
 }
 
-void bucketSort( int arrei[], const int arraySize){
+int bucketSort( int arrei[], const int arraySize){
 
-    int subscrito, buckets[10][TAM]={0};
+    int subscrito, buckets[10][TAM]={0}, tinicio, tfim;
+
+    tinicio=time(NULL);
+
 
     for (int volta=1; volta<=3; volta++){
         
@@ -91,5 +99,63 @@ void bucketSort( int arrei[], const int arraySize){
 
         passagemColeta(buckets, arrei);
     }
+
+    tfim=time(NULL);
+
+    return difftime(tfim,tinicio);
 }
 
+
+int bubbleSort( int arrei[], const int arraySize){
+
+    int tinicio, tfim, temp;
+
+    tinicio=time(NULL);
+
+
+    for (int e=0; e<arraySize; e++){
+
+        for (int i=1;i<arraySize; i++){
+            if ( arrei[i-1] > arrei[i] ){
+                temp = arrei[i];
+                arrei[i] = arrei[i-1];
+                arrei[i-1] = temp;
+            }
+        }
+
+    }
+
+
+    tfim=time(NULL);
+
+    return difftime(tfim,tinicio);
+}
+
+int insertionSort( int arrei[], const int arraySize){
+
+    int tinicio, tfim, insert;
+
+    tinicio=time(NULL);
+
+ 
+    for ( int next = 1; next < arraySize; next++ )
+    {
+        insert = arrei[ next ]; // armazena o valor no elemento atual
+
+        int moveItem = next; // inicializa a localização para colocar elemento
+
+        // procura a localização em que colocar o elemento atual
+        while ( ( moveItem > 0 ) && ( arrei[ moveItem - 1 ] > insert ) )
+        {
+            // desloca o elemento uma posição para a direita
+            arrei[ moveItem ] = arrei[ moveItem - 1 ];
+            moveItem--;
+        } // fim do while
+        arrei[ moveItem ] = insert; // lugar em que o elemento é inserido no array
+    } // fim do for
+
+
+    tfim=time(NULL);
+
+    return difftime(tfim,tinicio);
+}
