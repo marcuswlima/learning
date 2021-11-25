@@ -16,7 +16,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-#include "..\lib\marcusLib.h"
+#include "../lib/marcusLib.h"
 
 #define TAM 10 /*Tamanho do vetor*/
 #define NUM 100 /*base para gerador de numeros aleatorios*/

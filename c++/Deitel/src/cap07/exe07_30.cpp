@@ -5,7 +5,7 @@ using std::cout;
 
 #include <iomanip>
 
-#define TAM 5000 /*Tamanho do vetor*/
+#define TAM 50 /*Tamanho do vetor*/
 
 int unidimensional[TAM];
 
