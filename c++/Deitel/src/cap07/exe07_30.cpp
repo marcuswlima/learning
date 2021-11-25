@@ -5,24 +5,28 @@ using std::cout;
 
 #include <iomanip>
 
-#define TAM 50 /*Tamanho do vetor*/
-
-int unidimensional[TAM];
+#define TAM 45000 /*Tamanho do vetor*/
 
 void bucketSort( int [], const int );
 
 int main(){
 
+    int tinicio,tfim,tempo;
+    int arrBucketSort[TAM];
+
+
     srand( time(0) );
 
     
     for (int subscrito=0 ; subscrito<TAM ; subscrito++){
-        unidimensional[subscrito] = gerarInteiro(1,999);
+        arrBucketSort[subscrito] = gerarInteiro(1,999);
     }
 
-    mostarArray(unidimensional,TAM);
-    bucketSort(unidimensional,TAM);
-    mostarArray(unidimensional,TAM);
+    tinicio=time(NULL);
+    bucketSort(arrBucketSort,TAM);
+    tfim=time(NULL);
+    tempo=difftime(tfim,tinicio);
+    cout << "bucketSort - Tempo de execucao " << tempo/60 << " Minutos e " << tempo%60 << " segundos.\n";
 
 }    
 
