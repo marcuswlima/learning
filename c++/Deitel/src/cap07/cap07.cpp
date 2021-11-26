@@ -174,46 +174,57 @@ int tamanhoArrChar(char palavra[]){
 
 }
 
-void imprimirArrChar(char palavra[]){
+bool testPalindrome(char palavra[], int inicio=0){
+    //cout << "*inicio "<< inicio << "\n";
+    int meio = tamanhoArrChar(palavra)/2 ;
+    int distancia = meio-inicio;
 
-    for ( int i = 0; palavra[ i ] != '\0'; i++ )
-        cout << palavra[ i ];
+    if (distancia > 0){
+
+        //cout << "meio "      << meio << "\n";
+        //cout << "distancia " << distancia << "\n";
+
+        if (palavra[inicio] == palavra[meio+distancia]){
+            //cout << "testPalindrome()\n";
+            return testPalindrome(palavra,inicio+1);
+        }
+        else {
+            //cout << "false\n";
+            return false;
+
+        }
+
+    }
+    else {
+        //cout << "true\n";
+        return true;
+    }
 
 }
 
-bool polindrome(char palavra[]){
-
-    int tamanho, meio , distancia=0;
-    bool ehPolindromo=true;
-
-    tamanho = tamanhoArrChar(palavra);
-
-    if (ehPar(tamanho))
-        return false;
-    
-    meio = (tamanho/2) ;
-
-    for (int i=(meio); i>=0; i--){
-        if (i!=meio) {
-            distancia++;
-
-            if ( palavra[ meio + distancia] != palavra[ meio - distancia] ){
-                ehPolindromo=false;
-                break;
-            }
-        }
-    }
-
-    return ehPolindromo;
+void analisaPalindrome(char palavra[]){
+    cout << palavra ;
+    if (!testPalindrome(palavra))
+        cout << " nao";
+    cout << " eh Polindromo\n" ;
 
 }
 
 
 void exe36(){
-    char string2[] = "erro comum ocorre"; // reserva 15 caracteres
 
-    imprimirArrChar(string2);
-    if (!polindrome(string2))
-        cout << " nao";
-    cout << " eh Polindromo\n" ;
+    cout << "*******************************\n";
+    cout << "36 - Polimdrimo\n";
+    cout << "*******************************\n";
+
+    char string1[]="\"radar\"";
+    char string2[]="\"at5as salta\"";
+    char string3[]="\"erro comum ocorre\"";
+    char string4[]="\"arara\"";
+
+    analisaPalindrome(string1);
+    analisaPalindrome(string2);
+    analisaPalindrome(string3);
+    analisaPalindrome(string4);
+
 }
