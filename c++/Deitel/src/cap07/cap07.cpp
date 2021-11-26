@@ -7,7 +7,7 @@ using std::cin;
 #include <iomanip>
 
 
-int menu();
+int menu(int);
 void exe29();
 void exe31();
 void exe35();
@@ -17,9 +17,10 @@ int main(){
 
     srand( time(0) );
 
-    int opcao;
+    int opcao;  
 
-    opcao = menu();
+    opcao = 0;
+    opcao = menu(opcao);
 
     switch (opcao)
     {
@@ -33,18 +34,25 @@ int main(){
 
 }// fim main
 
-int menu(){
-    int cein;
-    cout << "*******************************\n";
-    cout << "29 - Crivo de Eratostenes" << "\n";
-    cout << "31 - Selection Sort" << "\n";
-    cout << "35 - printArray" << "\n";
-    cout << "36 - ????" << "\n";
-    cout << "*******************************\n";
-    cout << "Indique qual exercicio: ";
-    cin >> cein;
+int menu(int opcao){
 
-    return cein;
+    if ( opcao == 0 ){
+        int cein;
+        cout << "*******************************\n";
+        cout << "29 - Crivo de Eratostenes\n";
+        cout << "31 - Selection Sort\n";
+        cout << "35 - printArray\n";
+        cout << "36 - Polimdrimo\n";
+        cout << "*******************************\n";
+        cout << "Indique qual exercicio: ";
+        cin >> cein;
+        return cein;
+    }
+    else
+        return opcao;
+
+
+
 }
 
 //-------------29------------------//
@@ -66,6 +74,7 @@ void imprimirPrimos(int arrei[],int tamanho){
     cout << "\n";
 
 }
+
 void exe29(){
     const int tamanhoArrei=1000;
     int primos[tamanhoArrei];
@@ -152,3 +161,8 @@ void exe35(){
 
 }
 
+
+//-------------36------------------//
+void exe36(){
+
+}
