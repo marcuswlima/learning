@@ -10,8 +10,8 @@ using std::cin;
 int menu(int);
 void exe29();
 void exe31();
+void exe32();
 void exe35();
-void exe36();
 
 int main(){
 
@@ -19,15 +19,15 @@ int main(){
 
     int opcao;  
 
-    opcao = 36;
+    opcao = 0;
     opcao = menu(opcao);
 
     switch (opcao)
     {
         case 29: exe29(); break;
         case 31: exe31(); break;
+        case 32: exe32(); break;
         case 35: exe35(); break;
-        case 36: exe36(); break;
         default:break;
     }
 
@@ -42,8 +42,8 @@ int menu(int opcao){
         cout << "*******************************\n";
         cout << "29 - Crivo de Eratostenes\n";
         cout << "31 - Selection Sort\n";
+        cout << "32 - Polimdrimo\n";
         cout << "35 - printArray\n";
-        cout << "36 - Polimdrimo\n";
         cout << "*******************************\n";
         cout << "Indique qual exercicio: ";
         cin >> cein;
@@ -141,28 +141,7 @@ void exe31(){
 
 }
 
-//-------------35------------------//
-
-void printArray (int arrei[], int inicio, int fim) {
-
-    if (inicio==fim)
-        cout << "\n";
-    else{ 
-        cout << "[" << inicio << "]=" << arrei[inicio] << " ";
-        printArray(arrei, inicio+1, fim);
-    } 
-}
-
-void exe35(){
-    const int tamanho=10;
-    int arrei[tamanho];
-    for (int subscrito=0; subscrito<tamanho; subscrito++)
-        arrei[subscrito]=gerarInteiro(1,999);
-    printArray(arrei,0,tamanho);
-
-}
-
-//-------------36------------------//
+//-------------32------------------//
 
 int tamanhoArrChar(char palavra[]){
     int tamanho=0;
@@ -211,7 +190,7 @@ void analisaPalindrome(char palavra[]){
 }
 
 
-void exe36(){
+void exe32(){
 
     cout << "*******************************\n";
     cout << "36 - Polimdrimo\n";
@@ -228,3 +207,25 @@ void exe36(){
     analisaPalindrome(string4);
 
 }
+
+//-------------35------------------//
+
+void printArray (int arrei[], int inicio, int fim) {
+
+    if (inicio==fim)
+        cout << "\n";
+    else{ 
+        cout << "[" << inicio << "]=" << arrei[inicio] << " ";
+        printArray(arrei, inicio+1, fim);
+    } 
+}
+
+void exe35(){
+    const int tamanho=10;
+    int arrei[tamanho];
+    for (int subscrito=0; subscrito<tamanho; subscrito++)
+        arrei[subscrito]=gerarInteiro(1,999);
+    printArray(arrei,0,tamanho);
+
+}
+
