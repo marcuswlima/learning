@@ -11,14 +11,16 @@ int main(){
 
     srand( time(0) );
 
-    const int tamanhoArrei=30;
+    const int tamanhoArrei=20;
     int numeros[tamanhoArrei]={0};
 
     for (int subscrito=0; subscrito<tamanhoArrei; subscrito++)
-        numeros[subscrito]=gerarInteiro(1,100);
+        numeros[subscrito]=gerarInteiro(1,999);
 
+    cout << "unsorted...\n";
     mostarArray(numeros,tamanhoArrei);
     selectionSort(numeros,tamanhoArrei);
+    cout << "sorted...\n";
     mostarArray(numeros,tamanhoArrei);
 
 }
