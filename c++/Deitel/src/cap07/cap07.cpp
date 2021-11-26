@@ -11,6 +11,7 @@ int menu(int);
 void exe29();
 void exe31();
 void exe32();
+void exe33();
 void exe35();
 
 int main(){
@@ -19,7 +20,7 @@ int main(){
 
     int opcao;  
 
-    opcao = 0;
+    opcao = 33;
     opcao = menu(opcao);
 
     switch (opcao)
@@ -27,6 +28,7 @@ int main(){
         case 29: exe29(); break;
         case 31: exe31(); break;
         case 32: exe32(); break;
+        case 33: exe33(); break;
         case 35: exe35(); break;
         default:break;
     }
@@ -43,6 +45,7 @@ int menu(int opcao){
         cout << "29 - Crivo de Eratostenes\n";
         cout << "31 - Selection Sort\n";
         cout << "32 - Polimdrimo\n";
+        cout << "33 - Pesquisa Linear recursiva\n";
         cout << "35 - printArray\n";
         cout << "*******************************\n";
         cout << "Indique qual exercicio: ";
@@ -207,6 +210,52 @@ void exe32(){
     analisaPalindrome(string4);
 
 }
+
+//-------------33------------------//
+
+int linearSearch( const int array[], int key, int sizeOfArray)
+{
+    for ( int j = 0; j < sizeOfArray; j++ )
+        if ( array[ j ] == key ) 
+            return j; 
+
+    return -1; 
+} 
+
+int linearSearchRecursivo( const int arrei[], int key, int sizeOfArray, int inicio=0)
+{
+    cout << "*****" << inicio << "\n";
+
+    if (inicio+1==sizeOfArray || arrei[inicio]!=key )
+        return -1;
+        
+    if (arrei[inicio]==key)
+        return inicio;
+    else
+        linearSearchRecursivo(arrei,key,sizeOfArray,inicio+1);
+} 
+
+void exe33(){
+
+    cout << "*******************************\n";
+    cout << "33 - Linear Search recusive    \n";
+    cout << "*******************************\n";
+
+    const int tamanho=1;
+    int arrei[tamanho]={1}, key=1;
+
+    
+    cout << "key -> " << key << "\n";
+    mostarArray(arrei, tamanho);
+    cout << linearSearch(arrei, key, tamanho );
+    cout << "\n";
+
+    cout << linearSearchRecursivo(arrei, key, tamanho );
+    cout << "\n";
+
+}
+
+
 
 //-------------35------------------//
 
