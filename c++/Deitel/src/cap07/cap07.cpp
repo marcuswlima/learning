@@ -19,7 +19,7 @@ int main(){
 
     int opcao;  
 
-    opcao = 0;
+    opcao = 36;
     opcao = menu(opcao);
 
     switch (opcao)
@@ -27,6 +27,7 @@ int main(){
         case 29: exe29(); break;
         case 31: exe31(); break;
         case 35: exe35(); break;
+        case 36: exe36(); break;
         default:break;
     }
 
@@ -161,8 +162,58 @@ void exe35(){
 
 }
 
-
 //-------------36------------------//
-void exe36(){
 
+int tamanhoArrChar(char palavra[]){
+    int tamanho=0;
+
+    for ( int i = 0; palavra[ i ] != '\0'; i++ )
+        tamanho++;
+
+    return tamanho;
+
+}
+
+void imprimirArrChar(char palavra[]){
+
+    for ( int i = 0; palavra[ i ] != '\0'; i++ )
+        cout << palavra[ i ];
+
+}
+
+bool polindrome(char palavra[]){
+
+    int tamanho, meio , distancia=0;
+    bool ehPolindromo=true;
+
+    tamanho = tamanhoArrChar(palavra);
+
+    if (ehPar(tamanho))
+        return false;
+    
+    meio = (tamanho/2) ;
+
+    for (int i=(meio); i>=0; i--){
+        if (i!=meio) {
+            distancia++;
+
+            if ( palavra[ meio + distancia] != palavra[ meio - distancia] ){
+                ehPolindromo=false;
+                break;
+            }
+        }
+    }
+
+    return ehPolindromo;
+
+}
+
+
+void exe36(){
+    char string2[] = "erro comum ocorre"; // reserva 15 caracteres
+
+    imprimirArrChar(string2);
+    if (!polindrome(string2))
+        cout << " nao";
+    cout << " eh Polindromo\n" ;
 }
