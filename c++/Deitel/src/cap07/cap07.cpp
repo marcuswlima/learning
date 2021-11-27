@@ -6,7 +6,6 @@ using std::cin;
 
 #include <iomanip>
 
-
 int menu(int);
 void exe29();
 void exe31();
@@ -46,7 +45,7 @@ int menu(int opcao){
         cout << "31 - Selection Sort\n";
         cout << "32 - Polimdrimo\n";
         cout << "33 - Pesquisa Linear recursiva\n";
-        cout << "35 - printArray\n";
+        cout << "35 - printArray Recursive\n";
         cout << "*******************************\n";
         cout << "Indique qual exercicio: ";
         cin >> cein;
@@ -200,9 +199,9 @@ void exe32(){
     cout << "*******************************\n";
 
     char string1[]="\"radar\"";
-    char string2[]="\"at5as salta\"";
+    char string2[]="\"atlas salta\"";
     char string3[]="\"erro comum ocorre\"";
-    char string4[]="\"arara\"";
+    char string4[]="\"arara arara\"";
 
     analisaPalindrome(string1);
     analisaPalindrome(string2);
@@ -213,27 +212,19 @@ void exe32(){
 
 //-------------33------------------//
 
-int linearSearch( const int array[], int key, int sizeOfArray)
-{
-    for ( int j = 0; j < sizeOfArray; j++ )
-        if ( array[ j ] == key ) 
-            return j; 
-
-    return -1; 
-} 
-
 int linearSearchRecursivo( const int arrei[], int key, int sizeOfArray, int inicio=0)
 {
-    cout << "*****" << inicio << "\n";
+//    cout << "*****" << inicio << "\n";
 
-    if (inicio+1==sizeOfArray || arrei[inicio]!=key )
-        return -1;
-        
-    if (arrei[inicio]==key)
+    if ( arrei[inicio]==key ) 
         return inicio;
-    else
+    else if (inicio+1==sizeOfArray  )
+        return -1;
+    else 
         linearSearchRecursivo(arrei,key,sizeOfArray,inicio+1);
-} 
+
+}
+
 
 void exe33(){
 
@@ -241,16 +232,15 @@ void exe33(){
     cout << "33 - Linear Search recusive    \n";
     cout << "*******************************\n";
 
-    const int tamanho=1;
-    int arrei[tamanho]={1}, key=1;
+    const int tamanho=10;
+    int arrei[tamanho]={1,2,3}, key=3;
 
+    for (int subscrito=0; subscrito<tamanho; subscrito++)
+        arrei[subscrito]=gerarInteiro(1,8);
     
     cout << "key -> " << key << "\n";
+    cout << linearSearchRecursivo(arrei, key, tamanho ) << "\n";
     mostarArray(arrei, tamanho);
-    cout << linearSearch(arrei, key, tamanho );
-    cout << "\n";
-
-    cout << linearSearchRecursivo(arrei, key, tamanho );
     cout << "\n";
 
 }
@@ -270,6 +260,11 @@ void printArray (int arrei[], int inicio, int fim) {
 }
 
 void exe35(){
+
+    cout << "*******************************\n";
+    cout << "35 - printArray Recursive\n";
+    cout << "*******************************\n";
+
     const int tamanho=10;
     int arrei[tamanho];
     for (int subscrito=0; subscrito<tamanho; subscrito++)
