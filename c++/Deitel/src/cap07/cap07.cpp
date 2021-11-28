@@ -5,12 +5,17 @@ using std::cin;
 #include "../lib/marcusLib.h"
 
 #include <iomanip>
+using std::setw;
+
+#include <string>
+using std::string;
 
 int menu(int);
 void exe29();
 void exe31();
 void exe32();
 void exe33();
+void exe34();
 void exe35();
 
 int main(){
@@ -19,7 +24,7 @@ int main(){
 
     int opcao;  
 
-    opcao = 33;
+    opcao = 34;
     opcao = menu(opcao);
 
     switch (opcao)
@@ -28,6 +33,7 @@ int main(){
         case 31: exe31(); break;
         case 32: exe32(); break;
         case 33: exe33(); break;
+        case 34: exe34(); break;
         case 35: exe35(); break;
         default:break;
     }
@@ -45,6 +51,7 @@ int menu(int opcao){
         cout << "31 - Selection Sort\n";
         cout << "32 - Polimdrimo\n";
         cout << "33 - Pesquisa Linear recursiva\n";
+        cout << "34 - Oito rainhas recussivo\n";
         cout << "35 - printArray Recursive\n";
         cout << "*******************************\n";
         cout << "Indique qual exercicio: ";
@@ -222,6 +229,8 @@ int linearSearchRecursivo( const int arrei[], int key, int sizeOfArray, int inic
         return -1;
     else 
         linearSearchRecursivo(arrei,key,sizeOfArray,inicio+1);
+    
+    return 99999;
 
 }
 
@@ -246,6 +255,71 @@ void exe33(){
 }
 
 
+//-------------34------------------//
+
+const int lado=8;
+int currentX;
+int currentY;
+int iteracao=1;
+int tabuleiro[lado][lado];
+int alcancados[lado][lado];
+int eliminados[lado][lado];
+
+void marcar(int arrei[][8], int x, int y, int valor){
+    arrei[x][y]=valor;
+}
+
+void posicionarDamas(){
+    if (iteracao < 8){
+        iteracao++;
+        currentX++;
+        currentY++;
+        marcar(tabuleiro, currentX, currentY, iteracao);
+        posicionarDamas;
+    }
+}
+
+void imprimirTabuleiro(int arrei[][8], string titulo){
+    cout << "\n";
+    cout << titulo << "\n";
+    cout <<"------------------------------------------\n"; 
+    cout <<" |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |\n";
+    cout <<"------------------------------------------\n"; 
+
+
+    for (int x=0; x<lado; x++){
+        cout << x << "| ";
+        for (int y=0; y<lado; y++)
+            cout << setw(2) << arrei[x][y]<< " | ";
+        cout << "\n";
+    }
+
+    cout <<"------------------------------------------\n"; 
+
+}
+
+void exe34(){
+
+    cout << "*******************************\n";
+    cout << "34 - Oito rainhas recursivo    \n";
+    cout << "*******************************\n";
+
+
+    // zerar tabuleiros
+    for(int x=0;x<lado;x++)
+        for(int y=0 ; y<lado ; y++){
+            tabuleiro[x][y]=0;
+            eliminados[x][y]=0;
+        }
+
+
+    currentX = 0;
+    currentY = 0;
+    posicionarDamas();
+
+    imprimirTabuleiro(tabuleiro,"Tabuleiro");
+
+}
 
 //-------------35------------------//
 
