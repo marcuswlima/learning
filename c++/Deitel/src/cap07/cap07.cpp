@@ -293,14 +293,14 @@ void posicionarDamas(){
     bool fazer;
 
 //----------------------------------
-    // macar no tabuleiro
+    // macar dama no tabuleiro
     tabuleiro[currentX][currentY]=iteracao;
-
+    
     // macar alcancados
     for(int row=0 ; row<lado ; row++)
         for(int col=0 ; col<lado ; col++)
             if (EhAlcancavel(currentX,currentY,row,col)) 
-                alcancados[row][col]=1;
+                alcancados[row][col]=iteracao;
 
     //buscar casa livra
     fazer=false;
@@ -320,71 +320,38 @@ void posicionarDamas(){
             break;
     }
 
-    iteracao++;
-
-//----------------------------------
-    // macar no tabuleiro
-    tabuleiro[currentX][currentY]=iteracao;
-
-    // macar alcancados
-    for(int row=0 ; row<lado ; row++)
-        for(int col=0 ; col<lado ; col++)
-            if (EhAlcancavel(currentX,currentY,row,col)) 
-                alcancados[row][col]=1;
-
-    //buscar casa livra
-    fazer=false;
-    for(int x=0 ; x<lado ; x++){
-        for(int y=0 ; y<lado ; y++){
-
-            fazer = tabuleiro[x][y]==0  && !EhAlcancavel(currentX,currentY,x,y) && alcancados[x][y]==0;
-            
-            if (fazer){
-                currentX = x;
-                currentY = y;
-                break;
-            }
-
-        }
-        if (fazer)
-            break;
+    if (fazer){
+        iteracao++;
+        posicionarDamas();
     }
-
-    iteracao++;
-
-//----------------------------------
-    // macar no tabuleiro
-    tabuleiro[currentX][currentY]=iteracao;
-
-    // macar alcancados
-    for(int row=0 ; row<lado ; row++)
-        for(int col=0 ; col<lado ; col++)
-            if (EhAlcancavel(currentX,currentY,row,col)) 
-                alcancados[row][col]=1;
-
-    //buscar casa livra
-    fazer=false;
-    for(int x=0 ; x<lado ; x++){
-        for(int y=0 ; y<lado ; y++){
-
-            fazer = tabuleiro[x][y]==0  && !EhAlcancavel(currentX,currentY,x,y) && alcancados[x][y]==0;
-            
-            if (fazer){
-                currentX = x;
-                currentY = y;
-                break;
-            }
-
-        }
-        if (fazer)
-            break;
-    }
-
-    iteracao++;
-
-//----------------------------------
 
 }
+
+void jogadas(){
+
+    for(int x=0;x<lado;x++)
+        for(int y=0 ; y<lado ; y++){
+
+
+            for(int row=0;row<lado;row++)
+                for(int col=0 ; col<lado ; col++){
+                    tabuleiro[row][col]=0;
+                    eliminados[row][col]=0;
+                    alcancados[row][col]=0;
+                }
+            
+            iteracao = 1;
+
+            currentX = x;
+            currentY = y;
+            cout << "x " << currentX << " y " << currentY;
+            posicionarDamas();
+            cout << " jogadas " << iteracao << "\n";
+        }
+
+    imprimirTabuleiro(tabuleiro,"Tabuleiro");
+}
+
 
 void exe34(){
 
@@ -392,21 +359,11 @@ void exe34(){
     cout << "34 - Oito rainhas recursivo    \n";
     cout << "*******************************\n";
 
-
-    // zerar tabuleiros
-    for(int x=0;x<lado;x++)
-        for(int y=0 ; y<lado ; y++){
-            tabuleiro[x][y]=0;
-            eliminados[x][y]=0;
-            alcancados[x][y]=0;
-        }
+    jogadas();
 
 
-    currentX = 1;
-    currentY = 0;
-    posicionarDamas();
-
-    imprimirTabuleiro(tabuleiro,"Tabuleiro");
+//    imprimirTabuleiro(tabuleiro,"Tabuleiro");
+//    imprimirTabuleiro(alcancados,"alcancados");
 
 }
 
