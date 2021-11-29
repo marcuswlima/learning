@@ -285,46 +285,29 @@ void imprimirTabuleiro(int arrei[][8], string titulo){
 
 }
 
-
-void marcar(int arrei[][8], int x, int y, int valor){
-    arrei[x][y]=valor;
-}
-
 bool EhAlcancavel(int x1,int y1, int x2, int y2){
     return y1==y2 || x1==x2 || (x1+y1==x2+y2) || (x1-y1==x2-y2);
 }
-
 
 void posicionarDamas(){
     bool fazer;
 
 //----------------------------------
+    // macar no tabuleiro
     tabuleiro[currentX][currentY]=iteracao;
 
+    // macar alcancados
+    for(int row=0 ; row<lado ; row++)
+        for(int col=0 ; col<lado ; col++)
+            if (EhAlcancavel(currentX,currentY,row,col)) 
+                alcancados[row][col]=1;
+
     //buscar casa livra
+    fazer=false;
     for(int x=0 ; x<lado ; x++){
         for(int y=0 ; y<lado ; y++){
 
-            fazer = tabuleiro[x][y]==0  && !EhAlcancavel(currentX,currentY,x,y);
-            
-            if (fazer){
-                currentX = x;
-                currentY = y;
-                break;
-            }
-
-        }
-        if (fazer)
-            break;
-    }
-//-----------------------------------------------
-    tabuleiro[currentX][currentY]=3;
-
-    //buscar casa livra
-    for(int x=0 ; x<lado ; x++){
-        for(int y=0 ; y<lado ; y++){
-
-            fazer = tabuleiro[x][y]==0  && !EhAlcancavel(currentX,currentY,x,y);
+            fazer = tabuleiro[x][y]==0  && !EhAlcancavel(currentX,currentY,x,y) && alcancados[x][y]==0;
             
             if (fazer){
                 currentX = x;
@@ -337,7 +320,69 @@ void posicionarDamas(){
             break;
     }
 
-    tabuleiro[currentX][currentY]=2;
+    iteracao++;
+
+//----------------------------------
+    // macar no tabuleiro
+    tabuleiro[currentX][currentY]=iteracao;
+
+    // macar alcancados
+    for(int row=0 ; row<lado ; row++)
+        for(int col=0 ; col<lado ; col++)
+            if (EhAlcancavel(currentX,currentY,row,col)) 
+                alcancados[row][col]=1;
+
+    //buscar casa livra
+    fazer=false;
+    for(int x=0 ; x<lado ; x++){
+        for(int y=0 ; y<lado ; y++){
+
+            fazer = tabuleiro[x][y]==0  && !EhAlcancavel(currentX,currentY,x,y) && alcancados[x][y]==0;
+            
+            if (fazer){
+                currentX = x;
+                currentY = y;
+                break;
+            }
+
+        }
+        if (fazer)
+            break;
+    }
+
+    iteracao++;
+
+//----------------------------------
+    // macar no tabuleiro
+    tabuleiro[currentX][currentY]=iteracao;
+
+    // macar alcancados
+    for(int row=0 ; row<lado ; row++)
+        for(int col=0 ; col<lado ; col++)
+            if (EhAlcancavel(currentX,currentY,row,col)) 
+                alcancados[row][col]=1;
+
+    //buscar casa livra
+    fazer=false;
+    for(int x=0 ; x<lado ; x++){
+        for(int y=0 ; y<lado ; y++){
+
+            fazer = tabuleiro[x][y]==0  && !EhAlcancavel(currentX,currentY,x,y) && alcancados[x][y]==0;
+            
+            if (fazer){
+                currentX = x;
+                currentY = y;
+                break;
+            }
+
+        }
+        if (fazer)
+            break;
+    }
+
+    iteracao++;
+
+//----------------------------------
 
 }
 
@@ -353,10 +398,11 @@ void exe34(){
         for(int y=0 ; y<lado ; y++){
             tabuleiro[x][y]=0;
             eliminados[x][y]=0;
+            alcancados[x][y]=0;
         }
 
 
-    currentX = 0;
+    currentX = 1;
     currentY = 0;
     posicionarDamas();
 
