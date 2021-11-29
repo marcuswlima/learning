@@ -427,9 +427,17 @@ void exe36(){
 
 //-------------37------------------//
 
+int menor;
+
 int recursiveMinimum(int arrei[], int inicial,int final){
     int resposta = 2;
 
+    if (inicial > final || inicial+1>final){
+        if (arrei[inicial] <= arrei[final]) 
+            menor=arrei[inicial];
+        else 
+            menor=arrei[final];
+    };
 
     return resposta;
 
