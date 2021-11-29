@@ -17,6 +17,7 @@ void exe32();
 void exe33();
 void exe34();
 void exe35();
+void exe36();
 
 int main(){
 
@@ -24,7 +25,7 @@ int main(){
 
     int opcao;  
 
-    opcao = 34;
+    opcao = 36;
     opcao = menu(opcao);
 
     switch (opcao)
@@ -35,6 +36,7 @@ int main(){
         case 33: exe33(); break;
         case 34: exe34(); break;
         case 35: exe35(); break;
+        case 36: exe36(); break;
         default:break;
     }
 
@@ -53,6 +55,7 @@ int menu(int opcao){
         cout << "33 - Pesquisa Linear recursiva\n";
         cout << "34 - Oito rainhas recussivo\n";
         cout << "35 - printArray Recursive\n";
+        cout << "36 - String Reverse\n";
         cout << "*******************************\n";
         cout << "Indique qual exercicio: ";
         cin >> cein;
@@ -390,6 +393,32 @@ void exe35(){
     for (int subscrito=0; subscrito<tamanho; subscrito++)
         arrei[subscrito]=gerarInteiro(1,999);
     printArray(arrei,0,tamanho);
+
+}
+
+//-------------36------------------//
+
+void stringReverse(char arrei[], int inicio=0){
+
+    int tamanho = tamanhoArrChar(arrei); // exe07_32
+    cout << arrei[tamanho - inicio - 1] ;
+
+    if (arrei[inicio]!='\0')
+        stringReverse(arrei,inicio+1);
+    else    
+        cout << "\n";
+ 
+}
+
+void exe36(){
+
+    cout << "*******************************\n";
+    cout << "36 - String Reverse\n";
+    cout << "*******************************\n";
+
+    char arrei[] = "atlas salta";
+
+    stringReverse(arrei);
 
 }
 
