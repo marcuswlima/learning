@@ -18,6 +18,7 @@ void exe33();
 void exe34();
 void exe35();
 void exe36();
+void exe37();
 
 int main(){
 
@@ -25,7 +26,7 @@ int main(){
 
     int opcao;  
 
-    opcao = 36;
+    opcao = 37;
     opcao = menu(opcao);
 
     switch (opcao)
@@ -37,6 +38,7 @@ int main(){
         case 34: exe34(); break;
         case 35: exe35(); break;
         case 36: exe36(); break;
+        case 37: exe37(); break;
         default:break;
     }
 
@@ -48,7 +50,7 @@ int menu(int opcao){
 
     if ( opcao == 0 ){
         int cein;
-        cout << "*******************************\n";
+        cout << "*****************************************\n";
         cout << "29 - Crivo de Eratostenes\n";
         cout << "31 - Selection Sort\n";
         cout << "32 - Polimdrimo\n";
@@ -56,7 +58,8 @@ int menu(int opcao){
         cout << "34 - Oito rainhas recussivo\n";
         cout << "35 - printArray Recursive\n";
         cout << "36 - String Reverse\n";
-        cout << "*******************************\n";
+        cout << "37 - Localizar o valor mínimo em um array\n";
+        cout << "*****************************************\n";
         cout << "Indique qual exercicio: ";
         cin >> cein;
         return cein;
@@ -420,5 +423,32 @@ void exe36(){
 
     stringReverse(arrei);
 
+}
+
+//-------------37------------------//
+
+int recursiveMinimum(int arrei[], int inicial,int final){
+    int resposta = 2;
+
+
+    return resposta;
+
+}
+
+void exe37(){
+
+    cout << "*****************************************\n";
+    cout << "37 - Localizar o valor mínimo em um array\n";
+    cout << "*****************************************\n";
+
+    const int tamanho=10;
+    int numeros[tamanho]={0};
+
+    for (int subscrito=0; subscrito<tamanho; subscrito++)
+        numeros[subscrito]=gerarInteiro(1,999);
+
+    mostarArray(numeros,tamanho);
+
+    cout << recursiveMinimum(numeros,0,tamanho) << "\n";
 }
 
