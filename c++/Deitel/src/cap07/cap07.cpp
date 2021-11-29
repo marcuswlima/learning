@@ -265,19 +265,6 @@ int tabuleiro[lado][lado];
 int alcancados[lado][lado];
 int eliminados[lado][lado];
 
-void marcar(int arrei[][8], int x, int y, int valor){
-    arrei[x][y]=valor;
-}
-
-void posicionarDamas(){
-    if (iteracao < 8){
-        iteracao++;
-        currentX++;
-        currentY++;
-        marcar(tabuleiro, currentX, currentY, iteracao);
-        posicionarDamas;
-    }
-}
 
 void imprimirTabuleiro(int arrei[][8], string titulo){
     cout << "\n";
@@ -295,6 +282,62 @@ void imprimirTabuleiro(int arrei[][8], string titulo){
     }
 
     cout <<"------------------------------------------\n"; 
+
+}
+
+
+void marcar(int arrei[][8], int x, int y, int valor){
+    arrei[x][y]=valor;
+}
+
+bool EhAlcancavel(int x1,int y1, int x2, int y2){
+    return y1==y2 || x1==x2 || (x1+y1==x2+y2) || (x1-y1==x2-y2);
+}
+
+
+void posicionarDamas(){
+    bool fazer;
+
+//----------------------------------
+    tabuleiro[currentX][currentY]=iteracao;
+
+    //buscar casa livra
+    for(int x=0 ; x<lado ; x++){
+        for(int y=0 ; y<lado ; y++){
+
+            fazer = tabuleiro[x][y]==0  && !EhAlcancavel(currentX,currentY,x,y);
+            
+            if (fazer){
+                currentX = x;
+                currentY = y;
+                break;
+            }
+
+        }
+        if (fazer)
+            break;
+    }
+//-----------------------------------------------
+    tabuleiro[currentX][currentY]=3;
+
+    //buscar casa livra
+    for(int x=0 ; x<lado ; x++){
+        for(int y=0 ; y<lado ; y++){
+
+            fazer = tabuleiro[x][y]==0  && !EhAlcancavel(currentX,currentY,x,y);
+            
+            if (fazer){
+                currentX = x;
+                currentY = y;
+                break;
+            }
+
+        }
+        if (fazer)
+            break;
+    }
+
+    tabuleiro[currentX][currentY]=2;
 
 }
 
