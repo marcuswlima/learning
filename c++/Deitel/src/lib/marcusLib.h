@@ -1,5 +1,19 @@
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
+
+#include <iomanip>
+using std::setw;
+
 #include <string>
 using std::string;
+
+#include <vector>
+using std::vector;
+
+#include <cmath>
+
 
 
 /*
@@ -115,3 +129,8 @@ void mostraArr2D(const int arrei[][3],int , int );
 Imprime os valores de um array de int e de 2 dimensões 3 coluna
 */
 void mostraArr2D(const int arrei[][5],int , int );
+
+/*
+Imprime os valores de um vector
+*/
+void imprimirVector( vector< int >, string="titulo");

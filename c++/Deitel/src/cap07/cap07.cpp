@@ -1,14 +1,17 @@
+/*
 #include <iostream>
 using std::cout;
 using std::cin;
-
-#include "../lib/marcusLib.h"
 
 #include <iomanip>
 using std::setw;
 
 #include <vector>
 using std::vector;
+*/
+
+#include "../lib/marcusLib.h"
+
 
 int menu(int);
 void exe29();
@@ -20,6 +23,7 @@ void exe35();
 void exe36();
 void exe37();
 void exe38();
+void exe39();
 
 int main(){
 
@@ -27,7 +31,7 @@ int main(){
 
     int opcao;  
 
-    opcao = 38;
+    opcao = 39;
     opcao = menu(opcao);
 
     switch (opcao)
@@ -41,6 +45,7 @@ int main(){
         case 36: exe36(); break;
         case 37: exe37(); break;
         case 38: exe38(); break;
+        case 39: exe39(); break;
         default:break;
     }
 
@@ -61,7 +66,8 @@ int menu(int opcao){
         cout << "35 - printArray Recursive\n";
         cout << "36 - String Reverse\n";
         cout << "37 - Localizar o valor mínimo em um array\n";
-        cout << "38 - exe07_10 com vector<>\n";
+        cout << "38 - exe07_10 com vector<>\n"; 
+        cout << "39 - exe07_17com vector<>\n"; 
         cout << "*****************************************\n";
         cout << "Indique qual exercicio: ";
         cin >> cein;
@@ -476,22 +482,21 @@ void exe38(){
     cout << "38 - exe07_10 com vector<>\n";
     cout << "*****************************************\n";
 
+    // Declarações de variavies e estruturas
     const int tamanhoFaixas=11
              ,tamanhoVendas=10;
     
     int subscrito;
 
+    vector< int > faixas( tamanhoFaixas ); 
+    vector< int > vendas( tamanhoVendas ); 
 
-    vector< int > faixas( tamanhoFaixas ); // vector< int > de 7 elementos
-    vector< int > vendas( tamanhoVendas ); // vector< int > de 10 elementos
-
+    // Randomizar e gerar o vetor vendas
     for (int i=0; i<tamanhoVendas; i++)
         vendas[i]=gerarInteiro(1,1099);
 
 
-    for (int i=0;i<vendas.size();i++)
-        cout << "[" << i << "]=" << vendas[i] << " ";
-    cout << "\n";
+    imprimirVector(vendas,"vendas");
 
     for (int i=0; i<tamanhoVendas; i++){
         subscrito=vendas[i]/100;
@@ -501,9 +506,7 @@ void exe38(){
         faixas[subscrito]++;
     }
 
-    for (int i=0;i<faixas.size();i++)
-        cout << "[" << i << "]=" << faixas[i] << " ";
-    cout << "\n";
+    imprimirVector(faixas,"faixas");
 
     cout << "Inicio\tFim\tQuant\tGráfico\n";
     for (int i=0; i<tamanhoFaixas; i++){
@@ -516,5 +519,17 @@ void exe38(){
 
         cout << "\n";
     }
+
+}
+
+void exe39(){
+    cout << "*****************************************\n";
+    cout << "39 - exe07_17 com vector<>               \n"; 
+    cout << "*****************************************\n";
+
+    const int tamanhoSomas=13;
+    vector< int > somas( tamanhoSomas ); 
+    //int tabela[7][7]={0};
+    std::vector<std::vector<int>> tabela = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };
 
 }
