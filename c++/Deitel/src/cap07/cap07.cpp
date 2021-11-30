@@ -531,5 +531,6 @@ void exe39(){
     vector< int > somas( tamanhoSomas ); 
     //int tabela[7][7]={0};
     std::vector<std::vector<int>> tabela = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };
+    /// https://stackoverflow.com/questions/41325425/multidimensional-vectors-in-c
 
 }
