@@ -293,6 +293,9 @@ void mostarArray( const double arrei[], int sizeOfArray, string titulo ){
 
 }
 
+void mostarArray( const int arrei[], int sizeOfArray, string titulo ){
+
+
 
 void mostraArr2D(const int arrei[][2],int linhas, int colunas){
     cout << "\n";

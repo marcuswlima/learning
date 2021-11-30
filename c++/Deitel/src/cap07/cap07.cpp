@@ -467,9 +467,6 @@ void exe37(){
     for (int subscrito=0; subscrito<tamanho; subscrito++)
         numeros[subscrito]=gerarInteiro(1,999);
 
-    for (int i=0;i<sizeOfArray;i++)
-        cout << "[" << i << "]=" << arrei[i] << " ";
-
 
     cout << "recursiveMinimum " << recursiveMinimum(numeros,0,tamanho-1) << "\n";
 }
@@ -481,6 +478,8 @@ void exe38(){
 
     const int tamanhoFaixas=11
              ,tamanhoVendas=10;
+    
+    int subscrito;
 
 
     vector< int > faixas( tamanhoFaixas ); // vector< int > de 7 elementos
@@ -489,5 +488,33 @@ void exe38(){
     for (int i=0; i<tamanhoVendas; i++)
         vendas[i]=gerarInteiro(1,1099);
 
-    mostarArray(vendas,tamanhoVendas,"Vendas");
+
+    for (int i=0;i<vendas.size();i++)
+        cout << "[" << i << "]=" << vendas[i] << " ";
+    cout << "\n";
+
+    for (int i=0; i<tamanhoVendas; i++){
+        subscrito=vendas[i]/100;
+        if (subscrito>10)
+            subscrito = 10;
+        
+        faixas[subscrito]++;
+    }
+
+    for (int i=0;i<faixas.size();i++)
+        cout << "[" << i << "]=" << faixas[i] << " ";
+    cout << "\n";
+
+    cout << "Inicio\tFim\tQuant\tGráfico\n";
+    for (int i=0; i<tamanhoFaixas; i++){
+        cout << "$" << i*100    << "\t";
+        cout << "$" << i*100+99 << "\t";
+        cout << faixas[i]       << "\t";
+
+        for (int g=1; g<=faixas[i]; g++)
+            cout << "*";
+
+        cout << "\n";
+    }
+
 }
