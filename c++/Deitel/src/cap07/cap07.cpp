@@ -7,8 +7,8 @@ using std::cin;
 #include <iomanip>
 using std::setw;
 
-#include <string>
-using std::string;
+#include <vector>
+using std::vector;
 
 int menu(int);
 void exe29();
@@ -19,6 +19,7 @@ void exe34();
 void exe35();
 void exe36();
 void exe37();
+void exe38();
 
 int main(){
 
@@ -26,7 +27,7 @@ int main(){
 
     int opcao;  
 
-    opcao = 33;
+    opcao = 38;
     opcao = menu(opcao);
 
     switch (opcao)
@@ -39,6 +40,7 @@ int main(){
         case 35: exe35(); break;
         case 36: exe36(); break;
         case 37: exe37(); break;
+        case 38: exe38(); break;
         default:break;
     }
 
@@ -59,6 +61,7 @@ int menu(int opcao){
         cout << "35 - printArray Recursive\n";
         cout << "36 - String Reverse\n";
         cout << "37 - Localizar o valor mínimo em um array\n";
+        cout << "38 - exe07_10 com vector<>\n";
         cout << "*****************************************\n";
         cout << "Indique qual exercicio: ";
         cin >> cein;
@@ -469,3 +472,20 @@ void exe37(){
     cout << "recursiveMinimum " << recursiveMinimum(numeros,0,tamanho-1) << "\n";
 }
 
+void exe38(){
+    cout << "*****************************************\n";
+    cout << "38 - exe07_10 com vector<>\n";
+    cout << "*****************************************\n";
+
+    const int tamanhoFaixas=11
+             ,tamanhoVendas=10;
+
+
+    vector< int > faixas( tamanhoFaixas ); // vector< int > de 7 elementos
+    vector< int > vendas( tamanhoVendas ); // vector< int > de 10 elementos
+
+    for (int i=0; i<tamanhoVendas; i++)
+        vendas[i]=gerarInteiro(1,1099);
+
+    mostarArray(vendas,tamanhoVendas,"Vendas");
+}

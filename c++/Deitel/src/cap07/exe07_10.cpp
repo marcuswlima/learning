@@ -6,6 +6,10 @@ using std::cout;
 #include <iomanip>
 using std::setw;
 
+#include <vector>
+using std::vector;
+
+
 int main(){
     srand( time(0) );
 
