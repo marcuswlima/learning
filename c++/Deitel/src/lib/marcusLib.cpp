@@ -6,6 +6,11 @@ using std::endl;
 
 #include "marcusLib.h"
 
+#include <string>
+using std::string;
+
+
+
 /**********************************
  ** calculateCharges
 **********************************/
@@ -261,7 +266,10 @@ int mdc_r(int x, int y){
 /********************************************************
 ** int mdc_r(int pri, int seg)
 *********************************************************/
-void mostarArray( const int arrei[], int sizeOfArray ){
+void mostarArray( const int arrei[], int sizeOfArray, string titulo ){
+
+    if (titulo!="titulo")
+        cout << titulo << "\n";
 
     for (int i=0;i<sizeOfArray;i++)
         cout << "[" << i << "]=" << arrei[i] << " ";
@@ -273,7 +281,10 @@ void mostarArray( const int arrei[], int sizeOfArray ){
 /********************************************************
 ** void mostarArrayInt
 *********************************************************/
-void mostarArray( const double arrei[], int sizeOfArray ){
+void mostarArray( const double arrei[], int sizeOfArray, string titulo ){
+
+    if (titulo!="titulo")
+        cout << titulo << "\n";
 
     for (int i=0;i<sizeOfArray;i++)
         cout << "[" << i << "]=" << arrei[i] << " ";

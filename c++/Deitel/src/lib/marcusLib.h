@@ -1,3 +1,7 @@
+#include <string>
+using std::string;
+
+
 /*
 Calcula o valor a ser cobrado do cliente de um estacionamento
 */
@@ -92,12 +96,12 @@ int mdc_r(int, int);
 /*
 Imprime os valores de um array de inteiros e de uma dimensão
 */
-void mostarArray( const int [], int );
+void mostarArray( const int [], int , string="titulo" );
 
 /*
 Imprime os valores de um array de double e de uma dimensão
 */
-void mostarArray( const double[], int );
+void mostarArray( const double [], int , string="titulo");
 
 /*
 Imprime os valores de um array de int e de 2 dimensões 2 coluna

@@ -10,7 +10,7 @@ int main(){
     srand( time(0) );
 
     const int tamanhoFaixas=11
-             ,tamanhoVendas=100;
+             ,tamanhoVendas=10;
 
     int faixas[tamanhoFaixas]={0}
        ,vendas[tamanhoVendas]
@@ -19,8 +19,7 @@ int main(){
     for (int i=0; i<tamanhoVendas; i++)
         vendas[i]=gerarInteiro(1,1099);
 
-    cout << "Vendas\n";
-    mostarArray(vendas,tamanhoVendas);
+    mostarArray(vendas,tamanhoVendas,"Vendas");
 
     for (int i=0; i<tamanhoVendas; i++){
         subscrito=vendas[i]/100;
@@ -30,7 +29,9 @@ int main(){
         faixas[subscrito]++;
     }
 
-    mostarArray(faixas,tamanhoFaixas);
+    mostarArray(faixas,tamanhoFaixas,"Faixas");
+
+    cout << "\n";
 
     cout << "Inicio\tFim\tQuant\tGráfico\n";
     for (int i=0; i<tamanhoFaixas; i++){
