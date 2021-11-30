@@ -26,7 +26,7 @@ int main(){
 
     int opcao;  
 
-    opcao = 37;
+    opcao = 33;
     opcao = menu(opcao);
 
     switch (opcao)
@@ -234,9 +234,8 @@ int linearSearchRecursivo( const int arrei[], int key, int sizeOfArray, int inic
     else if (inicio+1==sizeOfArray  )
         return -1;
     else 
-        linearSearchRecursivo(arrei,key,sizeOfArray,inicio+1);
+        return linearSearchRecursivo(arrei,key,sizeOfArray,inicio+1);
     
-    return 99999;
 
 }
 
@@ -427,19 +426,29 @@ void exe36(){
 
 //-------------37------------------//
 
-int menor;
+int menor=9999;
 
 int recursiveMinimum(int arrei[], int inicial,int final){
-    int resposta = 2;
 
-    if (inicial > final || inicial+1>final){
-        if (arrei[inicial] <= arrei[final]) 
-            menor=arrei[inicial];
-        else 
-            menor=arrei[final];
-    };
+    //cout << "******\n";
+    //cout << "inicial " << inicial << "\n";
+    //cout << "final " << final << "\n";
 
-    return resposta;
+    if (inicial > final || inicial+1>final){ // se já passou do limite
+        return menor;
+    }
+    else{
+        if (arrei[inicial] <= menor || arrei[final] <= menor )
+            if (arrei[inicial] < arrei[final])
+                menor=arrei[inicial];
+            else 
+                menor=arrei[final];
+    
+        //cout << "menor " << menor << "\n";
+
+        return recursiveMinimum(arrei,inicial+1,final-1);
+    }
+        
 
 }
 
@@ -449,14 +458,14 @@ void exe37(){
     cout << "37 - Localizar o valor mínimo em um array\n";
     cout << "*****************************************\n";
 
-    const int tamanho=10;
-    int numeros[tamanho]={0};
+    const int tamanho=50;
+    int numeros[tamanho]={6,3,2};
 
     for (int subscrito=0; subscrito<tamanho; subscrito++)
         numeros[subscrito]=gerarInteiro(1,999);
 
     mostarArray(numeros,tamanho);
 
-    cout << recursiveMinimum(numeros,0,tamanho) << "\n";
+    cout << "recursiveMinimum " << recursiveMinimum(numeros,0,tamanho-1) << "\n";
 }
 
