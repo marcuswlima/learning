@@ -467,7 +467,9 @@ void exe37(){
     for (int subscrito=0; subscrito<tamanho; subscrito++)
         numeros[subscrito]=gerarInteiro(1,999);
 
-    mostarArray(numeros,tamanho);
+    for (int i=0;i<sizeOfArray;i++)
+        cout << "[" << i << "]=" << arrei[i] << " ";
+
 
     cout << "recursiveMinimum " << recursiveMinimum(numeros,0,tamanho-1) << "\n";
 }
