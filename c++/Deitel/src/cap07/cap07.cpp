@@ -484,7 +484,7 @@ void exe38(){
 
     // Declarações de variavies e estruturas
     const int tamanhoFaixas=11
-             ,tamanhoVendas=10;
+             ,tamanhoVendas=1000;
     
     int subscrito;
 
@@ -492,13 +492,13 @@ void exe38(){
     vector< int > vendas( tamanhoVendas ); 
 
     // Randomizar e gerar o vetor vendas
-    for (int i=0; i<tamanhoVendas; i++)
+    for (int i=0; i<vendas.size(); i++)
         vendas[i]=gerarInteiro(1,1099);
 
 
     imprimirVector(vendas,"vendas");
 
-    for (int i=0; i<tamanhoVendas; i++){
+    for (int i=0; i<vendas.size(); i++){
         subscrito=vendas[i]/100;
         if (subscrito>10)
             subscrito = 10;
@@ -509,7 +509,7 @@ void exe38(){
     imprimirVector(faixas,"faixas");
 
     cout << "Inicio\tFim\tQuant\tGráfico\n";
-    for (int i=0; i<tamanhoFaixas; i++){
+    for (int i=0; i<faixas.size(); i++){
         cout << "$" << i*100    << "\t";
         cout << "$" << i*100+99 << "\t";
         cout << faixas[i]       << "\t";
@@ -527,10 +527,33 @@ void exe39(){
     cout << "39 - exe07_17 com vector<>               \n"; 
     cout << "*****************************************\n";
 
-    const int tamanhoSomas=13;
-    vector< int > somas( tamanhoSomas ); 
-    //int tabela[7][7]={0};
-    std::vector<std::vector<int>> tabela = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };
-    /// https://stackoverflow.com/questions/41325425/multidimensional-vectors-in-c
+    const size_t tamanhoSomas=13;
+    const size_t tamanhotabela=7;
+    vector<int>somas(tamanhoSomas);
+    vector<vector<int>>tabela(tamanhotabela,vector<int>(tamanhotabela));
+
+    for (int i=1;i<=36000;i++){
+        int dado1 = gerarInteiro(1,6);
+        int dado2 = gerarInteiro(1,6);
+        somas[dado1+dado2]++;
+        tabela[dado1][dado2]++;
+    }
+
+    cout << "\n";
+    for (size_t row=2; row<somas.size(); row++){
+        cout << "[" << row << "]=" << somas[row] << " "; 
+
+        cout << "\n";
+
+    }
+
+    cout << "\n";
+    for (size_t row=1; row<tabela.size(); row++){
+        for (size_t col=1; col<tabela[row].size(); col++){
+            cout << "[" << row << "," << col << "]=" << setw(4) << tabela[row][col] << " "; 
+        }
+
+        cout << "\n";
+    }
 
 }

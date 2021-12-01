@@ -78,9 +78,11 @@ int main()
     cout << "integers1:" << endl;
     outputVector( integers1 );
     
+/*    
     // tentativa de utilizar subscrito fora do intervalo
     cout << "\nAttempt to assign 1000 to integers1.at( 15 )" << endl;
     integers1.at( 15 ) = 1000; // ERRO: fora do intervalo
+*/    
     return 0;
 } // fim de main
 
