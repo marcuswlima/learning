@@ -24,6 +24,7 @@ void exe36();
 void exe37();
 void exe38();
 void exe39();
+void exe40();
 
 int main(){
 
@@ -31,7 +32,7 @@ int main(){
 
     int opcao;  
 
-    opcao = 39;
+    opcao = 40;
     opcao = menu(opcao);
 
     switch (opcao)
@@ -46,6 +47,7 @@ int main(){
         case 37: exe37(); break;
         case 38: exe38(); break;
         case 39: exe39(); break;
+        case 40: exe40(); break;
         default:break;
     }
 
@@ -67,7 +69,8 @@ int menu(int opcao){
         cout << "36 - String Reverse\n";
         cout << "37 - Localizar o valor mínimo em um array\n";
         cout << "38 - exe07_10 com vector<>\n"; 
-        cout << "39 - exe07_17com vector<>\n"; 
+        cout << "39 - exe07_17 com vector<>\n"; 
+        cout << "40 - exe07_37 com vector<>               \n"; 
         cout << "*****************************************\n";
         cout << "Indique qual exercicio: ";
         cin >> cein;
@@ -437,7 +440,7 @@ void exe36(){
 
 int menor=9999;
 
-int recursiveMinimum(int arrei[], int inicial,int final){
+int recursiveMinimum(const int arrei[], int inicial,int final){
 
     //cout << "******\n";
     //cout << "inicial " << inicial << "\n";
@@ -542,9 +545,6 @@ void exe39(){
     cout << "\n";
     for (size_t row=2; row<somas.size(); row++){
         cout << "[" << row << "]=" << somas[row] << " "; 
-
-        cout << "\n";
-
     }
 
     cout << "\n";
@@ -555,5 +555,52 @@ void exe39(){
 
         cout << "\n";
     }
+
+}
+
+int recursiveMinimum(const vector<int> vetor, int inicial,int final){
+
+    //cout << "******\n";
+    //cout << "inicial " << inicial << "\n";
+    //cout << "final " << final << "\n";
+
+    if (inicial > final || inicial+1>final){ // se já passou do limite
+        return menor;
+    }
+    else{
+        if (vetor[inicial] <= menor || vetor[final] <= menor )
+            if (vetor[inicial] < vetor[final])
+                menor=vetor[inicial];
+            else 
+                menor=vetor[final];
+    
+        //cout << "menor " << menor << "\n";
+
+        return recursiveMinimum(vetor,inicial+1,final-1);
+    }
+        
+
+}
+
+void exe40(){
+    cout << "*****************************************\n";
+    cout << "40 - exe07_37 com vector<>               \n"; 
+    cout << "*****************************************\n";
+    const size_t tamanho=100;
+    vector <int> numeros(tamanho);
+
+    for (size_t subscrito=0; subscrito<numeros.size(); subscrito++)
+        numeros[subscrito]=gerarInteiro(1,9999);
+
+    cout << "\n";
+    for (size_t row=0; row<numeros.size(); row++){
+        cout << "[" << setw(2) << row << "]=" << setw(4) << numeros[row] << " "; 
+
+        if (row%10==9)
+            cout << "\n";
+    }
+    cout << "\n";
+
+    cout << "recursiveMinimum " << recursiveMinimum(numeros,0,tamanho-1) << "\n";
 
 }
