@@ -1,8 +1,10 @@
 // Figura 8.4: fig08_04.cpp
 // Utilizando os operadores & e *.
-#include <iostream>
-using std::cout;
-using std::endl;
+//#include <iostream>
+//using std::cout;
+//using std::endl;
+
+#include "../lib/marcusLib.h"
 
 int main()
 {
@@ -20,18 +22,24 @@ int main()
          << "each other.\n&*aPtr = " << &*aPtr
          << "\n*&aPtr = " << *&aPtr << endl;
 
-    int b; // a é um inteiro
-    b=99;
-    int *bPtr; // aPtr é um ponteiro int * -- para um inteiro
-    bPtr = &b;
+     cout << "****************************************\n";
+     cout << "a      -> "  << a      << "\n"; // valor da variavel
+     cout << "aPtr   -> "  << aPtr   << "\n"; // valor da variavel
+     cout << "&a     -> "  << &a     << "\n";
+     cout << " *aPtr -> "  << *aPtr  << "\n";
+     cout << "&*aPtr -> "  << &*aPtr << "\n";
+     cout << "&aPtr  -> "  << &aPtr  << "\n";
+     cout << "*&aPtr -> "  << *&aPtr << "\n";
+//     cout << "*&aPtr -> "  << *&aPtr << "\n";
 
-    cout << "&b -> "    <<  &b    << "\n";
-    cout << "bPtr -> "  <<  bPtr  << "\n";
-    cout << "*bPtr -> " <<  *bPtr << "\n";
-
-    int c, d;
-    cout << "&c -> "    <<  &c    << "\n";
-    cout << "&d -> "    <<  &d    << "\n";
+/*
+     int y=8;
+     int *yPtr;
+     yPtr = &y;
+     cout << "yPtr -> " << yPtr << "\n";
+     y=80;
+     cout << "yPtr -> " << yPtr << "\n";
+*/
 
     return 0; // indica terminação bem-sucedida
 
