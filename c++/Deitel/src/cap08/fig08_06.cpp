@@ -9,6 +9,7 @@ int cubeByValue( int ); // protótipo
 int main()
 {
     int number = 5;
+    
     cout << "The original value of number is " << number;
 
     number = cubeByValue( number ); // passa number por valor ao cubeByValue
