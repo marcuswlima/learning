@@ -9,7 +9,7 @@ using std::endl;
 using std::setw;
 
 void selectionSort( int * const, const int ); // protótipo
-//void swap( int * const, int * const ); // protótipo
+void swap( int * const, int * const ); // protótipo
 
 int main()
 {
