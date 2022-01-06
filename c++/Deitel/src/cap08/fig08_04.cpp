@@ -23,23 +23,27 @@ int main()
          << "\n*&aPtr = " << *&aPtr << endl;
 
      cout << "****************************************\n";
+     cout << "a     -> "  << a      << "\n"; // valor da variavel
+     cout << "&a    -> "  << &a     << "\n";
+     cout << "aPtr  -> "  << aPtr   << "\n"; // valor da variavel
+     cout << "*aPtr -> "  << *aPtr  << "\n";
+     cout << "&aPtr -> "  << &aPtr   << "\n"; // valor da variavel
+     cout << "*&aPtr -> "  << *&aPtr   << "\n"; // valor da variavel
+
+
+     cout << "****************************************\n";
+
      cout << "a      -> "  << a      << "\n"; // valor da variavel
      cout << "aPtr   -> "  << aPtr   << "\n"; // valor da variavel
-     cout << "&a     -> "  << &a     << "\n";
-     cout << " *aPtr -> "  << *aPtr  << "\n";
-     cout << "&*aPtr -> "  << &*aPtr << "\n";
-     cout << "&aPtr  -> "  << &aPtr  << "\n";
-     cout << "*&aPtr -> "  << *&aPtr << "\n";
-//     cout << "*&aPtr -> "  << *&aPtr << "\n";
+     cout << "&Ptr   -> "  << &aPtr   << "\n"; // valor da variavel
+     cout << "*aPtr  -> "  << *aPtr   << "\n"; // valor da variavel
 
-/*
-     int y=8;
-     int *yPtr;
+     int y, *yPtr;
      yPtr = &y;
-     cout << "yPtr -> " << yPtr << "\n";
-     y=80;
-     cout << "yPtr -> " << yPtr << "\n";
-*/
+     cout << "y->"  <<y<< "\n"; // valor da variavel
+     *yPtr = 8;
+     cout << "y->"  <<y<< "\n"; // valor da variavel
+
 
     return 0; // indica terminação bem-sucedida
 

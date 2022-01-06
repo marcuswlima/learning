@@ -15,5 +15,5 @@ int main()
 // xPtr não pode modificar o valor da variável constante para a qual ele aponta
 void f( const int *xPtr )
 {
-    *xPtr = 100; // erro: não é possível modificar objeto const
+    //*xPtr = 100; // erro: não é possível modificar objeto const
 } // fim da função f

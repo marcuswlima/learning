@@ -9,7 +9,7 @@ void printCharacters( const char * ); // imprime usando ponteiro para dados cons
 
 int main()
 {
-    const char phrase[] = "print characters of a string";
+    const char phrase[] = "Print characters of a string";
 
     cout << "The string is:\n";
     printCharacters( phrase ); // imprime caracteres em phrase

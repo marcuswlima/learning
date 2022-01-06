@@ -22,7 +22,7 @@ int main()
 } // fim de main
 
 // converte string em letras maiúsculas
-void convertToUppercase( char *sPtr )
+void convertToUppercase( char * sPtr )
 {
     while ( *sPtr != '\0' ) // faz loop enquanto caractere atual não é ‘\0’
     {
@@ -32,22 +32,3 @@ void convertToUppercase( char *sPtr )
         sPtr++; // move sPtr para o próximo caractere na string
     } // fim do while
 } // fim da função convertToUppercase
-
-void convertToUppercase2( char sPtr[] )
-{
-    while ( *sPtr != '\0' ) // faz loop enquanto caractere atual não é ‘\0’
-    {
-        if ( islower( *sPtr ) ) // se o caractere estiver em minúsculas,
-            *sPtr = toupper( *sPtr ); // converte em maiúsculas
-
-        sPtr++; // move sPtr para o próximo caractere na string
-    } // fim do while
-} // fim da função convertToUppercase
-
-void teste(int teste){
-
-}
-
-void teste(char teste){
-
-}
