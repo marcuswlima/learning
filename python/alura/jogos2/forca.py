@@ -1,18 +1,19 @@
 import random
-def jogar():
 
+
+def jogar():
     imprime_mensagem_abertura()
     palavra_secreta = carrega_palavra_secreta()
     letras_acertadas = ["_" for letra in palavra_secreta]
 
-    enforcou=False
-    acertou=False
+    enforcou = False
+    acertou = False
     erros = 0
 
     print(letras_acertadas)
     print(palavra_secreta)
 
-    #enquanto não se enforcou e não acertou
+    # enquanto não se enforcou e não acertou
     while (not enforcou and not acertou):
         chute = pede_chute()
 
@@ -22,7 +23,7 @@ def jogar():
             erros += 1
             desenha_forca(erros)
 
-        enforcou = (erros == 7)
+        enforcou = erros == 7
         acertou = "_" not in letras_acertadas
         print(letras_acertadas)
 
@@ -49,13 +50,13 @@ def desenha_forca(erros):
         print(" |            ")
         print(" |            ")
 
-    if (erros == 3):
+    if erros == 3:
         print(" |      (_)   ")
         print(" |      \|    ")
         print(" |            ")
         print(" |            ")
 
-    if (erros == 4):
+    if erros == 4:
         print(" |      (_)   ")
         print(" |      \|/   ")
         print(" |            ")
@@ -83,6 +84,7 @@ def desenha_forca(erros):
     print("_|___         ")
     print()
 
+
 def imprime_mensagem_vencedor():
     print("Parabéns, você ganhou!")
     print("       ___________      ")
@@ -95,6 +97,7 @@ def imprime_mensagem_vencedor():
     print("           ) (          ")
     print("         _.' '._        ")
     print("        '-------'       ")
+
 
 def imprime_mensagem_perdedor(palavra_secreta):
     print("Puxa, você foi enforcado!")
@@ -116,15 +119,18 @@ def imprime_mensagem_perdedor(palavra_secreta):
     print("     \_         _/         ")
     print("       \_______/           ")
 
+
 def imprime_mensagem_abertura():
     print("*****************************")
     print("Bem vindo ao jogo da forca!!!")
     print("*****************************")
 
+
 def pede_chute():
     chute = input("Qual letra? ")
     chute = chute.strip().upper()
     return chute
+
 
 def marca_chute_correto(chute, letras_acertadas, palavra_secreta):
     index = 0
@@ -133,23 +139,25 @@ def marca_chute_correto(chute, letras_acertadas, palavra_secreta):
             letras_acertadas[index] = letra
         index += 1
 
+
 def inicializa_letras_acertadas(palavra):
     return ["_" for letra in palavra]
 
-def carrega_palavra_secreta():
-    arquivo = open("palavras.txt","r")
-    palavras=[]
+
+def carrega_palavra_secreta(nome_arquivo="palavras.txt", primeira_linha_valida=0):
+    arquivo = open(nome_arquivo, "r")
+    palavras = []
 
     for linha in arquivo:
-        linha = linha.strip() #trim
+        linha = linha.strip()  # trim
         palavras.append(linha)
 
     arquivo.close()
 
-    numero = random.randrange(0,len(palavras))
+    numero = random.randrange(primeira_linha_valida, len(palavras))
     palavra_secreta = palavras[numero].upper()
     return palavra_secreta
 
-if (__name__== "__main__"):
-    jogar()
 
+if (__name__ == "__main__"):
+    jogar()
