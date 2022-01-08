@@ -13,4 +13,7 @@ jabuticaba
 kiwi
 jambo
 muruci
-apple
+apple1
+cueca
+armario
+

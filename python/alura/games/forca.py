@@ -13,11 +13,10 @@ def jogar():
     print(letras_acertadas)
     print(palavra_secreta)
 
-    # enquanto não se enforcou e não acertou
-    while (not enforcou and not acertou):
+    while not enforcou and not acertou:
         chute = pede_chute()
 
-        if (chute in palavra_secreta):
+        if chute in palavra_secreta:
             marca_chute_correto(chute, letras_acertadas, palavra_secreta)
         else:
             erros += 1
@@ -27,7 +26,7 @@ def jogar():
         acertou = "_" not in letras_acertadas
         print(letras_acertadas)
 
-    if (acertou):
+    if acertou:
         imprime_mensagem_vencedor()
     else:
         imprime_mensagem_perdedor(palavra_secreta)
@@ -38,13 +37,13 @@ def desenha_forca(erros):
     print("  _______     ")
     print(" |/      |    ")
 
-    if (erros == 1):
+    if erros == 1:
         print(" |      (_)   ")
         print(" |            ")
         print(" |            ")
         print(" |            ")
 
-    if (erros == 2):
+    if erros == 2:
         print(" |      (_)   ")
         print(" |      \     ")
         print(" |            ")
@@ -62,19 +61,19 @@ def desenha_forca(erros):
         print(" |            ")
         print(" |            ")
 
-    if (erros == 5):
+    if erros == 5:
         print(" |      (_)   ")
         print(" |      \|/   ")
         print(" |       |    ")
         print(" |            ")
 
-    if (erros == 6):
+    if erros == 6:
         print(" |      (_)   ")
         print(" |      \|/   ")
         print(" |       |    ")
         print(" |      /     ")
 
-    if (erros == 7):
+    if erros == 7:
         print(" |      (_)   ")
         print(" |      \|/   ")
         print(" |       |    ")
@@ -135,7 +134,7 @@ def pede_chute():
 def marca_chute_correto(chute, letras_acertadas, palavra_secreta):
     index = 0
     for letra in palavra_secreta:
-        if (chute == letra):
+        if chute == letra:
             letras_acertadas[index] = letra
         index += 1
 
@@ -159,5 +158,5 @@ def carrega_palavra_secreta(nome_arquivo="palavras.txt", primeira_linha_valida=0
     return palavra_secreta
 
 
-if (__name__ == "__main__"):
+if __name__ == "__main__":
     jogar()
