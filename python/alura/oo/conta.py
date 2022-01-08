@@ -8,7 +8,7 @@ class Conta:
         self.__limite = limite
 
     def extrato(self):
-        print("Saldo de {} do titular {}".format(self.__saldo, self.__titular))
+        print("Saldo de {} é  {}".format(self.__titular ,self.__saldo ))
 
     def deposita(self,valor):
         self.__saldo += valor
