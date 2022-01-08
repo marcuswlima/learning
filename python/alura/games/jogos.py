@@ -10,11 +10,11 @@ def escolhe_jogo():
 
     jogo = int(input("Qual Jogo?: "))
 
-    if ( jogo == 1):
+    if jogo == 1:
         forca.jogar()
-    elif (jogo == 2):
+    elif jogo == 2:
         adivinhacao.jogar()
 
-if (__name__== "__main__"):
+if __name__ == "__main__":
     escolhe_jogo()
 
