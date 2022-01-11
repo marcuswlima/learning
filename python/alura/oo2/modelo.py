@@ -47,19 +47,16 @@ class Serie(Programa):
         return f'{self._nome} / {self.temporadas} temporadas / {self.ano} / {self._likes} Likes'
 
 
-class Playlist:
-    def __init__(self,nome, programas):
+class Playlist():
+    def __init__(self, nome, programas):
         self.nome = nome
         self._programas = programas
 
-    @property
-    def listagem(self):
-        return self._programas
+    def __getitem__(self, item):
+        return self._programas[item]
 
-    @property
-    def tamanho(self):
+    def __len__(self):
         return len(self._programas)
-
 
 vingadores = Filme('Vingadores - guerra infinita',2018,160)
 atlanta = Serie('atlanta',2018,2)
@@ -90,7 +87,6 @@ play_list_fim_de_semana = Playlist('fim de semana',filmes_e_series)
 
 print (f'O tamanho da play_list: {len(play_list_fim_de_semana._programas)}')
 
-for programa in play_list_fim_de_semana.listagem:
+for programa in play_list_fim_de_semana:
     print(programa)
 
-print (f'Tá ou não tá {twd in play_list_fim_de_semana.listagem}')
