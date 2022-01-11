@@ -30,11 +30,11 @@ vingadores = Filme('Vingadores - guerra infinita',2018,160)
 
 vingadores.dar_like()
 vingadores.dar_like()
-print(f'Nome: {vingadores.nome} - Ano: {vingadores.ano} - duracao: {vingadores.duracao} - likes {vingadores.likes}' )
+print(f'Nome: {vingadores.nome} - Ano: {vingadores.ano} - duracao: {vingadores.duracao} - likes {vingadores.likes}')
 
 atlanta = Serie('atlanta',2018,4)
 atlanta.dar_like()
 atlanta.dar_like()
 atlanta.dar_like()
-print(f'Nome: {atlanta.nome} - Ano: {atlanta.ano} - Temporadas: {atlanta.temporadas}' )
+print(f'Nome: {atlanta.nome} - Ano: {atlanta.ano} - Temporadas: {atlanta.temporadas}')
 print('Nome: {} / Ano: {} / Temporadas: {} / Likes {}'.format(atlanta.nome,atlanta.ano,atlanta.temporadas, atlanta.likes))
