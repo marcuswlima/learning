@@ -1,13 +1,26 @@
+import re
+
+
 class ExtratorURL:
     def __init__(self, url):
         self.url = self.sanitiza_url(url)
+        self.valida_url()
 
     def sanitiza_url(self, url):
-        return url.strip()
+        if type(url)==str:
+            return url.strip()
+        else:
+            return ""
 
     def valida_url(self):
-        if self.url == "":
+        if not self.url:
             raise ValueError("A URL está vazia!!!")
+
+        padrao_url = re.compile('(http(s)?://)?(www.)?bytebank.com(.br)?/cambio')
+        match = padrao_url.match(self.url)
+        if not match:
+            raise ValueError("A URL não é valida!!!")
+
 
     def get_url_base(self):
         indice_interrogacao = self.url.find('?')
@@ -29,9 +42,20 @@ class ExtratorURL:
             valor = self.get_url_parametros()[indice_valor:indice_e_comercial]
         return valor
 
-#url = "bytebank.com/cambio?quantidade=100&moedaOrigem=real&moedaDestino=dolar"
-extrator_url = ExtratorURL("bytebank.com/cambio?quantidade=100&moedaOrigem=real&moedaDestino=dolar")
-#valor_quantidade = extrator_url.get_valor_parametro("moedaDestino")
-print("quantidade -> ", extrator_url.get_valor_parametro("quantidade"))
-print("moedaOrigem -> ", extrator_url.get_valor_parametro("moedaOrigem"))
-print("moedaDestino -> ", extrator_url.get_valor_parametro("moedaDestino"))
+    def __len__(self):
+        return len(self.url)
+
+    def __str__(self):
+        return "url          : " + self.url + "\n" + \
+               "Parametros   : " + self.get_url_parametros() + "\n" + \
+               "Base         : " + self.get_url_base() + "\n" + \
+               "moedaOrigem  : " + self.get_valor_parametro("moedaOrigem") + "\n" + \
+               "moedaDestino : " + self.get_valor_parametro("moedaDestino") + "\n" + \
+               "quantidade   : " + self.get_valor_parametro("quantidade")
+
+    def __eq__(self, other):
+        return self.url == other.url
+
+url = "https://bytebank.com/cambio?quantidade=100&moedaOrigem=real&moedaDestino=dolar"
+extrator_url = ExtratorURL(url)
+print(extrator_url)
