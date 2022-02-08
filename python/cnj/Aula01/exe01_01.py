@@ -1,17 +1,13 @@
-def virgula_to_ponto(com_virgula):
-    return com_virgula.replace(',','.')
-
+def obter_float(mensagem):
+    digitado = input(mensagem)
+    return float(digitado.replace(',','.'))
 
 print("*********************")
 print("** Cálculo do  IMC **")
 print("*********************")
 
-
-altura_informada = input("Informe a altura: ")
-peso_informado = input("Informe o peso: ")
-
-altura = float(virgula_to_ponto(altura_informada))
-peso = float(virgula_to_ponto(peso_informado))
+altura = obter_float("Informe a altura: ")
+peso = obter_float("Informe o peso: ")
 imc = peso / (altura*altura)
 
 print("altura -> ", altura)
