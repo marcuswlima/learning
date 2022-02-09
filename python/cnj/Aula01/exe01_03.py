@@ -15,9 +15,12 @@ def executar():
         print("Esta equação não tem raízes reais")
     else:
         print("delta", delta)
-        x1 = (-b + delta ** (1 / 2)) / (2 * a)
-        x2 = (-b - delta ** (1 / 2)) / (2 * a)
+
+        x1 = (-b + math.sqrt(delta)) / (2 * a)
+        x2 = (-b - math.sqrt(delta)) / (2 * a)
+
         print("x1: {}, x2: {}".format(x1, x2))
+
 
 if __name__ == "__main__":
     executar()
