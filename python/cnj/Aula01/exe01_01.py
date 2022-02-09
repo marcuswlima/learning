@@ -1,15 +1,16 @@
-def obter_float(mensagem):
-    digitado = input(mensagem)
-    return float(digitado.replace(',','.'))
+import utilitarios
 
-print("*********************")
-print("** Cálculo do  IMC **")
-print("*********************")
 
-altura = obter_float("Informe a altura: ")
-peso = obter_float("Informe o peso: ")
-imc = peso / (altura*altura)
+def executar():
+    utilitarios.titulo("Cálculo do IMC")
 
-print("altura -> ", altura)
-print("peso -> ", peso)
-print("imc -> ", imc)
+    altura = utilitarios.obter_float("Informe a altura: ")
+    peso = utilitarios.obter_float("Informe o peso: ")
+    imc = peso / (altura*altura)
+
+    print("altura -> ", altura)
+    print("peso -> ", peso)
+    print("imc -> ", imc)
+
+if __name__ == "__main__":
+    executar()
