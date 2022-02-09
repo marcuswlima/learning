@@ -12,3 +12,6 @@ def titulo(mensagem):
     escrever_linha(len(mensagem))
     print("**",mensagem, "**")
     escrever_linha(len(mensagem))
+
+def imc(peso,altura):
+    return peso / (altura**2)

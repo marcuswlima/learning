@@ -6,7 +6,7 @@ def executar():
 
     altura = utilitarios.obter_float("Informe a altura: ")
     peso = utilitarios.obter_float("Informe o peso: ")
-    imc = peso / (altura*altura)
+    imc = utilitarios.imc(peso,altura)
 
     print("altura -> ", altura)
     print("peso -> ", peso)
