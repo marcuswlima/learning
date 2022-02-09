@@ -11,7 +11,7 @@ def executar():
 
     if (a==0):
         print("o valor de a dever ser difirente de 0")
-    elif (a < 0):
+    elif (delta < 0):
         print("Esta equação não tem raízes reais")
     else:
         print("delta", delta)
