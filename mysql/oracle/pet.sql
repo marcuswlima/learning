@@ -1,3 +1,6 @@
+CREATE DATABASE menagerie;
+
+
 CREATE TABLE pet 
 (name VARCHAR(20)
 , owner VARCHAR(20)
