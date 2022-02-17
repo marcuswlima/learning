@@ -54,5 +54,6 @@ INSERT INTO shop VALUES
 
 drop user menagerie@'localhost';
 CREATE USER menagerie@'localhost' IDENTIFIED BY 'M&nager1e' ;
-GRANT all ON menagerie.* TO 'menagerie'@'localhost' WITH GRANT OPTION;;
+GRANT all ON menagerie.* TO 'menagerie'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 
