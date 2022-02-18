@@ -1,7 +1,6 @@
 import utilitarios
 
-
-def executar():
+def executar_01_01():
     utilitarios.titulo("Cálculo do IMC")
 
     altura = utilitarios.obter_float("Informe a altura: ")
@@ -13,4 +12,4 @@ def executar():
     print("imc -> ", imc)
 
 if __name__ == "__main__":
-    executar()
+    executar_01_01()

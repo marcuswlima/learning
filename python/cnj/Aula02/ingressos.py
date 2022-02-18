@@ -1,19 +1,8 @@
-'''
-def eh_numero_natural(digitado):
-    resposta = True
-    try:
-        nnatural = int(digitado)
-        resposta = (nnatural >= 0)
-    except:
-        resposta = False
-    return resposta
+import utilitarios
 
-# print(eh_numero_natural(digitado))
-
-'''
+utilitarios.titulo("Valor do Ingresso")
 
 valor_base = 10
-# desconto=0
 idade = 0
 
 while True:
