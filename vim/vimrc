@@ -1,7 +1,33 @@
-colorscheme pablo
+" Execução do gerenciador de plugins
+execute pathogen#infect()
+
+"eschema de cores
+colorscheme Tomorrow-Night-Eighties
+
+" tananho da identação 
 set tabstop=2
+
+" identifica o tipo de arquivo e identa
 filetype plugin indent on
+
+" colorir o editor
 syntax on
+
+" alinar identação com o TAB
 set shiftwidth=2
-set backspace=2 
+
+" comportamento usual do backspace
+set backspace=2
+
+" Numeração das linhas
 set number
+
+" Apresentar distancias entra linhas
+set relativenumber
+
+" busca incremental - feedback ba busca
+set incsearch
+
+" destaque nos resultados
+set hlsearch
+
