@@ -1,8 +1,8 @@
 " Execução do gerenciador de plugins
-execute pathogen#infect()
+" execute pathogen#infect()
 
 "eschema de cores
-colorscheme Tomorrow-Night-Eighties
+colorscheme Pablo
 
 " tananho da identação 
 set tabstop=2
