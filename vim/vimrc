@@ -2,7 +2,7 @@
 " execute pathogen#infect()
 
 "eschema de cores
-colorscheme Pablo
+"colorscheme Pablo
 
 " tananho da identação 
 set tabstop=2
@@ -30,4 +30,7 @@ set incsearch
 
 " destaque nos resultados
 set hlsearch
+
+" for serches / or ? 
+set ignorecase
 
