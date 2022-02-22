@@ -15,8 +15,14 @@ def ee02_01():
 
     if (imc<18.5):
         faixa="Magreza"
-    elif imc>=18.5 and imc<=24.9:
+    elif imc>=18.5 and imc<30.0:
         faixa="Nornal"
+    elif imc>=25 and imc<30:
+        faixa="Sobrepeso"
+    elif imc>=30 and imc<40:
+        faixa="Obesidade"
+    elif imc>=40:
+        faixa="Obesidade Grace"
 
     print("Com o IMC={} a sua faixa e {}".format(imc,faixa))
     
