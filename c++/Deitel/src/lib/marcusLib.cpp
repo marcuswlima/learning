@@ -330,6 +330,10 @@ void mostraArr2D(const int arrei[][5],int linhas, int colunas){
 
 }
 
+/*
 size_t sizeArray (double arrei[]){
     return sizeof arrei;
 }
+*/
+
+
