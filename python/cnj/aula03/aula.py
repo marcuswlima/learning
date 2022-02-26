@@ -5,3 +5,5 @@ elementos = ['casa',1,'banana',lista_inteiros, tupla_inteiros, set_inteiros,1.2]
 
 for item in elementos:
     print(item, type(item))
+
+
