@@ -4,8 +4,17 @@ utilitarios.titulo("Manutenção da lista lista_compras")
 
 lista_compras = ['alho','cebola','carro','geladeira']
 comando = "0"
-novo_item = "0"
-velho_item = "0"
+
+def existe(item):
+    if lista_compras.count(item)==0:
+        print("\tO item \"{}\" não está na lista".format(item))
+        return False
+    else:
+        return True
+
+def obter_item(mensagem):
+    valor_obtido=input("\t"+mensagem)
+    return valor_obtido
 
 while(comando!="exit"):
 
@@ -14,30 +23,23 @@ while(comando!="exit"):
     if comando=='list':
         print(lista_compras)
     elif comando=='add':
-        novo_item = input("informe um novo item: ")
+        novo_item = obter_item("informe um novo item: ")
         lista_compras.append(novo_item)
     elif comando=='remove':
         print(lista_compras)
-        velho_item = input("informe o item a ser removido: ")
-        if lista_compras.count(velho_item)==0:
-            print("item não existe")
-        else:
+        velho_item = obter_item("informe o item a ser removido: ")
+        if existe(velho_item):
             lista_compras.remove(velho_item)
     elif comando=='update':
         print(lista_compras)
-        velho_item = input("informe o item a ser alterado: ")
-        if lista_compras.count(velho_item)==0:
-            print("item não existe")
-        else:
+        velho_item = obter_item("informe o item a ser alterado: ")
+        if existe(velho_item):
             posicao = lista_compras.index(velho_item)
-            novo_item = input("informe um novo item: ")
+            novo_item = obter_item("informe um novo item: ")
             lista_compras[posicao]=novo_item
-            '''
-            novo_item = input("informe um novo item: ")
-            print(posicao)
-            lista_compas[
-            '''
+    elif comando=='exit':
+        pass
     else:
-        print("Não é um comando válido!!!")
+        print("\tNão é um comando válido!!!")
 
 
