@@ -1,19 +1,20 @@
-// Figura 8.12: fig08_12.cpp
-// Tentando modificar dados por meio de um
-// ponteiro não-constante para dados constantes.
-
-void f( const int * ); // protótipo
+// Fig. 8.12: fig08_12.cpp
+// Attempting to modify a constant pointer to constant data.
+#include <iostream>
+using namespace std;
 
 int main()
 {
-    int y;
+	int x = 5, y;
 
-    f( &y ); // f tenta modificação não-válida
-    return 0; // indica terminação bem-sucedida
-} // fim de main
+	// ptr is a constant pointer to a constant integer.
+	// ptr always points to the same location; the integer
+	// at that location cannot be modified.
+	const int *const ptr = &x;
 
-// xPtr não pode modificar o valor da variável constante para a qual ele aponta
-void f( const int *xPtr )
-{
-    //*xPtr = 100; // erro: não é possível modificar objeto const
-} // fim da função f
+	cout << *ptr << endl;
+
+	*ptr = 7; // error: *ptr is const; cannot assign new value
+	ptr = &y; // error: ptr is const; cannot assign new address
+} // end main
+

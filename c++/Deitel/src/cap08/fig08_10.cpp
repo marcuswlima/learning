@@ -1,34 +1,22 @@
-// Figura 8.10: fig08_10.cpp
-// Convertendo minúsculas em maiúsculas
-// utilizando um ponteiro não constante para dados não constantes.
+// Fig. 8.10: fig08_10.cpp
+// Attempting to modify data through a
+// nonconstant pointer to constant data.
 #include <iostream>
-using std::cout;
-using std::endl;
-
-#include <cctype> // protótipos para islower e toupper
-using std::islower;
-using std::toupper;
-
-void convertToUppercase( char * );
+using namespace std;
+void f( const int * ); // prototype
 
 int main()
 {
-    char phrase[] = "Marcus William dos Santos Lima and $32.98";
+	int y;
+	
+	f( &y ); // f attempts illegal modification
+} // end main
+// xPtr cannot modify the value of constant variable to which it points
 
-    cout << "The phrase before conversion is: " << phrase;
-    convertToUppercase( phrase );
-    cout << "\nThe phrase after conversion is: " << phrase << endl;
-    return 0; // indica terminação bem-sucedida
-} // fim de main
-
-// converte string em letras maiúsculas
-void convertToUppercase( char * sPtr )
+void f( const int *xPtr )
 {
-    while ( *sPtr != '\0' ) // faz loop enquanto caractere atual não é ‘\0’
-    {
-        if ( islower( *sPtr ) ) // se o caractere estiver em minúsculas,
-            *sPtr = toupper( *sPtr ); // converte em maiúsculas
+	*xPtr = 100; // error: cannot modify a const object
+//	cout << "teste\n";
+} // end function f
 
-        sPtr++; // move sPtr para o próximo caractere na string
-    } // fim do while
-} // fim da função convertToUppercase
+

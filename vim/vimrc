@@ -31,3 +31,8 @@ set incsearch
 " destaque nos resultados
 set hlsearch
 
+" highligthing current line and column
+set cursorline
+set cursorcolumn
+
+
