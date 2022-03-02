@@ -1,11 +1,11 @@
 " Execução do gerenciador de plugins
-" execute pathogen#infect()
+execute pathogen#infect()
 
 "eschema de cores
-"colorscheme Pablo
+colorscheme Tomorrow-Night-Eighties
 
 " tananho da identação 
-set tabstop=2
+set tabstop=4
 
 " identifica o tipo de arquivo e identa
 filetype plugin indent on
@@ -14,7 +14,7 @@ filetype plugin indent on
 syntax on
 
 " alinar identação com o TAB
-set shiftwidth=2
+set shiftwidth=4
 
 " comportamento usual do backspace
 set backspace=2
@@ -30,7 +30,4 @@ set incsearch
 
 " destaque nos resultados
 set hlsearch
-
-" for serches / or ? 
-set ignorecase
 
