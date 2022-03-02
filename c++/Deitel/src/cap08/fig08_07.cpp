@@ -8,17 +8,18 @@ void cubeByReference( int * ); // protótipo
 
 int main()
 {
-    int number = 5;
+	int number = 5;
 
-    cout << "The original value of number is " << number;
+	cout << "The original value of number is " << number;
 
-    cubeByReference( &number ); // passa endereço de number para cubeByReference
+	cubeByReference( &number ); // passa endereço de number para cubeByReference
 
-    cout << "\nThe new value of number is " << number << endl;
+	cout << "\nThe new value of number is " << number << endl;
 } // fim de main
 
 // calcula o cubo de *nPtr; modifica a variável number em main
 void cubeByReference( int *nPtr )
 {
-    *nPtr = *nPtr * *nPtr * *nPtr; // eleva *nPtr ao cubo
+	*nPtr = *nPtr * *nPtr * *nPtr; // eleva *nPtr ao cubo
 } // fim da função cubeByReference
+  
