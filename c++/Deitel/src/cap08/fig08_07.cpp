@@ -4,7 +4,7 @@
 using std::cout;
 using std::endl;
 
-void cubeByReference( int*nPtr ); // protótipo
+void cubeByReference( int * ); // protótipo
 
 int main()
 {
@@ -15,11 +15,10 @@ int main()
     cubeByReference( &number ); // passa endereço de number para cubeByReference
 
     cout << "\nThe new value of number is " << number << endl;
-    return 0; // indica terminação bem-sucedida
 } // fim de main
 
 // calcula o cubo de *nPtr; modifica a variável number em main
-void cubeByReference( int*nPtr )
+void cubeByReference( int *nPtr )
 {
     *nPtr = *nPtr * *nPtr * *nPtr; // eleva *nPtr ao cubo
 } // fim da função cubeByReference

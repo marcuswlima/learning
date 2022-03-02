@@ -14,20 +14,20 @@ int main()
     a = 7; // atribuiu 7 a a
     aPtr = &a; // atribui o endereço de a ao aPtr
 
-    cout << "The address of a is " << &a
+    cout << "The address of a is  " << &a
          << "\nThe value of aPtr is " << aPtr;
     cout << "\n\nThe value of a is " << a
          << "\nThe value of *aPtr is " << *aPtr;
-    cout << "\n\nShowing that * and & are inverses of "
-         << "each other.\n&*aPtr = " << &*aPtr
+    cout << "\n\nShowing that * and & are inverses of each other."
+         << "\n&*aPtr = " << &*aPtr
          << "\n*&aPtr = " << *&aPtr << endl;
 
      cout << "****************************************\n";
-     cout << "a     -> "  << a      << "\n"; // valor da variavel
-     cout << "&a    -> "  << &a     << "\n";
-     cout << "aPtr  -> "  << aPtr   << "\n"; // valor da variavel
-     cout << "*aPtr -> "  << *aPtr  << "\n";
-     cout << "&aPtr -> "  << &aPtr   << "\n"; // valor da variavel
+     cout << "a      -> "  << a      << "\n"; // valor da variavel
+     cout << "&a     -> "  << &a     << "\n";
+     cout << "aPtr   -> "  << aPtr   << "\n"; // valor da variavel
+     cout << "*aPtr  -> "  << *aPtr  << "\n";
+     cout << "&aPtr  -> "  << &aPtr   << "\n"; // valor da variavel
      cout << "*&aPtr -> "  << *&aPtr   << "\n"; // valor da variavel
 
 

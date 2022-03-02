@@ -31,3 +31,5 @@ int main()
     << "\nsizeof array = " << sizeof array
     << "\nsizeof ptr = " << sizeof ptr << endl;
 } // end main
+
+
