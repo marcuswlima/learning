@@ -1,0 +1,7 @@
+echo compiling...
+
+javac $1.java -d /home/marcus/Developer/dados/java
+
+echo executing ...
+
+java -classpath /home/marcus/Developer/dados/java/ $1
