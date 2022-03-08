@@ -20,16 +20,25 @@ def print_histogram(s):
 #-----------------------
 
 m = monta_histograma('marcus william dos santos lima')
-print_histogram(m)
+print(m)
+print(m.keys())
+for item in m.keys():
+        print(item)
+for item in m.values():
+        print(item)
 
 
+'''
 m = monta_histograma('caetano costa e lima')
 print_histogram(m)
 
 m = monta_histograma('ignacio costa e lima')
 print_histogram(m)
 
-'''
+
+for itme in m.keys:
+    print(item)
+
 
 m = histogram('maria do socorro lima')
 print(m)
