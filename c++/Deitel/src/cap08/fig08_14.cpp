@@ -8,7 +8,7 @@ size_t getSize( double * ); // prototype
 
 int main()
 {
-    double array[ 2 ]; // 20 doubles; occupies 160 bytes on our system
+    double array[ 20 ]; // 20 doubles; occupies 160 bytes on our system
 
     cout << "The number of bytes in the array is " << sizeof( array );
 

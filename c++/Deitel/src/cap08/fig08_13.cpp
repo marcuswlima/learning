@@ -29,7 +29,7 @@ int main()
 } // end main
 
 // function to sort an array
-void selectionSort( int * const array, const int size )
+void selectionSort( int * const array, const int size ) // (Const Pointer to Nonconst data, - )
 {
     int smallest; // index of smallest element
 
@@ -50,7 +50,7 @@ void selectionSort( int * const array, const int size )
 
 // swap values at memory locations to which
 // element1Ptr and element2Ptr point
-void swap( int * const element1Ptr, int * const element2Ptr )
+void swap( int * const element1Ptr, int * const element2Ptr ) // (Const pointer to nocost data, const pointer to noconst data)
 {
     int hold = *element1Ptr;
     *element1Ptr = *element2Ptr;
