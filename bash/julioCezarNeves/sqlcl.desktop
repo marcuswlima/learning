@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Oracle SQLcl
+Exec=/usr/local/bin/sqlcl /nolog
+Terminal=true
+Icon=/opt/sqlcl/sqlcl.jpg
+Type=Application

@@ -1,7 +1,9 @@
-#-----------------------------------------
-# Função imc
-#-----------------------------------------
+
 def imc(peso,altura):
+    """Prove o IMC
+    
+    imc em função do peso e da altura
+    """
     return peso / ( altura**2 )
 
 #-----------------------------------------
@@ -53,3 +55,4 @@ def imprime_matriz(matriz):
         for c in range(len(matriz[l])):
             print('|',int2str(matriz[l][c]),sep='',end='')
         print()
+
