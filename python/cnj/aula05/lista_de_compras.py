@@ -48,6 +48,7 @@ utl.titulo("Manutenção da lista lista_compras")
 lista_compras = carregar_arquivo()
 comando = ""
 
+print(lista_compras)
 while(comando!="exit"):
 
     comando = input("Informe o comando [exit, add, remove, update, list]: ")
