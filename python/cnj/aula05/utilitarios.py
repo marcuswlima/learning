@@ -1,4 +1,18 @@
 
+def dicio_ordernado_por_valor(in_dicio, in_reverse=False):
+    """dicio_ordernado_por_valor
+
+    Returns a new dictionary sorted by value.
+    If in_reverse=False then from minor to major, otherwise
+    from major to minor (default=False)
+    """
+    
+    out_dicio={}
+    for item in sorted(in_dicio.items(),key=itemgetter(1),reverse=in_reverse):
+        out_dicio[item[0]]=item[1]
+
+    return out_dicio
+
 def imc(peso,altura):
     """Prove o IMC
     
@@ -6,16 +20,10 @@ def imc(peso,altura):
     """
     return peso / ( altura**2 )
 
-#-----------------------------------------
-# Função Obter_float
-#-----------------------------------------
 def obter_float(mensagem):
     digitado = input(mensagem)
     return float(digitado.replace(',','.'))
 
-#-----------------------------------------
-# Função titulo
-#-----------------------------------------
 def escrever_linha(tamanho_texto):
     print("***",end="")
     for i in range(tamanho_texto):
@@ -27,9 +35,6 @@ def titulo(mensagem):
     print("**",mensagem, "**")
     escrever_linha(len(mensagem))
 
-#-----------------------------------------
-# Função imprime_matriz
-#-----------------------------------------
 def int2str(inteiro):
     return str(inteiro).ljust(4,' ')
 

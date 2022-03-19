@@ -12,35 +12,6 @@ def registra_letra(letra):
     else:
         dict_letras[letra] += 1
 
-def inverter_dict(dicionario):
-    '''
-    Gerar uma lista de tuplas apartir de um dictionary
-    onde são trocados key e value
-    '''
-    resposta=[]
-    for d in dicionario:
-        tupla=(dicionario[d],d)
-        resposta.append(tupla)
-    return resposta
-
-def inverter_lista_tupla(lista):
-    '''
-    Em uma lista de tuplas com 2 elementos inverter a sequencias
-    dos elementos de cada tupla
-    '''
-    resposta=[]
-    for t in lista:
-        tupla=(t[1],t[0])
-        resposta.append(tupla)
-    return resposta
-        
-
-def ordernar_por_value(dicionario,in_reverse=False):
-    resposta=inverter_dict(dicionario)
-    resposta=sorted(resposta,reverse=in_reverse)
-    resposta=inverter_lista_tupla(resposta)
-    return resposta
-
 def mostra_dicionario(dicionario,nome):
     utl.titulo(nome)
     print(dicionario)
@@ -52,14 +23,14 @@ def mostra_dicionario(dicionario,nome):
     print(sorted(dicionario.items(),reverse=True))
 
     utl.titulo(nome+" ordenada por value crescente")
-    print(ordernar_por_value(dicionario))
+    print(utl.dicio_ordenado_por_valor(dicionario))
 
     utl.titulo(nome+" ordenada por value decrescente")
-    print(ordernar_por_value(dicionario,True))
+    print(utl.dicio_ordenado_por_valor(dicionario,True))
 
 
 #--------------------------------------
-nome_arquivo="lerolero01.txt"
+nome_arquivo="lerolero02.txt"
 dict_palavras = dict()
 dict_letras = dict()
 
