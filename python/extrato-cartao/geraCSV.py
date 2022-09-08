@@ -1,0 +1,129 @@
+def extrair_dia(data_lancamento):
+    return data_lancamento[0:2]
+
+def extrair_mes(data_lancamento):
+    return data_lancamento[3:5]
+
+def extrair_ano(data_lancamento):
+    return data_lancamento[6:10]
+
+def tratar_valor(valor):
+    out_valor=valor
+
+    out_valor=out_valor.replace(',','.')
+
+    if out_valor.count('.') > 1:
+        out_valor=out_valor.replace('.',',',1)
+
+    if out_valor.find('-')>=0:
+        out_valor=out_valor.replace('-','')
+    else:
+        out_valor='-'+out_valor
+    
+    return out_valor
+    pass
+
+
+
+def tratar_data(in_data_lancamento):
+    mes_fatura='12'
+    ano_fatura='2021'
+    mes_lancamento = in_data_lancamento[3:]
+
+    ano_lancamento = int(ano_fatura)
+    if mes_fatura < mes_lancamento:
+        ano_lancamento = int(ano_fatura)-1
+    
+    return in_data_lancamento + '/' + str(ano_lancamento)
+    pass
+
+def gerar_arquivo():
+    nome_arquivo="2021-12.txt"
+    nome_arquivo_csv="D:\\Users\marcus.william\Developer\github\_dados\\"+nome_arquivo.replace('.txt','')+'.cvs'
+
+    print(nome_arquivo_csv)
+    
+    
+    arquivo = open(nome_arquivo, "r")
+    arquivo_csv = open(nome_arquivo_csv, "w")
+
+    for linha in arquivo:
+        primeiraletra = linha[0:1]
+        if primeiraletra in ('1','2','3','4','5','6','7','8','9','0'):
+            inicio=0
+            if linha[1:2]==' ':
+                inicio=2
+            
+            linha = linha[inicio:]
+
+            dia_mes=linha[0:linha.find(' ')]
+            dia_mes=dia_mes.strip()
+
+            valor=linha[linha.rfind(' ')+1:len(linha)-1]
+            valor=valor.strip()
+
+            linha=linha.replace(dia_mes,'')
+            linha=linha.replace(valor,'')
+            descricao=linha.strip()
+            dia_lancamento=tratar_data(dia_mes)
+            valor=tratar_valor(valor)
+
+            categoria=''
+            if 'LIDER' in descricao and 'SUPER' in descricao:
+                categoria = 'Manutenção AP'
+            elif 'IFOOD *IFOOD' in descricao:
+                categoria = 'Refeição Marcus'
+            elif 'FACULDADE COSMOPOLITA' in descricao:
+                categoria = 'Izabel'
+            elif 'AMAZONPRIMEBR' in descricao:
+                categoria = 'Applications'
+            elif 'SPOTIFY' in descricao:
+                categoria = 'Applications'
+            elif 'NETFLIX.COM' in descricao:
+                categoria = 'Applications'
+            elif 'UBER' in descricao and 'EATS' in descricao:
+                categoria = 'Refeição Marcus'      
+            elif 'UBER' in descricao and not 'EATS' in descricao:
+                categoria = 'Taxi'      
+            elif 'AMAZON.COM.BR DIGITAL' in descricao:
+                categoria = 'Livros'
+            elif 'FERREGUETE' in descricao:
+                categoria = 'Passeios / Lazer'
+            elif 'DOM' in descricao and  'BOSCO' in descricao:
+                categoria = 'IDB'
+            elif 'BUTEKO' in descricao and  'MALLA' in descricao:
+                categoria = 'Passeios / Lazer'
+            elif '99' in descricao:
+                categoria = 'Taxi'
+            elif ('SAN TITO' in descricao) \
+              or ('BARONCLUB' in descricao) \
+              or ('ACAI' in descricao) \
+              or ('JA REFEICOES' in descricao) \
+              or ('TACACA DO RENATO' in descricao) \
+              or ('COSANOSTRA' in descricao) \
+              or ('EMPORIO DA PRACA' in descricao) \
+              or ('GALETO EXPRESS' in descricao):
+                categoria = 'Refeição Marcus'
+            
+
+            nova_linha = extrair_ano(dia_lancamento)+'\t'+\
+                         extrair_mes(dia_lancamento)+'\t'+\
+                         extrair_dia(dia_lancamento)+'\t'+\
+                         valor+'\t'+\
+                         dia_lancamento+'\t'+\
+                         descricao+'\t'+\
+                         categoria+'\t'+\
+                         valor+'\t'+\
+                         '\n'
+
+            print(nova_linha)
+            arquivo_csv.write(nova_linha)
+
+    arquivo.close()
+    arquivo_csv.close()
+
+#------------------------------------------
+#print(tratar_data('02/02'))
+#print(tratar_data('02/11'))
+gerar_arquivo()
+#print(tratar_valor('-0,2'))
