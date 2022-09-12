@@ -26,8 +26,8 @@ def tratar_valor(valor):
 
 
 def tratar_data(in_data_lancamento):
-    mes_fatura='12'
-    ano_fatura='2021'
+    mes_fatura='09'
+    ano_fatura='2022'
     mes_lancamento = in_data_lancamento[3:]
 
     ano_lancamento = int(ano_fatura)
@@ -38,7 +38,7 @@ def tratar_data(in_data_lancamento):
     pass
 
 def gerar_arquivo():
-    nome_arquivo="2021-12.txt"
+    nome_arquivo="2022-09.txt"
     nome_arquivo_csv="D:\\Users\marcus.william\Developer\github\_dados\\"+nome_arquivo.replace('.txt','')+'.cvs'
 
     print(nome_arquivo_csv)
@@ -97,6 +97,7 @@ def gerar_arquivo():
                 categoria = 'Taxi'
             elif ('SAN TITO' in descricao) \
               or ('BARONCLUB' in descricao) \
+              or ('PICANHADPEDY' in descricao) \
               or ('ACAI' in descricao) \
               or ('JA REFEICOES' in descricao) \
               or ('TACACA DO RENATO' in descricao) \
