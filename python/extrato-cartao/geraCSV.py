@@ -27,7 +27,7 @@ def tratar_valor(valor):
 
 def tratar_data(in_data_lancamento):
     mes_fatura='09'
-    ano_fatura='2022'
+    ano_fatura='2021'
     mes_lancamento = in_data_lancamento[3:]
 
     ano_lancamento = int(ano_fatura)
@@ -37,9 +37,51 @@ def tratar_data(in_data_lancamento):
     return in_data_lancamento + '/' + str(ano_lancamento)
     pass
 
+def func_categoria(descricao):
+    resposta=''
+    if 'LIDER' in descricao and 'SUPER' in descricao:
+        resposta = 'Manutenção AP'
+    elif 'IFOOD *IFOOD' in descricao:
+        resposta = 'Refeição Marcus'
+    elif 'FACULDADE COSMOPOLITA' in descricao:
+        resposta = 'Izabel'
+    elif 'AMAZONPRIMEBR' in descricao:
+        resposta = 'Applications'
+    elif 'SPOTIFY' in descricao:
+        resposta = 'Applications'
+    elif 'NETFLIX.COM' in descricao:
+        resposta = 'Applications'
+    elif 'UBER' in descricao and 'EATS' in descricao:
+        resposta = 'Refeição Marcus'
+    elif 'UBER' in descricao and not 'EATS' in descricao:
+        resposta = 'Taxi'
+    elif 'AMAZON.COM.BR DIGITAL' in descricao:
+        resposta = 'Livros'
+    elif 'FERREGUETE' in descricao:
+        resposta = 'Passeios / Lazer'
+    elif 'DOM' in descricao and  'BOSCO' in descricao:
+        resposta = 'IDB'
+    elif 'BUTEKO' in descricao and  'MALLA' in descricao:
+        resposta = 'Passeios / Lazer'
+    elif '99' in descricao:
+        resposta = 'Taxi'
+    elif ('SAN TITO' in descricao) \
+        or ('BARONCLUB' in descricao) \
+        or ('PICANHADPEDY' in descricao) \
+        or ('ACAI' in descricao) \
+        or ('JA REFEICOES' in descricao) \
+        or ('TACACA DO RENATO' in descricao) \
+        or ('COSANOSTRA' in descricao) \
+        or ('EMPORIO DA PRACA' in descricao) \
+        or ('GALETO EXPRESS' in descricao):
+        resposta = 'Refeição Marcus'
+    return resposta
+    pass
+
 def gerar_arquivo():
-    nome_arquivo="2022-09.txt"
+    nome_arquivo="2021-09.txt"
     nome_arquivo_csv="D:\\Users\marcus.william\Developer\github\_dados\\"+nome_arquivo.replace('.txt','')+'.cvs'
+    nome_arquivo_csv="/home/marcus/Developer/github/_dados/"+nome_arquivo.replace('.txt','')+'.cvs'
 
     print(nome_arquivo_csv)
     
@@ -68,44 +110,7 @@ def gerar_arquivo():
             dia_lancamento=tratar_data(dia_mes)
             valor=tratar_valor(valor)
 
-            categoria=''
-            if 'LIDER' in descricao and 'SUPER' in descricao:
-                categoria = 'Manutenção AP'
-            elif 'IFOOD *IFOOD' in descricao:
-                categoria = 'Refeição Marcus'
-            elif 'FACULDADE COSMOPOLITA' in descricao:
-                categoria = 'Izabel'
-            elif 'AMAZONPRIMEBR' in descricao:
-                categoria = 'Applications'
-            elif 'SPOTIFY' in descricao:
-                categoria = 'Applications'
-            elif 'NETFLIX.COM' in descricao:
-                categoria = 'Applications'
-            elif 'UBER' in descricao and 'EATS' in descricao:
-                categoria = 'Refeição Marcus'      
-            elif 'UBER' in descricao and not 'EATS' in descricao:
-                categoria = 'Taxi'      
-            elif 'AMAZON.COM.BR DIGITAL' in descricao:
-                categoria = 'Livros'
-            elif 'FERREGUETE' in descricao:
-                categoria = 'Passeios / Lazer'
-            elif 'DOM' in descricao and  'BOSCO' in descricao:
-                categoria = 'IDB'
-            elif 'BUTEKO' in descricao and  'MALLA' in descricao:
-                categoria = 'Passeios / Lazer'
-            elif '99' in descricao:
-                categoria = 'Taxi'
-            elif ('SAN TITO' in descricao) \
-              or ('BARONCLUB' in descricao) \
-              or ('PICANHADPEDY' in descricao) \
-              or ('ACAI' in descricao) \
-              or ('JA REFEICOES' in descricao) \
-              or ('TACACA DO RENATO' in descricao) \
-              or ('COSANOSTRA' in descricao) \
-              or ('EMPORIO DA PRACA' in descricao) \
-              or ('GALETO EXPRESS' in descricao):
-                categoria = 'Refeição Marcus'
-            
+            categoria=func_categoria(descricao)
 
             nova_linha = extrair_ano(dia_lancamento)+'\t'+\
                          extrair_mes(dia_lancamento)+'\t'+\
