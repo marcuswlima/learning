@@ -1,5 +1,4 @@
 #Para o arquivo /opt/pentaho-9.3/data-integration/simple-jndi/jdbc.properties
-
 dwsucos/type=javax.sql.DataSource
 dwsucos/driver=com.mysql.jdbc.Driver
 dwsucos/url=jdbc:mysql://localhost:3306/dwsucos
