@@ -328,7 +328,7 @@ CREATE TABLE IF NOT EXISTS `dmPresidencia`.`Dim_Tempo` (
   `dia` DATE NOT NULL,
   `numero_dia_semana` NVARCHAR(50) NOT NULL,
   `numero_mes` NVARCHAR(50) NOT NULL,
-  `ID_Tempo` NVARCHAR(50) NOT NULL,
+--  `ID_Tempo` NVARCHAR(50) NOT NULL,
   `desc_mes` NVARCHAR(250) NOT NULL,
   `numero_trimestre` NVARCHAR(50) NOT NULL,
   `nome_trimestre` NVARCHAR(250) NOT NULL,
@@ -367,7 +367,7 @@ CREATE TABLE IF NOT EXISTS `dmPresidencia`.`Dim_Cliente` (
   `cod_regiao` NVARCHAR(50) NOT NULL,
   `desc_regiao` NVARCHAR(250) NOT NULL,
   `cod_segmento` NVARCHAR(50) NOT NULL,
-  `ID_Cliente` NVARCHAR(250) NOT NULL,
+--  `ID_Cliente` NVARCHAR(250) NOT NULL,
   PRIMARY KEY (`id_cliente`))
 ENGINE = InnoDB;
 
@@ -438,6 +438,15 @@ CREATE TABLE IF NOT EXISTS `dmPresidencia`.`Fato_presidencia` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+DROP USER 'pentaho'@'localhost';
+
+CREATE USER 'pentaho'@'localhost'
+  IDENTIFIED BY 'pentaho';
+
+GRANT ALL ON dwsucos.* TO 'pentaho'@'localhost';
+GRANT ALL ON dmPresidencia.* TO 'pentaho'@'localhost';
+
+FLUSH PRIVILEGES;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
