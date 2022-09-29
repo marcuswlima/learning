@@ -1,15 +1,24 @@
-#/opt/pentaho-9.3/data-integration/simple-jndi/jdbc.properties
+####################################
+# 1. Configurar JNDI
+####################################
+# /opt/pentaho-9.3/data-integration/simple-jndi/jdbc.properties
 dwsucos/type=javax.sql.DataSource
 dwsucos/driver=com.mysql.jdbc.Driver
 dwsucos/url=jdbc:mysql://localhost:3306/dwsucos
 dwsucos/user=root   
 dwsucos/password=My$ql1974 
 
-#./kettle/kettle.properties
+####################################
+# 2. Variáveis de Pentaho
+####################################
+# ~/.kettle/kettle.properties
 diretorio=/home/marcus/Developer/github/learning/pentaho/transformations/
 banco=dwsucos
 
-#Configurar o ambiente
+####################################
+# 3. Variáveis de ambiente 
+####################################
+# /etc/profile
 export kettle_home=/home/marcus
 
 
