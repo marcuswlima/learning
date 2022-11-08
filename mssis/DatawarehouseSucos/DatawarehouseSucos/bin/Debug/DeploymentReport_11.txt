@@ -1,0 +1,29 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Fato_003] (Table)
+       [dbo].[Fato_004] (Table)
+       [dbo].[Fato_005] (Table)
+       Default Constraint: unnamed constraint on [dbo].[Fato_003] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[Fato_004] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[Fato_005] (Default Constraint)
+       [dbo].[FK_Fato_003_Dim_Fabrica] (Foreign Key)
+       [dbo].[FK_Fato_003_Dim_Tempo] (Foreign Key)
+       [dbo].[FK_Fato_004_Dim_Cliente] (Foreign Key)
+       [dbo].[FK_Fato_004_Dim_Produto] (Foreign Key)
+       [dbo].[FK_Fato_004_Dim_Organizacional] (Foreign Key)
+       [dbo].[FK_Fato_004_Dim_Tempo] (Foreign Key)
+       [dbo].[FK_Fato_005_Dim_Produto] (Foreign Key)
+       [dbo].[FK_Fato_005_Dim_Fabrica] (Foreign Key)
+       [dbo].[FK_Fato_005_Dim_Tempo] (Foreign Key)
+
+** Supporting actions
