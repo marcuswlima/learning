@@ -1,0 +1,5 @@
+Download MS SQLSever
+https://www.microsoft.com/pt-br/sql-server/sql-server-downloads
+
+Download SQLSever Server Manager Studio 
+https://learn.microsoft.com/pt-pt/sql/ssms/download-sql-server-management-studio-ssms-19?view=sql-server-ver16
