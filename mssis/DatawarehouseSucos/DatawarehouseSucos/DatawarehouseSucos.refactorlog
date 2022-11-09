@@ -70,4 +70,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Nivel" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="ad54f202-af34-4c5b-96a6-2cd2e71f4c3e" ChangeDateTime="11/09/2022 10:42:45">
+    <Property Name="ElementName" Value="[dbo].[Dim_Tempo].[Nome_Dis_Semana]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Dim_Tempo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Nome_Dia_Semana" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4991d4ab-3fd5-4b50-a170-7e26a2125426" ChangeDateTime="11/09/2022 10:43:56">
+    <Property Name="ElementName" Value="[dbo].[Dim_Tempo].[Cod_Senestre]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Dim_Tempo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Cod_Semestre" />
+  </Operation>
 </Operations>

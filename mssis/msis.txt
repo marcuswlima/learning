@@ -14,3 +14,8 @@ Componentes Nescessários
 Download Extensões
 * SQL Server Integration Services Projetcs
 
+Instalar
+* SQL Server Integration Services Projetcs
+
+
+

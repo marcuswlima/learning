@@ -4,3 +4,9 @@ D:\Users\marcus.william\Developer\github\learning\mssis\DatawarehouseSucos\Dataw
 D:\Users\marcus.william\Developer\github\learning\mssis\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.sqlproj.AssemblyReference.cache
 D:\Users\marcus.william\Developer\github\learning\mssis\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.dll
 D:\Users\marcus.william\Developer\github\learning\mssis\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.pdb
+C:\Users\marcu\Developer\github\learning\mssis\DatawarehouseSucos\DatawarehouseSucos\bin\Debug\DatawarehouseSucos.dacpac
+C:\Users\marcu\Developer\github\learning\mssis\DatawarehouseSucos\DatawarehouseSucos\bin\Debug\DatawarehouseSucos.dll
+C:\Users\marcu\Developer\github\learning\mssis\DatawarehouseSucos\DatawarehouseSucos\bin\Debug\DatawarehouseSucos.pdb
+C:\Users\marcu\Developer\github\learning\mssis\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.sqlproj.AssemblyReference.cache
+C:\Users\marcu\Developer\github\learning\mssis\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.dll
+C:\Users\marcu\Developer\github\learning\mssis\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.pdb
