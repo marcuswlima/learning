@@ -84,4 +84,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Cod_Semestre" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="4dde8e0d-d2b3-4d93-bb60-216b65ba0efa" ChangeDateTime="11/09/2022 17:22:30">
+    <Property Name="ElementName" Value="[dbo].[Dim_Cliente].[cod_cidade]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Dim_Cliente]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Cod_cidade" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8a71c90c-0a40-4abe-8f23-b01d3eb8ccbd" ChangeDateTime="11/09/2022 17:22:37">
+    <Property Name="ElementName" Value="[dbo].[Dim_Cliente].[Cod_Eestato]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Dim_Cliente]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Cod_Estado" />
+  </Operation>
 </Operations>

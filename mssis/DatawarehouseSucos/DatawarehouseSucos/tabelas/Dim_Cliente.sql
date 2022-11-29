@@ -2,9 +2,9 @@
 (
 	Cod_Cliente NVARCHAR(50)  ,
 	Desc_Cliente NVARCHAR(250) ,
-  	cod_cidade NVARCHAR(50) ,
+  	Cod_cidade NVARCHAR(50) ,
 	Desc_Cidade NVARCHAR(250),
-	Cod_Eestato NVARCHAR(50) ,
+	[Cod_Estado] NVARCHAR(50) ,
 	Desc_Estado NVARCHAR(250),
 	Cod_Regiao NVARCHAR(50) ,
 	Desc_Regiao NVARCHAR(250),

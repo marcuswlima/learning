@@ -318,6 +318,34 @@ CREATE TABLE [dbo].[Fato_001] (
 
 
 GO
+PRINT N'Creating Table [dbo].[Dim_Tempo]...';
+
+
+GO
+CREATE TABLE [dbo].[Dim_Tempo] (
+    [Cod_Dia]            NVARCHAR (50) NOT NULL,
+    [Data]               DATE          NULL,
+    [Cod_Semana]         INT           NULL,
+    [Nome_Dia_Semana]    NVARCHAR (50) NULL,
+    [Cod_Mes]            INT           NULL,
+    [Nome_Mes]           NVARCHAR (50) NULL,
+    [Cod_Mes_Ano]        NVARCHAR (50) NULL,
+    [Nome_Mes_Ano]       NVARCHAR (50) NULL,
+    [Cod_Trimestre]      INT           NULL,
+    [Nome_Trimestre]     NVARCHAR (50) NULL,
+    [Cod_Trimestre_Ano]  INT           NULL,
+    [Nome_Trimestre_Ano] NVARCHAR (50) NULL,
+    [Cod_Semestre]       INT           NULL,
+    [Nome_Semestre]      NVARCHAR (50) NULL,
+    [Cod_Semestre_Ano]   NVARCHAR (50) NULL,
+    [Nome_Semestre_Ano]  NVARCHAR (50) NULL,
+    [Ano]                NVARCHAR (50) NULL,
+    [Tipo_Dia]           NVARCHAR (50) NULL,
+    CONSTRAINT [pk_Dim_Tempo] PRIMARY KEY CLUSTERED ([Cod_Dia] ASC)
+);
+
+
+GO
 PRINT N'Creating Table [dbo].[Dim_Organizacional]...';
 
 
@@ -383,26 +411,6 @@ CREATE NONCLUSTERED INDEX [IX_Dim_Marca_Cod_Categoria]
 
 
 GO
-PRINT N'Creating Table [dbo].[Dim_Cliente]...';
-
-
-GO
-CREATE TABLE [dbo].[Dim_Cliente] (
-    [Cod_Cliente]   NVARCHAR (50)  NOT NULL,
-    [Desc_Cliente]  NVARCHAR (250) NULL,
-    [cod_cidade]    NVARCHAR (50)  NULL,
-    [Desc_Cidade]   NVARCHAR (250) NULL,
-    [Cod_Eestato]   NVARCHAR (50)  NULL,
-    [Desc_Estado]   NVARCHAR (250) NULL,
-    [Cod_Regiao]    NVARCHAR (50)  NULL,
-    [Desc_Regiao]   NVARCHAR (250) NULL,
-    [Cod_Segmento]  NVARCHAR (50)  NULL,
-    [Desc_Segmento] NVARCHAR (250) NULL,
-    CONSTRAINT [PK_Dim_Cliente] PRIMARY KEY CLUSTERED ([Cod_Cliente] ASC)
-);
-
-
-GO
 PRINT N'Creating Table [dbo].[Dim_Fabrica]...';
 
 
@@ -415,30 +423,22 @@ CREATE TABLE [dbo].[Dim_Fabrica] (
 
 
 GO
-PRINT N'Creating Table [dbo].[Dim_Tempo]...';
+PRINT N'Creating Table [dbo].[Dim_Cliente]...';
 
 
 GO
-CREATE TABLE [dbo].[Dim_Tempo] (
-    [Cod_Dia]            NVARCHAR (50) NOT NULL,
-    [Data]               DATE          NULL,
-    [Cod_Semana]         INT           NULL,
-    [Nome_Dia_Semana]    NVARCHAR (50) NULL,
-    [Cod_Mes]            INT           NULL,
-    [Nome_Mes]           NVARCHAR (50) NULL,
-    [Cod_Mes_Ano]        NVARCHAR (50) NULL,
-    [Nome_Mes_Ano]       NVARCHAR (50) NULL,
-    [Cod_Trimestre]      INT           NULL,
-    [Nome_Trimestre]     NVARCHAR (50) NULL,
-    [Cod_Trimestre_Ano]  INT           NULL,
-    [Nome_Trimestre_Ano] NVARCHAR (50) NULL,
-    [Cod_Semestre]       INT           NULL,
-    [Nome_Semestre]      NVARCHAR (50) NULL,
-    [Cod_Semestre_Ano]   NVARCHAR (50) NULL,
-    [Nome_Semestre_Ano]  NVARCHAR (50) NULL,
-    [Ano]                NVARCHAR (50) NULL,
-    [Tipo_Dia]           NVARCHAR (50) NULL,
-    CONSTRAINT [pk_Dim_Tempo] PRIMARY KEY CLUSTERED ([Cod_Dia] ASC)
+CREATE TABLE [dbo].[Dim_Cliente] (
+    [Cod_Cliente]   NVARCHAR (50)  NOT NULL,
+    [Desc_Cliente]  NVARCHAR (250) NULL,
+    [Cod_cidade]    NVARCHAR (50)  NULL,
+    [Desc_Cidade]   NVARCHAR (250) NULL,
+    [Cod_Estado]    NVARCHAR (50)  NULL,
+    [Desc_Estado]   NVARCHAR (250) NULL,
+    [Cod_Regiao]    NVARCHAR (50)  NULL,
+    [Desc_Regiao]   NVARCHAR (250) NULL,
+    [Cod_Segmento]  NVARCHAR (50)  NULL,
+    [Desc_Segmento] NVARCHAR (250) NULL,
+    CONSTRAINT [PK_Dim_Cliente] PRIMARY KEY CLUSTERED ([Cod_Cliente] ASC)
 );
 
 
@@ -664,6 +664,10 @@ IF NOT EXISTS (SELECT OperationKey FROM [dbo].[__RefactorLog] WHERE OperationKey
 INSERT INTO [dbo].[__RefactorLog] (OperationKey) values ('ad54f202-af34-4c5b-96a6-2cd2e71f4c3e')
 IF NOT EXISTS (SELECT OperationKey FROM [dbo].[__RefactorLog] WHERE OperationKey = '4991d4ab-3fd5-4b50-a170-7e26a2125426')
 INSERT INTO [dbo].[__RefactorLog] (OperationKey) values ('4991d4ab-3fd5-4b50-a170-7e26a2125426')
+IF NOT EXISTS (SELECT OperationKey FROM [dbo].[__RefactorLog] WHERE OperationKey = '4dde8e0d-d2b3-4d93-bb60-216b65ba0efa')
+INSERT INTO [dbo].[__RefactorLog] (OperationKey) values ('4dde8e0d-d2b3-4d93-bb60-216b65ba0efa')
+IF NOT EXISTS (SELECT OperationKey FROM [dbo].[__RefactorLog] WHERE OperationKey = '8a71c90c-0a40-4abe-8f23-b01d3eb8ccbd')
+INSERT INTO [dbo].[__RefactorLog] (OperationKey) values ('8a71c90c-0a40-4abe-8f23-b01d3eb8ccbd')
 
 GO
 
