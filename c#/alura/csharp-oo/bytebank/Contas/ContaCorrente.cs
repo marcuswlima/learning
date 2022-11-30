@@ -4,6 +4,7 @@ using System.Text;
 
 public class ContaCorrente
 {
+    public static int TotalContasCriadas { get; private set; }
     public double Saldo { get; set; }
     public int Agencia { get; set; }
     public string Conta { get; set;}
@@ -16,30 +17,29 @@ public class ContaCorrente
 
     public bool Sacar(double inValor)
     {
-        double inner_saldo = this.Saldo;
 
-        bool resposta= (inValor <= inner_saldo);
+        bool resposta = (inValor <= this.Saldo);
 
         if (resposta)
-            this.Saldo = inner_saldo - inValor;
+            this.Saldo -= inValor;
+        else
+            Console.WriteLine("Não fez o saque");
+
 
         return resposta;
     }
 
     public bool Transferir(double valor, ContaCorrente destino)
     {
-        bool resposta = (valor <= this.Saldo);
+        bool resposta = this.Sacar(valor);
 
         if (resposta)
-        {
-            this.Sacar(valor);
             destino.Depositar(valor);
-        }
+        else
+            Console.WriteLine("Transferencia não realizada");
 
         return resposta;
-
     }
-
     
     public void ToShow(String mensagem)
     {
@@ -59,6 +59,7 @@ public class ContaCorrente
         this.Conta = inConta;
         this.Titular = new Cliente(inNome);
         this.Saldo = 100;
+        TotalContasCriadas++;
     }
 
 }

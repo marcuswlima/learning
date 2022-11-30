@@ -71,12 +71,26 @@ conta3.Sacar(5);
 conta3.ToShow("Apos Saque");
 
 */
-
-
-
+/*
 ContaCorrente conta4 = new(18,"1234", "Marcus William");
 conta4.ToShow("Apos Construcao");
-conta4.Depositar(30);
-conta4.ToShow("Apos deposito");
-conta4.Sacar(3.2);
-conta4.ToShow("Apos Saque");
+//conta4.Depositar(300);
+//conta4.ToShow("Apos deposito");
+//bool logico=conta4.Sacar(3000000.2);
+//conta4.ToShow("Apos Saque");
+
+ContaCorrente conta5 = new(18, "1235", "Santos Lima");
+conta5.ToShow("Apos Construcao");
+//conta5.Depositar(3);
+//conta5.ToShow("Apos deposito");
+conta5.Transferir(1000, conta4);
+conta4.ToShow("Apos transf");
+conta5.ToShow("Apos transf");
+*/
+
+ContaCorrente conta4 = new(18, "1234", "Marcus William");
+Console.WriteLine(ContaCorrente.TotalContasCriadas);
+ContaCorrente conta5 = new(18, "1234", "Marcus William");
+Console.WriteLine(ContaCorrente.TotalContasCriadas);
+ContaCorrente conta6 = new(18, "1234", "Marcus William");
+Console.WriteLine(ContaCorrente.TotalContasCriadas);
