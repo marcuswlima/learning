@@ -2,6 +2,7 @@
 using bytebank;
 using bytebank.Basicas;
 using bytebank.Funcionarios;
+using bytebank.Operacao;
 using bytebank.Parceria;
 using bytebank.SistemaInterno;
 using bytebank.Titular;
@@ -113,6 +114,8 @@ Console.WriteLine(" ");
 Console.WriteLine("*********************");
 Console.WriteLine("***** Operações *****");
 Console.WriteLine("*********************");
+void Operacoes()
+{
 Operacoes operacoes = new();
 int numero1 = 1001, numero2 = 8;
 Console.WriteLine("numero1 => " + numero1 + ", Numero 2 -> " + numero2);
@@ -120,6 +123,7 @@ Console.WriteLine("O valor da soma é: " + operacoes.Soma.Calcular(numero1, nume
 Console.WriteLine("O valor da subtração  é: " + operacoes.Subtracao.Calcular(numero1, numero2));
 Console.WriteLine("O valor da divisão é: " + operacoes.Divisao.Calcular(numero1, numero2));
 Console.WriteLine("O valor da multiplicação é: " + operacoes.Multiplicacao.Calcular(numero1, numero2));
+}
 #endregion
 
 #region
@@ -157,8 +161,6 @@ Console.WriteLine("Novo salario de roberta: " + roberta.Salario);
 
 //Contabilizar Bonificações
 #region
-CalcularBonificacao();
-
 void CalcularBonificacao()
 {
 
@@ -196,13 +198,6 @@ void CalcularBonificacao()
 
 //Sistema Interno
 #region
-Console.WriteLine(" ");
-Console.WriteLine("***************************");
-Console.WriteLine("***** Sistema Interno *****");
-Console.WriteLine("***************************");
-
-usarSistema();
-
 void usarSistema()
 {
     SistemaInterno sistema = new SistemaInterno();
@@ -228,3 +223,14 @@ void usarSistema()
 }
 
 #endregion
+
+//Operacional
+class Program
+{
+    static void Main(string[] args)
+    {
+        ContaCorrente conta = new(1231,1231);
+
+        Console.ReadLine();
+    }
+}
