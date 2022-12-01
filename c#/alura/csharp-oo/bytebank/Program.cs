@@ -2,6 +2,7 @@
 using bytebank;
 using bytebank.Basicas;
 using bytebank.Funcionarios;
+using bytebank.SistemaInterno;
 using bytebank.Titular;
 using bytebank.utilitario;
 
@@ -101,11 +102,13 @@ Console.WriteLine(ContaCorrente.TotalContasCriadas);
 ContaCorrente conta6 = new(18, "1234", "Marcus William");
 Console.WriteLine(ContaCorrente.TotalContasCriadas);
 */
-Console.WriteLine("asdfasdf");
+//Console.WriteLine("asdfasdf");
 #endregion
 
 
+//Operações
 #region
+Console.WriteLine(" ");
 Console.WriteLine("*********************");
 Console.WriteLine("***** Operações *****");
 Console.WriteLine("*********************");
@@ -151,8 +154,17 @@ Console.WriteLine("Novo salario de roberta: " + roberta.Salario);
 */
 #endregion
 
+//Contabilizar Bonificações
+#region
+CalcularBonificacao();
+
 void CalcularBonificacao()
 {
+
+    Console.WriteLine(" ");
+    Console.WriteLine("*************************************");
+    Console.WriteLine("***** Contabilizar Bonificações *****");
+    Console.WriteLine("*************************************");
 
     Designer ulisses = new("123456789");
     ulisses.Nome = "Ulises souza";
@@ -178,4 +190,35 @@ void CalcularBonificacao()
 
 }
 
-CalcularBonificacao();
+#endregion
+
+
+//Sistema Interno
+#region
+Console.WriteLine(" ");
+Console.WriteLine("***************************");
+Console.WriteLine("***** Sistema Interno *****");
+Console.WriteLine("***************************");
+
+usarSistema();
+
+void usarSistema()
+{
+    SistemaInterno sistema = new SistemaInterno();
+
+    Diretor ingrid = new Diretor("321654789");
+    ingrid.Nome = "Indrid Novaes";
+    ingrid.Senha = "123";
+    ingrid.Login = "ingrid@email.com";
+
+    GerenteDeContas ursula= new GerenteDeContas("321654789");
+    ursula.Nome = "Ursula Alcantara";
+    ursula.Senha = "321";
+    ursula.Login = "ursula@email.com";
+
+    sistema.Logar(ingrid, "123","inglid");
+    sistema.Logar(ursula, "3210","ursula");
+
+}
+
+#endregion
