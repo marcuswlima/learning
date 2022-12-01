@@ -4,11 +4,14 @@ using System.Text;
 
 namespace bytebank.Funcionarios
 {
-    public abstract class Funcionario //abostrata - classe que não deverá ser instanciada
+    public abstract class Funcionario //abstrata - classe que não deverá ser instanciada
     {
+
         public string Nome { get; set; }
         public string Cpf { get; private set; }
         public double Salario { get; protected set; }
+
+        public int DataNascimento{ get; set; }
 
         //private int tipo;//0-Funcionario;1-Diretor;2-analista
 

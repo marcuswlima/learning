@@ -1,4 +1,5 @@
 ﻿using bytebank.Funcionarios;
+using bytebank.Parceria;
 using bytebank.Titular;
 using System;
 using System.Collections.Generic;
@@ -8,11 +9,11 @@ namespace bytebank.SistemaInterno
 {
     public class SistemaInterno
     {
-        public bool Logar(Autenticavel funcionario, string senha, string login)
+        public bool Logar(IAutenticavel funcionario, string senha, string login)
         {
             bool usuarioAutencicado = funcionario.Autenticar(senha, login);
 
-            Console.Write(funcionario.Nome);
+//            Console.Write(funcionario.Nome);
             if (usuarioAutencicado)
                 Console.WriteLine(" -> Boas vindas ao sistema");
             else

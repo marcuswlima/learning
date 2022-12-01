@@ -6,6 +6,7 @@ namespace bytebank.Funcionarios
 {
     public class Auxiliar : Funcionario
     {
+        public int Funcao { get; set; }
         public Auxiliar(string cpf) : base(cpf, 2000)
         {
 
@@ -20,5 +21,9 @@ namespace bytebank.Funcionarios
         {
             this.Salario *= 1.1;
         }
+    }
+
+    public class Class1
+    {
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace bytebank.Titular
 {
-    public class Diretor:Autenticavel
+    public class Diretor : FuncionacrioAutenticavel, IAutenticavel
     {
         public Diretor(string cpf) : base(cpf, 5000)
         {
@@ -25,9 +25,5 @@ namespace bytebank.Titular
             this.Salario *=  1.15;
         }
 
-        public override bool Autenticar(string senha, string login)
-        {
-            return this.Senha==senha;
-        }
     }
 }

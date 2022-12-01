@@ -2,6 +2,7 @@
 using bytebank;
 using bytebank.Basicas;
 using bytebank.Funcionarios;
+using bytebank.Parceria;
 using bytebank.SistemaInterno;
 using bytebank.Titular;
 using bytebank.utilitario;
@@ -216,8 +217,13 @@ void usarSistema()
     ursula.Senha = "321";
     ursula.Login = "ursula@email.com";
 
+    ParceiroComercial caio = new();
+    caio.Senha = "999";
+    caio.Nome = "caio caio";
+
     sistema.Logar(ingrid, "123","inglid");
     sistema.Logar(ursula, "3210","ursula");
+    sistema.Logar(caio, "999", "ursula");
 
 }
 
