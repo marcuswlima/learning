@@ -11,7 +11,7 @@ namespace ByteBank
         static int Dividir(int numero, int divisor)
         {
             ContaCorrente conta = null;
-            //Console.WriteLine(conta.Saldo);
+            Console.WriteLine(conta.Saldo);
             return numero / divisor;
         }
 
@@ -30,55 +30,36 @@ namespace ByteBank
 
             try
             {
-                ContaCorrente conta = new ContaCorrente(10, 10);
-                conta.Depositar(50);
-                Console.WriteLine(conta.Saldo);
-                conta.Sacar(500);
-                Console.WriteLine(conta.Saldo);
+                ContaCorrente conta1 = new ContaCorrente(4564, 789684);
+                ContaCorrente conta2 = new ContaCorrente(7891, 456794);
+
+                //conta1.Sacar(10000);
+                Console.WriteLine(conta1.Saldo);
+                Console.WriteLine(conta2.Saldo);
+                conta2.Transferir(1, conta1);
+                Console.WriteLine(conta1.Saldo);
+                Console.WriteLine(conta2.Saldo);
             }
             catch (ArgumentException ex)
             {
-                Console.WriteLine("erro de ArgumentException"+ex);
-                //Console.WriteLine(ex.Message);
-                //Console.WriteLine(ex.StackTrace);
-                //Console.WriteLine(ex.ParamName);
-            }
-            catch (DivideByZeroException excecao)
-            {
-                //Console.WriteLine("Divisão por zero tratado");
-                Console.WriteLine("***** Message");
-                Console.WriteLine(excecao.Message);
-                Console.WriteLine("***** StackTrace");
-                Console.WriteLine(excecao.StackTrace);
+                Console.WriteLine("erro de ArgumentException");
+                Console.WriteLine(ex);
             }
             catch (SaldoInsuficienteException ex)
             {
-                Console.WriteLine("erro de SaldoInsuficienteException: ");
+                Console.WriteLine("erro de SaldoInsuficienteException-> ");
                 Console.WriteLine(ex);
             }
+            catch (OperacaoFinanceiraException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
 
-            /*
-                        try
-                        {
-                            Metodo();
-                        }
-                        catch (DivideByZeroException excecao)
-                        {
-                            //Console.WriteLine("Divisão por zero tratado");
-                            Console.WriteLine("***** Message");
-                            Console.WriteLine(excecao.Message);
-                            Console.WriteLine("***** StackTrace");
-                            Console.WriteLine(excecao.StackTrace);
-                        }
-                        catch (NullReferenceException excecao)
-                        {
-                            //Console.WriteLine("Divisão por zero tratado");
-                            Console.WriteLine("***** Message");
-                            Console.WriteLine(excecao.Message);
-                            Console.WriteLine("***** StackTrace");
-                            Console.WriteLine(excecao.StackTrace);
-                        }
-            */
+                Console.WriteLine("Informações da INNER EXCEPTION (exceção interna):");
+
+                Console.WriteLine(e.InnerException.Message);
+                Console.WriteLine(e.InnerException.StackTrace);
+            }
 
             //**********************************
             Console.WriteLine("**********************************");

@@ -8,10 +8,12 @@ namespace ByteBank
     {
         public Cliente Titular { get; set; }
 
-        public static double TaxaOperacao { get; private set; }
+        public static double TaxaOperacao { get; private set; } //propridade da classe e não da instancia
 
-        public static int TotalDeContasCriadas { get; private set; }
+        public static int TotalDeContasCriadas { get; private set; } //propridade da classe e não da instancia
 
+        public int ContadorSaquesNaoPermitidos { get; private set; }
+        public int ContadorTransferenciasNaoPermitidas { get; private set; }
 
         //private int _agencia;
         public int Agencia { get; }
@@ -51,7 +53,15 @@ namespace ByteBank
             Agencia = agencia;
             Numero = numero;
 
-            //TaxaOperacao = 30 / TotalDeContasCriadas;
+
+            try
+            {
+                TaxaOperacao = 30 / TotalDeContasCriadas;
+            }
+            catch (DivideByZeroException)
+            {
+                TaxaOperacao = 30;
+            }
 
             TotalDeContasCriadas++;
         }
@@ -67,6 +77,7 @@ namespace ByteBank
 
             if (_saldo < valor)
             {
+                ContadorSaquesNaoPermitidos++;
                 throw new SaldoInsuficienteException(_saldo, valor);
             }
 
@@ -81,8 +92,15 @@ namespace ByteBank
 
         public bool Transferir(double valor, ContaCorrente contaDestino)
         {
-            Sacar(valor);
-
+            try
+            {
+                Sacar(valor);
+            }
+            catch (SaldoInsuficienteException)
+            {
+                ContadorTransferenciasNaoPermitidas++;
+                throw new OperacaoFinanceiraException("Operação não realizada.");
+            }
             _saldo -= valor;
             contaDestino.Depositar(valor);
             return true;

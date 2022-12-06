@@ -11,6 +11,8 @@ namespace ByteBank
         public double Saldo { get; }
         public double ValorSaque { get; }
 
+        public SaldoInsuficienteException() : base() { }
+
         public SaldoInsuficienteException(string mensagem) : base(mensagem)
         {
         }
