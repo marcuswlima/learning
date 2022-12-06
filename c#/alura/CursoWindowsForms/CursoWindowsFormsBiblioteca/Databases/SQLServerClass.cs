@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 
 namespace CursoWindowsFormsBiblioteca.Databases
 {
@@ -17,7 +18,8 @@ namespace CursoWindowsFormsBiblioteca.Databases
         {
             try
             {
-                stringConn = "Data Source=.;Initial Catalog=ByteBank;Integrated Security=True";
+                //stringConn = "Data Source=.;Initial Catalog=ByteBank;Integrated Security=True";
+                stringConn = ConfigurationManager.ConnectionStrings["Fichario"].ConnectionString;
                 connDB = new SqlConnection(stringConn);
                 connDB.Open();
             }
