@@ -139,6 +139,8 @@ namespace Chapter02
 
                 Console.WriteLine("Valor de A " + aE13 + " e o valor de B: " + bE13);
             }
+
+            Leitura();
         }
 
         static void Leitura()
