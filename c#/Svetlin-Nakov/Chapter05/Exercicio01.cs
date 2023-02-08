@@ -21,6 +21,7 @@ class Program{
 			for (int i=1;i<=10;i++){
 				v1 = IntRandom(1,1000);
 				v2 = IntRandom(1,1000);
+				
 				MostarNumeros(v1,v2);
 				
 				if (v1 > v2){

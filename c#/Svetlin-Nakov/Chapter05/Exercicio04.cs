@@ -4,26 +4,57 @@ class Program{
 	
         static void Main()
         {
-            Titulo("Exercicio 03");
+            Titulo("Exercicio 04");
 
 			#region //codigo
 			
-			int v1, v2, v3, maior;
+			int r1, r2, r3, o1=0, o2=0, o3=0;
 			
-			for (int i=1;i<=20;i++){
-				v1 = IntRandom(1,1000);
-				v2 = IntRandom(1,1000);
-				v3 = IntRandom(1,1000);
+			for (int i=1; i<=10; i++){
 				
-				Console.Write(v1+" "+v2+" "+v3);
-				
-				maior = v1;
-				if (v2>maior)
-					maior = v2;
-				if (v3>maior)
-					maior = v3;
 
-				Console.Write(" : "+maior+"\n");
+				r1 = IntRandom(-100,100);
+				r2 = IntRandom(-100,100);
+				r3 = IntRandom(-100,100);
+				
+				Console.Write(r1+"\t"+r2+"\t"+r3+"\n");
+				
+				
+				if ((r1>r2)&&(r1>r3)){
+					o1=r1;
+					if (r2>r3){
+						o2=r2;
+						o3=r3;
+					} else{
+						o2=r3;
+						o3=r2;
+					}
+				}
+				else
+					if ((r2>r1)&&(r2>r3)){
+						o1=r2;
+						if (r1>r3){
+							o2=r1;
+							o3=r3;
+						} else{
+							o2=r3;
+							o3=r1;
+						}
+					}
+					else
+						if ((r3>r1)&&(r3>r2)){
+							o1=r3;
+							if (r1>r2){
+								o2=r1;
+								o3=r2;
+							} else{
+								o2=r2;
+								o3=r1;
+							}
+						}
+				
+				Console.Write(o1+"\t"+o2+"\t"+o3+"\n");
+				Console.Write("\n");
 
 			}
 			
@@ -34,7 +65,7 @@ class Program{
         }
 
 
-		#region //utils
+		#region //randon
 
 		private static Random random;
 
@@ -54,6 +85,9 @@ class Program{
 			Init();
 			return random.Next(min, max)+(random.Next(0, 100)/100);
 		}
+		#endregion
+
+		#region // barra titulo
 
         static void ImprimeBarra(String titulo)
         {
@@ -76,6 +110,9 @@ class Program{
             ImprimeBarra(titulo);
 
         }
+		#endregion
+
+		#region //obter numero
 
 		static int ObterInteiro(string mensagem){
 			bool parseSuccess = false;
@@ -97,6 +134,24 @@ class Program{
 			return temp;
 		}
 		
+		#endregion
+		
+        #region //even x odd
+		static int Remainder(int divisor, int dividendo)
+        {
+            return divisor % dividendo;
+        }
+
+        static bool HasRemainder(int divisor, int dividendo)
+        {
+            return Remainder(divisor,dividendo)>0;
+        }
+
+        static bool IsEven(int numero)
+        {
+            return !HasRemainder(numero,2);
+        }
+
 		#endregion
 
 }

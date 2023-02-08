@@ -4,37 +4,42 @@ class Program{
 	
         static void Main()
         {
-            Titulo("Exercicio 03");
+            Titulo("Exercicio 05");
+			
 
 			#region //codigo
-			
-			int v1, v2, v3, maior;
-			
-			for (int i=1;i<=20;i++){
-				v1 = IntRandom(1,1000);
-				v2 = IntRandom(1,1000);
-				v3 = IntRandom(1,1000);
-				
-				Console.Write(v1+" "+v2+" "+v3);
-				
-				maior = v1;
-				if (v2>maior)
-					maior = v2;
-				if (v3>maior)
-					maior = v3;
-
-				Console.Write(" : "+maior+"\n");
-
+			int randomizado=0;
+			for (int i=1;i<=100;i++){
+				randomizado = IntRandom(1,11);
+				Console.Write(randomizado+"-"+NumeroExtenso(randomizado)+" ");
 			}
-			
 			#endregion
 
 			Console.WriteLine("");
 			Console.WriteLine("************************************");
         }
+		
+		#region //numeroExtenso
+		static string NumeroExtenso(int numero){
+			string resposta;
+			switch (numero)
+			{
+				case 1:resposta="um"    ;break;
+				case 2:resposta="dois"  ;break;
+				case 3:resposta="tres"  ;break;
+				case 4:resposta="quatro";break;
+				case 5:resposta="cinco" ;break;
+				case 6:resposta="seis"  ;break;
+				case 7:resposta="sete"  ;break;
+				case 8:resposta="oito"  ;break;
+				case 9:resposta="nove"  ;break;
+				default:resposta="Unknown"; break;			
+			}
+			return resposta;
+		}
+		#endregion
 
-
-		#region //utils
+		#region //randon
 
 		private static Random random;
 
@@ -54,6 +59,9 @@ class Program{
 			Init();
 			return random.Next(min, max)+(random.Next(0, 100)/100);
 		}
+		#endregion
+
+		#region // barra titulo
 
         static void ImprimeBarra(String titulo)
         {
@@ -76,7 +84,17 @@ class Program{
             ImprimeBarra(titulo);
 
         }
+		#endregion
 
+		#region //obter numero
+		static int ObterInteiroNaFaixa(string mensagem,int menor, int maior){
+			int numero=0;
+			do{
+				numero = ObterInteiro(mensagem + "["+menor+":"+maior+"]: ");
+			}while ((numero<menor)||(numero>maior));
+			return numero;
+		}
+		
 		static int ObterInteiro(string mensagem){
 			bool parseSuccess = false;
 			string str;
@@ -97,6 +115,24 @@ class Program{
 			return temp;
 		}
 		
+		#endregion
+		
+        #region //even x odd
+		static int Remainder(int divisor, int dividendo)
+        {
+            return divisor % dividendo;
+        }
+
+        static bool HasRemainder(int divisor, int dividendo)
+        {
+            return Remainder(divisor,dividendo)>0;
+        }
+
+        static bool IsEven(int numero)
+        {
+            return !HasRemainder(numero,2);
+        }
+
 		#endregion
 
 }
