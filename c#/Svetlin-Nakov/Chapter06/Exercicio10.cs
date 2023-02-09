@@ -4,17 +4,27 @@ class Program{
 	
         static void Main()
         {
-            Titulo("Exercicio 11");
+            Titulo("Exercicio 10");
 			#region //codigo
 			
-			int numero;
-			for (int i=1; i<=30; i++){
+			int numero, temp;
+			
+			for (int vez=1; vez<=1; vez++){
+				numero = IntRandom(1,10);
+				numero = 5;
+				//Titulo(" "+numero+" ");
+				
+				for (int col=0;col<numero;col++){
+					temp=col;
 
-				Console.Write(i+"\t");
-				numero = IntRandom(1,999);
-				Console.Write(numero+"\t");
-				Console.Write(NumberEnglishPronuciation(numero)+"\t");
-				Console.Write("\n");
+					for (int linha=1;linha<=numero; linha++){
+						temp++;
+						Console.Write(temp);
+						//Console.Write(col);
+					}
+					Console.Write("\n");
+				}
+				
 			}
 			#endregion
 
@@ -22,7 +32,21 @@ class Program{
 			Console.WriteLine("************************************");
         }
 		
-		#region //quadratic equation
+		#region //Math
+		
+		static long Fatorial(long numero){
+			long produto=1;
+			for (long i=1;i<=numero;i++){
+				produto *= i;
+			}
+			return produto;
+		}
+		
+		static double Catalan(long numero){
+			return Fatorial(2*numero)/(Fatorial(numero+1)*Fatorial(numero));
+		}
+
+
 		static int Discriminant(int a, int b, int c){
 			return (b*b) - (4*a*c);
 		}
@@ -43,7 +67,7 @@ class Program{
 		#endregion
 		
 		#region //numeroExtenso
-		static string NumeroExtenso(int numero){
+		static string NumeroExtensoUnidade(int numero){
 			string resposta;
 			switch (numero)
 			{
@@ -62,6 +86,7 @@ class Program{
 			return resposta;
 		}
 		
+
 		static string NumberEnglishPronuciation(int numero){
 			int unidade,dezena,centena;
 			string resposta;
@@ -75,7 +100,7 @@ class Program{
 			resposta = "";
 			//Centena
 			if (centena>0)
-				resposta = NumeroExtenso(centena)+" hundread ";
+				resposta = NumeroExtensoUnidade(centena)+" hundread ";
 
 			//Dezena e Unidade
 			if (dezena==1){
@@ -104,7 +129,7 @@ class Program{
 				}
 
 				if (unidade > 0) 
-					resposta += NumeroExtenso(unidade);
+					resposta += NumeroExtensoUnidade(unidade);
 
 			}
 			return resposta;

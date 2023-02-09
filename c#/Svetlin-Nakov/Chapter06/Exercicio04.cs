@@ -4,16 +4,24 @@ class Program{
 	
         static void Main()
         {
-            Titulo("Exercicio 11");
+            Titulo("Exercicio 04");
 			#region //codigo
-			
-			int numero;
-			for (int i=1; i<=30; i++){
-
-				Console.Write(i+"\t");
-				numero = IntRandom(1,999);
-				Console.Write(numero+"\t");
-				Console.Write(NumberEnglishPronuciation(numero)+"\t");
+			string[] suits = { "Hearts", "Tiles", "Clovers", "Pikes" };
+			string NumeroExtenso;
+			foreach (string suit in suits)
+			{
+				for (int i=1; i<=13; i++){
+					switch(i)
+					{
+					case 13:NumeroExtenso="King";break;
+					case 12:NumeroExtenso="Queen";break;
+					case 11:NumeroExtenso="Jack";break;
+					case 01:NumeroExtenso="As";break;
+					default:NumeroExtenso=NumberEnglishPronuciation(i);break;
+					}
+					Console.Write(NumeroExtenso+" of "+suit+", ");
+				}
+				Console.Write("\n");
 				Console.Write("\n");
 			}
 			#endregion
@@ -43,7 +51,7 @@ class Program{
 		#endregion
 		
 		#region //numeroExtenso
-		static string NumeroExtenso(int numero){
+		static string NumeroExtensoUnidade(int numero){
 			string resposta;
 			switch (numero)
 			{
@@ -62,6 +70,7 @@ class Program{
 			return resposta;
 		}
 		
+
 		static string NumberEnglishPronuciation(int numero){
 			int unidade,dezena,centena;
 			string resposta;
@@ -75,7 +84,7 @@ class Program{
 			resposta = "";
 			//Centena
 			if (centena>0)
-				resposta = NumeroExtenso(centena)+" hundread ";
+				resposta = NumeroExtensoUnidade(centena)+" hundread ";
 
 			//Dezena e Unidade
 			if (dezena==1){
@@ -104,7 +113,7 @@ class Program{
 				}
 
 				if (unidade > 0) 
-					resposta += NumeroExtenso(unidade);
+					resposta += NumeroExtensoUnidade(unidade);
 
 			}
 			return resposta;

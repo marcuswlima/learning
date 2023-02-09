@@ -4,16 +4,21 @@ class Program{
 	
         static void Main()
         {
-            Titulo("Exercicio 11");
+            Titulo("Exercicio 13");
 			#region //codigo
-			
-			int numero;
-			for (int i=1; i<=30; i++){
+			Console.Write("vez\tbinario\t\thexadecimal\tFromBin\tFromHexa\n");
 
-				Console.Write(i+"\t");
-				numero = IntRandom(1,999);
-				Console.Write(numero+"\t");
-				Console.Write(NumberEnglishPronuciation(numero)+"\t");
+
+			string binario, hexadecimal;
+			for (int vez=1;vez<=159;vez++){
+				binario = DecimalToBinary(vez);
+				hexadecimal = DecimalToHexadecimal(vez);
+
+				Console.Write(vez+"\t");
+				Console.Write(binario+"\t\t");
+				Console.Write(hexadecimal+"\t");
+				Console.Write(BinaryToDecimal(binario)+"\t");
+				Console.Write(HexadecinalToDecimal(hexadecimal)+"\t");
 				Console.Write("\n");
 			}
 			#endregion
@@ -22,7 +27,104 @@ class Program{
 			Console.WriteLine("************************************");
         }
 		
-		#region //quadratic equation
+		#region //NumeralSystem
+		static int HexadecinalToDecimal(string hexadecimal)
+		{
+			int resposta=0,numero;
+			char[] letras = new char[hexadecimal.Length];  
+
+			//reverter o indice
+			for (int i=0;i<=(hexadecimal.Length-1); i++){
+				letras[hexadecimal.Length-1-i]=hexadecimal[i];
+			}
+
+			for (int i=0;i<=(letras.Length-1); i++){
+				numero=0;
+				switch(letras[i]){
+					case 'A':numero=10;break;
+					case 'B':numero=11;break;
+					case 'C':numero=12;break;
+					case 'D':numero=13;break;
+					case 'E':numero=14;break;
+					case 'F':numero=15;break;
+					default:numero = Int32.Parse(letras[i].ToString()); break;		
+				}
+				resposta += numero*(int)Math.Pow(16,i); 
+
+			}
+			return resposta;
+		}
+
+		static long BinaryToDecimal(string binario){
+			long[] restos = new long[20];  
+			int @base=10,qtdElements=0;
+			long numero=Int64.Parse(binario), resposta;
+			for(int i=0; numero>0; i++){
+				restos[i]=Remainder(numero,@base);
+				numero /= @base;    
+				qtdElements++;
+			}
+			
+			resposta=0;
+			for (int i=0;i<qtdElements; i++){
+				resposta += restos[i]*(long)Math.Pow(2,i); 
+			}
+
+			return resposta;
+		}
+
+		static string DecimalTo(long numero,int @base){
+			int   i;       
+			string[] restos = new string[15];  
+			string resposta="";
+
+			for(i=0; numero>0; i++)      
+			{      
+				restos[i]=Remainder(numero,@base).ToString();
+				if (@base==16){
+					switch (restos[i]){
+						case "10":restos[i]="A";break;
+						case "11":restos[i]="B";break;
+						case "12":restos[i]="C";break;
+						case "13":restos[i]="D";break;
+						case "14":restos[i]="E";break;
+						case "15":restos[i]="F";break;
+						case "16":restos[i]="0";break;
+					}
+				}
+				numero /= @base;    
+			}      
+
+			for(i=i-1 ;i>=0 ;i--)      
+				resposta += restos[i];
+			
+			return resposta;
+		}
+
+		static string DecimalToHexadecimal(int numero){
+			return DecimalTo(numero,16);
+		}
+
+		static string DecimalToBinary(int numero){
+			return DecimalTo(numero,2);
+		}
+		#endregion
+		
+		#region //Math
+		
+		static long Fatorial(long numero){
+			long produto=1;
+			for (long i=1;i<=numero;i++){
+				produto *= i;
+			}
+			return produto;
+		}
+		
+		static double Catalan(long numero){
+			return Fatorial(2*numero)/(Fatorial(numero+1)*Fatorial(numero));
+		}
+
+
 		static int Discriminant(int a, int b, int c){
 			return (b*b) - (4*a*c);
 		}
@@ -43,7 +145,7 @@ class Program{
 		#endregion
 		
 		#region //numeroExtenso
-		static string NumeroExtenso(int numero){
+		static string NumeroExtensoUnidade(int numero){
 			string resposta;
 			switch (numero)
 			{
@@ -62,6 +164,7 @@ class Program{
 			return resposta;
 		}
 		
+
 		static string NumberEnglishPronuciation(int numero){
 			int unidade,dezena,centena;
 			string resposta;
@@ -75,7 +178,7 @@ class Program{
 			resposta = "";
 			//Centena
 			if (centena>0)
-				resposta = NumeroExtenso(centena)+" hundread ";
+				resposta = NumeroExtensoUnidade(centena)+" hundread ";
 
 			//Dezena e Unidade
 			if (dezena==1){
@@ -104,7 +207,7 @@ class Program{
 				}
 
 				if (unidade > 0) 
-					resposta += NumeroExtenso(unidade);
+					resposta += NumeroExtensoUnidade(unidade);
 
 			}
 			return resposta;
@@ -191,6 +294,10 @@ class Program{
 		#endregion
 		
         #region //even x odd
+		static long Remainder(long divisor, int dividendo)
+        {
+            return divisor % dividendo;
+        }
 		static int Remainder(int divisor, int dividendo)
         {
             return divisor % dividendo;

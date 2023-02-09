@@ -7,13 +7,35 @@ class Program{
             Titulo("Exercicio 11");
 			#region //codigo
 			
-			int numero;
-			for (int i=1; i<=30; i++){
+			long fatorial;
+			long remainder;
+			int contador;
+			
+			for (int vez=1; vez<=20; vez++){
+				Console.Write(vez+"\t");
+				fatorial = Fatorial(vez);
+				Console.Write(fatorial+"\t");
+				
+				contador=0;
+				do{
+					remainder = Remainder(fatorial,10);
+					if (remainder == 0) 
+						contador++;
+					fatorial = fatorial/10;
+				}while (remainder==0);
+				
+				bool faz=true;
+				contador=0;
+				while(faz){
+					remainder = Remainder(fatorial,10);
+					faz = remainder == 0;
+					fatorial = fatorial/10;
+					contador++;
+				}
+				
+				Console.Write(contador+"\t");
 
-				Console.Write(i+"\t");
-				numero = IntRandom(1,999);
-				Console.Write(numero+"\t");
-				Console.Write(NumberEnglishPronuciation(numero)+"\t");
+
 				Console.Write("\n");
 			}
 			#endregion
@@ -22,7 +44,21 @@ class Program{
 			Console.WriteLine("************************************");
         }
 		
-		#region //quadratic equation
+		#region //Math
+		
+		static long Fatorial(long numero){
+			long produto=1;
+			for (long i=1;i<=numero;i++){
+				produto *= i;
+			}
+			return produto;
+		}
+		
+		static double Catalan(long numero){
+			return Fatorial(2*numero)/(Fatorial(numero+1)*Fatorial(numero));
+		}
+
+
 		static int Discriminant(int a, int b, int c){
 			return (b*b) - (4*a*c);
 		}
@@ -43,7 +79,7 @@ class Program{
 		#endregion
 		
 		#region //numeroExtenso
-		static string NumeroExtenso(int numero){
+		static string NumeroExtensoUnidade(int numero){
 			string resposta;
 			switch (numero)
 			{
@@ -62,6 +98,7 @@ class Program{
 			return resposta;
 		}
 		
+
 		static string NumberEnglishPronuciation(int numero){
 			int unidade,dezena,centena;
 			string resposta;
@@ -75,7 +112,7 @@ class Program{
 			resposta = "";
 			//Centena
 			if (centena>0)
-				resposta = NumeroExtenso(centena)+" hundread ";
+				resposta = NumeroExtensoUnidade(centena)+" hundread ";
 
 			//Dezena e Unidade
 			if (dezena==1){
@@ -104,7 +141,7 @@ class Program{
 				}
 
 				if (unidade > 0) 
-					resposta += NumeroExtenso(unidade);
+					resposta += NumeroExtensoUnidade(unidade);
 
 			}
 			return resposta;
@@ -191,6 +228,10 @@ class Program{
 		#endregion
 		
         #region //even x odd
+		static long Remainder(long divisor, int dividendo)
+        {
+            return divisor % dividendo;
+        }
 		static int Remainder(int divisor, int dividendo)
         {
             return divisor % dividendo;

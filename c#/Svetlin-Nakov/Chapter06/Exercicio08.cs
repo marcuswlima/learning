@@ -4,16 +4,17 @@ class Program{
 	
         static void Main()
         {
-            Titulo("Exercicio 11");
+            Titulo("Exercicio 08");
 			#region //codigo
 			
-			int numero;
-			for (int i=1; i<=30; i++){
+			Console.Write("Vez\tFatorial\tCatalan\n");
 
-				Console.Write(i+"\t");
-				numero = IntRandom(1,999);
-				Console.Write(numero+"\t");
-				Console.Write(NumberEnglishPronuciation(numero)+"\t");
+			for (long vez=1; vez<=20; vez++){
+				Console.Write(vez+"\t");
+				
+				Console.Write(Fatorial(vez)+"\t\t");
+				Console.Write(Catalan(vez)+"\t");
+
 				Console.Write("\n");
 			}
 			#endregion
@@ -22,7 +23,21 @@ class Program{
 			Console.WriteLine("************************************");
         }
 		
-		#region //quadratic equation
+		#region //Math
+		
+		static long Fatorial(long numero){
+			long produto=1;
+			for (long i=1;i<=numero;i++){
+				produto *= i;
+			}
+			return produto;
+		}
+		
+		static double Catalan(long numero){
+			return Fatorial(2*numero)/(Fatorial(numero+1)*Fatorial(numero));
+		}
+
+
 		static int Discriminant(int a, int b, int c){
 			return (b*b) - (4*a*c);
 		}
@@ -43,7 +58,7 @@ class Program{
 		#endregion
 		
 		#region //numeroExtenso
-		static string NumeroExtenso(int numero){
+		static string NumeroExtensoUnidade(int numero){
 			string resposta;
 			switch (numero)
 			{
@@ -62,6 +77,7 @@ class Program{
 			return resposta;
 		}
 		
+
 		static string NumberEnglishPronuciation(int numero){
 			int unidade,dezena,centena;
 			string resposta;
@@ -75,7 +91,7 @@ class Program{
 			resposta = "";
 			//Centena
 			if (centena>0)
-				resposta = NumeroExtenso(centena)+" hundread ";
+				resposta = NumeroExtensoUnidade(centena)+" hundread ";
 
 			//Dezena e Unidade
 			if (dezena==1){
@@ -104,7 +120,7 @@ class Program{
 				}
 
 				if (unidade > 0) 
-					resposta += NumeroExtenso(unidade);
+					resposta += NumeroExtensoUnidade(unidade);
 
 			}
 			return resposta;

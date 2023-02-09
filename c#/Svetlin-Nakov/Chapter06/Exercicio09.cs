@@ -4,16 +4,41 @@ class Program{
 	
         static void Main()
         {
-            Titulo("Exercicio 11");
+            Titulo("Exercicio 09");
 			#region //codigo
 			
-			int numero;
-			for (int i=1; i<=30; i++){
+			int N,X;
+			double S;
+			
+			Console.Write("Vez\tN\tX\tS\n");
 
-				Console.Write(i+"\t");
-				numero = IntRandom(1,999);
-				Console.Write(numero+"\t");
-				Console.Write(NumberEnglishPronuciation(numero)+"\t");
+			for (long vez=1; vez<=5; vez++){
+				Console.Write(vez+"\t");
+				
+				N = IntRandom(1,10);
+				X = IntRandom(1,10);
+				//N = 12;
+				//X = 2;
+
+				Console.Write(N+"\t");
+				Console.Write(X+"\t");
+				
+				S=1;
+				for (int i=1 ; i<=N ; i++){
+					//S += Fatorial(i)/(Math.Pow(X,i));
+					//Console.Write("{00:#.##00}",S);
+
+					//Console.Write(S+"\t\t\t");
+					//Console.Write(Fatorial(i)+"\t");
+					//Console.Write(Math.Pow(X,i)+"\t");
+					//Console.Write(Fatorial(i)/Math.Pow(X,i)+"\t");
+					
+					S += Fatorial(i)/(Math.Pow(X,i));
+					//Console.Write("\n");
+				}
+				Console.Write(S+"\t\t\t");
+				
+
 				Console.Write("\n");
 			}
 			#endregion
@@ -22,7 +47,21 @@ class Program{
 			Console.WriteLine("************************************");
         }
 		
-		#region //quadratic equation
+		#region //Math
+		
+		static long Fatorial(long numero){
+			long produto=1;
+			for (long i=1;i<=numero;i++){
+				produto *= i;
+			}
+			return produto;
+		}
+		
+		static double Catalan(long numero){
+			return Fatorial(2*numero)/(Fatorial(numero+1)*Fatorial(numero));
+		}
+
+
 		static int Discriminant(int a, int b, int c){
 			return (b*b) - (4*a*c);
 		}
@@ -43,7 +82,7 @@ class Program{
 		#endregion
 		
 		#region //numeroExtenso
-		static string NumeroExtenso(int numero){
+		static string NumeroExtensoUnidade(int numero){
 			string resposta;
 			switch (numero)
 			{
@@ -62,6 +101,7 @@ class Program{
 			return resposta;
 		}
 		
+
 		static string NumberEnglishPronuciation(int numero){
 			int unidade,dezena,centena;
 			string resposta;
@@ -75,7 +115,7 @@ class Program{
 			resposta = "";
 			//Centena
 			if (centena>0)
-				resposta = NumeroExtenso(centena)+" hundread ";
+				resposta = NumeroExtensoUnidade(centena)+" hundread ";
 
 			//Dezena e Unidade
 			if (dezena==1){
@@ -104,7 +144,7 @@ class Program{
 				}
 
 				if (unidade > 0) 
-					resposta += NumeroExtenso(unidade);
+					resposta += NumeroExtensoUnidade(unidade);
 
 			}
 			return resposta;

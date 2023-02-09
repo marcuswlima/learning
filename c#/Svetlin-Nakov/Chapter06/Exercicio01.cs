@@ -4,18 +4,13 @@ class Program{
 	
         static void Main()
         {
-            Titulo("Exercicio 11");
+            Titulo("Exercicio 01");
 			#region //codigo
-			
-			int numero;
-			for (int i=1; i<=30; i++){
-
+			int numero = ObterPositivo("Digite um natural ");
+			for (int i=1;i<=numero;i++){
 				Console.Write(i+"\t");
-				numero = IntRandom(1,999);
-				Console.Write(numero+"\t");
-				Console.Write(NumberEnglishPronuciation(numero)+"\t");
-				Console.Write("\n");
 			}
+			
 			#endregion
 
 			Console.WriteLine("");

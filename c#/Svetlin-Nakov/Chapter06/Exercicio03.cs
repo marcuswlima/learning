@@ -4,17 +4,23 @@ class Program{
 	
         static void Main()
         {
-            Titulo("Exercicio 11");
+            Titulo("Exercicio 03");
 			#region //codigo
-			
-			int numero;
-			for (int i=1; i<=30; i++){
 
-				Console.Write(i+"\t");
-				numero = IntRandom(1,999);
-				Console.Write(numero+"\t");
-				Console.Write(NumberEnglishPronuciation(numero)+"\t");
-				Console.Write("\n");
+			int quantidade,digitado, maior, menor;
+			for (int vezes=1; vezes<=20; vezes++){
+				quantidade = IntRandom(1,30);
+				maior=0;
+				menor=999999;
+				for (int i=1;i<=quantidade;i++){
+					digitado = IntRandom(1,100);
+					if (digitado > maior)
+						maior=digitado;
+					if (digitado<menor)
+						menor=digitado;
+					Console.Write(digitado+" ");
+				}
+				Console.Write("| maior "+maior+", menor "+menor+"\n");
 			}
 			#endregion
 
