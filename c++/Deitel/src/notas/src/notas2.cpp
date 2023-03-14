@@ -4,7 +4,6 @@ using std::cout;
 using std::endl;
 
 #include "Tecla.h"
-#include "/home/marcus/Developer/github/learning/c++/Deitel/src/lib/marcusLib.h"
 #include "../../lib/cplusplus/BarraTitulo.h"
 
 void copiaTecla(Tecla,Tecla &);
@@ -21,9 +20,9 @@ int main ( )
 {
     srand( time(0) );
 
-    ImprimirTitulo("Marcus William");
+    ImprimirTitulo("Nota Musicais");
 
-    Tecla t1(3,3,0), t2;
+    Tecla t1(3,1,0), t2;
     t1.imprimirTecla();
     t2 = i2m(t1);
     t2.imprimirTecla();

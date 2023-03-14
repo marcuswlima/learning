@@ -1,10 +1,13 @@
+OBJ=notas/obj
+SRC=notas/src
+
 echo " "
 echo "***************************************"
 echo "** Compilando Biblioteca Externa"
 echo "***************************************"
 echo " "
 
-../lib/cplusplus/compilarLib obj/
+lib/cplusplus/compilarLib $OBJ
 
 if [ $? -eq 0 ]; then
 
@@ -14,16 +17,16 @@ if [ $? -eq 0 ]; then
     echo "******************************"
     echo " "
 
-    g++ -c src/Tecla.cpp     -o obj/Tecla.o 
+    g++ -c $SRC/Tecla.cpp     -o $OBJ/Tecla.o 
     erroTecla=$?
 
-    g++ -c src/Intervalo.cpp -o obj/Intervalo.o 
+    g++ -c $SRC/Intervalo.cpp -o $OBJ/Intervalo.o 
     erroIntervalo=$?
 
-    g++ -c src/notas2.cpp     -o obj/notas.o 
+    g++ -c $SRC/notas2.cpp    -o $OBJ/notas.o 
     erronota=$?
 
-    g++ -c src/Triade.cpp    -o obj/Triade.o 
+    g++ -c $SRC/Triade.cpp    -o $OBJ/Triade.o 
     erroTriade=$?
 
     if [ $erroTecla -eq 0 ] && [ $erroIntervalo -eq 0 ] && [ $erronota -eq 0 ]&& [ $erroTriade -eq 0 ]; then
@@ -34,12 +37,12 @@ if [ $? -eq 0 ]; then
         echo "******************************"
         echo " "
 
-        g++ obj/notas.o       \
-            obj/Tecla.o       \
-            obj/BarraTitulo.o \
-            obj/Intervalo.o   \
-            obj/Triade.o      \
-                -o obj/notas.sh
+        g++ $OBJ/notas.o       \
+            $OBJ/Tecla.o       \
+            $OBJ/BarraTitulo.o \
+            $OBJ/Intervalo.o   \
+            $OBJ/Triade.o      \
+                -o $OBJ/notas.sh
 
 
         if [ $? -eq 0 ]; then
@@ -49,7 +52,7 @@ if [ $? -eq 0 ]; then
             echo "** Executando....               "
             echo "******************************"
             echo " "
-            obj/notas.sh
+            $OBJ/notas.sh
 
         fi
 
