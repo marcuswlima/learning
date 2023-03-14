@@ -7,6 +7,7 @@ echo ** Compilando Biblioteca Necessárias
 echo **************************************
 
 g++ -c ..\lib\BarraTitulo.cpp -o %OBJ%\BarraTitulo.o
+g++ -c ..\lib\PrintArray.cpp  -o %OBJ%\PrintArray.o
 
 
 IF %ERRORLEVEL% EQU 0 ( 

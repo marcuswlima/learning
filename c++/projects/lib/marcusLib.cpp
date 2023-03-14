@@ -23,41 +23,6 @@ double calculateCharges (double in_horas) {
 }
 
 
-/**********************************
- ** gerarInteiro
-**********************************/
-int gerarInteiro(int menor, int maior) {
-
-    if (maior > menor){
-        int faixa  = (maior - menor + 1);
-        int gerado = (1 + rand() % faixa);
-        return menor + (gerado-1);
-    }
-    else
-        return 0;
-
-}
-
-/**********************************
- ** gerarDouble
-**********************************/
-double gerarDouble(int menor, int maior){
-
-    return gerarInteiro(menor, maior)+ static_cast< double >(gerarInteiro(0,9999))/10000;
-
-}
-
-
-/**********************************
- ** ehPar(int entrada)
-**********************************/
-bool ehPar(int entrada){
-    int resto = entrada % 2;
-
-    return resto == 0;
-
-}
-
 
 /**********************************
 ** int integerPower
@@ -75,45 +40,6 @@ int integerPower(int base, int expoent){
 
 }
 
-/**********************************
-** int power
-**********************************/
-int power(int base, int expoent){
-
-    if (expoent==0) 
-        return 1;
-    else
-        return base * power(base,expoent-1);
-
-}
-
-
-
-/**********************************
-** double hypotenuse
-**********************************/
-double hypotenuse (double c1, double c2){
-
-    return sqrt ( integerPower(c1,2) + integerPower(c2,2) );
-
-}
-
-/**********************************
-** bool multiple (int n1, int n2)
-**********************************/
-bool multiple (int n1, int n2){
-    int resto;
-    // n1 é multiplo de n2 ???
-    if ( n2 > n1 )
-        return false;
-    else {
-        resto = n1 % n2 ;
-        if ( resto == 0 )
-            return true;
-        else    
-            return false;
-    }
-}
 
 /**********************************
 ** void imprimirQuadrado
@@ -161,48 +87,6 @@ void separarAndInverter (int entrou){
 
 
 /********************************************************
-** bool prime(int entrou)
-*********************************************************/
-bool prime(int entrou){
-    bool isPrime=true;
-
-    if (entrou!= 0 && entrou!=1){
-        for (int i=2 ; i<=entrou/2 ; ++i){
-
-            if (entrou%i==0){ 
-                isPrime = false;
-                break;
-            }
-        };
-    }
-    return isPrime;
-} 
-
-/********************************************************
-** int mdc(int pri, int seg)
-*********************************************************/
-int mdc(int pri, int seg){
-    int maior,menor;
-
-    if (pri>seg){
-        maior=pri;
-        menor=seg;
-    }
-    else
-        if (pri<seg){
-            maior=seg;
-            menor=pri;
-        };
-
-    for (int i=menor/2;i>=1;i--){
-        if (multiple(maior,i) && multiple(menor,i))
-            return i;
-    }
-
-    return 0;
-}
-
-/********************************************************
 ** int qualityPoints
 *********************************************************/
 int qualityPoints (double media){
@@ -225,9 +109,9 @@ int qualityPoints (double media){
 /********************************************************
 ** int flip()
 *********************************************************/
-int flip() {
-    return gerarInteiro(0,1);
-}
+//int flip() {
+//    return gerarInteiro(0,1);
+//}
 
 /********************************************************
 ** int mdc_r(int pri, int seg)
@@ -253,35 +137,8 @@ int mdc_r(int x, int y){
 
 
 /********************************************************
-** mostarArray
-*********************************************************/
-void mostarArray( const int arrei[], int sizeOfArray, string titulo ){
-
-    if (titulo!="titulo")
-        cout << titulo << "\n";
-
-    for (int i=0;i<sizeOfArray;i++)
-        cout << "[" << i << "]=" << arrei[i] << " ";
-
-    cout << "\n";
-
-}
-
-/********************************************************
 ** void mostarArrayInt
 *********************************************************/
-void mostarArray( const double arrei[], int sizeOfArray, string titulo ){
-
-    if (titulo!="titulo")
-        cout << titulo << "\n";
-
-    for (int i=0;i<sizeOfArray;i++)
-        cout << "[" << i << "]=" << arrei[i] << " ";
-
-    cout << "\n";
-
-}
-
 void imprimirVector( vector< int > vetor, string titulo ){
     if (titulo!="titulo")
         cout << titulo << "\n";
@@ -329,31 +186,3 @@ void mostraArr2D(const int arrei[][5],int linhas, int colunas){
     }
 
 }
-
-/********************************************************
-** Barra de titulo
-*********************************************************/
-
-void ImprimeBarra(string titulo)
-{
-    int tamanho = titulo.length();
-
-    for (int i = 1; i <= tamanho + 6; i++)
-    {
-        cout << "*";
-    }
-
-    cout << "\n";
-}
-
-void Titulo(string titulo)
-{
-    cout << "\n";
-
-    ImprimeBarra(titulo);
-    cout << "** "+titulo+ " **\n";
-    ImprimeBarra(titulo);
-
-}
-
-

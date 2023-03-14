@@ -176,6 +176,24 @@ class Capitulo09{
 		#endregion
 		
 		#region Matematica
+
+		static long GetRemainder(long divisor, int dividendo){
+            return divisor % dividendo;
+        }
+
+		static int GetRemainder(int divisor, int dividendo){
+            return divisor % dividendo;
+        }
+
+        static bool HasRemainder(int divisor, int dividendo){
+            return GetRemainder(divisor,dividendo)>0;
+        }
+
+        bool IsEven(int numero){
+            return !HasRemainder(numero,2);
+        }
+
+
 		static long CalcFatorial(long numero){
 			long produto=1;
 			for (long i=1;i<=numero;i++){
@@ -362,23 +380,4 @@ class Capitulo09{
 		}
 		#endregion
 		
-        #region even-x-odd
-		static long GetRemainder(long divisor, int dividendo){
-            return divisor % dividendo;
-        }
-
-		static int GetRemainder(int divisor, int dividendo){
-            return divisor % dividendo;
-        }
-
-        static bool HasRemainder(int divisor, int dividendo){
-            return GetRemainder(divisor,dividendo)>0;
-        }
-
-        bool IsEven(int numero){
-            return !HasRemainder(numero,2);
-        }
-
-		#endregion
-
 }

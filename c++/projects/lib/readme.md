@@ -7,3 +7,81 @@
 ```
 void ImprimirTitulo(string titulo="")
 ```
+
+# PrintArray.h
+
+- Formata a impressão de um vetor
+
+## PrintVector
+
+```
+void PrintVector( const int arrei[], int sizeOfArray, string titulo );
+void PrintVector( const double arrei[], int sizeOfArray, string titulo );
+```
+
+# Methematics.h
+
+## CalcMdc
+- Calcular o MDC de dois números
+```
+int CalcMdc(int pri, int seg);
+```
+
+## GetRemainder
+- Apresenta o resto da divisão de 2 números
+```
+int GetRemainder(int, int);
+```
+## HasRemainder
+- Indica se a divisão de 2 números gera resto
+```
+bool HasRemainder(int, int);
+```
+## IsEven
+- Indica se o número é par
+```
+bool IsEven(int);
+```
+## IsPrime
+- Indica se o número é primo
+```
+bool IsPrime(int entrou);
+```
+## CalcPower
+- Calcula a potência (recursividade)
+```
+int CalcPower(int base, int expoent);
+```
+
+## CalcHypotenuse
+- Calcula a hipotenusa para 2 lados de um triâgulo
+```
+double CalcHypotenuse(double c1, double c2);
+```
+## CalcFatorial
+- Calcula o fatorial de um número
+```
+long CalcFatorial(long numero);
+```
+## CalcCatalan
+ - Calcula o numero de um inteiro
+```
+double CalcCatalan(long numero);
+```
+## CalcRealRoots
+
+- Calcula as 2 raizes de uma equação 2g
+```
+string CalcRealRoots(int a, int b, int c);
+```
+## GerarInteiro
+- Gera um inteiro aleatório dentro de uma faixa de inteiros
+```
+int GerarInteiro(int menor, int maior);
+```
+## GerarDouble
+- Gera um double aleatório dentro de uma faixa de inteiros
+```
+double GerarDouble(int menor, int maior)
+```
+
