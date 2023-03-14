@@ -18,11 +18,11 @@ Tecla i4J(Tecla);
 /////////////////////////////////////////
 int main ( )
 {
-    srand( time(0) );
+    //srand( time(0) );
 
-    ImprimirTitulo("Nota Musicais");
+    ImprimirTitulo("Nota Musicais no Windows");
 
-    Tecla t1(3,1,0), t2;
+    Tecla t1(3,4,0), t2;
     t1.imprimirTecla();
     t2 = i2m(t1);
     t2.imprimirTecla();
@@ -81,7 +81,7 @@ Tecla i3M(Tecla t){
 
 Tecla i4J(Tecla t){
     Tecla temp;
-    int deslocamentoTecla=3,deslocamentoSemitom=5,distanciaDeNotas=5;
+    int deslocamentoTecla=3,deslocamentoSemitom=5,distanciaDeNotas=6;
     copiaTecla(t,temp);
 
     temp.setNota(temp.getNota()+deslocamentoTecla);

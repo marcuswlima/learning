@@ -2,8 +2,6 @@
 #include <iomanip>
 #include <stdexcept> // for invalid_argument exception class
 #include "Tecla.h"
-#include "/home/marcus/Developer/github/learning/c++/Deitel/src/lib/marcusLib.h"
-//#include "marcusLib.h"
 
 using namespace std;
 
