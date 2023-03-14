@@ -1,0 +1,67 @@
+
+LIB=~/Developer/github/learning/c++/Deitel/src/lib
+
+echo " "
+echo "***************************************"
+echo "** Compilando Biblioteca Externa"
+echo "***************************************"
+echo " "
+
+../lib/cplusplus/compilarLib .
+
+
+if [ $? -eq 0 ]; then
+
+    echo " "
+    echo "******************************"
+    echo "** Compilando Solução"
+    echo "******************************"
+    echo " "
+
+    g++ -c src/Tecla.cpp     -o obj/Tecla.o 
+    erroTecla=$?
+
+    g++ -c src/Intervalo.cpp -o obj/Intervalo.o 
+    erroIntervalo=$?
+
+    g++ -c src/notas2.cpp     -o obj/notas.o 
+    erronota=$?
+
+    g++ -c src/Triade.cpp    -o obj/Triade.o 
+    erroTriade=$?
+
+
+    #echo $erroTecla $erroIntervalo $erronota
+
+    if [ $erroTecla -eq 0 ] && [ $erroIntervalo -eq 0 ] && [ $erronota -eq 0 ]&& [ $erroTriade -eq 0 ]; then
+
+        echo " "
+        echo "******************************"
+        echo "** Linkando....               "
+        echo "******************************"
+        echo " "
+
+        g++ obj/notas.o     \
+            obj/marcusLib.o \
+            obj/Tecla.o     \
+            obj/Intervalo.o \
+            obj/Triade.o \
+                -o obj/notas.sh
+
+
+        if [ $? -eq 0 ]; then
+
+            echo " "
+            echo "******************************"
+            echo "** Executando....               "
+            echo "******************************"
+            echo " "
+            obj/notas.sh
+
+        fi
+
+    fi
+
+
+fi
+
