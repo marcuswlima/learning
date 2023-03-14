@@ -1,13 +1,15 @@
-OBJ=notas/obj
-SRC=notas/src
+
+OBJ=obj
+SRC=src
 
 echo " "
 echo "***************************************"
-echo "** Compilando Biblioteca Externa"
+echo "** Compilando Biblioteca Necessárias"
 echo "***************************************"
 echo " "
 
-lib/cplusplus/compilarLib $OBJ
+g++ -c ../lib/BarraTitulo.cpp -o $OBJ/BarraTitulo.o
+g++ -c ../lib/marcusLib.cpp   -o $OBJ/marcusLib.o
 
 if [ $? -eq 0 ]; then
 

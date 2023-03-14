@@ -4,7 +4,7 @@ using std::cout;
 using std::endl;
 
 #include "Tecla.h"
-#include "../../lib/cplusplus/BarraTitulo.h"
+#include "../../lib/BarraTitulo.h"
 
 void copiaTecla(Tecla,Tecla &);
 Tecla i2m(Tecla);
