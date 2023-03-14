@@ -1,2 +1,0 @@
-
-g++ -c /home/marcus/Developer/github/learning/c++/Deitel/src/lib/cplusplus/BarraTitulo.cpp -o $1/BarraTitulo.o
