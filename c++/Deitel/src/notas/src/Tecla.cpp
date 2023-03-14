@@ -118,12 +118,15 @@ void Tecla::imprimirTecla(){
 void Tecla::aleatorio(){
 
     do{
-
+/*
         //setOitava(gerarInteiro(0,9));
           setOitava(gerarInteiro( 3,4));
             setNota(gerarInteiro( 1,7));
         setAcidente(gerarInteiro(-2,2));
-
+*/
+		setOitava(4);
+		setNota(1);
+		setAcidente(0);
     }while(!teclaValida(getOitava(),getNota(),getAcidente()));
 
 }

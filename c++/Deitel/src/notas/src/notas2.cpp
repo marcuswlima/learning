@@ -5,7 +5,7 @@ using std::endl;
 
 #include "Tecla.h"
 #include "/home/marcus/Developer/github/learning/c++/Deitel/src/lib/marcusLib.h"
-
+#include "../../lib/cplusplus/BarraTitulo.h"
 
 void copiaTecla(Tecla,Tecla &);
 Tecla i2m(Tecla);
@@ -21,7 +21,7 @@ int main ( )
 {
     srand( time(0) );
 
-    Titulo("Notas");
+    ImprimirTitulo("Marcus William");
 
     Tecla t1(3,3,0), t2;
     t1.imprimirTecla();
@@ -35,6 +35,7 @@ int main ( )
     t2.imprimirTecla();
     t2 = i4J(t1);
     t2.imprimirTecla();
+	cout << endl;
 
     return 0; //indica o fim do programa
 }

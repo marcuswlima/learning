@@ -1,14 +1,10 @@
-
-LIB=~/Developer/github/learning/c++/Deitel/src/lib
-
 echo " "
 echo "***************************************"
 echo "** Compilando Biblioteca Externa"
 echo "***************************************"
 echo " "
 
-../lib/cplusplus/compilarLib .
-
+../lib/cplusplus/compilarLib obj/
 
 if [ $? -eq 0 ]; then
 
@@ -30,9 +26,6 @@ if [ $? -eq 0 ]; then
     g++ -c src/Triade.cpp    -o obj/Triade.o 
     erroTriade=$?
 
-
-    #echo $erroTecla $erroIntervalo $erronota
-
     if [ $erroTecla -eq 0 ] && [ $erroIntervalo -eq 0 ] && [ $erronota -eq 0 ]&& [ $erroTriade -eq 0 ]; then
 
         echo " "
@@ -41,11 +34,11 @@ if [ $? -eq 0 ]; then
         echo "******************************"
         echo " "
 
-        g++ obj/notas.o     \
-            obj/marcusLib.o \
-            obj/Tecla.o     \
-            obj/Intervalo.o \
-            obj/Triade.o \
+        g++ obj/notas.o       \
+            obj/Tecla.o       \
+            obj/BarraTitulo.o \
+            obj/Intervalo.o   \
+            obj/Triade.o      \
                 -o obj/notas.sh
 
 
@@ -61,7 +54,6 @@ if [ $? -eq 0 ]; then
         fi
 
     fi
-
 
 fi
 
