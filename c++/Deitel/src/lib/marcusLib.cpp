@@ -330,10 +330,30 @@ void mostraArr2D(const int arrei[][5],int linhas, int colunas){
 
 }
 
-/*
-size_t sizeArray (double arrei[]){
-    return sizeof arrei;
+/********************************************************
+** Barra de titulo
+*********************************************************/
+
+void ImprimeBarra(string titulo)
+{
+    int tamanho = titulo.length();
+
+    for (int i = 1; i <= tamanho + 6; i++)
+    {
+        cout << "*";
+    }
+
+    cout << "\n";
 }
-*/
+
+void Titulo(string titulo)
+{
+    cout << "\n";
+
+    ImprimeBarra(titulo);
+    cout << "** "+titulo+ " **\n";
+    ImprimeBarra(titulo);
+
+}
 
 

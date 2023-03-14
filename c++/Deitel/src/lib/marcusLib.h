@@ -14,8 +14,6 @@ using std::vector;
 
 #include <cmath>
 
-
-
 /*
 Calcula o valor a ser cobrado do cliente de um estacionamento
 */
@@ -106,7 +104,6 @@ Calcula o MDC de dois numeros inteiros por recursão
 */
 int mdc_r(int, int);
 
-
 /*
 Imprime os valores de um array de inteiros e de uma dimensão
 */
@@ -134,3 +131,8 @@ void mostraArr2D(const int arrei[][5],int , int );
 Imprime os valores de um vector
 */
 void imprimirVector( vector< int >, string="titulo");
+
+/*
+Imprime titulo
+*/
+void Titulo(string titulo);
