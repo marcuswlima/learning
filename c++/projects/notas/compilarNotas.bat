@@ -1,6 +1,6 @@
 echo off
 set BASE=D:\Users\marcus.william\Developer\github\learning\c++\Deitel\src\notas
-set OBJ=%BASE%\obj
+set OBJ=obj
 
 echo **************************************
 echo ** Compilando Biblioteca Necessárias

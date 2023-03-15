@@ -193,7 +193,7 @@ class Capitulo09{
             return !HasRemainder(numero,2);
         }
 
-
+		//http://en.wikipedia.org/wiki/Factorial.
 		static long CalcFatorial(long numero){
 			long produto=1;
 			for (long i=1;i<=numero;i++){
@@ -202,6 +202,7 @@ class Capitulo09{
 			return produto;
 		}
 		
+		//http://en.wikipedia.org/wiki/Catalan_number
 		static double CalcCatalan(long numero){
 			return CalcFatorial(2*numero)/(CalcFatorial(numero+1)*CalcFatorial(numero));
 		}
@@ -223,6 +224,16 @@ class Capitulo09{
 						 (((-1)*b)+(Math.Sqrt(d)) / (2*a)) + "\t" 
 					   + (((-1)*b)-(Math.Sqrt(d)) / (2*a)) + "\t"
 						 );
+		}
+
+		//http://en.wikipedia.org/wiki/Fibonacci_sequence.
+		static int Fibonacci(int numero){
+			if (numero==0)
+				return 0;
+			else if (numero==1)
+				return 1;
+			else 
+				return Fibonacci(numero-1)+Fibonacci(numero-2);
 		}
 		#endregion
 		

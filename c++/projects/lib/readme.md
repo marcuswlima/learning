@@ -63,11 +63,13 @@ double CalcHypotenuse(double c1, double c2);
 ```
 long CalcFatorial(long numero);
 ```
+- //http://en.wikipedia.org/wiki/Factorial
 ## CalcCatalan
  - Calcula o numero de um inteiro
 ```
 double CalcCatalan(long numero);
 ```
+- http://en.wikipedia.org/wiki/Catalan_number
 ## CalcRealRoots
 
 - Calcula as 2 raizes de uma equação 2g
