@@ -63,7 +63,7 @@ void separarAndInverter (int);
 /*
 Calcula o MDC de dois numeros inteiros
 */
-int mdc(int pri, int seg);
+int Mdc(int pri, int seg);
 
 
 /*

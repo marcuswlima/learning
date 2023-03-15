@@ -7,7 +7,7 @@ using std::setw;
 
 #include "../../lib/BarraTitulo.h"
 #include "../../lib/PrintArray.h"
-//#include "../../lib/marcusLib.h"
+#include "../../lib/marcusLib.h"
 #include "../../lib/Mathematics.h"
 
 void exe_07_17();
@@ -17,6 +17,8 @@ int main(){
 
     ImprimirTitulo("Marcus William");
     exe_07_17();
+
+    cout << "CalcMdc -> " << CalcMdc(80,30) << endl;
 }
 
 void exe_07_17(){
@@ -50,8 +52,6 @@ void exe_07_17(){
 
         cout << "\n";
     }
-
-    cout << errado;
 
 }
 

@@ -1,3 +1,5 @@
+#include "Mathematics.h"
+
 #include <iostream>
 using std::cout;
 #include <cmath>
@@ -30,7 +32,7 @@ bool multiple (int n1, int n2){
     }
 }
 
-
+/*
 int CalcMdc(int pri, int seg){
     int maior,menor;
 
@@ -44,7 +46,7 @@ int CalcMdc(int pri, int seg){
             menor=pri;
         };
 
-    for (int i=menor/2;i>=1;i--){
+    for (int i=menor/2; i>=1; i--){
         if (multiple(maior,i) && multiple(menor,i))
             return i;
     }
@@ -52,6 +54,27 @@ int CalcMdc(int pri, int seg){
     return 0;
 
 }
+*/
+
+int CalcMdc(int x, int y){
+    int maior,menor;
+
+    if (x>y){
+        maior=x;
+        menor=y;
+    }else if (x<y){
+        maior=y;
+        menor=x;
+    };
+
+    if (menor==0)
+        return maior;
+    else {
+        return CalcMdc(menor, maior % menor);
+    }
+
+}
+
 
 bool IsPrime(int entrou){
     bool isPrime=true;

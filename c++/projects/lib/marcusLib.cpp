@@ -116,22 +116,25 @@ int qualityPoints (double media){
 /********************************************************
 ** int mdc_r(int pri, int seg)
 *********************************************************/
-int mdc_r(int x, int y){
+int Mdc(int pri, int seg){
     int maior,menor;
 
-    if (x>y){
-        maior=x;
-        menor=y;
-    }else if (x<y){
-        maior=y;
-        menor=x;
-    };
-
-    if (menor==0)
-        return maior;
-    else {
-        return mdc_r(menor, maior % menor);
+    if (pri>seg){
+        maior=pri;
+        menor=seg;
     }
+    else
+        if (pri<seg){
+            maior=seg;
+            menor=pri;
+        };
+
+    for (int i=menor/2; i>=1; i--){
+        if (multiple(maior,i) && multiple(menor,i))
+            return i;
+    }
+
+    return 0;
 
 }
 

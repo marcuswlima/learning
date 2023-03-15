@@ -5,7 +5,7 @@ using std::string;
 
 
 /*Calcular o MDC de dois números*/
-int CalcMdc(int pri, int seg);
+int CalcMdc(int x, int y);
 /*Apresenta o resto da divisão de 2 números*/
 int GetRemainder(int, int);
 /*Indica se a divisão de 2 números gera resto*/

@@ -24,7 +24,7 @@ void PrintVector( const double arrei[], int sizeOfArray, string titulo );
 ## CalcMdc
 - Calcular o MDC de dois números
 ```
-int CalcMdc(int pri, int seg);
+int CalcMdc(int x, int y);
 ```
 
 ## GetRemainder

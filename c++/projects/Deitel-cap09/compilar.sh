@@ -1,6 +1,7 @@
 
 OBJ=obj
 SRC=src
+LIB=../lib
 
 echo " "
 echo "***************************************"
@@ -8,8 +9,9 @@ echo "** Compilando Biblioteca Necessárias"
 echo "***************************************"
 echo " "
 
-g++ -c ../lib/BarraTitulo.cpp -o $OBJ/BarraTitulo.o
-g++ -c ../lib/PrintArray.cpp  -o $OBJ/PrintArray.o
+g++ -c $LIB/BarraTitulo.cpp  -o $OBJ/BarraTitulo.o
+g++ -c $LIB/PrintArray.cpp   -o $OBJ/PrintArray.o
+g++ -c $LIB/Mathematics.cpp  -o $OBJ/Mathematics.o
 
 if [ $? -eq 0 ]; then
 
@@ -29,7 +31,11 @@ if [ $? -eq 0 ]; then
         echo "******************************"
         echo " "
 
-        g++ $OBJ/marcus.o $OBJ/BarraTitulo.o $OBJ/PrintArray.o -o $OBJ/marcus.sh
+        g++ $OBJ/marcus.o      \
+            $OBJ/BarraTitulo.o \
+            $OBJ/PrintArray.o  \
+            $OBJ/Mathematics.o \
+                -o $OBJ/marcus.sh
 
         if [ $? -eq 0 ]; then
 
