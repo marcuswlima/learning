@@ -10,14 +10,24 @@ void ImprimirTitulo(string titulo="")
 
 # PrintArray.h
 
-- Formata a impressão de um vetor
 
 ## PrintVector
 
+- Realiza a impressão em tela de um vetor (`cout`)
+
 ```
-void PrintVector( const int arrei[], int sizeOfArray, string titulo );
-void PrintVector( const double arrei[], int sizeOfArray, string titulo );
+void PrintVector( const int [], int , string  );
+void PrintVector( const double [], int , string  );
 ```
+
+## PrintMatrix
+
+- Imprime os valores de uma matriz de duas colunas (`cout`)
+
+```
+void PrintMatrix(const int [][2],const int, const int );
+```
+
 
 # Methematics.h
 

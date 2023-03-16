@@ -17,8 +17,6 @@ int main(){
 
     ImprimirTitulo("Marcus William");
     exe_07_17();
-
-    cout << "CalcMdc -> " << CalcMdc(80,30) << endl;
 }
 
 void exe_07_17(){
@@ -46,12 +44,15 @@ void exe_07_17(){
     
     PrintVector(quantLancamento,7,"quantLancamento");
 
-    for ( int linha = 1; linha < 7; linha++ ) {
-        for ( int coluna = 1; coluna < 7; coluna++ )
-            cout << "[" << linha << "," << coluna << "]="  << setw(4) << tabela[ linha ][ coluna ] << " ";
-
-        cout << "\n";
-    }
-
+    int qdtLinhas=10;
+    int matriz[qdtLinhas][2];
+    for ( int coluna = 0; coluna < 2; coluna++ )
+        for ( int linha = 0; linha < (qdtLinhas-1); linha++ ) {
+            matriz[linha][coluna]=GerarInteiro(1,100);
+        }
+    
+    PrintMatrix(matriz,qdtLinhas-1,2,"Matriz");
+    cout << "CalcMdc -> " << CalcMdc(80,30) << endl;
 }
+
 
