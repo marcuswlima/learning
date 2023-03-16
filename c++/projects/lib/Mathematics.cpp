@@ -25,37 +25,10 @@ bool multiple (int n1, int n2){
     if ( n2 > n1 )
         return false;
     else {
-        //resto = n1 % n2 ;
-        if ( GetRemainder(n1,n2) == 0 )
-            return true;
-        else    
-            return false;
+        return GetRemainder(n1,n2)==0;
     }
 }
 
-/*
-int CalcMdc(int pri, int seg){
-    int maior,menor;
-
-    if (pri>seg){
-        maior=pri;
-        menor=seg;
-    }
-    else
-        if (pri<seg){
-            maior=seg;
-            menor=pri;
-        };
-
-    for (int i=menor/2; i>=1; i--){
-        if (multiple(maior,i) && multiple(menor,i))
-            return i;
-    }
-
-    return 0;
-
-}
-*/
 
 int CalcMdc(int x, int y){
     int maior,menor;
@@ -136,21 +109,6 @@ string CalcRealRoots(int a, int b, int c){
         resposta += to_string(((-1)*b)+(sqrt(d)) / (2*a)) + "\t" + 
                     to_string(((-1)*b)-(sqrt(d)) / (2*a)) + "\t";
 
-
-//        resposta=(d+"\t"+(-1)*b/(a*2))+"\t";
-
-/*
-    string string4( string1 + "apult" ); //contatenation
-    if (d<0)
-        resposta=d+"\t"+"no real roots";
-    else if (d==0)
-        resposta=(d+"\t"+(-1)*b/(a*2))+"\t";
-    else if (d>0)
-        resposta=(d+"\t"+
-                  (((-1)*b)+(sqrt(d)) / (2*a)) + "\t" + 
-                  (((-1)*b)-(sqrt(d)) / (2*a)) + "\t"
-                  );
-*/    
     return resposta;
 }
 
