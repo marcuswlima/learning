@@ -3,8 +3,9 @@
 #include <iostream>
 using std::cout;
 #include <cmath>
-#include <string>
+#include <string.h>
 using std::string;
+using namespace std;
 
 /*Apresenta o resto da divisão de 2 números*/
 int GetRemainder(int divisor, int dividendo){
@@ -120,24 +121,35 @@ double CalcCatalan(long numero){
 }
 
 int CalcDiscriminant(int a, int b, int c){
-    return (b*b) - (4*a*c);
+    return ((b*b) - (4*a*c));
 }
 
 string CalcRealRoots(int a, int b, int c){
     int d=CalcDiscriminant(a,  b, c);
-    string resposta;
-    resposta=" ";
+    string resposta=to_string(d)+"\t";
+
+    if (d<0)
+        resposta += "no real roots";
+    else if (d==0)
+        resposta += to_string((-1)*b/(a*2))+"\t";
+    else if (d>0)
+        resposta += to_string(((-1)*b)+(sqrt(d)) / (2*a)) + "\t" + 
+                    to_string(((-1)*b)-(sqrt(d)) / (2*a)) + "\t";
+
+
+//        resposta=(d+"\t"+(-1)*b/(a*2))+"\t";
 
 /*
+    string string4( string1 + "apult" ); //contatenation
     if (d<0)
         resposta=d+"\t"+"no real roots";
     else if (d==0)
         resposta=(d+"\t"+(-1)*b/(a*2))+"\t";
     else if (d>0)
         resposta=(d+"\t"+
-                 (((-1)*b)+(sqrt(d)) / (2*a)) + "\t" 
-               + (((-1)*b)-(sqrt(d)) / (2*a)) + "\t"
-                 );
+                  (((-1)*b)+(sqrt(d)) / (2*a)) + "\t" + 
+                  (((-1)*b)-(sqrt(d)) / (2*a)) + "\t"
+                  );
 */    
     return resposta;
 }

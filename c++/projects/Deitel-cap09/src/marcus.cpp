@@ -53,6 +53,7 @@ void exe_07_17(){
     
     PrintMatrix(matriz,qdtLinhas-1,2,"Matriz");
     cout << "CalcMdc -> " << CalcMdc(80,30) << endl;
+    cout << "CalcRealRoots -> " << CalcRealRoots(10,1,1) << endl;
 }
 
 
