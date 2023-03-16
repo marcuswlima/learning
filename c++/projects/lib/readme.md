@@ -73,7 +73,7 @@ double CalcHypotenuse(double c1, double c2);
 ```
 long CalcFatorial(long numero);
 ```
-- //http://en.wikipedia.org/wiki/Factorial
+- http://en.wikipedia.org/wiki/Factorial
 ## CalcCatalan
  - Calcula o numero de um inteiro
 ```
