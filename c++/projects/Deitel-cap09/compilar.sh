@@ -3,33 +3,22 @@ OBJ=obj
 SRC=src
 LIB=../lib
 
-echo " "
-echo "***************************************"
-echo "** Compilando Biblioteca Necessárias"
-echo "***************************************"
-echo " "
-
 g++ -c $LIB/BarraTitulo.cpp  -o $OBJ/BarraTitulo.o
+echo "BarraTitulo.cpp..."
 g++ -c $LIB/PrintArray.cpp   -o $OBJ/PrintArray.o
+echo "PrintArray.cpp..."
 g++ -c $LIB/Mathematics.cpp  -o $OBJ/Mathematics.o
+echo "Mathematics.cpp..."
 
 if [ $? -eq 0 ]; then
 
-    echo " "
-    echo "******************************"
-    echo "** Compilando Solução"
-    echo "******************************"
-    echo " "
+    echo "Compilando Solução..."
 
     g++ -c $SRC/marcus.cpp     -o $OBJ/marcus.o 
 
     if [ $? -eq 0 ]; then
 
-        echo " "
-        echo "******************************"
-        echo "** Linkando....               "
-        echo "******************************"
-        echo " "
+        echo "Linkando....               "
 
         g++ $OBJ/marcus.o      \
             $OBJ/BarraTitulo.o \
@@ -39,11 +28,7 @@ if [ $? -eq 0 ]; then
 
         if [ $? -eq 0 ]; then
 
-            echo " "
-            echo "******************************"
-            echo "** Executando....               "
-            echo "******************************"
-            echo " "
+            echo "Executando....               "
             $OBJ/marcus.sh
 
         fi

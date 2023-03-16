@@ -15,7 +15,7 @@ void exe_07_17();
 int main(){
     srand( time(0) );
 
-    ImprimirTitulo("Marcus William");
+    ImprimirTitulo("\\Deitel-cap09\\marcus.cpp");
     exe_07_17();
 }
 
