@@ -9,6 +9,7 @@ using std::setw;
 #include "../../lib/PrintArray.h"
 #include "../../lib/marcusLib.h"
 #include "../../lib/Mathematics.h"
+#include "../../lib/ObterNumero.h"
 
 void exe_07_17();
 
@@ -51,10 +52,12 @@ void exe_07_17(){
             matriz[linha][coluna]=GerarInteiro(1,100);
         }
    
-//   matriz[0][0]=1000000;	
+    matriz[0][0]=1000000;	
+    matriz[3][1]=4000000;	
     PrintMatrix(matriz,qdtLinhas-1,2,"Matriz");
     cout << "CalcMdc -> " << CalcMdc(80,30) << endl;
     cout << "CalcRealRoots -> " << CalcRealRoots(10,10,1) << endl;
+    qdtLinhas = ObterNumeroNaFaixa("ObtreNumero entre 1 e 10: ",1,10);
+    cout << "qdtLinhas -> " << qdtLinhas << endl;
 }
-
 

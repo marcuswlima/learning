@@ -97,3 +97,16 @@ int GerarInteiro(int menor, int maior);
 double GerarDouble(int menor, int maior)
 ```
 
+# ObterNumero.h
+
+## ObterNumero
+- Cria um prompt na tela(`cout`) e recebe um número(`cin`)
+```
+int ObterNumero(string);
+```
+
+- Cria um prompt na tela(`cout`) e recebe um número(`cin`) contido na faixe numérica 
+## ObterNumeroNaFaixa
+```
+int ObterNumeroNaFaixa(string, int, int);
+```
