@@ -25,7 +25,7 @@ void exe_07_17(){
     int somas[tamanhoSomas]={0}, tabela[7][7]={0};
     int quantLancamento[7]={0,0,0,0,0,0,0};
 
-    PrintVector(quantLancamento,7,"quantLancamento");
+ //:   PrintVector(quantLancamento,7,"quantLancamento");
 
 
     for (int i=1;i<=36000;i++){
@@ -40,9 +40,9 @@ void exe_07_17(){
         quantLancamento[dado2]++;
     }
 
-    PrintVector(somas,tamanhoSomas,"somas");
+//    PrintVector(somas,tamanhoSomas,"somas");
     
-    PrintVector(quantLancamento,7,"quantLancamento");
+//    PrintVector(quantLancamento,7,"quantLancamento");
 
     int qdtLinhas=10;
     int matriz[qdtLinhas][2];
@@ -50,10 +50,11 @@ void exe_07_17(){
         for ( int linha = 0; linha < (qdtLinhas-1); linha++ ) {
             matriz[linha][coluna]=GerarInteiro(1,100);
         }
-    
+   
+//   matriz[0][0]=1000000;	
     PrintMatrix(matriz,qdtLinhas-1,2,"Matriz");
     cout << "CalcMdc -> " << CalcMdc(80,30) << endl;
-    cout << "CalcRealRoots -> " << CalcRealRoots(10,1,1) << endl;
+    cout << "CalcRealRoots -> " << CalcRealRoots(10,10,1) << endl;
 }
 
 
