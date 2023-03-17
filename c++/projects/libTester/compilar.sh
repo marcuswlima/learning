@@ -20,7 +20,7 @@ if [ $? -eq 0 ]; then
 
     if [ $? -eq 0 ]; then
 
-        echo "Linkando....               "
+        echo "Linkando...."
         g++ $OBJ/$NOME.o       \
             $OBJ/BarraTitulo.o \
             $OBJ/PrintArray.o  \
@@ -29,7 +29,7 @@ if [ $? -eq 0 ]; then
                 -o $OBJ/$NOME.sh
 
         if [ $? -eq 0 ]; then
-            echo "Executando....               "
+            echo "Executando...."
             $OBJ/$NOME.sh
 
         fi

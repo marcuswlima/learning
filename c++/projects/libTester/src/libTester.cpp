@@ -44,10 +44,10 @@ void exe_07_17(){
     
 //    PrintVector(quantLancamento,7,"quantLancamento");
 
-    int qdtLinhas=100;
+    int qdtLinhas=5;
     int matriz[qdtLinhas][2];
     for ( int coluna = 0; coluna < 2; coluna++ )
-        for ( int linha = 0; linha <= (qdtLinhas-1); linha++ ) {
+        for ( int linha = 0; linha <= (qdtLinhas); linha++ ) {
             matriz[linha][coluna]=GerarInteiro(1,100000);
         }
    
