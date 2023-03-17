@@ -4,7 +4,6 @@ using std::cout;
 #include <iomanip>
 using std::setw;
 
-
 #include "../../lib/BarraTitulo.h"
 #include "../../lib/PrintArray.h"
 #include "../../lib/marcusLib.h"
@@ -57,7 +56,7 @@ void exe_07_17(){
     PrintMatrix(matriz,qdtLinhas-1,2,"Matriz");
     cout << "CalcMdc -> " << CalcMdc(80,30) << endl;
     cout << "CalcRealRoots -> " << CalcRealRoots(10,10,1) << endl;
-    //qdtLinhas = ObterNumeroNaFaixa("ObtreNumero entre 1 e 10: ",1,10);
+    qdtLinhas = ObterNumeroNaFaixa("ObtreNumero entre 1 e 10: ",1,10);
     //cout << "qdtLinhas -> " << qdtLinhas << endl;
 }
 
