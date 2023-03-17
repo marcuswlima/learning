@@ -100,15 +100,15 @@ double GerarDouble(int menor, int maior)
 # ObterNumero.h
 
 ## ObterNumero
-1. Definição 
+1. Definição  
     ```
     int ObterNumero(string str);
     ```
-1. Parametro 
+1. Parametro  
         - Mensagem que será informada ao usuário
-1. Returno 
+1. Returno  
         - Valor informado pelo usuário
-1. Observações 
+1. Observações  
         - Existe um tratamento de erro, se o valor informado não for numérico o promt com a mensagem aparecerá novamente
 
 ## ObterNumeroNaFaixa
