@@ -91,27 +91,47 @@ string CalcRealRoots(int a, int b, int c);
 ```
 int GerarInteiro(int menor, int maior);
 ```
+1. Parametro  
+        - `menor` inicio da faixa  
+        - `maior` fim da faixa
+1. Returno  
+        - Número inteiro aretório contido  da faixa informada
+
 ## GerarDouble
 - Gera um double aleatório dentro de uma faixa de inteiros
 ```
 double GerarDouble(int menor, int maior)
 ```
+1. Parametro  
+        - `menor` inicio da faixa  
+        - `maior` fim da faixa
+1. Returno  
+        - Número double aretório contido  da faixa informada
 
 # ObterNumero.h
 
 ## ObterNumero
-1. Definição  
-    ```
-    int ObterNumero(string str);
-    ```
+ - Canaliza ao retorno da função o valor informado na tela
+```
+int ObterNumero(string str);
+```
 1. Parametro  
-        - Mensagem que será informada ao usuário
+        - `Str` Mensagem que será informada ao usuário
 1. Returno  
         - Valor informado pelo usuário
 1. Observações  
         - Existe um tratamento de erro, se o valor informado não for numérico o promt com a mensagem aparecerá novamente
 
 ## ObterNumeroNaFaixa
+ - Canaliza ao retorno da função o valor informado na tela
 ```
-int ObterNumeroNaFaixa(string, int, int);
+int ObterNumeroNaFaixa(string str, int menor, int maior);
 ```
+1. Parametros  
+        - `Str` Mensagem que será informada ao usuário  
+        - `menor` inicio da faixa  
+        - `maior` fim da faixa
+1. Returno  
+        - Valor informado pelo usuário
+1. Observações  
+        - Existe um tratamento de erro, se o valor informado não for numérico o promt com a mensagem aparecerá novamente
