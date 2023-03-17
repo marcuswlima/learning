@@ -20,7 +20,7 @@ int main(){
 
     ImprimirTitulo("Teste Lib");
     exe_07_17();
-	cout << ConvertHexaToDecimal("4" << endl ;
+	cout << ConvertHexaToDecimal("40") << endl ;
 }
 
 void exe_07_17(){

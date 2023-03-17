@@ -4,6 +4,11 @@ using std::string;
 /*
 Imprime os valores de um array de inteiros e de uma dimensão
 */
+void PrintVector( const char[], const int , const string ="");
+
+/*
+Imprime os valores de um array de inteiros e de uma dimensão
+*/
 void PrintVector( const double [], const int , const string ="");
 
 /*

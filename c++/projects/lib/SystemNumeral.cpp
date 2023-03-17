@@ -1,13 +1,25 @@
 #include "SystemNumeral.h"
 #include "Mathematics.h"
+#include "PrintArray.h"
 
 #include <iostream>
 
-int ConvertHexaToDecimal(string hexa){
-	int resposta=0,numero,tamanhoHexa=hexa.length();
-	cout << tamanhoHexa << endl;
-	string letras[tamanhoHexa];
+int ConvertHexaToDecimal(string hexadecimal){
+	int resposta=0,numero,tamanhoHexa=hexadecimal.length();
+	char letras[tamanhoHexa];
 
+	for (int i=tamanhoHexa-1; i>=0; i--){
+		cout << i << "\t" << hexadecimal[i] << endl;
+	}
+
+
+
+	PrintVector(letras,11,"Letras");
+/*
+
+	cout << hexa[0] << endl;
+	cout << hexa[1] << endl;
+	cout << hexa[2] << endl;
 	//inverter
 	for (int i=0; i<= (hexa.length()-1); i++){
 		letras[hexa.length()-1-i]=hexa[i];
@@ -25,8 +37,8 @@ int ConvertHexaToDecimal(string hexa){
 
 			resposta += numero*CalcPower(16,i);
 	}
-
-	return resposta;
+*/
+	return tamanhoHexa;
 }
 
 

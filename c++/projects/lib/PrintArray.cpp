@@ -13,6 +13,19 @@ using namespace std;
 using std::setw;
 
 
+void PrintVector( const char arrei[], const int sizeOfArray, const string titulo ){
+
+    if (titulo!="")
+        ImprimirTitulo(titulo);
+
+    for (int i=0;i<sizeOfArray;i++)
+        cout << "[" << i << "]=" << arrei[i] << " ";
+
+    cout << endl;
+    cout << endl;
+
+}
+
 void PrintVector( const double arrei[], const int sizeOfArray, const string titulo ){
 
     if (titulo!="")
