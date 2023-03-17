@@ -100,12 +100,17 @@ double GerarDouble(int menor, int maior)
 # ObterNumero.h
 
 ## ObterNumero
-- Cria um prompt na tela(`cout`) e recebe um número(`cin`)
-```
-int ObterNumero(string);
-```
+1. Definição
+    ```
+    int ObterNumero(string str);
+    ```
+1. Parametro
+        - Mensagem que será informada ao usuário
+1. Returno
+        - Valor informado pelo usuário
+1. Observações
+        - Existe um tratamento de erro, se o valor informado não for numérico o promt com a mensagem aparecerá novamente
 
-- Cria um prompt na tela(`cout`) e recebe um número(`cin`) contido na faixe numérica 
 ## ObterNumeroNaFaixa
 ```
 int ObterNumeroNaFaixa(string, int, int);

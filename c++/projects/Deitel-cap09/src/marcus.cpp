@@ -41,7 +41,7 @@ void exe_07_17(){
         quantLancamento[dado2]++;
     }
 
-//    PrintVector(somas,tamanhoSomas,"somas");
+    PrintVector(somas,tamanhoSomas,"somassomas");
     
 //    PrintVector(quantLancamento,7,"quantLancamento");
 
@@ -57,7 +57,7 @@ void exe_07_17(){
     PrintMatrix(matriz,qdtLinhas-1,2,"Matriz");
     cout << "CalcMdc -> " << CalcMdc(80,30) << endl;
     cout << "CalcRealRoots -> " << CalcRealRoots(10,10,1) << endl;
-    qdtLinhas = ObterNumeroNaFaixa("ObtreNumero entre 1 e 10: ",1,10);
-    cout << "qdtLinhas -> " << qdtLinhas << endl;
+    //qdtLinhas = ObterNumeroNaFaixa("ObtreNumero entre 1 e 10: ",1,10);
+    //cout << "qdtLinhas -> " << qdtLinhas << endl;
 }
 

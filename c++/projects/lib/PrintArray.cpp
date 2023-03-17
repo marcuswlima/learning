@@ -15,7 +15,7 @@ using std::setw;
 
 void PrintVector( const double arrei[], const int sizeOfArray, const string titulo ){
 
-    if (titulo!="titulo")
+    if (titulo!="")
         ImprimirTitulo(titulo);
 
     for (int i=0;i<sizeOfArray;i++)
@@ -26,7 +26,7 @@ void PrintVector( const double arrei[], const int sizeOfArray, const string titu
 
 }
 
-void PrintVector( const int arrei[], int sizeOfArray, string titulo="" ){
+void PrintVector( const int arrei[], const int sizeOfArray, const string titulo ){
 
     if (titulo!="")
         ImprimirTitulo(titulo);
@@ -39,7 +39,7 @@ void PrintVector( const int arrei[], int sizeOfArray, string titulo="" ){
 
 }
 
-void PrintMatrix(const int arrei[][2], const int linhas, const int colunas, string titulo=""){
+void PrintMatrix(const int arrei[][2], const int linhas, const int colunas, const string titulo){
 	int maiorNumero=0,tamanhoMaiorNumero=0;
 
     if (titulo!="")

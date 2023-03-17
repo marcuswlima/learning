@@ -27,12 +27,10 @@ void ImprimirBarraInferior(int tamanhoTitulo){
     cout << endl;
 }
 
-void ImprimirTitulo(string titulo=""){
-    if (titulo!=""){
-        int tamanhoTitulo = titulo.length();
-        ImprimirBarraSuperior(tamanhoTitulo);
-        cout << "|- "+ titulo + " -|" << endl;
-        ImprimirBarraInferior(tamanhoTitulo);
-    }
+void ImprimirTitulo(string titulo){
+    int tamanhoTitulo = titulo.length();
+    ImprimirBarraSuperior(tamanhoTitulo);
+    cout << "|- "+ titulo + " -|" << endl;
+    ImprimirBarraInferior(tamanhoTitulo);
 }
 
