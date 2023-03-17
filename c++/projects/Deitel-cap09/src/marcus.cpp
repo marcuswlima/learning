@@ -10,14 +10,17 @@ using std::setw;
 #include "../../lib/marcusLib.h"
 #include "../../lib/Mathematics.h"
 #include "../../lib/ObterNumero.h"
+#include "../../lib/SystemNumeral.h"
+
 
 void exe_07_17();
 
 int main(){
     srand( time(0) );
 
-    ImprimirTitulo("\\Deitel-cap09\\marcus.cpp");
+    ImprimirTitulo("Teste Lib");
     exe_07_17();
+	cout << ConvertHexaToDecimal("4" << endl ;
 }
 
 void exe_07_17(){
@@ -45,7 +48,7 @@ void exe_07_17(){
     
 //    PrintVector(quantLancamento,7,"quantLancamento");
 
-    int qdtLinhas=100;
+    int qdtLinhas=5;
     int matriz[qdtLinhas][2];
     for ( int coluna = 0; coluna < 2; coluna++ )
         for ( int linha = 0; linha <= (qdtLinhas-1); linha++ ) {
