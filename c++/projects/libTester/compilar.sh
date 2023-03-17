@@ -12,6 +12,8 @@ echo "Mathematics.cpp..."
 g++ -c $LIB/Mathematics.cpp  -o $OBJ/Mathematics.o
 echo "ObterNumero.cpp..."
 g++ -c $LIB/ObterNumero.cpp  -o $OBJ/ObterNumero.o
+echo "marcusLib.cpp..."
+g++ -c $LIB/marcusLib.cpp    -o $OBJ/marcusLib.o
 
 if [ $? -eq 0 ]; then
 
@@ -26,6 +28,7 @@ if [ $? -eq 0 ]; then
             $OBJ/PrintArray.o  \
             $OBJ/Mathematics.o \
             $OBJ/ObterNumero.o \
+			$OBJ/marcusLib.o   \
                 -o $OBJ/$NOME.sh
 
         if [ $? -eq 0 ]; then
