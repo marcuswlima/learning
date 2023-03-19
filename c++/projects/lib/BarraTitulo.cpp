@@ -1,11 +1,5 @@
 #include "BarraTitulo.h"
 
-#include <iostream>
-using std::cout;
-using std::endl;
-#include <string>
-using namespace std;
-
 void ImprimirBarra(int tamanho){
     for (int i = 1; i <= tamanho-2 + 6; i++)
     {

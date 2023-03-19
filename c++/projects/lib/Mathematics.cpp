@@ -1,11 +1,12 @@
-#include "Mathematics.h"
+//#include <iostream>
+//#include <cmath>
+//#include <string>
+//using namespace std;
 
-#include <iostream>
-using std::cout;
-#include <cmath>
-#include <string.h>
-using std::string;
-using namespace std;
+//using std::cout;
+//using std::string;
+
+#include "Mathematics.h"
 
 /*Apresenta o resto da divisão de 2 números*/
 int GetRemainder(int divisor, int dividendo){

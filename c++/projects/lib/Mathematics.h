@@ -1,8 +1,7 @@
-#include <iostream>
-using std::cout;
+#include <iostream>                                                                                                                                                                                                                       
+#include <cmath>
 #include <string>
-using std::string;
-
+using namespace std;
 
 /*Calcular o MDC de dois números*/
 int CalcMdc(int x, int y);

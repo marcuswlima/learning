@@ -1,18 +1,6 @@
 #include "PrintArray.h"
 #include "BarraTitulo.h"
 
-#include <iostream>
-using std::cout;
-using std::endl;
-
-#include <string.h>
-using std::string;
-using namespace std;
-
-#include <iomanip>
-using std::setw;
-
-
 void PrintVector( const char arrei[], const int sizeOfArray, const string titulo ){
 
     if (titulo!="")

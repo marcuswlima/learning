@@ -1,5 +1,8 @@
+#include <iostream>
+#include <iomanip>
 #include <string>
-using std::string;
+using namespace std;
+//using std::string;
 
 /*
 Imprime os valores de um array de inteiros e de uma dimensão

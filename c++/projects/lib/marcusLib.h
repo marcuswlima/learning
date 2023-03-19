@@ -1,18 +1,17 @@
 #include <iostream>
-using std::cout;
-using std::cin;
-using std::endl;
-
 #include <iomanip>
-using std::setw;
-
 #include <string>
-using std::string;
-
 #include <vector>
-using std::vector;
-
 #include <cmath>
+using namespace std;
+
+//using std::cout;
+//using std::cin;
+//using std::endl;
+//using std::setw;
+//using std::string;
+//using std::vector;
+
 
 /*
 Calcula o valor a ser cobrado do cliente de um estacionamento
