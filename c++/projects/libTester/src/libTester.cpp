@@ -32,6 +32,7 @@ void SystemNumeral(){
 	cout << "ConvertHexaToDecimal -> " << ConvertHexaToDecimal("F") << endl;
 	cout << "ConvertHexaToDecimal -> " << ConvertHexaToDecimal("10") << endl;
 	cout << "ConvertHexaToDecimal -> " << ConvertHexaToDecimal("11") << endl;
+	cout << "ConvertBinaryToDecimal -> " << ConvertBinaryToDecimal("1111") << endl;
 }
 
 void ObterNumero(){

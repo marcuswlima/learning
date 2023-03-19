@@ -35,3 +35,22 @@ int ConvertHexaToDecimal(string hexadecimal){
 }
 
 
+long ConvertBinaryToDecimal(string binario){
+	long resposta,numero;
+
+	long restos[30];
+	int base=10,qtdElements=0;
+	numero = stoi(binario);
+	for (int i=0; numero>0; i++){
+		restos[i]=GetRemainder(numero,base);
+		numero /= base;
+		qtdElements++;
+	}
+
+	resposta=0;
+	for (int i=0;i<qtdElements; i++){
+		resposta += restos[i]*CalcPower(2,i); 
+	}
+	return resposta;
+}
+

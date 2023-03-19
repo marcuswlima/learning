@@ -1,3 +1,5 @@
+[[_TOC_]]
+
 # BarraTitulo.h
 
 ## ImprimirTitulo
@@ -135,3 +137,12 @@ int ObterNumeroNaFaixa(string str, int menor, int maior);
         - Valor informado pelo usuário
 1. Observações  
         - Existe um tratamento de erro, se o valor informado não for numérico o promt com a mensagem aparecerá novamente
+
+# SystemNumeral.h
+
+```
+int ConvertHexadecinalToDecimal(string hexadecimal)
+long ConvertBinaryToDecimal(string binario)
+string ConvertDecimalToHexadecimal(int numero)
+string ConvertDecimalToBinary(int numero)
+```

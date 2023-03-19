@@ -6,6 +6,8 @@ using std::endl;
 using std::string;
 
 
-int ConvertHexaToDecimal(string);
-
+int ConvertHexaToDecimal(string hexadecimal);
+long ConvertBinaryToDecimal(string binario);
+string ConvertDecimalToHexadecimal(int numero);
+string ConvertDecimalToBinary(int numero);
 
