@@ -1,27 +1,178 @@
 #include <iostream>
 
 using std::cout;
+using std::cin;
 using std::endl;
 
 #include "Tecla.h"
 #include "../../lib/BarraTitulo.h"
+#include "../../lib/ObterNumero.h"
+#include "../../lib/Mathematics.h"
 
-void copiaTecla(Tecla,Tecla &);
-Tecla i2m(Tecla);
-Tecla i2M(Tecla);
-Tecla i3m(Tecla);
-Tecla i3M(Tecla);
-Tecla i4J(Tecla);
+#include <string>
+std::string str;
 
+void IntervalosGerarSegundaNota();
+void IntervalosGerarIntervalo();
+int menu();
+void Notas();
+void Intervalos();
+void Acordes();
+void Acordes_um();
+
+Tecla t;
 /////////////////////////////////////////
 // Main
 /////////////////////////////////////////
 int main ( )
 {
-    //srand( time(0) );
+    srand( time(0) );
 
-    ImprimirTitulo("Nota Musicais no Windows");
+    int opcao=0;
 
+    ImprimirTitulo("Nota Musicais");
+    do{
+        opcao=menu();
+
+		switch(opcao){
+			case 1:Notas();break;
+			case 2:Intervalos();break;
+			case 3:Acordes();break;
+		}
+    }while (opcao!=0);
+
+    return 0; //indica o fim do programa
+}
+
+int menu(){
+	int escolha;
+    cout << "**********************\n";
+    cout << "** 1 - Notas Soltas **\n";
+    cout << "** 2 - Intervalos   **\n";
+    cout << "** 3 - Acordes      **\n";
+    cout << "** 0 - Sair         **\n";
+    cout << "***********************\n";
+	escolha=ObterNumeroNaFaixa("Indique qual módulo [1,2,3,0] -> ",0,3);
+    return escolha;
+}
+
+void Notas(){	
+	cout << endl << endl;
+	ImprimirTitulo("Notas Soltas");
+	int quantNotas=ObterNumeroNaFaixa("Digite a quantidade[1:30] -> ",1,30);
+	cout << endl;
+     
+	for (int i=1;i<=quantNotas;i++){
+		t.aleatorio();
+		t.imprimirTecla();
+	}
+
+	cout << endl << endl;
+}
+
+void Intervalos(){	
+	cout << endl << endl;
+	ImprimirTitulo("Intervalos");
+    cout << "****************************************\n";
+    cout << "** A partir de uma nota aleatória     **\n";
+    cout << "** 1) Apresenter um intervalo simples **\n";
+    cout << "** 2) Apresentar uma segunda nota     **\n";
+    cout << "****************************************\n";
+	int opcao=ObterNumeroNaFaixa("Indica sua opção [1:2] -> ",1,2);
+	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
+
+	cout << endl;
+	for (int i=1; i<=quantidade; i++){	
+		if (opcao==1)
+			IntervalosGerarIntervalo();
+		else 
+            IntervalosGerarSegundaNota();
+	}
+
+	cout << endl;
+	cout << endl;
+
+}
+
+void IntervalosGerarIntervalo(){
+
+	int numero;
+	t.aleatorio();
+	t.imprimirTecla();
+
+	cout << "- ";
+	numero=GerarInteiro(2,8);
+	cout << numero;
+	if ((numero==4)||(numero==5)||(numero==8))
+		cout << "J";
+	else{
+		numero=GerarInteiro(1,2);
+		if (numero==1) 
+			cout << "m";
+		else 
+			cout << "M";
+	}
+
+    cout << " / ";
+}
+
+int GerarNovaNota(int inferior,int superior,int antiga){	
+	int resposta;
+	do{	
+		resposta = GerarInteiro(inferior,superior);
+	}while(resposta==antiga);
+	return resposta;
+}
+void IntervalosGerarSegundaNota(){
+	int notaN1, novaN2;
+	t.aleatorio();
+	t.imprimirTecla();
+
+    notaN1 = t.getNota();
+	novaN2 = GerarNovaNota(1,7,notaN1);
+
+	if(novaN2 < notaN1) 
+		t.setOitava(t.getOitava()+1);
+	
+	t.setNota(novaN2);
+	t.setAcidente(GerarInteiro(-2,2));
+	t.imprimirTecla();
+	
+
+    cout << " / ";
+}
+
+void Acordes(){	
+	cout << endl << endl;
+	ImprimirTitulo("Acordes");
+    cout << "*****************************************\n";
+    cout << "** A partir de uma nota aleatória      **\n";
+    cout << "** 1) Gerar um acorde(M,m,A,d)         **\n";
+    cout << "** 2) Gerar a segunda e a tercera nota **\n";
+    cout << "*****************************************\n";
+	int opcao=ObterNumeroNaFaixa("Indica sua opção [1:2] -> ",1,2);
+	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
+	for (int i=1; i<quantidade; i++){
+		Acordes_um();
+	}	
+	cout << endl << endl;
+}
+
+void Acordes_um(){
+	int idAcorde=GerarInteiro(1,4);
+	string descAcorde; 
+	t.aleatorio();
+	t.imprimirTecla();
+
+	switch (idAcorde){
+    	case 1:descAcorde="Maior";break;
+    	case 2:descAcorde="Menor";break;
+    	case 3:descAcorde="Aumentado";break;
+    	case 4:descAcorde="Diminuto";break;
+	}
+}
+
+/*
     Tecla t1(3,4,0), t2;
     t1.imprimirTecla();
     t2 = i2m(t1);
@@ -35,9 +186,6 @@ int main ( )
     t2 = i4J(t1);
     t2.imprimirTecla();
 	cout << endl;
-
-    return 0; //indica o fim do programa
-}
 
 Tecla i2m(Tecla t){
     Tecla temp;
@@ -93,4 +241,4 @@ void copiaTecla(Tecla t1,Tecla &t2){
     t2.setTecla(t1.getOitava(), t1.getNota(), t1.getAcidente());
 }
 
-
+*/

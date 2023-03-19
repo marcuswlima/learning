@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <stdexcept> // for invalid_argument exception class
 #include "Tecla.h"
+#include "../../lib/Mathematics.h"
 
 using namespace std;
 
@@ -109,22 +110,16 @@ void Tecla::imprimirTecla(){
     //else if (strNota == "La#")  strNota="Sib";
     //else if (strNota == "Solb") strNota="Fa#";
 
-    cout << this->getOitava() << strNota << "\t";
+    cout << this->getOitava() << strNota << " ";
 
 }
 
 void Tecla::aleatorio(){
 
     do{
-/*
-        //setOitava(gerarInteiro(0,9));
-          setOitava(gerarInteiro( 3,4));
-            setNota(gerarInteiro( 1,7));
-        setAcidente(gerarInteiro(-2,2));
-*/
-		setOitava(4);
-		setNota(1);
-		setAcidente(0);
+          setOitava(GerarInteiro( 0,9));
+            setNota(GerarInteiro( 1,7));
+        setAcidente(GerarInteiro(-1,1));
     }while(!teclaValida(getOitava(),getNota(),getAcidente()));
 
 }

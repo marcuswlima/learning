@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 #include "Intervalo.h"
-#include "/home/marcus/Developer/github/learning/c++/Deitel/src/lib/marcusLib.h"
 
 using namespace std;
 

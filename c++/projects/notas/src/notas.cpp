@@ -5,8 +5,7 @@ using std::cin;
 using std::endl;
 
 #include "Tecla.h"
-#include "/home/marcus/Developer/github/learning/c++/Deitel/src/lib/marcusLib.h"
-
+#include "../../lib/BarraTitulo.h"
 /////////////////////////////////////////
 // Declarações
 /////////////////////////////////////////
@@ -28,8 +27,8 @@ int main ( )
 {
     srand( time(0) );
 
-    Titulo("Notas");
-
+    ImprimirTitulo("Notas");
+/*
     Tecla t1(3,3,-1), t3, t5;
 
     gerarTriadeMaior(t1, t3, t5);
@@ -43,7 +42,7 @@ int main ( )
 
     gerarTriadeAumentada(t1, t3, t5);
     imprimirTriade(t1, t3, t5);
-
+*/
     return 0; //indica o fim do programa
 }
 

@@ -15,7 +15,7 @@ int ObterNumero(string mensagem){
     do {
         cout << mensagem ; 
         cin >> digitado;
-    } while (!isNumber(digitado));
+    } while (!isNumber(digitado)&&digitado!="0");
 
     return  stoi(digitado); 
 
