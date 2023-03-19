@@ -25,10 +25,13 @@ int main(){
 }
 
 void SystemNumeral(){
-	ImprimirTitulo("SystemNumeral");
-	int a = ConvertHexaToDecimal("ABCDE");
-	//cout << "ConvertHexaToDecimal -> " << ConvertHexaToDecimal("ABCD") << endl;
-	cout << "retorno -> " << a << endl;
+	ImprimirTitulo("libTester - SystemNumeral");
+    cout << "ConvertHexaToDecimal -> " << ConvertHexaToDecimal("0") << endl;
+	cout << "ConvertHexaToDecimal -> " << ConvertHexaToDecimal("1") << endl;
+	cout << "ConvertHexaToDecimal -> " << ConvertHexaToDecimal("A") << endl;
+	cout << "ConvertHexaToDecimal -> " << ConvertHexaToDecimal("F") << endl;
+	cout << "ConvertHexaToDecimal -> " << ConvertHexaToDecimal("10") << endl;
+	cout << "ConvertHexaToDecimal -> " << ConvertHexaToDecimal("11") << endl;
 }
 
 void ObterNumero(){
