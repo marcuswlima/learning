@@ -19,8 +19,8 @@ if [ $? -eq 0 ]; then
     g++ -c $SRC/$NOME.cpp -o $OBJ/$NOME.o 
 	echo "Tecla.cpp..."
 	g++ -c $SRC/Tecla.cpp -o $OBJ/Tecla.o
-	echo "Intervalor.cpp..."
-	g++ -c $SRC/Intervalo.cpp -o $OBJ/Intervalor.o
+	echo "Intervalo.cpp..."
+	g++ -c $SRC/Intervalo.cpp -o $OBJ/Intervalo.o
 
     if [ $? -eq 0 ]; then
 

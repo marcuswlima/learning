@@ -75,7 +75,7 @@ void Intervalos(){
 	ImprimirTitulo("Intervalos");
     cout << "****************************************\n";
     cout << "** A partir de uma nota aleatória     **\n";
-    cout << "** 1) Apresenter um intervalo simples **\n";
+    cout << "** 1) Apresentar um intervalo simples **\n";
     cout << "** 2) Apresentar uma segunda nota     **\n";
     cout << "****************************************\n";
 	int opcao=ObterNumeroNaFaixa("Indica sua opção [1:2] -> ",1,2);
@@ -145,16 +145,22 @@ void IntervalosGerarSegundaNota(){
 void Acordes(){	
 	cout << endl << endl;
 	ImprimirTitulo("Acordes");
-    cout << "*****************************************\n";
-    cout << "** A partir de uma nota aleatória      **\n";
-    cout << "** 1) Gerar um acorde(M,m,A,d)         **\n";
-    cout << "** 2) Gerar a segunda e a tercera nota **\n";
-    cout << "*****************************************\n";
+    cout << "****************************************************\n";
+    cout << "** A partir de uma nota aleatória                 **\n";
+    cout << "** 1) Apresentar um acorde(M,m,A,d)               **\n";
+    cout << "** 2) Apresentar uma terça nota e uma quinta nota **\n";
+    cout << "****************************************************\n";
 	int opcao=ObterNumeroNaFaixa("Indica sua opção [1:2] -> ",1,2);
-	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
-	for (int i=1; i<quantidade; i++){
-		Acordes_um();
-	}	
+
+	if (opcao==1){
+	    int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
+		for(int i=1; i<quantidade; i++){
+			Acordes_um();
+		}
+	}
+	else
+		cout << "Não implementado";
+
 	cout << endl << endl;
 }
 
@@ -170,6 +176,10 @@ void Acordes_um(){
     	case 3:descAcorde="Aumentado";break;
     	case 4:descAcorde="Diminuto";break;
 	}
+
+	cout << descAcorde;
+
+	cout << " / ";
 }
 
 /*
