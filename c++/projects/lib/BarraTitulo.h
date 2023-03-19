@@ -1,9 +1,12 @@
 #include <iostream>
-using std::cout;
-using std::endl;
-
 #include <string>
-using std::string;
+using namespace std;
 
+//using std::string;
+//using std::cout;
+//using std::endl;
 
 void ImprimirTitulo(string);
+
+
+

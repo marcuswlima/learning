@@ -1,8 +1,8 @@
 #include <iostream>
-using std::cout;
+using namespace std;
 
-#include <iomanip>
-using std::setw;
+//using std::setw;
+//using std::cout;
 
 #include "../../lib/BarraTitulo.h"
 #include "../../lib/PrintArray.h"
@@ -25,10 +25,20 @@ int main(){
 }
 
 void SystemNumeral(){
-	ImprimirTitulo("SystemNumeral");
-	int a = ConvertHexaToDecimal("ABCDE");
-	//cout << "ConvertHexaToDecimal -> " << ConvertHexaToDecimal("ABCD") << endl;
-	cout << "retorno -> " << a << endl;
+	ImprimirTitulo("libTester - SystemNumeral");
+	string str_binario, str_hexa;
+	for(int i=1;i<=1050;i++){		
+		str_hexa    = ConvertDecimalToHexadecimal(i);
+		str_binario = ConvertDecimalToBinary(i);
+		cout << setw(3)  << i << "\t";
+		cout << setw(3)  << str_hexa    << "\t";
+		cout << setw(11) << str_binario << "\t";
+		cout             << ConvertHexaToDecimal(str_hexa) << "\t";
+///		cout             << ConvertBinaryToDecimal(str_binario) << "\t";
+
+		cout << endl;
+
+	}
 }
 
 void ObterNumero(){

@@ -1,9 +1,5 @@
 #include "ObterNumero.h"
 
-#include <iostream>
-using std::cout;
-using std::cin;
-
 bool isNumber(string line) 
 {
     return (atoi(line.c_str())); 
