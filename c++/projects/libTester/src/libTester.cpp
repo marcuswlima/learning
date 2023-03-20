@@ -10,11 +10,13 @@ using namespace std;
 #include "../../lib/Mathematics.h"
 #include "../../lib/ObterNumero.h"
 #include "../../lib/SystemNumeral.h"
+#include "../../lib/NumeroExtenso.h"
 
 void Mathematics();
 void PrintArray();
 void ObterNumero();
 void SystemNumeral();
+void NumeroExtenso();
 
 int main(){
     srand( time(0) );
@@ -22,6 +24,14 @@ int main(){
 	//ObterNumero();
 	//Mathematics();	
 	SystemNumeral();
+    //NumeroExtenso();
+}
+
+void NumeroExtenso(){
+	ImprimirTitulo("libTester - NumeroExtenso");
+	for(int i=1;i<=999;i++){		
+        cout << i << "\t" << ShowNumberEnglishPronuciation (i) << endl;
+    }
 }
 
 void SystemNumeral(){
@@ -34,7 +44,7 @@ void SystemNumeral(){
 		cout << setw(3)  << str_hexa    << "\t";
 		cout << setw(11) << str_binario << "\t";
 		cout             << ConvertHexaToDecimal(str_hexa) << "\t";
-///		cout             << ConvertBinaryToDecimal(str_binario) << "\t";
+		//cout             << ConvertBinaryToDecimal(str_binario) << "\t";
 
 		cout << endl;
 

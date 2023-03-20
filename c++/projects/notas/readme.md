@@ -28,7 +28,7 @@
 | 2 | Primeira Nota| Segunda e terceira Nota | Acorde
 
 - Tipos de Acordes
-	- Maior  - 3M+3m
+	- Maior  - 3M + 3m
 	- Menor - 3m + 3M
 	- Aumentado - 3M + 3M
 	- Diminuto - 3m + 3m

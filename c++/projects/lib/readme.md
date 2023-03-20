@@ -96,7 +96,7 @@ int GerarInteiro(int menor, int maior);
 1. Parametro  
         - `menor` inicio da faixa  
         - `maior` fim da faixa
-1. Returno  
+1. Retorno  
         - Número inteiro aretório contido  da faixa informada
 
 ## GerarDouble
@@ -107,7 +107,7 @@ double GerarDouble(int menor, int maior)
 1. Parametro  
         - `menor` inicio da faixa  
         - `maior` fim da faixa
-1. Returno  
+1. Retorno  
         - Número double aretório contido  da faixa informada
 
 # ObterNumero.h
@@ -119,7 +119,7 @@ int ObterNumero(string str);
 ```
 1. Parametro  
         - `Str` Mensagem que será informada ao usuário
-1. Returno  
+1. Retorno  
         - Valor informado pelo usuário
 1. Observações  
         - Existe um tratamento de erro, se o valor informado não for numérico o promt com a mensagem aparecerá novamente
@@ -133,7 +133,7 @@ int ObterNumeroNaFaixa(string str, int menor, int maior);
         - `Str` Mensagem que será informada ao usuário  
         - `menor` inicio da faixa  
         - `maior` fim da faixa
-1. Returno  
+1. Retorno  
         - Valor informado pelo usuário
 1. Observações  
         - Existe um tratamento de erro, se o valor informado não for numérico o promt com a mensagem aparecerá novamente
@@ -148,7 +148,7 @@ int ConvertHexadecinalToDecimal(string hexadecimal)
 
 1. Parametros  
         - `hexadecimal` número hexadecimal em formato `string`
-1. Returno  
+1. Retorno  
         - Numero decimal correspondete
 
 
@@ -158,7 +158,7 @@ long ConvertBinaryToDecimal(string binario)
 ```
 1. Parametros  
         - `binario` número binário em formato `string`
-1. Returno  
+1. Retorno  
         - Numero decimal correspondete
 
 
@@ -168,7 +168,7 @@ string ConvertDecimalToHexadecimal(int numero)
 ```
 1. Parametros  
         - `numero` número com base decimal
-1. Returno  
+1. Retorno  
         - Numero hexadecimal correspondete
 
 ## ConvertDecimalToBinary
@@ -177,5 +177,20 @@ string ConvertDecimalToBinary(int numero)
 ```
 1. Parametros  
         - `numero` número com base decimal
-1. Returno  
+1. Retorno  
         - Numero binário correspondete
+
+# NumeroExtenso.h
+
+## ShowNumberEnglishPronuciation
+
+```
+string ShowNumberEnglishPronuciation(int numero);
+```
+1. Parametros  
+        - `numero` numero de 1 - 999
+1. Retorno  
+        - Representação em extenso do número informado (Inglês)
+1. Observações  
+        - Projetado para a faixa de 1-999
+
