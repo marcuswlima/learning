@@ -140,9 +140,42 @@ int ObterNumeroNaFaixa(string str, int menor, int maior);
 
 # SystemNumeral.h
 
+## ConvertHexadecinalToDecimal
+
 ```
 int ConvertHexadecinalToDecimal(string hexadecimal)
+```
+
+1. Parametros  
+        - `hexadecimal` número hexadecimal em formato `string`
+1. Returno  
+        - Numero decimal correspondete
+
+
+## ConvertBinaryToDecimal
+```
 long ConvertBinaryToDecimal(string binario)
+```
+1. Parametros  
+        - `binario` número binário em formato `string`
+1. Returno  
+        - Numero decimal correspondete
+
+
+## ConvertDecimalToHexadecimal
+```
 string ConvertDecimalToHexadecimal(int numero)
+```
+1. Parametros  
+        - `numero` número com base decimal
+1. Returno  
+        - Numero hexadecimal correspondete
+
+## ConvertDecimalToBinary
+```
 string ConvertDecimalToBinary(int numero)
 ```
+1. Parametros  
+        - `numero` número com base decimal
+1. Returno  
+        - Numero binário correspondete
