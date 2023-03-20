@@ -20,10 +20,10 @@ void NumeroExtenso();
 
 int main(){
     srand( time(0) );
-	//PrintArray();
+	PrintArray();
 	//ObterNumero();
 	//Mathematics();	
-	SystemNumeral();
+	//SystemNumeral();
     //NumeroExtenso();
 }
 
@@ -77,15 +77,16 @@ void PrintArray(){
         quantLancamento[dado2]++;
     }
 
-    PrintVector(somas,tamanhoSomas);
+    PrintVector(somas,tamanhoSomas,"vector de inteiro");
     
 	int qdtLinhas=5;
     int matriz[qdtLinhas][2];
-    for ( int coluna = 0; coluna < 2; coluna++ )
-        for ( int linha = 0; linha <= (qdtLinhas); linha++ ) {
-            matriz[linha][coluna]=GerarInteiro(1,100000);
-        }
-    PrintMatrix(matriz,qdtLinhas,2);
+    PrintMatrix(matriz,qdtLinhas,2,"Matriz de inteiro");
+
+	qdtLinhas=5;
+    string str_matriz[3][2]={{"marcus","william"},{"dos","santos"},{"lima"}};
+    PrintMatrix(str_matriz,3,2,"Matriz string de 2 colunas");
+    PrintMatrix(str_matriz,3,2);
 }
 
 void Mathematics(){
