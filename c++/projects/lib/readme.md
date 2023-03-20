@@ -22,10 +22,10 @@ void PrintVector( const double arrei[], const int sizeOfArray, const string titu
 void PrintVector( const char arrei[], const int sizeOfArray, const string titulo );
 ```
 1. Parametros  
-        - `arrei[]` nome do array
-        - `sizeOfArray` tamanho do array
+        - `arrei[]` nome do array  
+        - `sizeOfArray` tamanho do array  
         - `titulo` titulo da impressão (opcional)
-1. Ação 
+1. Ação   
         - Impressão em tela dos elementos do array com indicação de posição
 1. Observações  
         - Overloading para array's em int, double e char
@@ -35,16 +35,16 @@ void PrintVector( const char arrei[], const int sizeOfArray, const string titulo
 - Realiza a impressão em tela de uma matriz de 2 colunas  (`cout`)
 
 ```
-const int arrei[][2], const int linhas, const int colunas, const string titulo;
-const string arrei[][2], const int linhas, const int colunas, const string titulo;
+void PrintMatrix(const int arrei[][2], const int linhas, const int colunas, const string titulo);
+void PrintMatrix(const string arrei[][2], const int linhas, const int colunas, const string titulo);
 ```
 
 1. Parametros  
-        - `arrei[]` nome do array
-        - `linhas` quandidade de linhas
-        - `colunas` quantidade de colunas - incoerente / deverá ser revisto
+        - `arrei[]` nome do array  
+        - `linhas` quandidade de linhas  
+        - `colunas` quantidade de colunas - incoerente / deverá ser revisto  
         - `titulo` titulo da impressão (opcional)
-1. Ação 
+1. Ação   
         - Impressão em tela dos elementos da matriz com indicação de posição
 1. Observações  
         - Overloading para array's em int e string
