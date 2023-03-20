@@ -1,3 +1,6 @@
+#include <string>
+using namespace std;
+
 #ifndef TIME_H
 #define TIME_H
 // Time class definition
@@ -13,8 +16,9 @@ public:
     int getOitava();
     int getNota();
     int getAcidente();
-    void imprimirTecla();
-    void aleatorio();
+    string GerarDescricao();
+    void Imprimir();
+    void Aleatorio();
 private:
     int oitava;     // 0--8     / oitavas de um pianao
     int nota;       // 1--7     / do,re,mi,fa,sol,la,si,

@@ -77,9 +77,10 @@ void Tecla::setTecla( int o, int n, int a )
 
 }
 
-void Tecla::imprimirTecla(){
-
+string Tecla::GerarDescricao(){
     string strNota;
+
+    strNota = this->getOitava();
 
     switch (this->getNota())
     {
@@ -94,27 +95,27 @@ void Tecla::imprimirTecla(){
         break;
     }
 
-    if (this->getAcidente() == -1)
-        strNota += "b";
-    else if (this->getAcidente()==1)
-        strNota += "#";
-    else if (this->getAcidente()==-2)
-        strNota += "bb";
-    else if (this->getAcidente()==2)
-        strNota += "*";
-    
+    switch (this->getAcidente())
+    {
+        case -2:strNota += "bb";break;
+        case -1:strNota += "b";break;
+        case  1:strNota += "#";break;
+        case  2:strNota += "*";break;
+    default:
+        break;
+    }
 
-    //if      (strNota == "Do#")  strNota="Reb";
-    //else if (strNota == "Re#")  strNota="Mib";
-    //else if (strNota == "Sol#") strNota="Lab";
-    //else if (strNota == "La#")  strNota="Sib";
-    //else if (strNota == "Solb") strNota="Fa#";
-
-    cout << this->getOitava() << strNota << " ";
+    return strNota;
 
 }
 
-void Tecla::aleatorio(){
+void Tecla::Imprimir(){
+
+    cout << this->GerarDescricao() << " ";
+
+}
+
+void Tecla::Aleatorio(){
 
     do{
           setOitava(GerarInteiro( 0,9));

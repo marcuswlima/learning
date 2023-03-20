@@ -3,6 +3,7 @@
 using namespace std;
 
 #include "Tecla.h"
+#include "Intervalo.h"
 #include "../../lib/BarraTitulo.h"
 #include "../../lib/ObterNumero.h"
 #include "../../lib/Mathematics.h"
@@ -23,9 +24,46 @@ int main ( )
 {
     //srand( time(0) );
 
-    int opcao=0;
 
     ImprimirTitulo("Nota Musicais");
+
+	Intervalo i(3,2,0);
+	Tecla t;
+
+	t.setTecla(3,2,0);
+	i.EncontrarQualificacao(t);
+	i.Imprimir();
+	cout << endl;
+
+	t.setTecla(3,3,0);
+	i.EncontrarQualificacao(t);
+	i.Imprimir();
+	cout << endl;
+
+	t.setTecla(3,4,0);
+	i.EncontrarQualificacao(t);
+	i.Imprimir();
+	cout << endl;
+
+	t.setTecla(3,5,0);
+	i.EncontrarQualificacao(t);
+	i.Imprimir();
+	cout << endl;
+
+	t.setTecla(3,6,0);
+	i.EncontrarQualificacao(t);
+	i.Imprimir();
+	cout << endl;
+
+	t.setTecla(3,7,0);
+	i.EncontrarQualificacao(t);
+	i.Imprimir();
+	cout << endl;
+
+
+/*
+    int opcao=0;
+
     do{
         opcao=menu();
 
@@ -35,7 +73,7 @@ int main ( )
 			case 3:Acordes();break;
 		}
     }while (opcao!=0);
-
+*/
     return 0; //indica o fim do programa
 }
 
@@ -58,8 +96,8 @@ void Notas(){
 	cout << endl;
      
 	for (int i=1;i<=quantNotas;i++){
-		t.aleatorio();
-		t.imprimirTecla();
+		t.Aleatorio();
+		t.Imprimir();
 	}
 
 	cout << endl << endl;
@@ -92,8 +130,8 @@ void Intervalos(){
 void IntervalosGerarIntervalo(){
 
 	int numero;
-	t.aleatorio();
-	t.imprimirTecla();
+	t.Aleatorio();
+	t.Imprimir();
 
 	cout << "- ";
 	numero=GerarInteiro(2,8);
@@ -121,8 +159,8 @@ int GerarNovaNota(int inferior,int superior,int antiga){
 
 void IntervalosGerarSegundaNota(){
 	int notaN1, novaN2;
-	t.aleatorio();
-	t.imprimirTecla();
+	t.Aleatorio();
+	t.Imprimir();
 
     notaN1 = t.getNota();
 	novaN2 = GerarNovaNota(1,7,notaN1);
@@ -132,7 +170,7 @@ void IntervalosGerarSegundaNota(){
 	
 	t.setNota(novaN2);
 	t.setAcidente(GerarInteiro(-1,1));
-	t.imprimirTecla();
+	t.Imprimir();
 	
 
     cout << " / ";
@@ -163,8 +201,8 @@ void Acordes(){
 void Acordes_um(){
 	int idAcorde=GerarInteiro(1,4);
 	string descAcorde; 
-	t.aleatorio();
-	t.imprimirTecla();
+	t.Aleatorio();
+	t.Imprimir();
 
 	switch (idAcorde){
     	case 1:descAcorde="Maior";break;

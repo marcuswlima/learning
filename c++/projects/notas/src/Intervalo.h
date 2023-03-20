@@ -1,3 +1,7 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
 #include "Tecla.h"
 
 class Intervalo
@@ -5,21 +9,22 @@ class Intervalo
 public:
     Intervalo();
     Intervalo(Tecla);
-    Intervalo(Tecla,Tecla);
-    Intervalo(int , int , int , int , int , int );
+    Intervalo(int, int, int);
     void setT1(Tecla);
-    void setT2(Tecla);
-    void setQuantNotas(int);
-    void setQuantSemiTons(int);
     Tecla getT1();
+    void setT2(Tecla);
     Tecla getT2();
-    int getQuantNotas();
-    int getQuantSemiTons();
-    void imprimirIntervalo();
-    void aleatorio();
+    void setNumero(int);
+    int getNumero();
+    void setQualidade(char);
+    char getQualidade();
+    void EncontrarQualificacao(Tecla);      // em função da segunda nota
+    void EncontrarSegundaNota(int, char);   // em funçaõ da qualificação
+    string GerarDescricao();
+    void Imprimir();                        // se existir as duas notas;
 private:
     Tecla t1;
     Tecla t2;
-    int quantNotas;
-    int quantSemiTons;
+    int numero; //[2-7]
+    char qualidade; //['m','M','J'];
 };

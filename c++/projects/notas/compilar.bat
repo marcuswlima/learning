@@ -17,10 +17,13 @@ IF %ERRORLEVEL% EQU 0 (
 
     echo Tecla.cpp...
     g++ -c %SRC%\Tecla.cpp -o %OBJ%\Tecla.o 
+
+    echo Intervalo.cpp...
+    g++ -c %SRC%\Intervalo.cpp -o %OBJ%\Intervalo.o 
     IF %ERRORLEVEL% EQU 0  (
 
         echo linkando tudo...
-        g++ -Wextra -Werror %OBJ%\Tecla.o %OBJ%\%NOME%.o %OBJ%\ObterNumero.o %OBJ%\BarraTitulo.o %OBJ%\Mathematics.o -o %OBJ%\%NOME%.exe        
+        g++ -Wextra -Werror %OBJ%\Tecla.o %OBJ%\%NOME%.o %OBJ%\ObterNumero.o %OBJ%\BarraTitulo.o %OBJ%\Mathematics.o %OBJ%\Intervalo.o -o %OBJ%\%NOME%.exe        
 
         IF %ERRORLEVEL% EQU 0  (
             echo Executando...

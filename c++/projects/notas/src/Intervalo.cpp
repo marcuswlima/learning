@@ -1,12 +1,7 @@
-#include <iostream>
-#include <cmath>
 #include "Intervalo.h"
 
-using namespace std;
 
 int tipoIntervalor(Tecla, Tecla);
-
-
 void aumentarAlturaEmUmTom(Tecla &);
 void aumentarAlturaEmMeioTom(Tecla &);
 
@@ -15,33 +10,22 @@ void aumentarAlturaEmMeioTom(Tecla &);
 /////////////////////////////////////////
 Intervalo::Intervalo()
 {
-    Tecla t1;
-    Tecla t2;
-
-    setT1(t1);
-    setT2(t2);
+    Tecla t;
+    t.Aleatorio();
+    setT1(t);
 }
 
-Intervalo::Intervalo(Tecla t1)
+Intervalo::Intervalo(Tecla t)
 {
-    setT1(t1);
+    setT1(t);
 }
 
-
-Intervalo::Intervalo(Tecla t1, Tecla t2)
+Intervalo::Intervalo(int o, int n, int a)
 {
-    setT1(t1);
-    setT2(t2);
+    Tecla t(o,n,a);
+    setT1(t);
 }
 
-Intervalo::Intervalo(int o1, int n1, int a1, int o2, int n2, int a2)
-{
-    Tecla t1(o1,n1,a1);
-    Tecla t2(o2,n2,a2);
-
-    setT1(t1);
-    setT2(t2);
-}
 
 /////////////////////////////////////////
 // Acesso
@@ -50,48 +34,58 @@ void Intervalo::setT1(Tecla t){
     t1 = t;
 }
 
-void Intervalo::setT2(Tecla t){
-    t2 = t;
-}
-
 Tecla Intervalo::getT1(){
     return t1;
+}
+
+void Intervalo::setT2(Tecla t){
+    t2 = t;
 }
 
 Tecla Intervalo::getT2(){
     return t2;
 }
 
+void Intervalo::setNumero(int n){
+    numero = n;
+}
+
+int Intervalo::getNumero(){
+    return numero;
+}
+
+void Intervalo::setQualidade(char q){
+    qualidade = q;
+}
+
+char Intervalo::getQualidade(){
+    return qualidade;
+}
+
 /////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
+void Intervalo::EncontrarQualificacao(Tecla t){
+    setT2(t);
 
-void Intervalo::aleatorio(){
-    //getT1().aleatorio(); // Primeira Nota
-    this->getT1().setTecla(4,5,0);
-    //cout << getT1().getNota();
-    
-/*
-    int qdtSemiTons = gerarInteiro(3,4);
-
-    switch (qdtSemiTons)
-    {
-        case 3:this->i3m(getT1());break;
-        case 4:this->i3M(getT1());break;
-        default:break;
-    }
-*/    
+    int n1=getT1().getNota(), n2=t.getNota();
+    setNumero(n2-n1+1);
 }
 
-void Intervalo::imprimirIntervalo(){
-    this->getT1().imprimirTecla();
-    this->getT2().imprimirTecla();
+string Intervalo::GerarDescricao(){
+    string resposta;
 
-    cout << "\n";
+    resposta += this->getT1().GerarDescricao() + " ";
+    resposta += this->getT2().GerarDescricao() + " - ";
+    resposta += to_string(this->getNumero());
+
+    return resposta;
 
 }
 
-
+void Intervalo::Imprimir(){
+    cout << this->GerarDescricao();
+}
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
