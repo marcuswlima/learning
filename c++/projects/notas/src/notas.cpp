@@ -27,6 +27,17 @@ int main ( )
 
     ImprimirTitulo("Nota Musicais");
 
+	Tecla t1(3,7,0), t2;
+	t1.Imprimir();
+	for (int i=2;i<=7; i++){
+		t2=t1.qualRelativa(i);
+		t2.Imprimir();
+	}
+
+
+
+/*
+
 	Intervalo i(3,1,0);
 	Tecla t;
 
@@ -40,28 +51,6 @@ int main ( )
 	i.Imprimir();
 	cout << endl;
 
-	t.setTecla(3,4,0);
-	i.EncontrarQualificacao(t);
-	i.Imprimir();
-	cout << endl;
-
-	t.setTecla(3,5,0);
-	i.EncontrarQualificacao(t);
-	i.Imprimir();
-	cout << endl;
-
-	t.setTecla(3,6,0);
-	i.EncontrarQualificacao(t);
-	i.Imprimir();
-	cout << endl;
-
-	t.setTecla(3,7,0);
-	i.EncontrarQualificacao(t);
-	i.Imprimir();
-	cout << endl;
-
-
-/*
     int opcao=0;
 
     do{
@@ -75,6 +64,13 @@ int main ( )
     }while (opcao!=0);
 */
     return 0; //indica o fim do programa
+}
+
+void EncontrarQualificacao(int n, int a){
+	Intervalo i(3,n,a);
+	Tecla t;
+
+
 }
 
 int menu(){

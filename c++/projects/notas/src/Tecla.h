@@ -19,7 +19,7 @@ public:
     string GerarDescricao();
     void Imprimir();
     void Aleatorio();
-private:
+    Tecla qualRelativa(int);
     int oitava;     // 0--8     / oitavas de um pianao
     int nota;       // 1--7     / do,re,mi,fa,sol,la,si,
     int acidente;   // [-1,0,1] / bemol, sim acidente, sustenido

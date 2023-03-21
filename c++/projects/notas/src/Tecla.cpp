@@ -59,6 +59,28 @@ int Tecla::getAcidente(){
 // Implementações Externas
 /////////////////////////////////////////
 
+
+Tecla Tecla::qualRelativa(int relativa){
+    Tecla resposta;
+
+    int o=this->getOitava()
+       ,n=this->getNota()
+       ,a=this->getAcidente();
+
+    n = n + relativa - 1;
+    if (n>=8){
+        n -= 7;
+        o++;
+    }
+
+    resposta.setOitava(o);
+    resposta.setNota(n);
+    resposta.setAcidente(a);
+
+    return resposta;
+
+}
+
 // atribuir novos valores oitava, nota e acidente
 void Tecla::setTecla( int o, int n, int a )
 {

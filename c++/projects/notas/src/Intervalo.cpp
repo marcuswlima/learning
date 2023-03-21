@@ -87,10 +87,38 @@ string QualificarIntervalo(int diff){
 
 
 void Intervalo::EncontrarQualificacao(Tecla t){
-    setT2(t);
+    int n1, n2, distancia;
 
-    int n1=getT1().getNota(), n2=t.getNota();
-    setNumero(n2-n1+1);
+    this->setT2(t);
+    n1=this->getT1().getNota();
+    n2=this->getT2().getNota();
+
+    if (n1<n2) //intervalo ascendente
+        distancia = RetornarSubescrito(n2) - RetornarSubescrito(n1) + 1;
+    else // intervalo descendente
+        distancia = (7 - RetornarSubescrito(n1))  + RetornarSubescrito(n2) ;
+
+    this->setNumero(distancia);
+
+//    cout << "ido" << RetornarSubescrito(this->getT1().getNota()) << endl;
+//    cout << "ire" << RetornarSubescrito(this->getT2().getNota()) << endl;
+//    cout << "distancia" << distancia << endl;
+
+    int numero=0;
+    char qualidade=' ';
+    if (distancia==1){
+        numero = 2;
+        qualidade = 'm';
+    }else if (distancia==2){
+        numero = 2;
+        qualidade = 'M';
+    }else if (distancia==3){
+        numero = 3;
+        qualidade = 'm';
+    }
+    this->setNumero(numero);
+    this->setQualidade(qualidade);
+
 }
 
 string Intervalo::GerarDescricao(){
@@ -98,14 +126,16 @@ string Intervalo::GerarDescricao(){
     int diferencaEmSemiTons = this->getT2().getNota() - this->getT1().getNota();
 
     resposta += this->getT1().GerarDescricao() + " ";
-    resposta += this->getT2().GerarDescricao() + " - ";
-    //resposta += to_string(this->getNumero()) + " - ";
+    resposta += this->getT2().GerarDescricao() + " ";
+    resposta += to_string(this->getNumero()) + " ";
+    resposta += to_string(this->getQualidade()) + " ";
+/*
     resposta += to_string(this->getT1().getNota()) + " - ";
     resposta += to_string(this->getT2().getNota()) + " - ";
     resposta += to_string(RetornarSubescrito(this->getT1().getNota())) + " - ";
     resposta += to_string(RetornarSubescrito(this->getT2().getNota())) + " - ";
     resposta += to_string(diferencaEmSemiTons) + " - ";
-
+*/
     return resposta;
 
 }
