@@ -27,7 +27,7 @@ int main ( )
 
     ImprimirTitulo("Nota Musicais");
 
-	Intervalo i(3,2,0);
+	Intervalo i(3,1,0);
 	Tecla t;
 
 	t.setTecla(3,2,0);

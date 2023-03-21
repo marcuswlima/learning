@@ -80,7 +80,7 @@ void Tecla::setTecla( int o, int n, int a )
 string Tecla::GerarDescricao(){
     string strNota;
 
-    strNota = this->getOitava();
+    strNota = to_string(this->getOitava());
 
     switch (this->getNota())
     {

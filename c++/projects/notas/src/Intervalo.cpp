@@ -26,7 +26,6 @@ Intervalo::Intervalo(int o, int n, int a)
     setT1(t);
 }
 
-
 /////////////////////////////////////////
 // Acesso
 /////////////////////////////////////////
@@ -65,6 +64,28 @@ char Intervalo::getQualidade(){
 /////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
+
+int teclado[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
+
+int RetornarSubescrito(int nota){
+    int resposta;
+    for (int i=1;i<=12;i++){
+        if (teclado[i]==nota){
+            resposta = i;
+            break; 
+        }
+    }
+    return resposta;
+}
+
+string QualificarIntervalo(int diff){
+    string resposta = "";
+
+    if (diff==1) resposta = "2m";
+
+}
+
+
 void Intervalo::EncontrarQualificacao(Tecla t){
     setT2(t);
 
@@ -74,10 +95,16 @@ void Intervalo::EncontrarQualificacao(Tecla t){
 
 string Intervalo::GerarDescricao(){
     string resposta;
+    int diferencaEmSemiTons = this->getT2().getNota() - this->getT1().getNota();
 
     resposta += this->getT1().GerarDescricao() + " ";
     resposta += this->getT2().GerarDescricao() + " - ";
-    resposta += to_string(this->getNumero());
+    //resposta += to_string(this->getNumero()) + " - ";
+    resposta += to_string(this->getT1().getNota()) + " - ";
+    resposta += to_string(this->getT2().getNota()) + " - ";
+    resposta += to_string(RetornarSubescrito(this->getT1().getNota())) + " - ";
+    resposta += to_string(RetornarSubescrito(this->getT2().getNota())) + " - ";
+    resposta += to_string(diferencaEmSemiTons) + " - ";
 
     return resposta;
 
