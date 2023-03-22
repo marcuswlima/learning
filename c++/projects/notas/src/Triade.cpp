@@ -81,7 +81,13 @@ int RetornarSubescrito(int n){
 Tecla GerarSegundaNota(Tecla t, string ti){
     int quantidadeNotas, quantidadeSemitons;
 
-    if (ti=="3m"){
+    if (ti=="2m"){
+        quantidadeNotas=2;
+		quantidadeSemitons=1;
+    }else if (ti=="2M"){
+        quantidadeNotas=2;
+		quantidadeSemitons=3;
+    }else if (ti=="3m"){
         quantidadeNotas=3;
 		quantidadeSemitons=4;
     }else if (ti=="3M"){
@@ -96,19 +102,14 @@ Tecla GerarSegundaNota(Tecla t, string ti){
 Tecla GerarSegundaNota(Tecla t, int quantidadeNotas, int quantidadeSemitons){
 	Tecla r;
 
-	int o = t.getOitava(),
-		n = t.getNota(),
-		a = t.getAcidente();
-
     r = t.qualRelativa(quantidadeNotas);
     
+    // determinar acidente adequado
     int sub1=RetornarSubescrito(t.getNota()); //1
-    int sub2=RetornarSubescrito(n);           //5
+    int sub2=RetornarSubescrito(r.getNota()); //5
     int diffSemiToms = (sub2-sub1+1);
-    a = quantidadeSemitons - diffSemiToms;
+    int a = quantidadeSemitons - diffSemiToms;
 
-	//r.setOitava(o);
-	//r.setNota(n);
 	r.setAcidente(a);
 
 	return r;
