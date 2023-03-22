@@ -14,17 +14,17 @@ public:
     Tecla getT1();
     void setT2(Tecla);
     Tecla getT2();
-    void setNumero(int);
-    int getNumero();
+    void setQuantidadeNotas(int);
+    int getQuantidadeNotas();
     void setQualidade(char);
-    char getQualidade();
+    string getQualidade();
     void EncontrarQualificacao(Tecla);      // em função da segunda nota
-    void EncontrarSegundaNota(int, char);   // em funçaõ da qualificação
+    void EncontrarSegundaNota(int, string);   // em funçaõ da qualificação
     string GerarDescricao();
     void Imprimir();                        // se existir as duas notas;
 private:
     Tecla t1;
     Tecla t2;
-    int numero; //[2-7]
-    char qualidade; //['m','M','J'];
+    int quantidadeNotas; //[2-7]
+    string qualidade; //["3xd","2xd","d","m","M","J","A","2xA","3xA"];
 };

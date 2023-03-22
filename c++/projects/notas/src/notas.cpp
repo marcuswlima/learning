@@ -28,10 +28,10 @@ int main ( )
     ImprimirTitulo("Nota Musicais");
 
 	Tecla t1(3,7,0), t2;
-	t1.Imprimir();
+	t1.ImprimirEmTela();
 	for (int i=2;i<=7; i++){
 		t2=t1.qualRelativa(i);
-		t2.Imprimir();
+		t2.ImprimirEmTela();
 	}
 
 
@@ -69,9 +69,7 @@ int main ( )
 void EncontrarQualificacao(int n, int a){
 	Intervalo i(3,n,a);
 	Tecla t;
-
-
-}
+	}
 
 int menu(){
 	int escolha;
@@ -93,7 +91,7 @@ void Notas(){
      
 	for (int i=1;i<=quantNotas;i++){
 		t.Aleatorio();
-		t.Imprimir();
+		t.ImprimirEmTela();
 	}
 
 	cout << endl << endl;
@@ -127,7 +125,7 @@ void IntervalosGerarIntervalo(){
 
 	int numero;
 	t.Aleatorio();
-	t.Imprimir();
+	t.ImprimirEmTela();
 
 	cout << "- ";
 	numero=GerarInteiro(2,8);
@@ -156,7 +154,7 @@ int GerarNovaNota(int inferior,int superior,int antiga){
 void IntervalosGerarSegundaNota(){
 	int notaN1, novaN2;
 	t.Aleatorio();
-	t.Imprimir();
+	t.ImprimirEmTela();
 
     notaN1 = t.getNota();
 	novaN2 = GerarNovaNota(1,7,notaN1);
@@ -166,7 +164,7 @@ void IntervalosGerarSegundaNota(){
 	
 	t.setNota(novaN2);
 	t.setAcidente(GerarInteiro(-1,1));
-	t.Imprimir();
+	t.ImprimirEmTela();
 	
 
     cout << " / ";
@@ -198,7 +196,7 @@ void Acordes_um(){
 	int idAcorde=GerarInteiro(1,4);
 	string descAcorde; 
 	t.Aleatorio();
-	t.Imprimir();
+	t.ImprimirEmTela();
 
 	switch (idAcorde){
     	case 1:descAcorde="Maior";break;

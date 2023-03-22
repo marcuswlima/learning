@@ -1,3 +1,6 @@
+#include <iostream>
+#include <iomanip>
+#include <stdexcept> // for invalid_argument exception class
 #include <string>
 using namespace std;
 
@@ -17,7 +20,7 @@ public:
     int getNota();
     int getAcidente();
     string GerarDescricao();
-    void Imprimir();
+    void ImprimirEmTela();
     void Aleatorio();
     Tecla qualRelativa(int);
     int oitava;     // 0--8     / oitavas de um pianao

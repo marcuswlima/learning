@@ -1,6 +1,3 @@
-#include <iostream>
-#include <iomanip>
-#include <stdexcept> // for invalid_argument exception class
 #include "Tecla.h"
 #include "../../lib/Mathematics.h"
 
@@ -131,7 +128,7 @@ string Tecla::GerarDescricao(){
 
 }
 
-void Tecla::Imprimir(){
+void Tecla::ImprimirEmTela(){
 
     cout << this->GerarDescricao() << " ";
 
