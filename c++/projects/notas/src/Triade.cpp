@@ -6,7 +6,7 @@ Tecla GerarSegundaNota(Tecla, string);
 Tecla GerarSegundaNota(Tecla t, int quantidadeNotas, int quantidadeSemitons);
 
 Triade::Triade(Tecla t){
-    this->GerarTriade(t);
+    this->GerarTriade(t,"M"); //maior
 }
 
 void Triade::setT1(Tecla t){
@@ -45,10 +45,23 @@ string Triade::GerarDescricao(){
 	return resposta;
 }
 
-void Triade::GerarTriade(Tecla t){
+void Triade::GerarTriade(Tecla t, string tipoIntervalo){
     this->setT1(t);
-    this->setT3(GerarSegundaNota(t,"3M"));
-    this->setT5(GerarSegundaNota(this->getT3(),"3m"));
+
+    if (tipoIntervalo=="M"){
+        this->setT3(GerarSegundaNota(t,"3M"));
+        this->setT5(GerarSegundaNota(this->getT3(),"3m"));
+    }else if (tipoIntervalo=="m"){
+        this->setT3(GerarSegundaNota(t,"3m"));
+        this->setT5(GerarSegundaNota(this->getT3(),"3M"));
+    }else if (tipoIntervalo=="d"){
+        this->setT3(GerarSegundaNota(t,"3m"));
+        this->setT5(GerarSegundaNota(this->getT3(),"3m"));
+    }else if (tipoIntervalo=="A"){
+        this->setT3(GerarSegundaNota(t,"3M"));
+        this->setT5(GerarSegundaNota(this->getT3(),"3M"));
+    }
+
 }
 
 
@@ -87,19 +100,15 @@ Tecla GerarSegundaNota(Tecla t, int quantidadeNotas, int quantidadeSemitons){
 		n = t.getNota(),
 		a = t.getAcidente();
 
-	n += (quantidadeNotas-1);
-	if (n>7){
-		n -= 7;
-		o++;
-	}
+    r = t.qualRelativa(quantidadeNotas);
     
     int sub1=RetornarSubescrito(t.getNota()); //1
     int sub2=RetornarSubescrito(n);           //5
     int diffSemiToms = (sub2-sub1+1);
     a = quantidadeSemitons - diffSemiToms;
 
-	r.setOitava(o);
-	r.setNota(n);
+	//r.setOitava(o);
+	//r.setNota(n);
 	r.setAcidente(a);
 
 	return r;
