@@ -20,10 +20,14 @@ IF %ERRORLEVEL% EQU 0 (
 
     echo Intervalo.cpp...
     g++ -c %SRC%\Intervalo.cpp -o %OBJ%\Intervalo.o 
+
+    echo Triade.cpp...
+    g++ -c %SRC%\Triade.cpp -o %OBJ%\Triade.o 
+
     IF %ERRORLEVEL% EQU 0  (
 
         echo linkando tudo...
-        g++ -Wextra -Werror %OBJ%\Tecla.o %OBJ%\%NOME%.o %OBJ%\ObterNumero.o %OBJ%\BarraTitulo.o %OBJ%\Mathematics.o %OBJ%\Intervalo.o -o %OBJ%\%NOME%.exe        
+        g++ -Wextra -Werror %OBJ%\Tecla.o %OBJ%\%NOME%.o %OBJ%\ObterNumero.o %OBJ%\BarraTitulo.o %OBJ%\Mathematics.o %OBJ%\Intervalo.o %OBJ%\Triade.o -o %OBJ%\%NOME%.exe        
 
         IF %ERRORLEVEL% EQU 0  (
             echo Executando...

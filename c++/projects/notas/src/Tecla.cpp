@@ -13,9 +13,9 @@ bool teclaValida( int o, int n, int a );
 /////////////////////////////////////////
 Tecla::Tecla()
 {
-    setOitava(4);
-    setNota(1);
-    setAcidente(0);
+    //setOitava(0);
+    //setNota(1);
+    //setAcidente(0);
 } 
 
 Tecla::Tecla(int o, int n, int a)

@@ -14,6 +14,7 @@ public:
     Tecla getT5();
 
     
+    void GerarTriade(Tecla t);
     void ImprimirEmTela();
     string GerarDescricao();
 private:

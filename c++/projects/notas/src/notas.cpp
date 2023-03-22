@@ -4,6 +4,7 @@ using namespace std;
 
 #include "Tecla.h"
 #include "Intervalo.h"
+#include "Triade.h"
 #include "../../lib/BarraTitulo.h"
 #include "../../lib/ObterNumero.h"
 #include "../../lib/Mathematics.h"
@@ -27,16 +28,52 @@ int main ( )
 
     ImprimirTitulo("Nota Musicais");
 
+    int opcao=0;
+	do{
+        opcao=menu();
+
+		switch(opcao){
+			case 1:Notas();break;
+			case 2:Intervalos();break;
+			case 3:Acordes();break;
+		}
+    }while (opcao!=0);
+
+/*
+	Triade tri(t);
+	t.setTecla(2,1,0);
+	tri.GerarTriade(t);
+	tri.ImprimirEmTela();
+	t.setTecla(2,2,0);
+	tri.GerarTriade(t);
+	tri.ImprimirEmTela();
+	t.setTecla(2,3,0);
+	tri.GerarTriade(t);
+	tri.ImprimirEmTela();
+	t.setTecla(2,4,0);
+	tri.GerarTriade(t);
+	tri.ImprimirEmTela();
+	t.setTecla(2,5,0);
+	tri.GerarTriade(t);
+	tri.ImprimirEmTela();
+	t.setTecla(2,6,0);
+	tri.GerarTriade(t);
+	tri.ImprimirEmTela();
+	t.setTecla(2,7,0);
+	tri.GerarTriade(t);
+	tri.ImprimirEmTela();
+	//tri.ImprimirEmTela();
+
+
+
+
+
 	Tecla t1(3,7,0), t2;
 	t1.ImprimirEmTela();
 	for (int i=2;i<=7; i++){
 		t2=t1.qualRelativa(i);
 		t2.ImprimirEmTela();
 	}
-
-
-
-/*
 
 	Intervalo i(3,1,0);
 	Tecla t;
@@ -53,15 +90,6 @@ int main ( )
 
     int opcao=0;
 
-    do{
-        opcao=menu();
-
-		switch(opcao){
-			case 1:Notas();break;
-			case 2:Intervalos();break;
-			case 3:Acordes();break;
-		}
-    }while (opcao!=0);
 */
     return 0; //indica o fim do programa
 }
