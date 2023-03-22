@@ -16,6 +16,8 @@ void Notas();
 void Intervalos();
 void Acordes();
 void Acordes_um();
+void TesteTodosAcordes();
+void ChamarMenu();
 
 Tecla t;
 /////////////////////////////////////////
@@ -27,7 +29,13 @@ int main ( )
 
 
     ImprimirTitulo("Nota Musicais");
+	TesteTodosAcordes();
+	//ChamarMenu();
 
+    return 0; //indica o fim do programa
+}
+
+void ChamarMenu(){
     int opcao=0;
 	do{
         opcao=menu();
@@ -39,59 +47,30 @@ int main ( )
 		}
     }while (opcao!=0);
 
-/*
+}
+
+void TesteTodosAcordes(){
 	Triade tri(t);
-	t.setTecla(2,1,0);
-	tri.GerarTriade(t);
-	tri.ImprimirEmTela();
-	t.setTecla(2,2,0);
-	tri.GerarTriade(t);
-	tri.ImprimirEmTela();
-	t.setTecla(2,3,0);
-	tri.GerarTriade(t);
-	tri.ImprimirEmTela();
-	t.setTecla(2,4,0);
-	tri.GerarTriade(t);
-	tri.ImprimirEmTela();
-	t.setTecla(2,5,0);
-	tri.GerarTriade(t);
-	tri.ImprimirEmTela();
-	t.setTecla(2,6,0);
-	tri.GerarTriade(t);
-	tri.ImprimirEmTela();
-	t.setTecla(2,7,0);
-	tri.GerarTriade(t);
-	tri.ImprimirEmTela();
-	//tri.ImprimirEmTela();
-
-
-
-
-
-	Tecla t1(3,7,0), t2;
-	t1.ImprimirEmTela();
-	for (int i=2;i<=7; i++){
-		t2=t1.qualRelativa(i);
-		t2.ImprimirEmTela();
+	cout << "Maiores"    << "\t\t\t\t" 
+	     << "Menores"    << "\t\t\t\t"  
+	     << "Aumentados" << "\t\t\t"  
+	     << "Diminutos"  
+		 << endl;
+	for (int i=1;i<=7;i++){
+		t.setTecla(3,i,0);
+		tri.GerarTriade(t,"M");
+		tri.ImprimirEmTela();
+		cout << "\t\t";
+		tri.GerarTriade(t,"m");
+		tri.ImprimirEmTela();
+		cout << "\t\t";
+		tri.GerarTriade(t,"A");
+		tri.ImprimirEmTela();
+		cout << "\t\t";
+		tri.GerarTriade(t,"d");
+		tri.ImprimirEmTela();
+		cout << endl;
 	}
-
-	Intervalo i(3,1,0);
-	Tecla t;
-
-	t.setTecla(3,2,0);
-	i.EncontrarQualificacao(t);
-	i.Imprimir();
-	cout << endl;
-
-	t.setTecla(3,3,0);
-	i.EncontrarQualificacao(t);
-	i.Imprimir();
-	cout << endl;
-
-    int opcao=0;
-
-*/
-    return 0; //indica o fim do programa
 }
 
 void EncontrarQualificacao(int n, int a){

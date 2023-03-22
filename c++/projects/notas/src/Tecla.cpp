@@ -130,7 +130,7 @@ string Tecla::GerarDescricao(){
 
 void Tecla::ImprimirEmTela(){
 
-    cout << this->GerarDescricao() << " ";
+    cout << this->GerarDescricao();
 
 }
 

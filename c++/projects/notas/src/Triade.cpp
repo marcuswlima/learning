@@ -34,13 +34,13 @@ Tecla Triade::getT5(){
 }
 
 void Triade::ImprimirEmTela(){
-	cout << this->GerarDescricao()<< endl;
+	cout << this->GerarDescricao();
 }
 
 string Triade::GerarDescricao(){
 	string resposta=""; 
-    resposta += this->getT1().GerarDescricao()+ " ";
-    resposta += this->getT3().GerarDescricao()+ " ";
+    resposta += this->getT1().GerarDescricao()+ "\t";
+    resposta += this->getT3().GerarDescricao()+ "\t";
     resposta += this->getT5().GerarDescricao();
 	return resposta;
 }
@@ -108,7 +108,7 @@ Tecla GerarSegundaNota(Tecla t, int quantidadeNotas, int quantidadeSemitons){
     int sub1=RetornarSubescrito(t.getNota()); //1
     int sub2=RetornarSubescrito(r.getNota()); //5
     int diffSemiToms = (sub2-sub1+1);
-    int a = quantidadeSemitons - diffSemiToms;
+    int a = quantidadeSemitons - diffSemiToms + t.getAcidente();
 
 	r.setAcidente(a);
 
