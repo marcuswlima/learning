@@ -6,7 +6,7 @@ Tecla GerarSegundaNota(Tecla, string);
 Tecla GerarSegundaNota(Tecla t, int quantidadeNotas, int quantidadeSemitons);
 
 Triade::Triade(Tecla t){
-    this->GerarTriade(t,"M"); //maior
+//    this->GerarTriade(t,"M"); //maior
 }
 
 void Triade::setT1(Tecla t){
@@ -65,18 +65,6 @@ void Triade::GerarTriade(Tecla t, string tipoIntervalo){
 }
 
 
-int umaoitava[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
-int RetornarSubescrito(int n){
-    int resposta;
-    for (int i=1;i<=12;i++){
-        if (umaoitava[i]==n){
-            resposta = i;
-            break; 
-        }
-    }
-    return resposta;
-}
-
 
 Tecla GerarSegundaNota(Tecla t, string ti){
     int quantidadeNotas, quantidadeSemitons;
@@ -99,16 +87,52 @@ Tecla GerarSegundaNota(Tecla t, string ti){
 
 }
 
+int umaoitava[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
+int RetornarSubescrito(int n){
+    int resposta;
+    for (int i=1;i<=12;i++){
+        if (umaoitava[i]==n){
+            resposta = i;
+            break; 
+        }
+    }
+    return resposta;
+}
+
+
 Tecla GerarSegundaNota(Tecla t, int quantidadeNotas, int quantidadeSemitons){
 	Tecla r;
 
+//    cout << "*****"<< endl;
+
     r = t.qualRelativa(quantidadeNotas);
-    
+
+//    t.ImprimirEmTela();
+//    cout << endl;
+//    r.ImprimirEmTela();
+//    cout << endl;
+  
     // determinar acidente adequado
-    int sub1=RetornarSubescrito(t.getNota()); //1
-    int sub2=RetornarSubescrito(r.getNota()); //5
-    int diffSemiToms = (sub2-sub1+1);
-    int a = quantidadeSemitons - diffSemiToms + t.getAcidente();
+
+    int sub1, sub2, diffSemiToms, a;
+    sub1=RetornarSubescrito(t.getNota()); //1
+    sub2=RetornarSubescrito(r.getNota()); //5
+//    cout << "sub1 " << sub1 << endl;
+//    cout << "sub2 " << sub2 << endl;
+
+    if (t.getNota()<r.getNota()){
+        diffSemiToms = (sub2-sub1+1);
+    }else{
+        diffSemiToms=(12-sub1)+sub2+1;
+    }
+//    cout << "diffSemiToms " << diffSemiToms << endl;
+
+
+
+    a = quantidadeSemitons - diffSemiToms + t.getAcidente();
+
+
+//    cout << "a " << a << endl;
 
 	r.setAcidente(a);
 

@@ -32,6 +32,12 @@ int main ( )
 	TesteTodosAcordes();
 	//ChamarMenu();
 
+	//Tecla t;
+	//Triade tri(t);
+	//t.setTecla(3,6,0);
+	//tri.GerarTriade(t,"M");
+	//tri.ImprimirEmTela();
+
     return 0; //indica o fim do programa
 }
 
@@ -57,7 +63,7 @@ void TesteTodosAcordes(){
 	     << "Diminutos"  
 		 << endl;
 	for (int i=1;i<=7;i++){
-		t.setTecla(3,i,0);
+		t.setTecla(7,i,0);
 		tri.GerarTriade(t,"M");
 		tri.ImprimirEmTela();
 		cout << "\t\t";
