@@ -1,3 +1,6 @@
+#include <iostream>
+using std::cout;
+
 #include "Tecla.h"
 
 class Triade{
@@ -7,9 +10,15 @@ public:
     Tecla getT1();
     void setT3(Tecla);
     Tecla getT3();
-    void imprimir();
-    void gerarMaior();
+    void setT5(Tecla);
+    Tecla getT5();
+
+    
+    void GerarTriade(Tecla, string);
+    void ImprimirEmTela();
+    string GerarDescricao();
 private:
     Tecla t1;
     Tecla t3;
+    Tecla t5;
 };

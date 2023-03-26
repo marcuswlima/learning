@@ -2,7 +2,7 @@
 OBJ=obj
 SRC=src
 LIB=../lib
-NOME=notas2
+NOME=notas
 
 echo "BarraTitulo.cpp..."
 g++ -c $LIB/BarraTitulo.cpp    -o $OBJ/BarraTitulo.o
@@ -21,6 +21,8 @@ if [ $? -eq 0 ]; then
 	g++ -c $SRC/Tecla.cpp -o $OBJ/Tecla.o
 	echo "Intervalo.cpp..."
 	g++ -c $SRC/Intervalo.cpp -o $OBJ/Intervalo.o
+	echo "Triade.cpp..."
+	g++ -c $SRC/Triade.cpp -o $OBJ/Triade.o
 
     if [ $? -eq 0 ]; then
 
@@ -32,6 +34,7 @@ if [ $? -eq 0 ]; then
             $OBJ/Mathematics.o \
             $OBJ/ObterNumero.o \
             $OBJ/Intervalo.o   \
+            $OBJ/Triade.o      \
                 -o $OBJ/$NOME.sh
 
         if [ $? -eq 0 ]; then

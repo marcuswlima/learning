@@ -1,6 +1,3 @@
-#include <iostream>
-#include <iomanip>
-#include <stdexcept> // for invalid_argument exception class
 #include "Tecla.h"
 #include "../../lib/Mathematics.h"
 
@@ -16,9 +13,9 @@ bool teclaValida( int o, int n, int a );
 /////////////////////////////////////////
 Tecla::Tecla()
 {
-    setOitava(4);
-    setNota(1);
-    setAcidente(0);
+    //setOitava(0);
+    //setNota(1);
+    //setAcidente(0);
 } 
 
 Tecla::Tecla(int o, int n, int a)
@@ -131,9 +128,9 @@ string Tecla::GerarDescricao(){
 
 }
 
-void Tecla::Imprimir(){
+void Tecla::ImprimirEmTela(){
 
-    cout << this->GerarDescricao() << " ";
+    cout << this->GerarDescricao();
 
 }
 

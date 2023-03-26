@@ -45,19 +45,19 @@ Tecla Intervalo::getT2(){
     return t2;
 }
 
-void Intervalo::setNumero(int n){
-    numero = n;
+void Intervalo::setQuantidadeNotas(int n){
+    quantidadeNotas = n;
 }
 
-int Intervalo::getNumero(){
-    return numero;
+int Intervalo::getQuantidadeNotas(){
+    return quantidadeNotas;
 }
 
 void Intervalo::setQualidade(char q){
     qualidade = q;
 }
 
-char Intervalo::getQualidade(){
+string Intervalo::getQualidade(){
     return qualidade;
 }
 
@@ -67,21 +67,12 @@ char Intervalo::getQualidade(){
 
 int teclado[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
 
-int RetornarSubescrito(int nota){
-    int resposta;
-    for (int i=1;i<=12;i++){
-        if (teclado[i]==nota){
-            resposta = i;
-            break; 
-        }
-    }
-    return resposta;
-}
-
 string QualificarIntervalo(int diff){
     string resposta = "";
 
     if (diff==1) resposta = "2m";
+    
+    return " ";
 
 }
 
@@ -92,13 +83,13 @@ void Intervalo::EncontrarQualificacao(Tecla t){
     this->setT2(t);
     n1=this->getT1().getNota();
     n2=this->getT2().getNota();
-
+/*
     if (n1<n2) //intervalo ascendente
         distancia = RetornarSubescrito(n2) - RetornarSubescrito(n1) + 1;
     else // intervalo descendente
         distancia = (7 - RetornarSubescrito(n1))  + RetornarSubescrito(n2) ;
-
-    this->setNumero(distancia);
+*/
+    this->setQuantidadeNotas(distancia);
 
 //    cout << "ido" << RetornarSubescrito(this->getT1().getNota()) << endl;
 //    cout << "ire" << RetornarSubescrito(this->getT2().getNota()) << endl;
@@ -116,7 +107,7 @@ void Intervalo::EncontrarQualificacao(Tecla t){
         numero = 3;
         qualidade = 'm';
     }
-    this->setNumero(numero);
+    this->setQuantidadeNotas(numero);
     this->setQualidade(qualidade);
 
 }
@@ -127,8 +118,8 @@ string Intervalo::GerarDescricao(){
 
     resposta += this->getT1().GerarDescricao() + " ";
     resposta += this->getT2().GerarDescricao() + " ";
-    resposta += to_string(this->getNumero()) + " ";
-    resposta += to_string(this->getQualidade()) + " ";
+    resposta += to_string(this->getQuantidadeNotas()) + " ";
+    resposta += this->getQualidade() + " ";
 /*
     resposta += to_string(this->getT1().getNota()) + " - ";
     resposta += to_string(this->getT2().getNota()) + " - ";
