@@ -1,14 +1,22 @@
-#include <iostream>
-#include <iomanip>
-#include <stdexcept> // for invalid_argument exception class
-#include <string>
-using namespace std;
+@startuml
+class Triade{
+    Triade(Tecla);
+    void setT1(Tecla);
+    Tecla getT1();
+    void setT3(Tecla);
+    Tecla getT3();
+    void setT5(Tecla);
+    Tecla getT5();
+    void GerarTriade(Tecla, string);
+    void ImprimirEmTela();
+    string GerarDescricao();
+    Tecla t1;
+    Tecla t3;
+    Tecla t5;
+}
 
-#ifndef TIME_H
-#define TIME_H
-// Time class definition
+
 class Tecla {
-public:
     Tecla(); // constructor
     Tecla(int, int, int ); // constructor
     void setTecla( int, int, int ); 
@@ -22,9 +30,11 @@ public:
     void ImprimirEmTela();
     void Aleatorio();
     Tecla qualRelativa(int);
-private:
     int oitava;     // 0--8     / oitavas de um pianao
     int nota;       // 1--7     / do,re,mi,fa,sol,la,si,
-    int acidente;   // [-1,0,1] / bemol, sim acidente, sustenido
-}; // end class Time
-#endif
+    int acidente;   // [-1,0,1] / bemol, sem acidente, sustenido
+}
+
+Tecla "3" *-- Triade: Contém
+
+@enduml

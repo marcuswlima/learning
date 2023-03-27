@@ -1,0 +1,18 @@
+@startuml
+left to right direction
+skinparam actorStyle awesome
+rectangle "Gerador Exercicio" {
+    Package "Intervalo"{
+      "Intervalo Simples / Segunda nota" as (Use01)
+      "Segunda nota / Intervalo Simples" as (Use02)
+    }
+    Package "Tríade"{
+     "Tríade / 3º e 5º notas" as (Use03)
+     "3º e 5º notas / Tríade" as (Use04)
+    }
+}
+:Usuário: --> (Use01)
+:Usuário: --> (Use02)
+:Usuário: --> (Use03)
+:Usuário: --> (Use04)
+@enduml

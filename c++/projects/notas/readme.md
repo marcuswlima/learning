@@ -1,15 +1,14 @@
 # Notas
 
-## Notas Soltas
+![Modelo](/notas/documetation/usecase.png)
 
-- Gerar notas pontuais em função de uma quantidade, utilizando toda a extensão do teclado - 8 oitavas completas e 2 incompletas
 
 ## Intervalos
 
-|Opção |Gera |Gera| Pede
-| :--: | -- | -- |-- |
-| 1 | Primeira Nota| Intervalo Simples|Segunda Nota
-| 2 | Primeira Nota| Segunda Nota | Intervalor Simples
+|Opção |Gera| Pede
+| :--: | -- |-- |
+| 1 | Intervalo Simples|Segunda Nota
+| 2 | Segunda Nota | Intervalo Simples
 
 - Intervalo Simples
 	- 2m(1), 2M(2)
@@ -20,16 +19,29 @@
 	- 8J(12)
 
 
-## Triades
+## Tríades
 
-|Opção |Gera |Gera| Pede
-| :--: | -- | -- |-- |
-| 1 | Primeira Nota| Acorde |Segunda e terceira Nota
-| 2 | Primeira Nota| Segunda e terceira Nota | Acorde
+|Opção |Gera | Pede
+| :--: | -- | -- |
+| 1 | Tríade |Terca e quinta Nota
+| 2 | Terca e quinta Nota | Tipo de Triade
 
-- Tipos de Acordes
+- Tipos de Triade
 	- Maior  - 3M + 3m
 	- Menor - 3m + 3M
 	- Aumentado - 3M + 3M
 	- Diminuto - 3m + 3m
+
+
+# Class Diagram
+
+![Modelo](/notas/documetation/classDiagram.png)
+
+_____
+
+
+
+## Notas Soltas
+
+- Gerar notas pontuais em função de uma quantidade, utilizando toda a extensão do teclado - 8 oitavas completas e 2 incompletas
 
