@@ -29,8 +29,8 @@ int main ( )
 
 
     ImprimirTitulo("Nota Musicais");
-	TesteTodosAcordes();
-	//ChamarMenu();
+	//TesteTodosAcordes();
+	ChamarMenu();
 
 	//Tecla t;
 	//Triade tri(t);
@@ -47,9 +47,8 @@ void ChamarMenu(){
         opcao=menu();
 
 		switch(opcao){
-			case 1:Notas();break;
-			case 2:Intervalos();break;
-			case 3:Acordes();break;
+			case 1:Intervalos();break;
+			case 2:Acordes();break;
 		}
     }while (opcao!=0);
 
@@ -87,12 +86,11 @@ void EncontrarQualificacao(int n, int a){
 int menu(){
 	int escolha;
     cout << "**********************\n";
-    cout << "** 1 - Notas Soltas **\n";
-    cout << "** 2 - Intervalos   **\n";
-    cout << "** 3 - Acordes      **\n";
+    cout << "** 1 - Intervalos   **\n";
+    cout << "** 2 - Triades      **\n";
     cout << "** 0 - Sair         **\n";
     cout << "***********************\n";
-	escolha=ObterNumeroNaFaixa("Indique qual módulo [1,2,3,0] -> ",0,3);
+	escolha=ObterNumeroNaFaixa("Indique qual módulo [1,2,0] -> ",0,2);
     return escolha;
 }
 

@@ -1,6 +1,6 @@
 # Notas
 
-![Modelo](/documetation/usecase.png)
+![Modelo](usecase.png)
 
 
 ## Intervalos
@@ -35,7 +35,7 @@
 
 # Class Diagram
 
-![Modelo](/documetation/classDiagram.png)
+![Modelo](classDiagram.png)
 
 _____
 
