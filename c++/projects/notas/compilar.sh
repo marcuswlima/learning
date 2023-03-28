@@ -17,22 +17,22 @@ if [ $? -eq 0 ]; then
 
     echo "Compilando $NOME..."
     g++ -c $SRC/$NOME.cpp -o $OBJ/$NOME.o 
-	echo "Nota.cpp..."
-	g++ -c $SRC/Nota.cpp -o $OBJ/Nota.o
 	echo "Intervalo.cpp..."
 	g++ -c $SRC/Intervalo.cpp -o $OBJ/Intervalo.o
 	echo "Triade.cpp..."
 	g++ -c $SRC/Triade.cpp -o $OBJ/Triade.o
+	echo "Nota.cpp..."
+	g++ -c $SRC/Nota.cpp -o $OBJ/Nota.o
 
     if [ $? -eq 0 ]; then
 
         echo "Linkando...."
-        g++ $OBJ/$NOME.o       \
-            $OBJ/BarraTitulo.o \
+        g++ $OBJ/BarraTitulo.o \
             $OBJ/PrintArray.o  \
             $OBJ/Mathematics.o \
-            $OBJ/Nota.o \
             $OBJ/ObterNumero.o \
+            $OBJ/$NOME.o       \
+            $OBJ/Nota.o        \
             $OBJ/Intervalo.o   \
             $OBJ/Triade.o      \
                 -o $OBJ/$NOME.sh

@@ -1,8 +1,4 @@
 #include "Intervalo.h"
-#include "../../lib/Mathematics.h"
-
-
-
 
 /////////////////////////////////////////
 // Declarations
@@ -76,17 +72,28 @@ string Intervalo::getDescIntervalo(){
 Determinar a segunda nota de um intervalo em função de uma descrição de intervalo
 */
 Nota Intervalo::CalcularSegundaNota(string descIntervalo){
+
+    Nota temp;
+    cout << "Intervalo::CalcularSegundaNota"<<endl;
     int qdtNotasNaturais, qtdSemiTons;
     Nota n1=this->getN1();
+    n1.ImprimirEmTela();
+    cout << endl;
 
     QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
+    cout << "qdtNotasNaturais -> " << qdtNotasNaturais << endl;
+    cout << "qtdSemiTons -> " << qtdSemiTons << endl;
 
-    return GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons);
+    temp=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons);
+    temp.ImprimirEmTela();
+    cout << endl;
 
+    //this->setN2(temp);
+    return temp;
 
 }
 
-Nota Intervalo::GerarSegundaNotaAleatoria(){
+void Intervalo::RandomizarSegundaNota(){
     Nota n;
     int g1 , g2;
 
@@ -101,22 +108,19 @@ Nota Intervalo::GerarSegundaNotaAleatoria(){
     else 
         n.setOitava(this->getN1().getOitava()+1);
     
-    return n;
+    this->setN2(n);
 }
 
-
-
-
-string Intervalo::GerarDescricaoAleatoria(){
+string Intervalo::RandomizarDescricao(){
     string r;
 	int n;
 
 	n=GerarInteiro(2,8); // gera a nota
-    r += to_string(n);
+    r += to_string(n)+"ª";
 	if ((n==4)||(n==5)||(n==8))
 		r += "J";
     else {
-        n=GerarInteiro(2,8); // gera a nota
+        n=GerarInteiro(1,2); 
         if (n==1)
             r += "m";
         else
@@ -181,24 +185,36 @@ int RetornarSubescrito(int n){
 }
 
 
-Nota GerarSegundaNota(Nota t, int quantidadeNotas, int quantidadeSemitons){
-	Nota r;
+Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemitons){
+    cout << "* GerarSegundaNota"<<endl;
 
-    r = t.qualRelativa(quantidadeNotas);
+
+	Nota relativa = referencia.qualRelativa(quantidadeNotas);
+    
+    relativa.ImprimirEmTela();
+    cout << endl;
     int sub1, sub2, diffSemiToms, a;
-    sub1=RetornarSubescrito(t.getGrau()); //1
-    sub2=RetornarSubescrito(r.getGrau()); //5
+    sub1=RetornarSubescrito(referencia.getGrau()); //1
+    sub2=RetornarSubescrito(relativa.getGrau()); //5
 
-    if (t.getGrau()<r.getGrau()){
+    cout << "sub1-> "<<sub1<<endl;
+    cout << "sub2-> "<<sub2<<endl;
+
+    if (referencia.getGrau()<relativa.getGrau()){
         diffSemiToms = (sub2-sub1+1);
     }else{
         diffSemiToms=(12-sub1)+sub2+1;
     }
-    a = quantidadeSemitons - diffSemiToms + t.getAcidente();
+    a = quantidadeSemitons - diffSemiToms + referencia.getAcidente();
 
-	r.setAcidente(a);
+	relativa.setAcidente(a);
 
-	return r;
+    relativa.ImprimirEmTela();
+    cout << endl;
+
+
+    cout << "Fim - GerarSegundaNota"<<endl;
+	return relativa;
 	
 }
 

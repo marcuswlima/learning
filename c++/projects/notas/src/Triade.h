@@ -1,26 +1,28 @@
-#include <iostream>
-using std::cout;
-
-#include "Nota.h"
+#include "Intervalo.h"
 
 class Triade{
 public:
 // Constructors
-    Triade(Nota);
+    Triade();
+    Triade(Intervalo);
 // Sets&Gets
+    void setInt1(Intervalo);
+    Intervalo getInt1();
+    void setInt2(Intervalo);
+    Intervalo getInt2();
+    void setTipoTriade(char);
+    char getTipoTriade();
     void setN1(Nota);
     Nota getN1();
     void setN3(Nota);
     Nota getN3();
-    void setN5(Nota);
-    Nota getN5();
 // Implementações
-    void GerarTriade(Nota, string);
     void ImprimirEmTela();
     string GerarDescricao();
+    string RandomizarTipoTriade();
+    void RandomizarTriade();
 private:
-    Nota n1;
-    Nota n3;
-    Nota n5;
-    int tipoTriade; //['M','m','A','d']
+    Intervalo i1;
+    Intervalo i2;
+    char tipoTriade; //['M','m','A','d']
 };

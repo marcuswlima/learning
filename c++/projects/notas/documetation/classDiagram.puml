@@ -17,9 +17,9 @@ class Nota {
     Nota qualRelativa(int);
     string GerarDescricao();
     void ImprimirEmTela();
-    int oitava;     [1--8]
-    int grau;       [1--7]
-    int acidente;   [-2,0,2] [bb,b,0,#,*]
+    int oitava;     // 0--8 
+    int grau;       // 1--7 
+    int acidente;   // [-2,0,2] [bb,b,0,#,*]
 }
 
 class Intervalo {
@@ -34,34 +34,39 @@ class Intervalo {
     int  getQtdNotasNaturais();
     void setQtdSemiTons(int);
     int  GetQtdSemiTons();
-    void setQualidade(char);
-    char getQualidade();
-    void DeterminarSegundaNota(string); 
-    void DeterminarIntervalo(Nota);    
+    void setDescIntervalo(string);
+    string getDescIntervalo();
+    void CalcularSegundaNota(string); 
+    string CalcularDescricaoIntervalo(Nota);
+    string RandomizarDescricao();
+    void RandomizarSegundaNota();
     string GerarDescricao();
     void ImprimirEmTela();
     Nota n1;
     Nota n2;
-    int qtdNotasNaturais; [2-7]
-    int qtdSemiTons; [2-12]
-    char qualidade; ['m','M','J'];
+    int qtdNotasNaturais; //[2-7]
+    int qtdSemiTons;     //[2-12]
+    string descIntervalo; 
 }
 
 class Triade{
-    Triade(Tecla);
-    void setT1(Tecla);
-    Tecla getT1();
-    void setT3(Tecla);
-    Tecla getT3();
-    void setT5(Tecla);
-    Tecla getT5();
-    void GerarTriade(Tecla, string);
+    Triade();
+    void setInt1(Intervalo);
+    Intervalo getInt1();
+    void setInt2(Intervalo);
+    Intervalo getInt2();
+    void setTipoTriade(char);
+    char getTipoTriade();
+    void setN1(Nota);
+    Nota getN1();
+    void GerarTriade(Nota, string);
     void ImprimirEmTela();
     string GerarDescricao();
-    Tecla t1;
-    Tecla t3;
-    Tecla t5;
-    int tipoTriade ['M','m','A','d']
+    string RandomizarTipoTriade();
+    void RandomizarTriade();
+    Intervalo i1;
+    Intervalo i2;
+    char tipoTriade; //['M','m','A','d']
 }
 
 @enduml

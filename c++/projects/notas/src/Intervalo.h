@@ -1,7 +1,3 @@
-#include <iostream>
-#include <cmath>
-using namespace std;
-
 #include "Nota.h"
 
 class Intervalo {
@@ -9,7 +5,6 @@ public:
 // Constructors
     Intervalo();
     Intervalo(Nota);
-    Intervalo(Nota,Nota);
 // Sets&Gets
     void setN1(Nota);
     Nota getN1();
@@ -19,13 +14,13 @@ public:
     int  getQtdNotasNaturais();
     void setQtdSemiTons(int);
     int  GetQtdSemiTons();
-    void   setDescIntervalo(string);
+    void setDescIntervalo(string);
     string getDescIntervalo();
 // Implementações
     Nota CalcularSegundaNota(string); // em função da descricao
     string CalcularDescricaoIntervalo(Nota);     // em função da segunda nota
-    string GerarDescricaoAleatoria();
-    Nota GerarSegundaNotaAleatoria();
+    string RandomizarDescricao();
+    void RandomizarSegundaNota();
     string GerarDescricao();
     void ImprimirEmTela();
 private:
