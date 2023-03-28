@@ -1,50 +1,45 @@
 #include "Intervalo.h"
 
 
-int tipoIntervalor(Tecla, Tecla);
-void aumentarAlturaEmUmTom(Tecla &);
-void aumentarAlturaEmMeioTom(Tecla &);
+int tipoIntervalor(Nota, Nota);
+void aumentarAlturaEmUmTom(Nota &);
+void aumentarAlturaEmMeioTom(Nota &);
 
 /////////////////////////////////////////
 // construtores
 /////////////////////////////////////////
 Intervalo::Intervalo()
 {
-    Tecla t;
-    t.Aleatorio();
-    setT1(t);
+    Nota n;
+    n.Aleatorio();
+    setN1(n);
 }
 
-Intervalo::Intervalo(Tecla t)
+Intervalo::Intervalo(Nota n)
 {
-    setT1(t);
-}
-
-Intervalo::Intervalo(int o, int n, int a)
-{
-    Tecla t(o,n,a);
-    setT1(t);
+    setN1(n);
 }
 
 /////////////////////////////////////////
 // Acesso
 /////////////////////////////////////////
-void Intervalo::setT1(Tecla t){
-    t1 = t;
+
+void Intervalo::setN1(Nota n){
+    n1 = n;
 }
 
-Tecla Intervalo::getT1(){
-    return t1;
+Nota Intervalo::getN1(){
+    return n1;
 }
 
-void Intervalo::setT2(Tecla t){
-    t2 = t;
+void Intervalo::setN2(Nota t){
+    n2 = t;
 }
 
-Tecla Intervalo::getT2(){
-    return t2;
+Nota Intervalo::getN2(){
+    return n2;
 }
-
+/*
 void Intervalo::setQuantidadeNotas(int n){
     quantidadeNotas = n;
 }
@@ -60,7 +55,7 @@ void Intervalo::setQualidade(char q){
 string Intervalo::getQualidade(){
     return qualidade;
 }
-
+*/
 /////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
@@ -77,18 +72,18 @@ string QualificarIntervalo(int diff){
 }
 
 
-void Intervalo::EncontrarQualificacao(Tecla t){
+/*
+void Intervalo::EncontrarQualificacao(Nota t){
     int n1, n2, distancia;
 
-    this->setT2(t);
-    n1=this->getT1().getNota();
-    n2=this->getT2().getNota();
-/*
-    if (n1<n2) //intervalo ascendente
-        distancia = RetornarSubescrito(n2) - RetornarSubescrito(n1) + 1;
-    else // intervalo descendente
-        distancia = (7 - RetornarSubescrito(n1))  + RetornarSubescrito(n2) ;
-*/
+    this->setN2(t);
+    n1=this->getN1().getGrau();
+    n2=this->getN2().getGrau();
+
+//    if (n1<n2) //intervalo ascendente
+//        distancia = RetornarSubescrito(n2) - RetornarSubescrito(n1) + 1;
+//    else // intervalo descendente
+//        distancia = (7 - RetornarSubescrito(n1))  + RetornarSubescrito(n2) ;
     this->setQuantidadeNotas(distancia);
 
 //    cout << "ido" << RetornarSubescrito(this->getT1().getNota()) << endl;
@@ -108,25 +103,26 @@ void Intervalo::EncontrarQualificacao(Tecla t){
         qualidade = 'm';
     }
     this->setQuantidadeNotas(numero);
-    this->setQualidade(qualidade);
+'    this->setQualidade(qualidade);
 
 }
+*/
 
+
+/*
 string Intervalo::GerarDescricao(){
     string resposta;
-    int diferencaEmSemiTons = this->getT2().getNota() - this->getT1().getNota();
+    int diferencaEmSemiTons = this->getN2().getGrau() - this->getN1().getGrau();
 
-    resposta += this->getT1().GerarDescricao() + " ";
-    resposta += this->getT2().GerarDescricao() + " ";
+    resposta += this->getN1().GerarDescricao() + " ";
+    resposta += this->getN2().GerarDescricao() + " ";
     resposta += to_string(this->getQuantidadeNotas()) + " ";
     resposta += this->getQualidade() + " ";
-/*
-    resposta += to_string(this->getT1().getNota()) + " - ";
-    resposta += to_string(this->getT2().getNota()) + " - ";
-    resposta += to_string(RetornarSubescrito(this->getT1().getNota())) + " - ";
-    resposta += to_string(RetornarSubescrito(this->getT2().getNota())) + " - ";
-    resposta += to_string(diferencaEmSemiTons) + " - ";
-*/
+//    resposta += to_string(this->getT1().getNota()) + " - ";
+//    resposta += to_string(this->getT2().getNota()) + " - ";
+//    resposta += to_string(RetornarSubescrito(this->getT1().getNota())) + " - ";
+//    resposta += to_string(RetornarSubescrito(this->getT2().getNota())) + " - ";
+//    resposta += to_string(diferencaEmSemiTons) + " - ";
     return resposta;
 
 }
@@ -134,20 +130,23 @@ string Intervalo::GerarDescricao(){
 void Intervalo::Imprimir(){
     cout << this->GerarDescricao();
 }
+
+*/
+
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
 
 
-Tecla notaMenor(Tecla t1, Tecla t2){
+Nota notaMenor(Nota t1, Nota t2){
     if (t1.getOitava() < t2.getOitava())
         return t1;
     else if (t1.getOitava() > t2.getOitava())
         return t2;
     else //mesma oitava
-        if (t1.getNota() < t2.getNota())
+        if (t1.getGrau() < t2.getGrau())
             return t1;
-        if (t1.getNota() > t2.getNota())
+        if (t1.getGrau() > t2.getGrau())
             return t2;
         else // mesma nota
             if (t1.getAcidente() < t2.getAcidente())
@@ -158,15 +157,30 @@ Tecla notaMenor(Tecla t1, Tecla t2){
                 return t1; //teclas identicas
 }
 
-bool notasIguais(Tecla t1, Tecla t2){
+bool notasIguais(Nota t1, Nota t2){
     return t1.getOitava()   == t2.getOitava()  &&
-           t1.getNota()     == t2.getNota()    &&
+           t1.getGrau()     == t2.getGrau()    &&
            t1.getAcidente() == t2.getAcidente();
 }
 
-int tipoIntervalor(Tecla t1, Tecla t2){
-    int quantNotas = abs( t1.getNota() - t2.getNota() ), quantSemitons;
+int tipoIntervalor(Nota t1, Nota t2){
+    int quantNotas = abs( t1.getGrau() - t2.getGrau() ), quantSemitons;
     
     return quantNotas+1;
+}
+
+void QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiTons){
+
+    if      (descricao=="2m"){qdtNotasNaturais=2;qtdSemiTons= 1;}
+    else if (descricao=="2M"){qdtNotasNaturais=2;qtdSemiTons= 3;}
+    else if (descricao=="3m"){qdtNotasNaturais=3;qtdSemiTons= 4;}
+    else if (descricao=="3M"){qdtNotasNaturais=3;qtdSemiTons= 5;}
+    else if (descricao=="4J"){qdtNotasNaturais=4;qtdSemiTons= 6;}
+    else if (descricao=="5J"){qdtNotasNaturais=5;qtdSemiTons= 8;}
+    else if (descricao=="6m"){qdtNotasNaturais=6;qtdSemiTons= 9;}
+    else if (descricao=="6M"){qdtNotasNaturais=6;qtdSemiTons=10;}
+    else if (descricao=="7m"){qdtNotasNaturais=7;qtdSemiTons=11;}
+    else if (descricao=="7M"){qdtNotasNaturais=7;qtdSemiTons=12;}
+
 }
 
