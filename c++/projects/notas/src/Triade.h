@@ -22,5 +22,5 @@ private:
     Nota n1;
     Nota n3;
     Nota n5;
-    int tipoTriade //['M','m','A','d']
+    int tipoTriade; //['M','m','A','d']
 };

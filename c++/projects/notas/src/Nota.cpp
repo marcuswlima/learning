@@ -7,18 +7,12 @@ using namespace std;
 // Declarações
 /////////////////////////////////////////
 bool teclaValida( int, int, int);
-void Aleatorio(Nota n);
 
 /////////////////////////////////////////
 // construtores
 /////////////////////////////////////////
 Nota::Nota()
 {
-    this->setNota( 
-                   GerarInteiro( 0,9), // oitava
-                   GerarInteiro( 1,7), // grau
-                   GerarInteiro(-1,1)  // acidente
-                 );
 } 
 
 Nota::Nota(int o, int g, int a)
@@ -139,9 +133,9 @@ void Nota::ImprimirEmTela(){
 void Nota::Aleatorio(){
 
     do{
-          setOitava(GerarInteiro( 0,9));
+          setOitava(GerarInteiro( 1,7));
             setGrau(GerarInteiro( 1,7));
-        setAcidente(GerarInteiro(-1,1));
+        setAcidente(GerarInteiro(-2,2));
     }while(!teclaValida(getOitava(),getGrau(),getAcidente()));
 
 }
@@ -152,43 +146,25 @@ void Nota::Aleatorio(){
 /////////////////////////////////////////
 
 
-void Aleatorio(Nota n){
-
-    do{
-          n.setOitava(GerarInteiro( 0,9));
-            n.setGrau(GerarInteiro( 1,7));
-        n.setAcidente(GerarInteiro(-1,1));
-    }while(!teclaValida(n.getOitava(),n.getGrau(),n.getAcidente()));
-
-}
-
-bool teclaValida( int o, int n, int a ){
+bool teclaValida( int o, int g, int a ){
 
     /* 
-       1) Sete oitavas(1-7) completas em um piano
-       2) a oitava de ID 0 tem apenas 3 teclas (6 e 7)
-       3) a últiam tecla percente a oitava oitava de apenas uma nota (1)
+       1) Sete oitavas completas em um piano [1:7]
+       2) graus validos [1:7]
+       3) acidentes válidos[-2:2]
     */
 
-    bool valido=true;
+    bool bValido=true;
 
-    if ( o < 0 || o > 8 )
-        valido = false;
+    if ( o < 1 || o > 7 )
+        bValido = false;
     else 
-        if (
-            ( o == 0 && n <= 5 ) || //inicio do teclado
-            ( o == 8 && n != 1 ) || //final do teclado
-            ( n <= 0 || n >= 8 )    //faixa de nota
-        )
-            valido = false;
+        if ( g < 1 || g > 7 )    //faixa de nota
+            bValido = false;
         else
-            if (
-                    ((n == 1) && (a ==-1)) || // do-bemol
-                    ((n == 3) && (a == 1)) || // mi-sustenido
-                    ((n == 4) && (a ==-1)) || // fa-bemol
-                    ((n == 7) && (a == 1))    // si-sustenido
-            )
-                valido = false;
+            if ( a < -2 || a > 2 )    //acidente
+                bValido = false;
 
-    return valido;
+    return bValido;
+    //return true;
 }

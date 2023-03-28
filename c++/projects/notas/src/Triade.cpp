@@ -45,7 +45,7 @@ string Triade::GerarDescricao(){
 	return resposta;
 }
 
-
+/*
 int umaoitava[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
 int RetornarSubescrito(int n){
     int resposta;
@@ -79,7 +79,7 @@ Nota GerarSegundaNota(Nota t, int quantidadeNotas, int quantidadeSemitons){
 	return r;
 	
 }
-
+*/
 
 Nota GerarSegundaNota(Nota t, string ti){
     int quantidadeNotas, quantidadeSemitons;

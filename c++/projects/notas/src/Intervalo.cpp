@@ -1,18 +1,20 @@
 #include "Intervalo.h"
+#include "../../lib/Mathematics.h"
 
 
-int tipoIntervalor(Nota, Nota);
-void aumentarAlturaEmUmTom(Nota &);
-void aumentarAlturaEmMeioTom(Nota &);
+
+
+/////////////////////////////////////////
+// Declarations
+/////////////////////////////////////////
+void QuantidadesIntervalo(string , int &, int &);
+Nota GerarSegundaNota(Nota , int , int );
 
 /////////////////////////////////////////
 // construtores
 /////////////////////////////////////////
 Intervalo::Intervalo()
 {
-    Nota n;
-    n.Aleatorio();
-    setN1(n);
 }
 
 Intervalo::Intervalo(Nota n)
@@ -39,26 +41,175 @@ void Intervalo::setN2(Nota t){
 Nota Intervalo::getN2(){
     return n2;
 }
-/*
-void Intervalo::setQuantidadeNotas(int n){
-    quantidadeNotas = n;
+
+void Intervalo::setQtdNotasNaturais(int qnn){
+    this->qtdNotasNaturais = qnn;
+
+}
+int Intervalo::getQtdNotasNaturais(){
+    return qtdNotasNaturais;
+
+}
+void Intervalo::setQtdSemiTons(int qst){
+    qtdSemiTons = qst;
+
+}
+int Intervalo::GetQtdSemiTons(){
+    return qtdSemiTons;
+
+}
+void Intervalo::setDescIntervalo(string di){
+    descIntervalo = di;
+
+}
+string Intervalo::getDescIntervalo(){
+    return descIntervalo;
 }
 
-int Intervalo::getQuantidadeNotas(){
-    return quantidadeNotas;
-}
 
-void Intervalo::setQualidade(char q){
-    qualidade = q;
-}
-
-string Intervalo::getQualidade(){
-    return qualidade;
-}
-*/
 /////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
+
+
+/*
+Determinar a segunda nota de um intervalo em função de uma descrição de intervalo
+*/
+Nota Intervalo::CalcularSegundaNota(string descIntervalo){
+    int qdtNotasNaturais, qtdSemiTons;
+    Nota n1=this->getN1();
+
+    QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
+
+    return GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons);
+
+
+}
+
+Nota Intervalo::GerarSegundaNotaAleatoria(){
+    Nota n;
+    int g1 , g2;
+
+    g1 = this->getN1().getGrau();
+
+    n.Aleatorio();
+    g2 = n.getGrau();
+
+    // tornar o intervalo simples
+    if (g1 <= g2)
+        n.setOitava(this->getN1().getOitava());
+    else 
+        n.setOitava(this->getN1().getOitava()+1);
+    
+    return n;
+}
+
+
+
+
+string Intervalo::GerarDescricaoAleatoria(){
+    string r;
+	int n;
+
+	n=GerarInteiro(2,8); // gera a nota
+    r += to_string(n);
+	if ((n==4)||(n==5)||(n==8))
+		r += "J";
+    else {
+        n=GerarInteiro(2,8); // gera a nota
+        if (n==1)
+            r += "m";
+        else
+            r += "M";
+    }
+
+    return r;
+}
+
+
+string Intervalo::GerarDescricao(){
+    string resposta;
+
+    if (getN1().GerarDescricao()!=""){
+        resposta += this->getN1().GerarDescricao() + " ";
+        resposta += this->getN2().GerarDescricao() + " ";
+    }
+    else
+        resposta += "Primeira nota em branco";
+
+    return resposta;
+
+}
+
+void Intervalo::ImprimirEmTela(){
+    cout << this->GerarDescricao();
+}
+
+
+
+/////////////////////////////////////////
+// Implementações Internas
+/////////////////////////////////////////
+
+
+
+void QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiTons){
+
+    if      (descricao=="2m"){qdtNotasNaturais=2;qtdSemiTons= 1;}
+    else if (descricao=="2M"){qdtNotasNaturais=2;qtdSemiTons= 3;}
+    else if (descricao=="3m"){qdtNotasNaturais=3;qtdSemiTons= 4;}
+    else if (descricao=="3M"){qdtNotasNaturais=3;qtdSemiTons= 5;}
+    else if (descricao=="4J"){qdtNotasNaturais=4;qtdSemiTons= 6;}
+    else if (descricao=="5J"){qdtNotasNaturais=5;qtdSemiTons= 8;}
+    else if (descricao=="6m"){qdtNotasNaturais=6;qtdSemiTons= 9;}
+    else if (descricao=="6M"){qdtNotasNaturais=6;qtdSemiTons=10;}
+    else if (descricao=="7m"){qdtNotasNaturais=7;qtdSemiTons=11;}
+    else if (descricao=="7M"){qdtNotasNaturais=7;qtdSemiTons=12;}
+
+}
+
+int umaoitava[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
+int RetornarSubescrito(int n){
+    int resposta;
+    for (int i=1;i<=12;i++){
+        if (umaoitava[i]==n){
+            resposta = i;
+            break; 
+        }
+    }
+    return resposta;
+}
+
+
+Nota GerarSegundaNota(Nota t, int quantidadeNotas, int quantidadeSemitons){
+	Nota r;
+
+    r = t.qualRelativa(quantidadeNotas);
+    int sub1, sub2, diffSemiToms, a;
+    sub1=RetornarSubescrito(t.getGrau()); //1
+    sub2=RetornarSubescrito(r.getGrau()); //5
+
+    if (t.getGrau()<r.getGrau()){
+        diffSemiToms = (sub2-sub1+1);
+    }else{
+        diffSemiToms=(12-sub1)+sub2+1;
+    }
+    a = quantidadeSemitons - diffSemiToms + t.getAcidente();
+
+	r.setAcidente(a);
+
+	return r;
+	
+}
+
+
+
+
+/*
+/////////////////////////////////////////
+// Lixao
+/////////////////////////////////////////
+
 
 int teclado[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
 
@@ -72,7 +223,6 @@ string QualificarIntervalo(int diff){
 }
 
 
-/*
 void Intervalo::EncontrarQualificacao(Nota t){
     int n1, n2, distancia;
 
@@ -110,33 +260,6 @@ void Intervalo::EncontrarQualificacao(Nota t){
 
 
 /*
-string Intervalo::GerarDescricao(){
-    string resposta;
-    int diferencaEmSemiTons = this->getN2().getGrau() - this->getN1().getGrau();
-
-    resposta += this->getN1().GerarDescricao() + " ";
-    resposta += this->getN2().GerarDescricao() + " ";
-    resposta += to_string(this->getQuantidadeNotas()) + " ";
-    resposta += this->getQualidade() + " ";
-//    resposta += to_string(this->getT1().getNota()) + " - ";
-//    resposta += to_string(this->getT2().getNota()) + " - ";
-//    resposta += to_string(RetornarSubescrito(this->getT1().getNota())) + " - ";
-//    resposta += to_string(RetornarSubescrito(this->getT2().getNota())) + " - ";
-//    resposta += to_string(diferencaEmSemiTons) + " - ";
-    return resposta;
-
-}
-
-void Intervalo::Imprimir(){
-    cout << this->GerarDescricao();
-}
-
-*/
-
-/////////////////////////////////////////
-// Implementações Internas
-/////////////////////////////////////////
-
 
 Nota notaMenor(Nota t1, Nota t2){
     if (t1.getOitava() < t2.getOitava())
@@ -169,18 +292,4 @@ int tipoIntervalor(Nota t1, Nota t2){
     return quantNotas+1;
 }
 
-void QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiTons){
-
-    if      (descricao=="2m"){qdtNotasNaturais=2;qtdSemiTons= 1;}
-    else if (descricao=="2M"){qdtNotasNaturais=2;qtdSemiTons= 3;}
-    else if (descricao=="3m"){qdtNotasNaturais=3;qtdSemiTons= 4;}
-    else if (descricao=="3M"){qdtNotasNaturais=3;qtdSemiTons= 5;}
-    else if (descricao=="4J"){qdtNotasNaturais=4;qtdSemiTons= 6;}
-    else if (descricao=="5J"){qdtNotasNaturais=5;qtdSemiTons= 8;}
-    else if (descricao=="6m"){qdtNotasNaturais=6;qtdSemiTons= 9;}
-    else if (descricao=="6M"){qdtNotasNaturais=6;qtdSemiTons=10;}
-    else if (descricao=="7m"){qdtNotasNaturais=7;qtdSemiTons=11;}
-    else if (descricao=="7M"){qdtNotasNaturais=7;qtdSemiTons=12;}
-
-}
-
+*/

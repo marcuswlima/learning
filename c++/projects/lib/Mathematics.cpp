@@ -105,7 +105,7 @@ string CalcRealRoots(int a, int b, int c){
     if (d<0)
         resposta += "no real roots";
     else if (d==0)
-        resposta += to_string((-1)*b/(a*2))+"\t";
+        resposta += to_string((-1)*b/(a*2))+"\t";   //transforma int/double para string
     else if (d>0)
         resposta += to_string(((-1)*b)+(sqrt(d)) / (2*a)) + "\t" + 
                     to_string(((-1)*b)-(sqrt(d)) / (2*a)) + "\t";

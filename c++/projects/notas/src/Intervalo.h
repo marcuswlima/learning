@@ -19,11 +19,13 @@ public:
     int  getQtdNotasNaturais();
     void setQtdSemiTons(int);
     int  GetQtdSemiTons();
-    void setQualidade(char);
-    char getQualidade();
+    void   setDescIntervalo(string);
+    string getDescIntervalo();
 // Implementações
-    void DeterminarSegundaNota(string); // em função da qualificação
-    void DeterminarIntervalo(Nota);     // em função da segunda nota
+    Nota CalcularSegundaNota(string); // em função da descricao
+    string CalcularDescricaoIntervalo(Nota);     // em função da segunda nota
+    string GerarDescricaoAleatoria();
+    Nota GerarSegundaNotaAleatoria();
     string GerarDescricao();
     void ImprimirEmTela();
 private:
@@ -31,5 +33,5 @@ private:
     Nota n2;
     int qtdNotasNaturais; //[2-7]
     int qtdSemiTons;     //[2-12]
-    char qualidade;     //['m','M','J'];
+    string descIntervalo; 
 };
