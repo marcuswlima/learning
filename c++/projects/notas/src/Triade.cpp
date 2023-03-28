@@ -2,35 +2,35 @@
 
 //Tecla i3M(Tecla);
 //Tecla i3m(Tecla);
-Tecla GerarSegundaNota(Tecla, string);
-Tecla GerarSegundaNota(Tecla t, int quantidadeNotas, int quantidadeSemitons);
+Nota GerarSegundaNota(Nota, string);
+Nota GerarSegundaNota(Nota , int , int );
 
-Triade::Triade(Tecla t){
+Triade::Triade(Nota t){
 //    this->GerarTriade(t,"M"); //maior
 }
 
-void Triade::setT1(Tecla t){
-    t1 = t;
+void Triade::setN1(Nota n){
+    n1 = n;
 }
 
-Tecla Triade::getT1(){
-    return t1;
+Nota Triade::getN1(){
+    return n1;
 }
 
-void Triade::setT3(Tecla t){
-    t3 = t;
+void Triade::setN3(Nota n){
+    n3 = n;
 }
 
-Tecla Triade::getT3(){
-    return t3;
+Nota Triade::getN3(){
+    return n3;
 }
 
-void Triade::setT5(Tecla t){
-    t5 = t;
+void Triade::setN5(Nota n){
+    n5 = n;
 }
 
-Tecla Triade::getT5(){
-    return t5;
+Nota Triade::getN5(){
+    return n5;
 }
 
 void Triade::ImprimirEmTela(){
@@ -39,34 +39,49 @@ void Triade::ImprimirEmTela(){
 
 string Triade::GerarDescricao(){
 	string resposta=""; 
-    resposta += this->getT1().GerarDescricao()+ "\t";
-    resposta += this->getT3().GerarDescricao()+ "\t";
-    resposta += this->getT5().GerarDescricao();
+    resposta += this->getN1().GerarDescricao()+ "\t";
+    resposta += this->getN3().GerarDescricao()+ "\t";
+    resposta += this->getN5().GerarDescricao();
 	return resposta;
 }
 
-void Triade::GerarTriade(Tecla t, string tipoIntervalo){
-    this->setT1(t);
 
-    if (tipoIntervalo=="M"){
-        this->setT3(GerarSegundaNota(t,"3M"));
-        this->setT5(GerarSegundaNota(this->getT3(),"3m"));
-    }else if (tipoIntervalo=="m"){
-        this->setT3(GerarSegundaNota(t,"3m"));
-        this->setT5(GerarSegundaNota(this->getT3(),"3M"));
-    }else if (tipoIntervalo=="d"){
-        this->setT3(GerarSegundaNota(t,"3m"));
-        this->setT5(GerarSegundaNota(this->getT3(),"3m"));
-    }else if (tipoIntervalo=="A"){
-        this->setT3(GerarSegundaNota(t,"3M"));
-        this->setT5(GerarSegundaNota(this->getT3(),"3M"));
+int umaoitava[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
+int RetornarSubescrito(int n){
+    int resposta;
+    for (int i=1;i<=12;i++){
+        if (umaoitava[i]==n){
+            resposta = i;
+            break; 
+        }
     }
-
+    return resposta;
 }
 
 
+Nota GerarSegundaNota(Nota t, int quantidadeNotas, int quantidadeSemitons){
+	Nota r;
 
-Tecla GerarSegundaNota(Tecla t, string ti){
+    r = t.qualRelativa(quantidadeNotas);
+    int sub1, sub2, diffSemiToms, a;
+    sub1=RetornarSubescrito(t.getGrau()); //1
+    sub2=RetornarSubescrito(r.getGrau()); //5
+
+    if (t.getGrau()<r.getGrau()){
+        diffSemiToms = (sub2-sub1+1);
+    }else{
+        diffSemiToms=(12-sub1)+sub2+1;
+    }
+    a = quantidadeSemitons - diffSemiToms + t.getAcidente();
+
+	r.setAcidente(a);
+
+	return r;
+	
+}
+
+
+Nota GerarSegundaNota(Nota t, string ti){
     int quantidadeNotas, quantidadeSemitons;
 
     if (ti=="2m"){
@@ -87,58 +102,28 @@ Tecla GerarSegundaNota(Tecla t, string ti){
 
 }
 
-int umaoitava[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
-int RetornarSubescrito(int n){
-    int resposta;
-    for (int i=1;i<=12;i++){
-        if (umaoitava[i]==n){
-            resposta = i;
-            break; 
-        }
+void Triade::GerarTriade(Nota t, string tipoIntervalo){
+    this->setN1(t);
+
+    if (tipoIntervalo=="M"){
+        this->setN3(GerarSegundaNota(t,"3M"));
+        this->setN5(GerarSegundaNota(this->getN3(),"3m"));
+    }else if (tipoIntervalo=="m"){
+        this->setN3(GerarSegundaNota(t,"3m"));
+        this->setN5(GerarSegundaNota(this->getN3(),"3M"));
+    }else if (tipoIntervalo=="d"){
+        this->setN3(GerarSegundaNota(t,"3m"));
+        this->setN5(GerarSegundaNota(this->getN3(),"3m"));
+    }else if (tipoIntervalo=="A"){
+        this->setN3(GerarSegundaNota(t,"3M"));
+        this->setN5(GerarSegundaNota(this->getN3(),"3M"));
     }
-    return resposta;
+
 }
 
 
-Tecla GerarSegundaNota(Tecla t, int quantidadeNotas, int quantidadeSemitons){
-	Tecla r;
-
-//    cout << "*****"<< endl;
-
-    r = t.qualRelativa(quantidadeNotas);
-
-//    t.ImprimirEmTela();
-//    cout << endl;
-//    r.ImprimirEmTela();
-//    cout << endl;
-  
-    // determinar acidente adequado
-
-    int sub1, sub2, diffSemiToms, a;
-    sub1=RetornarSubescrito(t.getNota()); //1
-    sub2=RetornarSubescrito(r.getNota()); //5
-//    cout << "sub1 " << sub1 << endl;
-//    cout << "sub2 " << sub2 << endl;
-
-    if (t.getNota()<r.getNota()){
-        diffSemiToms = (sub2-sub1+1);
-    }else{
-        diffSemiToms=(12-sub1)+sub2+1;
-    }
-//    cout << "diffSemiToms " << diffSemiToms << endl;
 
 
-
-    a = quantidadeSemitons - diffSemiToms + t.getAcidente();
-
-
-//    cout << "a " << a << endl;
-
-	r.setAcidente(a);
-
-	return r;
-	
-}
 
 /*
 

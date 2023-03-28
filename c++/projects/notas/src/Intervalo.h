@@ -2,29 +2,34 @@
 #include <cmath>
 using namespace std;
 
-#include "Tecla.h"
+#include "Nota.h"
 
-class Intervalo
-{
+class Intervalo {
 public:
+// Constructors
     Intervalo();
-    Intervalo(Tecla);
-    Intervalo(int, int, int);
-    void setT1(Tecla);
-    Tecla getT1();
-    void setT2(Tecla);
-    Tecla getT2();
-    void setQuantidadeNotas(int);
-    int getQuantidadeNotas();
+    Intervalo(Nota);
+    Intervalo(Nota,Nota);
+// Sets&Gets
+    void setN1(Nota);
+    Nota getN1();
+    void setN2(Nota);
+    Nota getN2();
+    void setQtdNotasNaturais(int);
+    int  getQtdNotasNaturais();
+    void setQtdSemiTons(int);
+    int  GetQtdSemiTons();
     void setQualidade(char);
-    string getQualidade();
-    void EncontrarQualificacao(Tecla);      // em função da segunda nota
-    void EncontrarSegundaNota(int, string);   // em funçaõ da qualificação
+    char getQualidade();
+// Implementações
+    void DeterminarSegundaNota(string); // em função da qualificação
+    void DeterminarIntervalo(Nota);     // em função da segunda nota
     string GerarDescricao();
-    void Imprimir();                        // se existir as duas notas;
+    void ImprimirEmTela();
 private:
-    Tecla t1;
-    Tecla t2;
-    int quantidadeNotas; //[2-7]
-    string qualidade; //["3xd","2xd","d","m","M","J","A","2xA","3xA"];
+    Nota n1;
+    Nota n2;
+    int qtdNotasNaturais; //[2-7]
+    int qtdSemiTons;     //[2-12]
+    char qualidade;     //['m','M','J'];
 };

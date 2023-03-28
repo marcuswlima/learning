@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-#include "Tecla.h"
+#include "Nota.h"
 #include "Intervalo.h"
 #include "Triade.h"
 #include "../../lib/BarraTitulo.h"
@@ -19,7 +19,7 @@ void Acordes_um();
 void TesteTodosAcordes();
 void ChamarMenu();
 
-Tecla t;
+Nota n;
 /////////////////////////////////////////
 // Main
 /////////////////////////////////////////
@@ -30,7 +30,7 @@ int main ( )
 
     ImprimirTitulo("Nota Musicais");
 	//TesteTodosAcordes();
-	ChamarMenu();
+	//ChamarMenu();
 
 	//Tecla t;
 	//Triade tri(t);
@@ -55,33 +55,35 @@ void ChamarMenu(){
 }
 
 void TesteTodosAcordes(){
-	Triade tri(t);
+	Triade tri(n);
 	cout << "Maiores"    << "\t\t\t\t" 
 	     << "Menores"    << "\t\t\t\t"  
 	     << "Aumentados" << "\t\t\t"  
 	     << "Diminutos"  
 		 << endl;
 	for (int i=1;i<=7;i++){
-		t.setTecla(7,i,0);
-		tri.GerarTriade(t,"M");
+		n.setNota(7,i,0);
+		tri.GerarTriade(n,"M");
 		tri.ImprimirEmTela();
 		cout << "\t\t";
-		tri.GerarTriade(t,"m");
+		tri.GerarTriade(n,"m");
 		tri.ImprimirEmTela();
 		cout << "\t\t";
-		tri.GerarTriade(t,"A");
+		tri.GerarTriade(n,"A");
 		tri.ImprimirEmTela();
 		cout << "\t\t";
-		tri.GerarTriade(t,"d");
+		tri.GerarTriade(n,"d");
 		tri.ImprimirEmTela();
 		cout << endl;
 	}
 }
 
+/*
 void EncontrarQualificacao(int n, int a){
 	Intervalo i(3,n,a);
-	Tecla t;
+	Nota t;
 	}
+*/
 
 int menu(){
 	int escolha;
@@ -101,8 +103,8 @@ void Notas(){
 	cout << endl;
      
 	for (int i=1;i<=quantNotas;i++){
-		t.Aleatorio();
-		t.ImprimirEmTela();
+		n.Aleatorio();
+		n.ImprimirEmTela();
 	}
 
 	cout << endl << endl;
@@ -135,8 +137,8 @@ void Intervalos(){
 void IntervalosGerarIntervalo(){
 
 	int numero;
-	t.Aleatorio();
-	t.ImprimirEmTela();
+	n.Aleatorio();
+	n.ImprimirEmTela();
 
 	cout << "- ";
 	numero=GerarInteiro(2,8);
@@ -164,18 +166,18 @@ int GerarNovaNota(int inferior,int superior,int antiga){
 
 void IntervalosGerarSegundaNota(){
 	int notaN1, novaN2;
-	t.Aleatorio();
-	t.ImprimirEmTela();
+	n.Aleatorio();
+	n.ImprimirEmTela();
 
-    notaN1 = t.getNota();
+    notaN1 = n.getGrau();
 	novaN2 = GerarNovaNota(1,7,notaN1);
 
 	if(novaN2 < notaN1) 
-		t.setOitava(t.getOitava()+1);
+		n.setOitava(n.getOitava()+1);
 	
-	t.setNota(novaN2);
-	t.setAcidente(GerarInteiro(-1,1));
-	t.ImprimirEmTela();
+	n.setGrau(novaN2);
+	n.setAcidente(GerarInteiro(-1,1));
+	n.ImprimirEmTela();
 	
 
     cout << " / ";
@@ -206,8 +208,8 @@ void Acordes(){
 void Acordes_um(){
 	int idAcorde=GerarInteiro(1,4);
 	string descAcorde; 
-	t.Aleatorio();
-	t.ImprimirEmTela();
+	n.Aleatorio();
+	n.ImprimirEmTela();
 
 	switch (idAcorde){
     	case 1:descAcorde="Maior";break;
