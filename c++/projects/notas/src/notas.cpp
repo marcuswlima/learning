@@ -9,8 +9,6 @@ using namespace std;
 #include "../../lib/ObterNumero.h"
 #include "../../lib/Mathematics.h"
 
-void IntervalosGerarSegundaNota();
-void IntervalosGerarIntervalo();
 int menu();
 void Notas();
 void Intervalos();
@@ -25,12 +23,13 @@ Nota n;
 /////////////////////////////////////////
 int main ( )
 {
-    //srand( time(0) );
+    srand( time(0) );
 
 
     ImprimirTitulo("Nota Musicais");
+
 	//TesteTodosAcordes();
-	//ChamarMenu();
+	ChamarMenu();
 
 	//Tecla t;
 	//Triade tri(t);
@@ -122,11 +121,25 @@ void Intervalos(){
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 
 	cout << endl;
+
+	Intervalo inte;
+	Nota n;
+
 	for (int i=1; i<=quantidade; i++){	
-		if (opcao==1)
-			IntervalosGerarIntervalo();
-		else 
-            IntervalosGerarSegundaNota();
+		if (opcao==1){
+			n.Aleatorio();
+			n.ImprimirEmTela();
+			cout <<  inte.GerarDescricaoAleatoria();
+		}
+		else {
+			n.Aleatorio();
+			n.ImprimirEmTela();
+			inte.setN1(n);
+			n = inte.GerarSegundaNotaAleatoria();
+			n.ImprimirEmTela();
+		}
+
+		cout << " / ";
 	}
 
 	cout << endl;
@@ -134,54 +147,6 @@ void Intervalos(){
 
 }
 
-void IntervalosGerarIntervalo(){
-
-	int numero;
-	n.Aleatorio();
-	n.ImprimirEmTela();
-
-	cout << "- ";
-	numero=GerarInteiro(2,8);
-	cout << numero;
-	if ((numero==4)||(numero==5)||(numero==8))
-		cout << "J";
-	else{
-		numero=GerarInteiro(1,2);
-		if (numero==1) 
-			cout << "m";
-		else 
-			cout << "M";
-	}
-
-    cout << " / ";
-}
-
-int GerarNovaNota(int inferior,int superior,int antiga){	
-	int resposta;
-	do{	
-		resposta = GerarInteiro(inferior,superior);
-	}while(resposta==antiga);
-	return resposta;
-}
-
-void IntervalosGerarSegundaNota(){
-	int notaN1, novaN2;
-	n.Aleatorio();
-	n.ImprimirEmTela();
-
-    notaN1 = n.getGrau();
-	novaN2 = GerarNovaNota(1,7,notaN1);
-
-	if(novaN2 < notaN1) 
-		n.setOitava(n.getOitava()+1);
-	
-	n.setGrau(novaN2);
-	n.setAcidente(GerarInteiro(-1,1));
-	n.ImprimirEmTela();
-	
-
-    cout << " / ";
-}
 
 void Acordes(){	
 	cout << endl << endl;
