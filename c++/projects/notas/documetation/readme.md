@@ -42,7 +42,7 @@
 - Campo Harmônico Maior
 - Campo Harmônico Menor (Primitiva, Harmônica e Melódica)
 - Cifras
-- Iteração; com repecção de resposta, correção e avaliação
+- Melhoria na interação; com repecção de resposta, correção e avaliação
 
 
 
