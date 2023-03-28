@@ -1,5 +1,4 @@
 #include "Nota.h"
-#include "../../lib/Mathematics.h"
 
 using namespace std;
 

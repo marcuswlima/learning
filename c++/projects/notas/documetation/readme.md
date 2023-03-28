@@ -37,11 +37,3 @@
 
 ![Modelo](classDiagram.png)
 
-_____
-
-
-
-## Notas Soltas
-
-- Gerar notas pontuais em função de uma quantidade, utilizando toda a extensão do teclado - 8 oitavas completas e 2 incompletas
-

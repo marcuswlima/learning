@@ -1,86 +1,149 @@
 #include "Triade.h"
 
-//Tecla i3M(Tecla);
-//Tecla i3m(Tecla);
+/////////////////////////////////////////
+// Declarações
+/////////////////////////////////////////
+
 Nota GerarSegundaNota(Nota, string);
 Nota GerarSegundaNota(Nota , int , int );
+int RandomizarIdTipoTriade();
 
-Triade::Triade(Nota t){
-//    this->GerarTriade(t,"M"); //maior
+/////////////////////////////////////////
+// construtores
+/////////////////////////////////////////
+
+// Construtor sem arguentos
+Triade::Triade(){
+}
+
+Triade::Triade(Intervalo i){
+    this->setInt1(i);
+}
+
+/////////////////////////////////////////
+// Gets&Sets
+/////////////////////////////////////////
+
+
+// setar Int1
+void Triade::setInt1(Intervalo i){
+    i1 = i;
+}
+
+Intervalo Triade::getInt1(){
+    return i1;
+}
+
+void Triade::setInt2(Intervalo i){
+    i2 = i;
+}
+
+Intervalo Triade::getInt2(){
+    return i2;
+}
+
+void Triade::setTipoTriade(char tt){
+    tipoTriade = tt;
+
+}
+char Triade::getTipoTriade(){
+    return tipoTriade;
 }
 
 void Triade::setN1(Nota n){
-    n1 = n;
+    this-> getInt1().setN1(n);
 }
 
 Nota Triade::getN1(){
-    return n1;
+    return getInt1().getN1();
 }
 
 void Triade::setN3(Nota n){
-    n3 = n;
+    this-> getInt1().setN2(n);
+    this-> getInt2().setN1(n);
 }
 
 Nota Triade::getN3(){
-    return n3;
+    return getInt1().getN2();
 }
 
-void Triade::setN5(Nota n){
-    n5 = n;
-}
+/////////////////////////////////////////
+// Implementações Externas
+/////////////////////////////////////////
 
-Nota Triade::getN5(){
-    return n5;
-}
-
+// ImprimirEmTela
 void Triade::ImprimirEmTela(){
 	cout << this->GerarDescricao();
 }
 
 string Triade::GerarDescricao(){
 	string resposta=""; 
-    resposta += this->getN1().GerarDescricao()+ "\t";
-    resposta += this->getN3().GerarDescricao()+ "\t";
-    resposta += this->getN5().GerarDescricao();
+    resposta += this->getInt1().GerarDescricao()+ "\t";
+    resposta += this->getInt2().getN2().GerarDescricao()+ "\t";
 	return resposta;
 }
 
-/*
-int umaoitava[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
-int RetornarSubescrito(int n){
-    int resposta;
-    for (int i=1;i<=12;i++){
-        if (umaoitava[i]==n){
-            resposta = i;
-            break; 
+string Triade::RandomizarTipoTriade(){
+	int idTriade=RandomizarIdTipoTriade();
+	string descTriade; 
+
+	switch (idTriade){
+    	case 1:descTriade="Maior";break;
+    	case 2:descTriade="Menor";break;
+    	case 3:descTriade="Aumentado";break;
+    	case 4:descTriade="Diminuto";break;
+	}
+
+	return descTriade;
+
+}
+
+void Triade::RandomizarTriade(){
+    int tt=RandomizarIdTipoTriade();
+    Nota novaNota;
+
+    tt = 1;
+    switch (tt)
+    {
+    case 1:
+        {
+            cout << "Randomizar Maior"<< endl;
+            this->getInt1().getN1().ImprimirEmTela();
+            cout << endl;
+            novaNota=this->getInt1().CalcularSegundaNota("3M");
+            novaNota.ImprimirEmTela();
+            this->setN3(novaNota);
+            cout << endl;
+            //this->getInt2().setN1(this->getInt1().getN2());
+            //this->getInt2().CalcularSegundaNota("3m");
         }
+        break;
+    case 2:
+        {
+            cout << "Randomizar Menor"<< endl;
+            this->getInt1().CalcularSegundaNota("3m");
+            this->getInt2().setN1(this->getInt1().getN2());
+            this->getInt2().CalcularSegundaNota("3M");
+        }
+        break;
+    
+    default:
+        break;
     }
-    return resposta;
 }
 
 
-Nota GerarSegundaNota(Nota t, int quantidadeNotas, int quantidadeSemitons){
-	Nota r;
+/////////////////////////////////////////
+// Implementações Internas
+/////////////////////////////////////////
 
-    r = t.qualRelativa(quantidadeNotas);
-    int sub1, sub2, diffSemiToms, a;
-    sub1=RetornarSubescrito(t.getGrau()); //1
-    sub2=RetornarSubescrito(r.getGrau()); //5
-
-    if (t.getGrau()<r.getGrau()){
-        diffSemiToms = (sub2-sub1+1);
-    }else{
-        diffSemiToms=(12-sub1)+sub2+1;
-    }
-    a = quantidadeSemitons - diffSemiToms + t.getAcidente();
-
-	r.setAcidente(a);
-
-	return r;
-	
+int RandomizarIdTipoTriade(){
+    return GerarInteiro(1,4);
 }
-*/
 
+/*
+
+// GerarSegundaNota
 Nota GerarSegundaNota(Nota t, string ti){
     int quantidadeNotas, quantidadeSemitons;
 
@@ -121,7 +184,48 @@ void Triade::GerarTriade(Nota t, string tipoIntervalo){
 
 }
 
+*/
 
+/////////////////////////////////////////
+// Lixao
+/////////////////////////////////////////
+
+
+/*
+int umaoitava[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
+int RetornarSubescrito(int n){
+    int resposta;
+    for (int i=1;i<=12;i++){
+        if (umaoitava[i]==n){
+            resposta = i;
+            break; 
+        }
+    }
+    return resposta;
+}
+
+
+Nota GerarSegundaNota(Nota t, int quantidadeNotas, int quantidadeSemitons){
+	Nota r;
+
+    r = t.qualRelativa(quantidadeNotas);
+    int sub1, sub2, diffSemiToms, a;
+    sub1=RetornarSubescrito(t.getGrau()); //1
+    sub2=RetornarSubescrito(r.getGrau()); //5
+
+    if (t.getGrau()<r.getGrau()){
+        diffSemiToms = (sub2-sub1+1);
+    }else{
+        diffSemiToms=(12-sub1)+sub2+1;
+    }
+    a = quantidadeSemitons - diffSemiToms + t.getAcidente();
+
+	r.setAcidente(a);
+
+	return r;
+	
+}
+*/
 
 
 

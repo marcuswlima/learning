@@ -1,22 +1,12 @@
-#include <iostream>
-#include <string>
-using namespace std;
-
-#include "Nota.h"
-#include "Intervalo.h"
 #include "Triade.h"
-#include "../../lib/BarraTitulo.h"
-#include "../../lib/ObterNumero.h"
-#include "../../lib/Mathematics.h"
 
 int menu();
 void Notas();
-void Intervalos();
-void Acordes();
-void Acordes_um();
+void MenuIntervalos();
+void MenuTriades();
 void TesteTodosAcordes();
 void ChamarMenu();
-
+void Testar22();
 Nota n;
 /////////////////////////////////////////
 // Main
@@ -25,17 +15,11 @@ int main ( )
 {
     srand( time(0) );
 
-
     ImprimirTitulo("Nota Musicais");
 
 	//TesteTodosAcordes();
-	ChamarMenu();
-
-	//Tecla t;
-	//Triade tri(t);
-	//t.setTecla(3,6,0);
-	//tri.GerarTriade(t,"M");
-	//tri.ImprimirEmTela();
+	//ChamarMenu();
+	Testar22();
 
     return 0; //indica o fim do programa
 }
@@ -46,13 +30,14 @@ void ChamarMenu(){
         opcao=menu();
 
 		switch(opcao){
-			case 1:Intervalos();break;
-			case 2:Acordes();break;
+			case 1:MenuIntervalos();break;
+			case 2:MenuTriades();break;
 		}
     }while (opcao!=0);
 
 }
 
+/*
 void TesteTodosAcordes(){
 	Triade tri(n);
 	cout << "Maiores"    << "\t\t\t\t" 
@@ -76,6 +61,7 @@ void TesteTodosAcordes(){
 		cout << endl;
 	}
 }
+*/
 
 /*
 void EncontrarQualificacao(int n, int a){
@@ -109,7 +95,7 @@ void Notas(){
 	cout << endl << endl;
 }
 
-void Intervalos(){	
+void MenuIntervalos(){	
 	cout << endl << endl;
 	ImprimirTitulo("Intervalos");
     cout << "****************************************\n";
@@ -119,24 +105,22 @@ void Intervalos(){
     cout << "****************************************\n";
 	int opcao=ObterNumeroNaFaixa("Indica sua opção [1:2] -> ",1,2);
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
-
 	cout << endl;
 
-	Intervalo inte;
 	Nota n;
+	Intervalo inte;
 
 	for (int i=1; i<=quantidade; i++){	
 		if (opcao==1){
 			n.Aleatorio();
 			n.ImprimirEmTela();
-			cout <<  inte.GerarDescricaoAleatoria();
+			cout <<  inte.RandomizarDescricao();
 		}
 		else {
 			n.Aleatorio();
-			n.ImprimirEmTela();
 			inte.setN1(n);
-			n = inte.GerarSegundaNotaAleatoria();
-			n.ImprimirEmTela();
+			inte.RandomizarSegundaNota();
+			inte.ImprimirEmTela();
 		}
 
 		cout << " / ";
@@ -148,113 +132,64 @@ void Intervalos(){
 }
 
 
-void Acordes(){	
+void MenuTriades(){	
 	cout << endl << endl;
-	ImprimirTitulo("Acordes");
+	ImprimirTitulo("Triades");
     cout << "****************************************************\n";
     cout << "** A partir de uma nota aleatória                 **\n";
-    cout << "** 1) Apresentar um acorde(M,m,A,d)               **\n";
+    cout << "** 1) Apresentar um tipo de triade(M,m,A,d)       **\n";
     cout << "** 2) Apresentar uma terça nota e uma quinta nota **\n";
     cout << "****************************************************\n";
 	int opcao=ObterNumeroNaFaixa("Indica sua opção [1:2] -> ",1,2);
+	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
+	cout << endl;
 
-	if (opcao==1){
-	    int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
-		for(int i=1; i<quantidade; i++){
-			Acordes_um();
+	Nota n;
+	Triade t;
+
+	for(int i=1; i<quantidade; i++){
+
+		if (opcao==1){
+			n.Aleatorio();
+			n.ImprimirEmTela();
+			cout << t.RandomizarTipoTriade();
 		}
-	}
-	else
-		cout << "Não implementado";
+		else{
+			n.Aleatorio();
+			t.setN1(n);
+			t.RandomizarTriade();
+			t.ImprimirEmTela();
+		}
+		cout << " / ";
 
+	}
+
+
+	
 	cout << endl << endl;
 }
 
-void Acordes_um(){
-	int idAcorde=GerarInteiro(1,4);
-	string descAcorde; 
-	n.Aleatorio();
+void Testar22(){
+	Nota n(4,1,0);
+	Intervalo i(n);
+	Triade t(i);
+
+
 	n.ImprimirEmTela();
-
-	switch (idAcorde){
-    	case 1:descAcorde="Maior";break;
-    	case 2:descAcorde="Menor";break;
-    	case 3:descAcorde="Aumentado";break;
-    	case 4:descAcorde="Diminuto";break;
-	}
-
-	cout << descAcorde;
-
-	cout << " / ";
-}
-
-/*
-    Tecla t1(3,4,0), t2;
-    t1.imprimirTecla();
-    t2 = i2m(t1);
-    t2.imprimirTecla();
-    t2 = i2M(t1);
-    t2.imprimirTecla();
-    t2 = i3m(t1);
-    t2.imprimirTecla();
-    t2 = i3M(t1);
-    t2.imprimirTecla();
-    t2 = i4J(t1);
-    t2.imprimirTecla();
+	cout << endl;
+	t.RandomizarTriade();
+	t.ImprimirEmTela();
+/*	
+	t.getInt1().setN1(n);
+	t.getInt1().getN1().ImprimirEmTela();
+	cout << endl;
+	t.ImprimirEmTela();
+	cout << endl;
+	t.setN1(n);
+	t.ImprimirEmTela();
+	cout << endl;
+*/
 	cout << endl;
 
-Tecla i2m(Tecla t){
-    Tecla temp;
-    int deslocamentoTecla=1,deslocamentoSemitom=1,distanciaDeNotas=2;
-    copiaTecla(t,temp);
-
-    temp.setNota(temp.getNota()+deslocamentoTecla);
-    temp.setAcidente(deslocamentoSemitom-distanciaDeNotas);
-    return temp;
 }
 
-Tecla i2M(Tecla t){
-    Tecla temp;
-    int deslocamentoTecla=1,deslocamentoSemitom=2,distanciaDeNotas=2;
-    copiaTecla(t,temp);
-
-    temp.setNota(temp.getNota()+deslocamentoTecla);
-    temp.setAcidente(deslocamentoSemitom-distanciaDeNotas);
-    return temp;
-}
-
-Tecla i3m(Tecla t){
-    Tecla temp;
-    int deslocamentoTecla=2,deslocamentoSemitom=3,distanciaDeNotas=4;
-    copiaTecla(t,temp);
-
-    temp.setNota(temp.getNota()+deslocamentoTecla);
-    temp.setAcidente(deslocamentoSemitom-distanciaDeNotas);
-    return temp;
-}
-
-Tecla i3M(Tecla t){
-    Tecla temp;
-    int deslocamentoTecla=2,deslocamentoSemitom=4,distanciaDeNotas=4;
-    copiaTecla(t,temp);
-
-    temp.setNota(temp.getNota()+deslocamentoTecla);
-    temp.setAcidente(deslocamentoSemitom-distanciaDeNotas);
-    return temp;
-}
-
-Tecla i4J(Tecla t){
-    Tecla temp;
-    int deslocamentoTecla=3,deslocamentoSemitom=5,distanciaDeNotas=6;
-    copiaTecla(t,temp);
-
-    temp.setNota(temp.getNota()+deslocamentoTecla);
-    temp.setAcidente(deslocamentoSemitom-distanciaDeNotas);
-    return temp;
-}
-
-void copiaTecla(Tecla t1,Tecla &t2){
-    t2.setTecla(t1.getOitava(), t1.getNota(), t1.getAcidente());
-}
-
-*/

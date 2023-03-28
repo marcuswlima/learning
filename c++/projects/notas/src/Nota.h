@@ -1,8 +1,13 @@
 #include <iostream>
+using std::cout;
 #include <iomanip>
 #include <stdexcept>
 #include <string>
 using namespace std;
+
+#include "../../lib/Mathematics.h"
+#include "../../lib/BarraTitulo.h"
+#include "../../lib/ObterNumero.h"
 
 #ifndef TIME_H
 #define TIME_H
