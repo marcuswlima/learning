@@ -27,10 +27,23 @@
 | 2 | Terca e quinta Nota | Tipo de Triade
 
 - Tipos de Triade
-	- Maior  - 3M + 3m
+	- Maior - 3M + 3m
 	- Menor - 3m + 3M
 	- Aumentado - 3M + 3M
 	- Diminuto - 3m + 3m
+
+
+## Novas Funcionalidade
+- Inversões de Tríades
+- Intervalos Descendentes
+- Intervalos Compostos
+- Tétrades
+- Inversões de Tétrades
+- Campo Harmônico Maior
+- Campo Harmônico Menor (Primitiva, Harmônica e Melódica)
+- Cifras
+- Iteração; com repecção de resposta, correção e avaliação
+
 
 
 # Class Diagram

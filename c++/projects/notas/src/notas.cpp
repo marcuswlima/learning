@@ -18,8 +18,8 @@ int main ( )
     ImprimirTitulo("Nota Musicais");
 
 	//TesteTodosAcordes();
-	//ChamarMenu();
-	Testar22();
+	ChamarMenu();
+	//Testar22();
 
     return 0; //indica o fim do programa
 }
@@ -88,7 +88,7 @@ void Notas(){
 	cout << endl;
      
 	for (int i=1;i<=quantNotas;i++){
-		n.Aleatorio();
+		n.RandomizarNota();
 		n.ImprimirEmTela();
 	}
 
@@ -112,12 +112,12 @@ void MenuIntervalos(){
 
 	for (int i=1; i<=quantidade; i++){	
 		if (opcao==1){
-			n.Aleatorio();
+			n.RandomizarNota();
 			n.ImprimirEmTela();
 			cout <<  inte.RandomizarDescricao();
 		}
 		else {
-			n.Aleatorio();
+			n.RandomizarNota();
 			inte.setN1(n);
 			inte.RandomizarSegundaNota();
 			inte.ImprimirEmTela();
@@ -150,16 +150,18 @@ void MenuTriades(){
 	for(int i=1; i<quantidade; i++){
 
 		if (opcao==1){
-			n.Aleatorio();
+			n.RandomizarNota();
 			n.ImprimirEmTela();
 			cout << t.RandomizarTipoTriade();
 		}
+/*
 		else{
 			n.Aleatorio();
 			t.setN1(n);
 			t.RandomizarTriade();
 			t.ImprimirEmTela();
 		}
+*/
 		cout << " / ";
 
 	}

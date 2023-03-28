@@ -129,12 +129,12 @@ void Nota::ImprimirEmTela(){
 
 }
 
-void Nota::Aleatorio(){
+void Nota::RandomizarNota(){
 
     do{
           setOitava(GerarInteiro( 1,7));
             setGrau(GerarInteiro( 1,7));
-        setAcidente(GerarInteiro(-2,2));
+        setAcidente(GerarInteiro(-1,1));
     }while(!teclaValida(getOitava(),getGrau(),getAcidente()));
 
 }

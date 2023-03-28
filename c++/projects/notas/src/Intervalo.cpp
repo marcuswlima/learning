@@ -99,7 +99,7 @@ void Intervalo::RandomizarSegundaNota(){
 
     g1 = this->getN1().getGrau();
 
-    n.Aleatorio();
+    n.RandomizarNota();
     g2 = n.getGrau();
 
     // tornar o intervalo simples
@@ -219,93 +219,3 @@ Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemito
 }
 
 
-
-
-/*
-/////////////////////////////////////////
-// Lixao
-/////////////////////////////////////////
-
-
-int teclado[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
-
-string QualificarIntervalo(int diff){
-    string resposta = "";
-
-    if (diff==1) resposta = "2m";
-    
-    return " ";
-
-}
-
-
-void Intervalo::EncontrarQualificacao(Nota t){
-    int n1, n2, distancia;
-
-    this->setN2(t);
-    n1=this->getN1().getGrau();
-    n2=this->getN2().getGrau();
-
-//    if (n1<n2) //intervalo ascendente
-//        distancia = RetornarSubescrito(n2) - RetornarSubescrito(n1) + 1;
-//    else // intervalo descendente
-//        distancia = (7 - RetornarSubescrito(n1))  + RetornarSubescrito(n2) ;
-    this->setQuantidadeNotas(distancia);
-
-//    cout << "ido" << RetornarSubescrito(this->getT1().getNota()) << endl;
-//    cout << "ire" << RetornarSubescrito(this->getT2().getNota()) << endl;
-//    cout << "distancia" << distancia << endl;
-
-    int numero=0;
-    char qualidade=' ';
-    if (distancia==1){
-        numero = 2;
-        qualidade = 'm';
-    }else if (distancia==2){
-        numero = 2;
-        qualidade = 'M';
-    }else if (distancia==3){
-        numero = 3;
-        qualidade = 'm';
-    }
-    this->setQuantidadeNotas(numero);
-'    this->setQualidade(qualidade);
-
-}
-*/
-
-
-/*
-
-Nota notaMenor(Nota t1, Nota t2){
-    if (t1.getOitava() < t2.getOitava())
-        return t1;
-    else if (t1.getOitava() > t2.getOitava())
-        return t2;
-    else //mesma oitava
-        if (t1.getGrau() < t2.getGrau())
-            return t1;
-        if (t1.getGrau() > t2.getGrau())
-            return t2;
-        else // mesma nota
-            if (t1.getAcidente() < t2.getAcidente())
-                return t1;
-            else if (t1.getAcidente() > t2.getAcidente())
-                return t2;
-            else    
-                return t1; //teclas identicas
-}
-
-bool notasIguais(Nota t1, Nota t2){
-    return t1.getOitava()   == t2.getOitava()  &&
-           t1.getGrau()     == t2.getGrau()    &&
-           t1.getAcidente() == t2.getAcidente();
-}
-
-int tipoIntervalor(Nota t1, Nota t2){
-    int quantNotas = abs( t1.getGrau() - t2.getGrau() ), quantSemitons;
-    
-    return quantNotas+1;
-}
-
-*/

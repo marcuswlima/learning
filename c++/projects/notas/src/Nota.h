@@ -23,9 +23,9 @@ public:
     int getOitava();
     int getGrau();
     int getAcidente();
-// Implementações
     void setNota( int, int, int ); 
-    void Aleatorio();
+// Implementações
+    void RandomizarNota();
     Nota qualRelativa(int);
     string GerarDescricao();
     void ImprimirEmTela();
