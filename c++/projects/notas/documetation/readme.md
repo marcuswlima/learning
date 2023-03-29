@@ -33,10 +33,10 @@
 	- Diminuto - 3m + 3m
 
 
-## Novas Funcionalidade
-- Inversões de Tríades
+## Novas Funcionalidades
 - Intervalos Descendentes
 - Intervalos Compostos
+- Inversões de Tríades
 - Tétrades
 - Inversões de Tétrades
 - Campo Harmônico Maior
