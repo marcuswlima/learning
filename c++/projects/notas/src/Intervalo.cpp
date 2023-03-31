@@ -45,6 +45,12 @@ Nota Intervalo::getN2(){
     return n2;
 }
 
+void Intervalo::SetIntervalo(Nota n1, Nota n2){
+    this->setN1(n1);
+    this->setN2(n2);
+}
+
+
 void Intervalo::setQtdNotasNaturais(int qnn){
     this->qtdNotasNaturais = qnn;
 
@@ -81,21 +87,13 @@ Determinar a segunda nota de um intervalo em função de uma descrição de inte
 Nota Intervalo::CalcularSegundaNota(string descIntervalo){
 
     Nota temp;
-    cout << "Intervalo::CalcularSegundaNota"<<endl;
     int qdtNotasNaturais, qtdSemiTons;
     Nota n1=this->getN1();
-    n1.ImprimirEmTela();
-    cout << endl;
 
     QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
-    cout << "qdtNotasNaturais -> " << qdtNotasNaturais << endl;
-    cout << "qtdSemiTons -> " << qtdSemiTons << endl;
 
     temp=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons);
-    temp.ImprimirEmTela();
-    cout << endl;
 
-    //this->setN2(temp);
     return temp;
 
 }
@@ -153,7 +151,7 @@ string Intervalo::GerarDescricao(){
 }
 
 void Intervalo::ImprimirEmTela(){
-    cout << this->GerarDescricao();
+    cout << this->GerarDescricao() << "\t";
 }
 
 
@@ -161,6 +159,7 @@ void Intervalo::ImprimirEmTela(){
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
+
 
 
 
@@ -193,19 +192,12 @@ int RetornarSubescrito(int n){
 
 
 Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemitons){
-    cout << "* GerarSegundaNota"<<endl;
-
 
 	Nota relativa = referencia.qualRelativa(quantidadeNotas);
     
-    relativa.ImprimirEmTela();
-    cout << endl;
     int sub1, sub2, diffSemiToms, a;
     sub1=RetornarSubescrito(referencia.getGrau()); //1
     sub2=RetornarSubescrito(relativa.getGrau()); //5
-
-    cout << "sub1-> "<<sub1<<endl;
-    cout << "sub2-> "<<sub2<<endl;
 
     if (referencia.getGrau()<relativa.getGrau()){
         diffSemiToms = (sub2-sub1+1);
@@ -216,11 +208,6 @@ Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemito
 
 	relativa.setAcidente(a);
 
-    relativa.ImprimirEmTela();
-    cout << endl;
-
-
-    cout << "Fim - GerarSegundaNota"<<endl;
 	return relativa;
 	
 }

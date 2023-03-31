@@ -1,5 +1,6 @@
 #include "Triade.h"
 
+
 int menu();
 void Notas();
 void MenuIntervalos();
@@ -13,7 +14,7 @@ Nota n;
 /////////////////////////////////////////
 int main ( )
 {
-    srand( time(0) );
+    //srand( time(0) );
 
     ImprimirTitulo("Nota Musicais");
 
@@ -21,7 +22,9 @@ int main ( )
 	//ChamarMenu();
 	Testar22();
 
-    return 0; //indica o fim do programa
+    cout << endl;
+    cout << "*******************" << endl;
+	return 0; //indica o fim do programa
 }
 
 void ChamarMenu(){
@@ -172,7 +175,42 @@ void MenuTriades(){
 }
 
 void Testar22(){
+
 	Nota n(4,1,0);
+	n.ImprimirEmTela();
+	Intervalo i(n,n);
+	i.ImprimirEmTela();
+	Triade t(i,i);
+	t.ImprimirEmTela();
+	cout << endl;
+	t.RandomizarTriade();
+	t.ImprimirEmTela();
+	cout << endl;
+
+/*
+
+
+	Nota n1(1,4,0);
+	Nota n2(2,3,0);
+	Nota n3(3,2,0);
+	Nota n4(4,1,0);
+
+	Intervalo i1(n1,n2);
+	Intervalo i2(n3,n4);
+
+	Triade t(i1,i2);
+	t.ImprimirEmTela();
+
+	Nota n2(4,2,0);
+	n2.ImprimirEmTela();
+	cout << endl;
+	Nota n3(4,9,0);
+	n3.ImprimirEmTela();
+	cout << endl;
+	Nota n4(4,4,0);
+	n4.ImprimirEmTela();
+	cout << endl;
+
 	Intervalo i(n);
 	i.ImprimirEmTela();
 
@@ -182,6 +220,6 @@ void Testar22(){
 	t.ImprimirEmTela();
 
 	cout << endl;
-
+*/
 }
 

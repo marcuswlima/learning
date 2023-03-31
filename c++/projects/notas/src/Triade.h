@@ -5,6 +5,7 @@ public:
 // Constructors
     Triade();
     Triade(Intervalo);
+    Triade(Intervalo, Intervalo);
 // Sets&Gets
     void setInt1(Intervalo);
     Intervalo getInt1();

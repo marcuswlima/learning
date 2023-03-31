@@ -11,6 +11,7 @@ public:
     Nota getN1();
     void setN2(Nota);
     Nota getN2();
+    void SetIntervalo(Nota,Nota);
     void setQtdNotasNaturais(int);
     int  getQtdNotasNaturais();
     void setQtdSemiTons(int);

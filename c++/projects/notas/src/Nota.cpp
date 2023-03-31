@@ -5,8 +5,9 @@ using namespace std;
 /////////////////////////////////////////
 // Declarações
 /////////////////////////////////////////
-bool teclaValida( int, int, int);
-
+bool notaValida( int, int, int);
+string in_GerarDescricao( int, int, int);
+void MensagemErro( int,int, int, bool);
 /////////////////////////////////////////
 // construtores
 /////////////////////////////////////////
@@ -76,48 +77,26 @@ Nota Nota::qualRelativa(int relativa){
 // atribuir novos valores oitava, nota e acidente
 void Nota::setNota( int o, int g, int a )
 {
-    if (teclaValida(o,g,a)){
+    if (notaValida(o,g,a)){
         setOitava(o);
         setGrau(g);
         setAcidente(a);
     }
-    else{
-        cout << "Oitava   -> " << o 
-             << "Nota     -> " << g
-             << "Acidente -> " << a;
-
-        throw invalid_argument("Oitava, nota e/ou acidente inválido");
-    }
+    else
+        MensagemErro(o,g,a, true);
 
 }
 
 string Nota::GerarDescricao(){
     string strNota;
+    int o = this->getOitava();
+    int g = this->getGrau();
+    int a = this->getAcidente();
 
-    strNota = to_string(this->getOitava());
-
-    switch (this->getGrau())
-    {
-        case 1:strNota+="Do" ;break;
-        case 2:strNota+="Re" ;break;
-        case 3:strNota+="Mi" ;break;
-        case 4:strNota+="Fa" ;break;
-        case 5:strNota+="Sol";break;
-        case 6:strNota+="La" ;break;
-        case 7:strNota+="Si" ;break;
-    default:
-        break;
-    }
-
-    switch (this->getAcidente())
-    {
-        case -2:strNota += "bb";break;
-        case -1:strNota += "b";break;
-        case  1:strNota += "#";break;
-        case  2:strNota += "*";break;
-    default:
-        break;
-    }
+    if (notaValida(o,g,a))
+        strNota = in_GerarDescricao(o,g,a);
+    else
+        MensagemErro(o,g,a,false);
 
     return strNota;
 
@@ -135,7 +114,7 @@ void Nota::RandomizarNota(){
           setOitava(GerarInteiro( 1,7));
             setGrau(GerarInteiro( 1,7));
         setAcidente(GerarInteiro(-1,1));
-    }while(!teclaValida(getOitava(),getGrau(),getAcidente()));
+    }while(!notaValida(this->getOitava(),this->getGrau(),this->getAcidente()));
 
 }
 
@@ -145,7 +124,7 @@ void Nota::RandomizarNota(){
 /////////////////////////////////////////
 
 
-bool teclaValida( int o, int g, int a ){
+bool notaValida( int o, int g, int a ){
 
     /* 
        1) Sete oitavas completas em um piano [1:7]
@@ -155,15 +134,57 @@ bool teclaValida( int o, int g, int a ){
 
     bool bValido=true;
 
-    if ( o < 1 || o > 7 )
+    if ( o < 1 || o > 7 ) //oitava
         bValido = false;
     else 
-        if ( g < 1 || g > 7 )    //faixa de nota
+        if ( g < 1 || g > 7 )    //grau
             bValido = false;
         else
-            if ( a < -2 || a > 2 )    //acidente
+            if ( a < -2 || a > 2 )  //acidente
                 bValido = false;
 
     return bValido;
-    //return true;
+}
+
+
+string in_GerarDescricao( int o, int g, int a ){
+    string strNota;
+
+    strNota = to_string(o);
+
+    switch (g)
+    {
+        case 1:strNota+="Do" ;break;
+        case 2:strNota+="Re" ;break;
+        case 3:strNota+="Mi" ;break;
+        case 4:strNota+="Fa" ;break;
+        case 5:strNota+="Sol";break;
+        case 6:strNota+="La" ;break;
+        case 7:strNota+="Si" ;break;
+    default:
+        break;
+    }
+
+    switch (a)
+    {
+        case -2:strNota += "bb";break;
+        case -1:strNota += "b";break;
+        case  1:strNota += "#";break;
+        case  2:strNota += "*";break;
+    default:
+        break;
+    }
+
+    return strNota;
+
+}
+
+void MensagemErro( int o, int g, int a, bool mostraValores ){
+        cout << "Oitava, nota e/ou acidente invalido\t";
+        if (mostraValores){
+             cout << "Oitava -> "   << o << "\t";
+             cout << "Nota -> "     << g << "\t";
+             cout << "Acidente -> " << a;
+        }
+        cout << endl;
 }

@@ -20,6 +20,11 @@ Triade::Triade(Intervalo i){
     this->setInt1(i);
 }
 
+Triade::Triade(Intervalo i1, Intervalo i2){
+    this->setInt1(i1);
+    this->setInt2(i2);
+}
+
 /////////////////////////////////////////
 // Gets&Sets
 /////////////////////////////////////////
@@ -84,7 +89,7 @@ string Triade::GerarDescricao(){
     temp = this->getInt2().getN1().GerarDescricao() + "-";
     if (temp!="") resposta+=temp;
 
-    temp = this->getInt2().getN2().GerarDescricao() + "-";
+    temp = this->getInt2().getN2().GerarDescricao();
     if (temp!="") resposta+=temp;
 
 	return resposta;
@@ -112,30 +117,42 @@ string Triade::RandomizarTipoTriade(){
 
 void Triade::RandomizarTriade(){
     int tt=RandomizarIdTipoTriade();
-    Nota novaNota;
+    Nota n1, n2 ;
+    Intervalo i;
 
-    tt = 1;
+
+    tt = 2;
     switch (tt)
     {
     case 1:
         {
-            cout << "Randomizar Maior"<< endl;
-            this->getInt1().getN1().ImprimirEmTela();
-            cout << endl;
-            novaNota=this->getInt1().CalcularSegundaNota("3M");
-            novaNota.ImprimirEmTela();
-            this->setN3(novaNota);
-            cout << endl;
-            //this->getInt2().setN1(this->getInt1().getN2());
-            //this->getInt2().CalcularSegundaNota("3m");
+            i=this->getInt1();
+            n1=i.getN1();
+            n2=i.CalcularSegundaNota("3M");
+            i.SetIntervalo(n1, n2);
+            this->setInt1(i);
+
+            i.setN1(n2);
+            n1=i.getN1();
+            n2=i.CalcularSegundaNota("3m");
+            i.SetIntervalo(n1, n2);
+            this->setInt2(i);
+
         }
         break;
     case 2:
         {
-            cout << "Randomizar Menor"<< endl;
-            this->getInt1().CalcularSegundaNota("3m");
-            this->getInt2().setN1(this->getInt1().getN2());
-            this->getInt2().CalcularSegundaNota("3M");
+            i=this->getInt1();
+            n1=i.getN1();
+            n2=i.CalcularSegundaNota("3m");
+            i.SetIntervalo(n1, n2);
+            this->setInt1(i);
+
+            i.setN1(n2);
+            n1=i.getN1();
+            n2=i.CalcularSegundaNota("3M");
+            i.SetIntervalo(n1, n2);
+            this->setInt2(i);
         }
         break;
     
