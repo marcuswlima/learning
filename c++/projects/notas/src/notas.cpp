@@ -18,8 +18,8 @@ int main ( )
     ImprimirTitulo("Nota Musicais");
 
 	//TesteTodosAcordes();
-	ChamarMenu();
-	//Testar22();
+	//ChamarMenu();
+	Testar22();
 
     return 0; //indica o fim do programa
 }
@@ -174,23 +174,13 @@ void MenuTriades(){
 void Testar22(){
 	Nota n(4,1,0);
 	Intervalo i(n);
+	i.ImprimirEmTela();
+
+	i.setN1(n);
+	i.setN2(n);
 	Triade t(i);
+	t.ImprimirEmTela();
 
-
-	n.ImprimirEmTela();
-	cout << endl;
-	t.RandomizarTriade();
-	t.ImprimirEmTela();
-/*	
-	t.getInt1().setN1(n);
-	t.getInt1().getN1().ImprimirEmTela();
-	cout << endl;
-	t.ImprimirEmTela();
-	cout << endl;
-	t.setN1(n);
-	t.ImprimirEmTela();
-	cout << endl;
-*/
 	cout << endl;
 
 }

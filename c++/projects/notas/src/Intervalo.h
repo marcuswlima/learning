@@ -5,6 +5,7 @@ public:
 // Constructors
     Intervalo();
     Intervalo(Nota);
+    Intervalo(Nota,Nota);
 // Sets&Gets
     void setN1(Nota);
     Nota getN1();

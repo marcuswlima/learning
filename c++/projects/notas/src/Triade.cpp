@@ -72,15 +72,27 @@ Nota Triade::getN3(){
 /////////////////////////////////////////
 
 // ImprimirEmTela
-void Triade::ImprimirEmTela(){
-	cout << this->GerarDescricao();
+string Triade::GerarDescricao(){
+	string resposta="", temp; 
+
+    temp = this->getInt1().getN1().GerarDescricao() + "-";
+    if (temp!="") resposta+=temp;
+
+    temp = this->getInt1().getN2().GerarDescricao() + "-";
+    if (temp!="") resposta+=temp;
+
+    temp = this->getInt2().getN1().GerarDescricao() + "-";
+    if (temp!="") resposta+=temp;
+
+    temp = this->getInt2().getN2().GerarDescricao() + "-";
+    if (temp!="") resposta+=temp;
+
+	return resposta;
 }
 
-string Triade::GerarDescricao(){
-	string resposta=""; 
-    resposta += this->getInt1().GerarDescricao()+ "\t";
-    resposta += this->getInt2().getN2().GerarDescricao()+ "\t";
-	return resposta;
+
+void Triade::ImprimirEmTela(){
+	cout << this->GerarDescricao();
 }
 
 string Triade::RandomizarTipoTriade(){

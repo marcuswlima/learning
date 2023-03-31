@@ -125,7 +125,7 @@ string Nota::GerarDescricao(){
 
 void Nota::ImprimirEmTela(){
 
-    cout << this->GerarDescricao()<< " ";
+    cout << this->GerarDescricao()<< "\t";
 
 }
 

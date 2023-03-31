@@ -15,8 +15,15 @@ Intervalo::Intervalo()
 
 Intervalo::Intervalo(Nota n)
 {
-    setN1(n);
+    this->setN1(n);
 }
+
+Intervalo::Intervalo(Nota n1, Nota n2)
+{
+    this->setN1(n1);
+    this->setN2(n2);
+}
+
 
 /////////////////////////////////////////
 // Acesso
@@ -135,8 +142,8 @@ string Intervalo::GerarDescricao(){
     string resposta;
 
     if (getN1().GerarDescricao()!=""){
-        resposta += this->getN1().GerarDescricao() + " ";
-        resposta += this->getN2().GerarDescricao() + " ";
+        resposta += this->getN1().GerarDescricao() + "-";
+        resposta += this->getN2().GerarDescricao() + "\t";
     }
     else
         resposta += "Primeira nota em branco";
