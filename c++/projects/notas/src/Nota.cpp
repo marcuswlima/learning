@@ -13,6 +13,7 @@ void MensagemErro( int,int, int, bool);
 /////////////////////////////////////////
 Nota::Nota()
 {
+    this->RandomizarNota();
 } 
 
 Nota::Nota(int o, int g, int a)
@@ -104,7 +105,7 @@ string Nota::GerarDescricao(){
 
 void Nota::ImprimirEmTela(){
 
-    cout << this->GerarDescricao()<< "\t";
+    cout << this->GerarDescricao()<< " ";
 
 }
 
@@ -114,6 +115,7 @@ void Nota::RandomizarNota(){
           setOitava(GerarInteiro( 1,7));
             setGrau(GerarInteiro( 1,7));
         setAcidente(GerarInteiro(-1,1));
+        //setAcidente(0);
     }while(!notaValida(this->getOitava(),this->getGrau(),this->getAcidente()));
 
 }
@@ -134,7 +136,7 @@ bool notaValida( int o, int g, int a ){
 
     bool bValido=true;
 
-    if ( o < 1 || o > 7 ) //oitava
+    if ( o < 1 || o > 8 ) //oitava
         bValido = false;
     else 
         if ( g < 1 || g > 7 )    //grau

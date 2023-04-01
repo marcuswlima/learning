@@ -19,10 +19,10 @@ public:
     void setDescIntervalo(string);
     string getDescIntervalo();
 // Implementações
-    Nota CalcularSegundaNota(string); // em função da descricao
+    void CalcularSegundaNota(string); // em função da descricao
     string CalcularDescricaoIntervalo(Nota);     // em função da segunda nota
     string RandomizarDescricao();
-    void RandomizarSegundaNota();
+    void RandomizarIntervaloSimples();
     string GerarDescricao();
     void ImprimirEmTela();
 private:
@@ -31,4 +31,5 @@ private:
     int qtdNotasNaturais; //[2-7]
     int qtdSemiTons;     //[2-12]
     string descIntervalo; 
+    int orientacao; //[-1 desc, 1 asc]
 };
