@@ -13,12 +13,9 @@ public:
     Intervalo getInt2();
     void setTipoTriade(char);
     char getTipoTriade();
-    void setN1(Nota);
-    Nota getN1();
-    void setN3(Nota);
-    Nota getN3();
 // Implementações
     void ImprimirEmTela();
+    void ImprimirFundamentalEmTela();
     string GerarDescricao();
     string RandomizarTipoTriade();
     void RandomizarTriade();

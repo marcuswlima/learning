@@ -13,7 +13,7 @@ class Nota {
     int getGrau();
     int getAcidente();
     void setNota( int, int, int ); 
-    void Aleatorio();
+    void RandomizarNota();
     Nota qualRelativa(int);
     string GerarDescricao();
     void ImprimirEmTela();
@@ -30,6 +30,7 @@ class Intervalo {
     Nota getN1();
     void setN2(Nota);
     Nota getN2();
+    void SetIntervalo(Nota,Nota);
     void setQtdNotasNaturais(int);
     int  getQtdNotasNaturais();
     void setQtdSemiTons(int);
@@ -37,9 +38,8 @@ class Intervalo {
     void setDescIntervalo(string);
     string getDescIntervalo();
     void CalcularSegundaNota(string); 
-    string CalcularDescricaoIntervalo(Nota);
     string RandomizarDescricao();
-    void RandomizarSegundaNota();
+    void RandomizarIntervaloSimples();
     string GerarDescricao();
     void ImprimirEmTela();
     Nota n1;
@@ -47,20 +47,21 @@ class Intervalo {
     int qtdNotasNaturais; //[2-7]
     int qtdSemiTons;     //[2-12]
     string descIntervalo; 
+    int orientacao; //[-1 desc, 1 asc]
 }
 
 class Triade{
     Triade();
+    Triade(Intervalo);
+    Triade(Intervalo, Intervalo);
     void setInt1(Intervalo);
     Intervalo getInt1();
     void setInt2(Intervalo);
     Intervalo getInt2();
     void setTipoTriade(char);
     char getTipoTriade();
-    void setN1(Nota);
-    Nota getN1();
-    void GerarTriade(Nota, string);
     void ImprimirEmTela();
+    void ImprimirFundamentalEmTela();
     string GerarDescricao();
     string RandomizarTipoTriade();
     void RandomizarTriade();
