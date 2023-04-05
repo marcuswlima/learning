@@ -1,10 +1,4 @@
-#include <iostream>
-#include <string>
-using namespace std;
-
-//using std::string;
-//using std::cout;
-//using std::endl;
+#include "ConsolidatorSystemLib.h"
 
 void ImprimirTitulo(string);
 
