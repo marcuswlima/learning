@@ -26,7 +26,7 @@ int main ( )
 
     ImprimirTitulo("Gerador Exercicios");
 
-	ChamarMenu();
+	//ChamarMenu();
 
     cout << endl;
 	return 0; //indica o fim do programa

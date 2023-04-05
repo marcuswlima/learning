@@ -1,17 +1,4 @@
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <vector>
-#include <cmath>
-using namespace std;
-
-//using std::cout;
-//using std::cin;
-//using std::endl;
-//using std::setw;
-//using std::string;
-//using std::vector;
-
+#include "ConsolidatorSystemLib.h"
 
 /*
 Calcula o valor a ser cobrado do cliente de um estacionamento

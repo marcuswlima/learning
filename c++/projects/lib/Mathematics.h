@@ -1,7 +1,4 @@
-#include <iostream>
-#include <cmath>
-#include <string>
-using namespace std;
+#include "ConsolidatorSystemLib.h"
 
 /*Calcular o MDC de dois números*/
 int CalcMdc(int x, int y);
