@@ -1,8 +1,4 @@
-#include <iostream>
-#include <iomanip>
-#include <string>
-using namespace std;
-//using std::string;
+#include "ConsolidatorSystemLib.h"
 
 /*
 Imprime os valores de um array de inteiros e de uma dimensão
