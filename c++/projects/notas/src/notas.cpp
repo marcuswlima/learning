@@ -91,7 +91,7 @@ void MenuIntervalos(){
 		else {
 			nota.RandomizarNota();
 			intervalo.setN1(nota);
-			intervalo.RandomizarIntervaloSimples();
+			intervalo.RandomizarSegundaNota();
 			intervalo.ImprimirEmTela();
 		}
 
