@@ -28,7 +28,6 @@ Intervalo::Intervalo(Nota n1, Nota n2)
     this->setN2(n2);
 }
 
-
 /////////////////////////////////////////
 // Acesso
 /////////////////////////////////////////
@@ -49,12 +48,6 @@ Nota Intervalo::getN2(){
     return n2;
 }
 
-void Intervalo::SetIntervalo(Nota n1, Nota n2){
-    this->setN1(n1);
-    this->setN2(n2);
-}
-
-
 void Intervalo::setQtdNotasNaturais(int qnn){
     this->qtdNotasNaturais = qnn;
 
@@ -71,19 +64,16 @@ int Intervalo::GetQtdSemiTons(){
     return qtdSemiTons;
 
 }
-void Intervalo::setDescIntervalo(string di){
-    descIntervalo = di;
-
-}
-string Intervalo::getDescIntervalo(){
-    return descIntervalo;
-}
-
 
 /////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
 
+void Intervalo::SetIntervalo(Nota n1, Nota n2){
+    SimplificarIntervalo(n1, n2);
+    this->setN1(n1);
+    this->setN2(n2);
+}
 
 /*
 Determinar a segunda nota de um intervalo em função de uma descrição de intervalo
@@ -101,22 +91,14 @@ void Intervalo::CalcularSegundaNota(string descIntervalo){
 
 }
 
-void Intervalo::RandomizarIntervaloSimples(){
-    Nota n;
-    int g1 , g2;
+void Intervalo::RandomizarSegundaNota(){
+    Nota n1,n2;
 
-    g1 = this->getN1().getGrau();
+    n1 = this->getN1();
+    n2.RandomizarNota();
+    SimplificarIntervalo(n1, n2);
+    this->setN2(n2);
 
-    n.RandomizarNota();
-    g2 = n.getGrau();
-
-    // tornar o intervalo simples
-    if (g1 <= g2)
-        n.setOitava(this->getN1().getOitava());
-    else 
-        n.setOitava(this->getN1().getOitava()+1);
-    
-    this->setN2(n);
 }
 
 string Intervalo::RandomizarDescricao(){
@@ -139,7 +121,6 @@ string Intervalo::RandomizarDescricao(){
     return r;
 }
 
-
 string Intervalo::GerarDescricao(){
     string resposta="";
 
@@ -157,8 +138,6 @@ string Intervalo::GerarDescricao(){
 void Intervalo::ImprimirEmTela(){
     cout << this->GerarDescricao() << " ";
 }
-
-
 
 /////////////////////////////////////////
 // Implementações Internas
@@ -214,6 +193,15 @@ Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemito
 
 	return relativa;
 	
+}
+
+void SimplificarIntervalo(Nota n1, Nota &n2){
+
+    if (n1.getGrau() <= n2.getGrau())
+        n2.setOitava(n1.getOitava());
+    else 
+        n2.setOitava(n1.getOitava()+1);
+
 }
 
 
