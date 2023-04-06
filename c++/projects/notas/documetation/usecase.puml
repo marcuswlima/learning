@@ -7,12 +7,16 @@ rectangle "Gerador Exercicio" {
       "Duas Notas, \n Qual intervalo?" as (Use02)
     }
     Package "Tríade"{
-     "Uma fundamental e uma triade (M,m,A,d).\n Qual 3º e 5º ?" as (Use03)
-     "Fundamental, 3º e 5º. \n Qual a triade (M,m,A,d)?" as (Use04)
+     "Uma nota fundamental e uma triade (M,m,A,d).\n Qual 3º e 5º ?" as (Use03)
+     "Nota Fundamental, 3º e 5º. \n Qual a triade (M,m,A,d)?" as (Use04)
+     "Triade Estado Fundamental. \n 1º e 2º Inversão?" as (Use05)
+     "Triade Invertida. \n Qual estado fundamental?" as (Use06)
     }
 }
 :Usuário: --> (Use01)
 :Usuário: --> (Use02)
 :Usuário: --> (Use03)
 :Usuário: --> (Use04)
+:Usuário: --> (Use05)
+:Usuário: --> (Use06)
 @enduml
