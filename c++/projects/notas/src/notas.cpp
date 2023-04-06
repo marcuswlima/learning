@@ -9,13 +9,13 @@ Intervalo intervalo;
 Triade triade;
 
 /////////////////////////////////////////
-// Declarações
+// Prototipações
 /////////////////////////////////////////
 int menu();
 void MenuIntervalos();
 void MenuTriades();
 void ChamarMenu();
-
+void Notas();
 
 /////////////////////////////////////////
 // Main
@@ -26,7 +26,7 @@ int main ( )
 
     ImprimirTitulo("Gerador Exercicios");
 
-	//ChamarMenu();
+	ChamarMenu();
 
     cout << endl;
 	return 0; //indica o fim do programa
@@ -40,6 +40,7 @@ void ChamarMenu(){
 		switch(opcao){
 			case 1:MenuIntervalos();break;
 			case 2:MenuTriades();break;
+			case 3:Notas();break;
 		}
     }while (opcao!=0);
 
@@ -56,7 +57,7 @@ int menu(){
     return escolha;
 }
 
-void Notas(){	
+void Notas(){
 	cout << endl << endl;
 	ImprimirTitulo("Notas Soltas");
 	int quantNotas=ObterNumeroNaFaixa("Digite a quantidade[1:30] -> ",1,30);
@@ -66,7 +67,6 @@ void Notas(){
 		nota.RandomizarNota();
 		nota.ImprimirEmTela();
 	}
-
 	cout << endl << endl;
 }
 

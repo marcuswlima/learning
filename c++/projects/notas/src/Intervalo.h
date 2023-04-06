@@ -6,19 +6,20 @@ public:
     Intervalo();
     Intervalo(Nota);
     Intervalo(Nota,Nota);
-// Sets&Gets
+// Sets
     void setN1(Nota);
     void setN2(Nota);
+    void setN2(string);
+    void setN2();
     void setQtdNotasNaturais(int);
     void setQtdSemiTons(int);
+// Gets
     Nota getN1();
     Nota getN2();
     int  getQtdNotasNaturais();
     int  GetQtdSemiTons();
 // Implementações
     void SetIntervalo(Nota,Nota);
-    void CalcularSegundaNota(string);
-    void CalcularSegundaNota();
     void CalcularAtributosSecundarios();
     void RandomizarSegundaNota();
     string RandomizarDescricao();

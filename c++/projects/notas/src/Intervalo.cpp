@@ -1,10 +1,11 @@
 #include "Intervalo.h"
 
 /////////////////////////////////////////
-// Declarations
+// Prototipações
 /////////////////////////////////////////
 void QuantidadesIntervalo(string , int &, int &);
 Nota GerarSegundaNota(Nota , int , int );
+void SimplificarIntervalo(Nota, Nota &);
 
 /////////////////////////////////////////
 // construtores
@@ -12,14 +13,14 @@ Nota GerarSegundaNota(Nota , int , int );
 Intervalo::Intervalo()
 {
     string intervaloSimples=this->RandomizarDescricao();
-    this->CalcularSegundaNota(intervaloSimples);
+    this->setN2(intervaloSimples);
 }
 
 Intervalo::Intervalo(Nota n)
 {
     this->setN1(n);
     string intervaloSimples=this->RandomizarDescricao();
-    this->CalcularSegundaNota(intervaloSimples);
+    this->setN2(intervaloSimples);
 }
 
 Intervalo::Intervalo(Nota n1, Nota n2)
@@ -31,7 +32,6 @@ Intervalo::Intervalo(Nota n1, Nota n2)
 /////////////////////////////////////////
 // Acesso
 /////////////////////////////////////////
-
 void Intervalo::setN1(Nota n){
     this->n1 = n;
 }
@@ -43,6 +43,27 @@ Nota Intervalo::getN1(){
 void Intervalo::setN2(Nota n){
     n2 = n;
 }
+
+/*
+Determinar a segunda nota de um intervalo em função de uma descrição de intervalo
+*/
+void Intervalo::setN2(string descIntervalo){
+
+    int qdtNotasNaturais, qtdSemiTons;
+    Nota n1=this->getN1(),n2;
+
+    QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
+
+    n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons);
+
+    this->setN2(n2);
+
+}
+
+
+void Intervalo::setN2(){
+}
+
 
 Nota Intervalo::getN2(){
     return n2;
@@ -68,27 +89,10 @@ int Intervalo::GetQtdSemiTons(){
 /////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
-
 void Intervalo::SetIntervalo(Nota n1, Nota n2){
     SimplificarIntervalo(n1, n2);
     this->setN1(n1);
     this->setN2(n2);
-}
-
-/*
-Determinar a segunda nota de um intervalo em função de uma descrição de intervalo
-*/
-void Intervalo::CalcularSegundaNota(string descIntervalo){
-
-    int qdtNotasNaturais, qtdSemiTons;
-    Nota n1=this->getN1(),n2;
-
-    QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
-
-    n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons);
-
-    this->setN2(n2);
-
 }
 
 void Intervalo::RandomizarSegundaNota(){
@@ -142,8 +146,6 @@ void Intervalo::ImprimirEmTela(){
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
-
-
 void QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiTons){
 
     if      (descricao=="1J"){qdtNotasNaturais=1;qtdSemiTons= 0;}

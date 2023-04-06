@@ -1,7 +1,7 @@
 #include "Triade.h"
 
 /////////////////////////////////////////
-// Declarações
+// Prototipações
 /////////////////////////////////////////
 
 Nota GerarSegundaNota(Nota, string);
@@ -130,18 +130,18 @@ void MontarTriade(int TipoTriade, Intervalo &i1, Intervalo &i2){
     Nota n;
 
     if ((TipoTriade==1)||(TipoTriade==3)) // maior ou aumentada
-        i1.CalcularSegundaNota("3M");
+        i1.setN2("3M");
     else
-        i1.CalcularSegundaNota("3m");     // menor ou diminuta
+        i1.setN2("3m");     // menor ou diminuta
     
     n=i1.getN2();
 
     i2.setN1(n);
 
     if ((TipoTriade==2)||(TipoTriade==3)) // menor ou aumentada
-        i2.CalcularSegundaNota("3M");
+        i2.setN2("3M");
     else
-        i2.CalcularSegundaNota("3m");     // maior ou diminuta
+        i2.setN2("3m");     // maior ou diminuta
 }
 
 int RandomizarIdTipoTriade(){
