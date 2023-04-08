@@ -2,7 +2,6 @@
 
 ![Modelo](usecase.png)
 
-
 ## Intervalos Simples
 
 - 2m(1), 2M(2)
@@ -12,7 +11,6 @@
 - 7m(10), 7M(11)
 - 8J(12)
 
-
 ## Tríades
 
 - Maior - 3M + 3m
@@ -20,19 +18,19 @@
 - Aumentado - 3M + 3M
 - Diminuto - 3m + 3m
 
-
 ## Novas Funcionalidades
-- Intervalos Descendentes
-- Intervalos Compostos
-- Inversões de Tríades
-- Tétrades
-- Inversões de Tétrades
-- Campo Harmônico Maior
-- Campo Harmônico Menor (Primitiva, Harmônica e Melódica)
-- Cifras
-- Melhoria na interação; com repecção de resposta, correção e avaliação
-
-
+1. Intervalos Descendentes
+1. Tétrades
+1. Inversões de Tétrades
+1. Campo Harmônico Maior
+1. Campo Harmônico Menor (Primitiva, Harmônica e Melódica)
+1. Cifras
+1. Melhoria na interação; com repecção de resposta, correção e avaliação
+1. Opção de Dificuldade
+   1. Facil - randomizar notas sem acidentes
+   1. medio - randomizar notas com 1 acidente (b ou #)
+   1. dificil - randomizar notas com 2 acidente (bb ou *)
+1. Intervalos Compostos
 
 # Class Diagram
 

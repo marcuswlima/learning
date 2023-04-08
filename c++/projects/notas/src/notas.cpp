@@ -16,12 +16,12 @@ void MenuIntervalos();
 void MenuTriades();
 void ChamarMenu();
 void Notas();
-void UC01(int);
-void UC02(int);
-void UC03(int);
-void UC04(int);
-void UC05(int);
-void UC06(int);
+void UC01();
+void UC02();
+void UC03();
+void UC04();
+void UC05();
+void UC06();
 
 /////////////////////////////////////////
 // Main
@@ -86,14 +86,13 @@ void MenuIntervalos(){
     cout << "** 2) Duas Notas, qual intervalo simples?               **\n";
     cout << "**********************************************************\n";
 	int opcao=ObterNumeroNaFaixa("Indica sua opção [1:2] -> ",1,2);
-	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 	cout << endl;
 
 
 	switch (opcao)
 	{
-		case 1:UC01(quantidade);break;
-		case 2:UC02(quantidade);break;
+		case 1:UC01();break;
+		case 2:UC02();break;
 	default:
 		break;
 	}
@@ -112,15 +111,15 @@ void MenuTriades(){
     cout << "** 3) Triade Estado Fundamental. Qual 1º e 2º inversão ?             **\n";
     cout << "** 4) Uma traide invertida. Qual o Estado Fundamental?               **\n";
     cout << "***********************************************************************\n";
-	int opcao=ObterNumeroNaFaixa("Indica sua opção [1:2] -> ",1,4);
-	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
+	int opcao=ObterNumeroNaFaixa("Indica sua opção [1:4] -> ",1,4);
 	cout << endl;
 
 	switch (opcao)
 	{
-		case 1:UC03(quantidade);break;
-		case 2:UC04(quantidade);break;
-		case 3:UC05(quantidade);break;
+		case 1:UC03();break;
+		case 2:UC04();break;
+		case 3:UC05();break;
+		case 4:UC06();break;
 	default:
 		break;
 	}
@@ -128,7 +127,9 @@ void MenuTriades(){
 	cout << endl << endl;
 }
 
-void UC01(int quantidade){
+void UC01(){
+	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
+
 	for(int i=1; i<=quantidade; i++){
 		nota.RandomizarNota();
 		nota.ImprimirEmTela();
@@ -137,7 +138,9 @@ void UC01(int quantidade){
 	}
 }
 
-void UC02(int quantidade){
+void UC02(){
+	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
+
 	for(int i=1; i<=quantidade; i++){
 		nota.RandomizarNota();
 		intervalo.setN1(nota);
@@ -147,7 +150,9 @@ void UC02(int quantidade){
 	}
 }
 
-void UC03(int quantidade){
+void UC03(){
+	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
+
 	for(int i=1; i<=quantidade; i++){
 		triade.RandomizarTriade();
 		triade.ImprimirFundamentalEmTela();
@@ -156,7 +161,9 @@ void UC03(int quantidade){
 	}
 }
 
-void UC04(int quantidade){
+void UC04(){
+	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
+
 	for(int i=1; i<=quantidade; i++){
 		triade.RandomizarTriade();
 		triade.ImprimirEmTela();
@@ -164,7 +171,9 @@ void UC04(int quantidade){
 	}
 }
 
-void UC05(int quantidade){
+void UC05(){
+
+	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:10] -> ",1,10);
 
 	struct tNoh {
 		Triade triade;
@@ -204,6 +213,78 @@ void UC05(int quantidade){
 }
 
 
-void UC06(int quantidade){
+void UC06(){
+
+	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:10] -> ",1,10), inversao;
+
+	struct tNoh {
+		Triade triade;
+		int inversao;
+		int diff3;
+		int diff5;
+	};
+	tNoh nohs[quantidade];
+
+	// Popular arrray de struct
+	for(int i=0; i<=quantidade-1; i++){
+		triade.RandomizarTriade();
+		nohs[i].triade=triade;
+
+		nohs[i].inversao = GerarInteiro(1,2);
+
+		if (nohs[i].inversao == 1){
+			nohs[i].diff5=6;
+			nohs[i].diff3=3;
+		}
+		else if (nohs[i].inversao == 2){
+			nohs[i].diff5=6;
+			nohs[i].diff3=4;
+		}
+	}
+
+	cout << endl;
+	cout << endl;
+
+	// Imprimir 5 nota
+	for(int i=0; i<=quantidade-1; i++){
+
+		if (nohs[i].inversao == 1){
+			nohs[i].triade.getInt1().getN1().ImprimirEmTela();
+		}
+		else if (nohs[i].inversao == 2){
+			nohs[i].triade.getInt1().getN2().ImprimirEmTela();
+		}
+		cout << "\t" << nohs[i].diff5 << "\t";
+		
+	}
+	cout << endl;
+
+	// Imprimir 3 nota
+	for(int i=0; i<=quantidade-1; i++){
+
+		if (nohs[i].inversao == 1){
+			nohs[i].triade.getInt2().getN2().ImprimirEmTela();
+		}
+		else if (nohs[i].inversao == 2){
+			nohs[i].triade.getInt1().getN1().ImprimirEmTela();
+		}
+		cout << "\t" << nohs[i].diff3 << "\t";
+		
+	}
+	cout << endl;
+
+	// Imprimir o baixo 
+	for(int i=0; i<=quantidade-1; i++){
+
+		if (nohs[i].inversao == 1){
+			nohs[i].triade.getInt1().getN2().ImprimirEmTela();
+		}
+		else if (nohs[i].inversao == 2){
+			nohs[i].triade.getInt2().getN2().ImprimirEmTela();
+		}
+		cout << "\t\t";
+	}
+
 
 }
+
