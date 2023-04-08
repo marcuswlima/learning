@@ -114,8 +114,9 @@ void Nota::RandomizarNota(){
     do{
           setOitava(GerarInteiro( 1,7));
             setGrau(GerarInteiro( 1,7));
+        setAcidente(GerarInteiro(-2,2));
         setAcidente(GerarInteiro(-1,1));
-        //setAcidente(0);
+        setAcidente(0);
     }while(!notaValida(this->getOitava(),this->getGrau(),this->getAcidente()));
 
 }
