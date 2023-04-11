@@ -5,6 +5,10 @@
 #ifndef TIME_H
 #define TIME_H
 class Nota {
+private:
+    int oitava;     // 0--8 
+    int grau;       // 1--7 
+    int acidente;   // [-2,0,2] [bb,b,0,#,*]
 public:
 // Constructors
     Nota(); 
@@ -13,6 +17,7 @@ public:
     void setOitava(int);
     void setGrau(int);
     void setAcidente(int);
+    void setNota( int, int, int ); 
 //Gets
     int getOitava();
     int getGrau();
@@ -22,11 +27,6 @@ public:
     string GerarDescricao();
     void ImprimirEmTela();
 // Implementações
-    void setNota( int, int, int ); 
     Nota qualRelativa(int);
-private:
-    int oitava;     // 0--8 
-    int grau;       // 1--7 
-    int acidente;   // [-2,0,2] [bb,b,0,#,*]
 }; 
 #endif

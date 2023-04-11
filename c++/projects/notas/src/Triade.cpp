@@ -119,7 +119,7 @@ void Triade::ImprimirEmTela(){
 
 
 void Triade::ImprimirFundamentalEmTela(){
-	cout << this->getInt1().getN1().GerarDescricao();
+	cout << this->getFundamental().GerarDescricao();
 }
 
 

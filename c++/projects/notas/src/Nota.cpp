@@ -38,6 +38,20 @@ void Nota::setAcidente(int a){
     acidente = a;
 }
 
+// atribuir novos valores oitava, nota e acidente
+void Nota::setNota( int o, int g, int a )
+{
+    if (notaValida(o,g,a)){
+        setOitava(o);
+        setGrau(g);
+        setAcidente(a);
+    }
+    else
+        MensagemErro(o,g,a, true);
+
+}
+
+
 /////////////////////////////////////////
 // Gets
 /////////////////////////////////////////
@@ -119,21 +133,6 @@ Nota Nota::qualRelativa(int relativa){
     return resposta;
 
 }
-
-// atribuir novos valores oitava, nota e acidente
-void Nota::setNota( int o, int g, int a )
-{
-    if (notaValida(o,g,a)){
-        setOitava(o);
-        setGrau(g);
-        setAcidente(a);
-    }
-    else
-        MensagemErro(o,g,a, true);
-
-}
-
-
 
 
 /////////////////////////////////////////

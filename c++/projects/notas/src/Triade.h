@@ -1,6 +1,9 @@
 #include "Intervalo.h"
 
 class Triade{
+private:
+    Intervalo i1;
+    Intervalo i2;
 public:
 // Constructors
     Triade();
@@ -9,6 +12,7 @@ public:
 // Sets
     void setInt1(Intervalo);
     void setInt2(Intervalo);
+    void setTriade(Intervalo, Intervalo);
 //Gets
     Intervalo getInt1();
     Intervalo getInt2();
@@ -22,7 +26,4 @@ public:
 // Implementações
     void ImprimirFundamentalEmTela();
     string RandomizarTipoTriade();
-private:
-    Intervalo i1;
-    Intervalo i2;
 };

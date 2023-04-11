@@ -56,15 +56,12 @@ void Intervalo::setN2(string descIntervalo){
 
 }
 
-void Intervalo::setQtdNotasNaturais(int qnn){
-    this->qtdNotasNaturais = qnn;
-
+void Intervalo::SetIntervalo(Nota n1, Nota n2){
+    SimplificarIntervalo(n1, n2);
+    this->setN1(n1);
+    this->setN2(n2);
 }
 
-void Intervalo::setQtdSemiTons(int qst){
-    qtdSemiTons = qst;
-
-}
 
 /////////////////////////////////////////
 // Gets
@@ -78,15 +75,6 @@ Nota Intervalo::getN2(){
     return n2;
 }
 
-
-int Intervalo::getQtdNotasNaturais(){
-    return qtdNotasNaturais;
-
-}
-int Intervalo::getQtdSemiTons(){
-    return qtdSemiTons;
-
-}
 
 /////////////////////////////////////////
 // Padrão
@@ -118,12 +106,6 @@ void Intervalo::ImprimirEmTela(){
 /////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
-void Intervalo::SetIntervalo(Nota n1, Nota n2){
-    SimplificarIntervalo(n1, n2);
-    this->setN1(n1);
-    this->setN2(n2);
-}
-
 void Intervalo::RandomizarSegundaNota(){
     Nota n1,n2;
 
