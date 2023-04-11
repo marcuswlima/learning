@@ -248,12 +248,8 @@ void UC06(){
 	// Imprimir 5 nota
 	for(int i=0; i<=quantidade-1; i++){
 
-		if (nohs[i].inversao == 1){
-			nohs[i].triade.getFundamental().ImprimirEmTela();
-		}
-		else if (nohs[i].inversao == 2){
-			nohs[i].triade.getTerca().ImprimirEmTela();
-		}
+		if      (nohs[i].inversao == 1) nohs[i].triade.getFundamental().ImprimirEmTela();
+		else if (nohs[i].inversao == 2) nohs[i].triade.getTerca().ImprimirEmTela();
 		cout << "\t" << nohs[i].diff5 << "\t";
 		
 	}
@@ -262,12 +258,8 @@ void UC06(){
 	// Imprimir 3 nota
 	for(int i=0; i<=quantidade-1; i++){
 
-		if (nohs[i].inversao == 1){
-			nohs[i].triade.getQuinta().ImprimirEmTela();
-		}
-		else if (nohs[i].inversao == 2){
-			nohs[i].triade.getFundamental().ImprimirEmTela();
-		}
+		if      (nohs[i].inversao == 1) nohs[i].triade.getQuinta().ImprimirEmTela();
+		else if (nohs[i].inversao == 2) nohs[i].triade.getFundamental().ImprimirEmTela();
 		cout << "\t" << nohs[i].diff3 << "\t";
 		
 	}
@@ -276,12 +268,8 @@ void UC06(){
 	// Imprimir o baixo 
 	for(int i=0; i<=quantidade-1; i++){
 
-		if (nohs[i].inversao == 1){
-			nohs[i].triade.getTerca().ImprimirEmTela();
-		}
-		else if (nohs[i].inversao == 2){
-			nohs[i].triade.getQuinta().ImprimirEmTela();
-		}
+		if      (nohs[i].inversao == 1) nohs[i].triade.getTerca().ImprimirEmTela();
+		else if (nohs[i].inversao == 2) nohs[i].triade.getQuinta().ImprimirEmTela();
 		cout << "\t\t";
 	}
 

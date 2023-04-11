@@ -142,19 +142,22 @@ string Intervalo::RandomizarDescricao(){
 /////////////////////////////////////////
 void QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiTons){
 
-    if      (descricao=="1J"){qdtNotasNaturais=1;qtdSemiTons= 0;}
-    else if (descricao=="2m"){qdtNotasNaturais=2;qtdSemiTons= 1;}
+    if      (descricao=="1J"){qdtNotasNaturais=1;qtdSemiTons= 1;}
+    else if (descricao=="2m"){qdtNotasNaturais=2;qtdSemiTons= 2;}
     else if (descricao=="2M"){qdtNotasNaturais=2;qtdSemiTons= 3;}
     else if (descricao=="3m"){qdtNotasNaturais=3;qtdSemiTons= 4;}
     else if (descricao=="3M"){qdtNotasNaturais=3;qtdSemiTons= 5;}
+    else if (descricao=="4D"){qdtNotasNaturais=4;qtdSemiTons= 5;}
     else if (descricao=="4J"){qdtNotasNaturais=4;qtdSemiTons= 6;}
+    else if (descricao=="4A"){qdtNotasNaturais=4;qtdSemiTons= 7;}
+    else if (descricao=="5D"){qdtNotasNaturais=5;qtdSemiTons= 7;}
     else if (descricao=="5J"){qdtNotasNaturais=5;qtdSemiTons= 8;}
+    else if (descricao=="5A"){qdtNotasNaturais=5;qtdSemiTons= 9;}
     else if (descricao=="6m"){qdtNotasNaturais=6;qtdSemiTons= 9;}
     else if (descricao=="6M"){qdtNotasNaturais=6;qtdSemiTons=10;}
     else if (descricao=="7m"){qdtNotasNaturais=7;qtdSemiTons=11;}
     else if (descricao=="7M"){qdtNotasNaturais=7;qtdSemiTons=12;}
     else if (descricao=="8J"){qdtNotasNaturais=8;qtdSemiTons=13;}
-
 }
 
 int umaoitava[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
