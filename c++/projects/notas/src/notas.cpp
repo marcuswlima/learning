@@ -72,7 +72,7 @@ void Notas(){
 	cout << endl;
      
 	for (int i=1;i<=quantNotas;i++){
-		nota.RandomizarNota();
+		nota.Randomizar();
 		nota.ImprimirEmTela();
 	}
 	cout << endl << endl;
@@ -131,7 +131,7 @@ void UC01(){
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 
 	for(int i=1; i<=quantidade; i++){
-		nota.RandomizarNota();
+		nota.Randomizar();
 		nota.ImprimirEmTela();
 		cout << intervalo.RandomizarDescricao();
 		cout << " / ";
@@ -142,7 +142,7 @@ void UC02(){
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 
 	for(int i=1; i<=quantidade; i++){
-		nota.RandomizarNota();
+		nota.Randomizar();
 		intervalo.setN1(nota);
 		intervalo.RandomizarSegundaNota();
 		intervalo.ImprimirEmTela();
@@ -154,7 +154,7 @@ void UC03(){
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 
 	for(int i=1; i<=quantidade; i++){
-		triade.RandomizarTriade();
+		triade.Randomizar();
 		triade.ImprimirFundamentalEmTela();
 		cout << " " << triade.RandomizarTipoTriade();
 		cout << " / ";
@@ -165,7 +165,7 @@ void UC04(){
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 
 	for(int i=1; i<=quantidade; i++){
-		triade.RandomizarTriade();
+		triade.Randomizar();
 		triade.ImprimirEmTela();
 		cout << " / ";
 	}
@@ -184,7 +184,7 @@ void UC05(){
 
 	// Popular arrray de struct
 	for(int i=0; i<=quantidade-1; i++){
-		triade.RandomizarTriade();
+		triade.Randomizar();
 		nohs[i].triade=triade;
 		nohs[i].diff3=3;
 		nohs[i].diff5=5;
@@ -227,7 +227,7 @@ void UC06(){
 
 	// Popular arrray de struct
 	for(int i=0; i<=quantidade-1; i++){
-		triade.RandomizarTriade();
+		triade.Randomizar();
 		nohs[i].triade=triade;
 
 		nohs[i].inversao = GerarInteiro(1,2);

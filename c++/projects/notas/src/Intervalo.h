@@ -10,21 +10,22 @@ public:
     void setN1(Nota);
     void setN2(Nota);
     void setN2(string);
-    void setN2();
     void setQtdNotasNaturais(int);
     void setQtdSemiTons(int);
 // Gets
     Nota getN1();
     Nota getN2();
     int  getQtdNotasNaturais();
-    int  GetQtdSemiTons();
+    int  getQtdSemiTons();
+// Padrão
+    void Randomizar();
+    string GerarDescricao();
+    void ImprimirEmTela();
 // Implementações
     void SetIntervalo(Nota,Nota);
     void CalcularAtributosSecundarios();
     void RandomizarSegundaNota();
     string RandomizarDescricao();
-    string GerarDescricao();
-    void ImprimirEmTela();
 private:
     Nota n1;
     Nota n2;

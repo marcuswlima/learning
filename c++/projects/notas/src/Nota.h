@@ -9,19 +9,21 @@ public:
 // Constructors
     Nota(); 
     Nota(int, int, int ); 
-// Sets&Gets
+// Sets
     void setOitava(int);
     void setGrau(int);
     void setAcidente(int);
+//Gets
     int getOitava();
     int getGrau();
     int getAcidente();
-    void setNota( int, int, int ); 
-// Implementações
-    void RandomizarNota();
-    Nota qualRelativa(int);
+// Padrão
+    void Randomizar();
     string GerarDescricao();
     void ImprimirEmTela();
+// Implementações
+    void setNota( int, int, int ); 
+    Nota qualRelativa(int);
 private:
     int oitava;     // 0--8 
     int grau;       // 1--7 

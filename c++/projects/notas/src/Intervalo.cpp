@@ -30,14 +30,10 @@ Intervalo::Intervalo(Nota n1, Nota n2)
 }
 
 /////////////////////////////////////////
-// Acesso
+// Sets
 /////////////////////////////////////////
 void Intervalo::setN1(Nota n){
     this->n1 = n;
-}
-
-Nota Intervalo::getN1(){
-    return n1;
 }
 
 void Intervalo::setN2(Nota n){
@@ -60,31 +56,64 @@ void Intervalo::setN2(string descIntervalo){
 
 }
 
+void Intervalo::setQtdNotasNaturais(int qnn){
+    this->qtdNotasNaturais = qnn;
 
-void Intervalo::setN2(){
 }
 
+void Intervalo::setQtdSemiTons(int qst){
+    qtdSemiTons = qst;
+
+}
+
+/////////////////////////////////////////
+// Gets
+/////////////////////////////////////////
+
+Nota Intervalo::getN1(){
+    return n1;
+}
 
 Nota Intervalo::getN2(){
     return n2;
 }
 
-void Intervalo::setQtdNotasNaturais(int qnn){
-    this->qtdNotasNaturais = qnn;
 
-}
 int Intervalo::getQtdNotasNaturais(){
     return qtdNotasNaturais;
 
 }
-void Intervalo::setQtdSemiTons(int qst){
-    qtdSemiTons = qst;
-
-}
-int Intervalo::GetQtdSemiTons(){
+int Intervalo::getQtdSemiTons(){
     return qtdSemiTons;
 
 }
+
+/////////////////////////////////////////
+// Padrão
+/////////////////////////////////////////
+void Intervalo::Randomizar(){
+    this->getN1().Randomizar();
+    this->RandomizarSegundaNota();
+}
+
+string Intervalo::GerarDescricao(){
+    string resposta="";
+
+    if (getN1().GerarDescricao()!=""){
+        resposta += this->getN1().GerarDescricao() + "-";
+        resposta += this->getN2().GerarDescricao() + " ";
+    }
+    else
+        resposta += "Primeira nota em branco";
+
+    return resposta;
+
+}
+
+void Intervalo::ImprimirEmTela(){
+    cout << this->GerarDescricao() << " ";
+}
+
 
 /////////////////////////////////////////
 // Implementações Externas
@@ -99,7 +128,7 @@ void Intervalo::RandomizarSegundaNota(){
     Nota n1,n2;
 
     n1 = this->getN1();
-    n2.RandomizarNota();
+    n2.Randomizar();
     SimplificarIntervalo(n1, n2);
     this->setN2(n2);
 
@@ -125,23 +154,6 @@ string Intervalo::RandomizarDescricao(){
     return r;
 }
 
-string Intervalo::GerarDescricao(){
-    string resposta="";
-
-    if (getN1().GerarDescricao()!=""){
-        resposta += this->getN1().GerarDescricao() + "-";
-        resposta += this->getN2().GerarDescricao() + " ";
-    }
-    else
-        resposta += "Primeira nota em branco";
-
-    return resposta;
-
-}
-
-void Intervalo::ImprimirEmTela(){
-    cout << this->GerarDescricao() << " ";
-}
 
 /////////////////////////////////////////
 // Implementações Internas

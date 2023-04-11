@@ -15,7 +15,7 @@ void MontarTriade(int TipoTriade, Intervalo &, Intervalo &);
 
 // Construtor sem arguentos
 Triade::Triade(){
-    this->RandomizarTriade();
+    this->Randomizar();
 }
 
 Triade::Triade(Intervalo i1){
@@ -36,7 +36,7 @@ Triade::Triade(Intervalo i1, Intervalo i2){
 }
 
 /////////////////////////////////////////
-// Gets&Sets
+// Sets
 /////////////////////////////////////////
 
 // setar Int1
@@ -44,12 +44,17 @@ void Triade::setInt1(Intervalo i){
     i1 = i;
 }
 
-Intervalo Triade::getInt1(){
-    return i1;
-}
-
 void Triade::setInt2(Intervalo i){
     i2 = i;
+}
+
+
+/////////////////////////////////////////
+// Gets
+/////////////////////////////////////////
+
+Intervalo Triade::getInt1(){
+    return i1;
 }
 
 Intervalo Triade::getInt2(){
@@ -68,8 +73,20 @@ Nota Triade::getQuinta(){
 }
 
 /////////////////////////////////////////
-// Implementações Externas
+// Padrão
 /////////////////////////////////////////
+
+void Triade::Randomizar(){
+
+    int TipoTriade=RandomizarIdTipoTriade();
+    Intervalo i1,i2; // 4 notas randomizadas
+
+    MontarTriade(TipoTriade, i1, i2);
+
+    this->setInt1(i1);
+    this->setInt2(i2);
+
+}
 
 // ImprimirEmTela
 string Triade::GerarDescricao(){
@@ -89,10 +106,17 @@ string Triade::GerarDescricao(){
 	return resposta;
 }
 
-
 void Triade::ImprimirEmTela(){
 	cout << this->GerarDescricao();
 }
+
+
+
+/////////////////////////////////////////
+// Implementações Externas
+/////////////////////////////////////////
+
+
 
 void Triade::ImprimirFundamentalEmTela(){
 	cout << this->getInt1().getN1().GerarDescricao();
@@ -114,17 +138,6 @@ string Triade::RandomizarTipoTriade(){
 
 }
 
-void Triade::RandomizarTriade(){
-
-    int TipoTriade=RandomizarIdTipoTriade();
-    Intervalo i1,i2; // 4 notas randomizadas
-
-    MontarTriade(TipoTriade, i1, i2);
-
-    this->setInt1(i1);
-    this->setInt2(i2);
-
-}
 
 /////////////////////////////////////////
 // Implementações Internas

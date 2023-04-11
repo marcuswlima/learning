@@ -13,7 +13,7 @@ void MensagemErro( int,int, int, bool);
 /////////////////////////////////////////
 Nota::Nota()
 {
-    this->RandomizarNota();
+    this->Randomizar();
 } 
 
 Nota::Nota(int o, int g, int a)
@@ -22,9 +22,10 @@ Nota::Nota(int o, int g, int a)
 } 
 
 /////////////////////////////////////////
-// Acesso Propriedades
+// Sets
 /////////////////////////////////////////
 
+// Setar atributo oitava
 void Nota::setOitava(int o){
     oitava = o;
 }
@@ -36,6 +37,10 @@ void Nota::setGrau(int g){
 void Nota::setAcidente(int a){
     acidente = a;
 }
+
+/////////////////////////////////////////
+// Gets
+/////////////////////////////////////////
 
 int Nota::getOitava(){
     return oitava;
@@ -50,10 +55,50 @@ int Nota::getAcidente(){
 }
 
 /////////////////////////////////////////
+// Padrão
+/////////////////////////////////////////
+
+// Randomizar uma nota
+void Nota::Randomizar(){
+
+    do{
+          setOitava(GerarInteiro( 1,7));
+            setGrau(GerarInteiro( 1,7));
+        setAcidente(GerarInteiro(-2,2));
+        setAcidente(GerarInteiro(-1,1));
+        setAcidente(0);
+    }while(!notaValida(this->getOitava(),this->getGrau(),this->getAcidente()));
+
+}
+
+string Nota::GerarDescricao(){
+    string strNota;
+    int o = this->getOitava();
+    int g = this->getGrau();
+    int a = this->getAcidente();
+
+    if (notaValida(o,g,a))
+        strNota = in_GerarDescricao(o,g,a);
+    else
+        MensagemErro(o,g,a,false);
+
+    return strNota;
+
+}
+
+void Nota::ImprimirEmTela(){
+
+    cout << this->GerarDescricao()<< " ";
+
+}
+
+
+/////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
 
 
+// Retornar a relativa
 Nota Nota::qualRelativa(int relativa){
     Nota resposta;
 
@@ -88,45 +133,14 @@ void Nota::setNota( int o, int g, int a )
 
 }
 
-string Nota::GerarDescricao(){
-    string strNota;
-    int o = this->getOitava();
-    int g = this->getGrau();
-    int a = this->getAcidente();
 
-    if (notaValida(o,g,a))
-        strNota = in_GerarDescricao(o,g,a);
-    else
-        MensagemErro(o,g,a,false);
-
-    return strNota;
-
-}
-
-void Nota::ImprimirEmTela(){
-
-    cout << this->GerarDescricao()<< " ";
-
-}
-
-void Nota::RandomizarNota(){
-
-    do{
-          setOitava(GerarInteiro( 1,7));
-            setGrau(GerarInteiro( 1,7));
-        setAcidente(GerarInteiro(-2,2));
-        setAcidente(GerarInteiro(-1,1));
-        setAcidente(0);
-    }while(!notaValida(this->getOitava(),this->getGrau(),this->getAcidente()));
-
-}
 
 
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
 
-
+// Validar uma nota
 bool notaValida( int o, int g, int a ){
 
     /* 
