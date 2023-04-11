@@ -36,3 +36,55 @@
 
 ![Modelo](classDiagram.png)
 
+```                           
+                                            ,---------------------------------.
+,----------------------------------------.  |Triade                           |
+|Nota                                    |  |---------------------------------|
+|----------------------------------------|  |Triade();                        |
+|Nota();                                 |  |Triade(Intervalo);               |
+|Nota(int, int, int );                   |  |Triade(Intervalo, Intervalo);    |
+|void setOitava(int);                    |  |void setInt1(Intervalo);         |
+|void setGrau(int);                      |  |Intervalo getInt1();             |
+|void setAcidente(int);                  |  |void setInt2(Intervalo);         |
+|int getOitava();                        |  |Intervalo getInt2();             |
+|int getGrau();                          |  |Nota getFundamental();           |
+|int getAcidente();                      |  |Nota getTerca();                 |
+|void setNota( int, int, int );          |  |Nota getQuinta();                |
+|void RandomizarNota();                  |  |void ImprimirEmTela();           |
+|Nota qualRelativa(int);                 |  |void ImprimirFundamentalEmTela();|
+|string GerarDescricao();                |  |string GerarDescricao();         |
+|void ImprimirEmTela();                  |  |string RandomizarTipoTriade();   |
+|int oitava;     // 0--8                 |  |void RandomizarTriade();         |
+|int grau;       // 1--7                 |  |Intervalo i1;                    |
+|int acidente;   // [-2,0,2] [bb,b,0,#,*]|  |Intervalo i2;                    |
+`----------------------------------------'  `---------------------------------'
+                                                                               
+                                                                               
+                      ,------------------------------------.                   
+                      |Intervalo                           |                   
+                      |------------------------------------|                   
+                      |Intervalo();                        |                   
+                      |Intervalo(Nota);                    |                   
+                      |Intervalo(Nota,Nota);               |                   
+                      |void setN1(Nota);                   |                   
+                      |void setN2(Nota);                   |                   
+                      |void setN2(string);                 |                   
+                      |void setN2();                       |                   
+                      |void setQtdNotasNaturais(int);      |                   
+                      |void setQtdSemiTons(int);           |                   
+                      |Nota getN1();                       |                   
+                      |Nota getN2();                       |                   
+                      |int  getQtdNotasNaturais();         |                   
+                      |int  GetQtdSemiTons();              |                   
+                      |void SetIntervalo(Nota,Nota);       |                   
+                      |void CalcularAtributosSecundarios();|                   
+                      |void RandomizarSegundaNota();       |                   
+                      |string RandomizarDescricao();       |                   
+                      |string GerarDescricao();            |                   
+                      |void ImprimirEmTela();              |                   
+                      |Nota n1;                            |                   
+                      |Nota n2;                            |                   
+                      |int qtdNotasNaturais; //[2-7]       |                   
+                      |int qtdSemiTons;     //[2-12]       |                   
+                      |int orientacao; //[-1 desc, 1 asc]  |                   
+                      `------------------------------------'                   

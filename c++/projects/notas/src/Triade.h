@@ -11,8 +11,9 @@ public:
     Intervalo getInt1();
     void setInt2(Intervalo);
     Intervalo getInt2();
-    void setTipoTriade(char);
-    char getTipoTriade();
+    Nota getFundamental();
+    Nota getTerca();
+    Nota getQuinta();
 // Implementações
     void ImprimirEmTela();
     void ImprimirFundamentalEmTela();
@@ -22,5 +23,4 @@ public:
 private:
     Intervalo i1;
     Intervalo i2;
-    char tipoTriade; //['M','m','A','d']
 };
