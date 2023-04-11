@@ -6,20 +6,22 @@ public:
     Triade();
     Triade(Intervalo);
     Triade(Intervalo, Intervalo);
-// Sets&Gets
+// Sets
     void setInt1(Intervalo);
-    Intervalo getInt1();
     void setInt2(Intervalo);
+//Gets
+    Intervalo getInt1();
     Intervalo getInt2();
     Nota getFundamental();
     Nota getTerca();
     Nota getQuinta();
-// Implementações
-    void ImprimirEmTela();
-    void ImprimirFundamentalEmTela();
+// Padrao
+    void Randomizar();
     string GerarDescricao();
+    void ImprimirEmTela();
+// Implementações
+    void ImprimirFundamentalEmTela();
     string RandomizarTipoTriade();
-    void RandomizarTriade();
 private:
     Intervalo i1;
     Intervalo i2;
