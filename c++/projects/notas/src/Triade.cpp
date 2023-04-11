@@ -56,13 +56,17 @@ Intervalo Triade::getInt2(){
     return i2;
 }
 
-void Triade::setTipoTriade(char tt){
-    tipoTriade = tt;
+Nota Triade::getFundamental(){
+    return this->getInt1().getN1();
+}
+Nota Triade::getTerca(){
+    return this->getInt1().getN2();
 
 }
-char Triade::getTipoTriade(){
-    return tipoTriade;
+Nota Triade::getQuinta(){
+    return this->getInt2().getN2();
 }
+
 /////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
@@ -71,13 +75,13 @@ char Triade::getTipoTriade(){
 string Triade::GerarDescricao(){
 	string resposta="[", temp; 
 
-    temp = this->getInt1().getN1().GerarDescricao() + "-";
+    temp = this->getFundamental().GerarDescricao() + "-";
     if (temp!="") resposta+=temp;
 
-    temp = this->getInt1().getN2().GerarDescricao() + "-";
+    temp = this->getTerca().GerarDescricao() + "-";
     if (temp!="") resposta+=temp;
 
-    temp = this->getInt2().getN2().GerarDescricao();
+    temp = this->getQuinta().GerarDescricao();
     if (temp!="") resposta+=temp;
 
     resposta+="]";

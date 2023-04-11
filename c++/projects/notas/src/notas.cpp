@@ -37,7 +37,7 @@ int main ( )
 	ChamarMenu();
 
     cout << endl;
-	return 0; //indica o fim do programa
+	return 0; //indica o fim do programa2
 }
 
 void ChamarMenu(){
@@ -192,21 +192,21 @@ void UC05(){
 
 	// Imprimir 5 nota
 	for(int i=0; i<=quantidade-1; i++){
-		nohs[i].triade.getInt2().getN2().ImprimirEmTela();
+		nohs[i].triade.getQuinta().ImprimirEmTela();
 		cout << "\t" << nohs[i].diff5 << "\t";
 	}
 	cout << endl;
 
 	// Imprimir 3 nota
 	for(int i=0; i<=quantidade-1; i++){
-		nohs[i].triade.getInt1().getN2().ImprimirEmTela();
+		nohs[i].triade.getTerca().ImprimirEmTela();
 		cout << "\t" << nohs[i].diff3 << "\t";
 	}
 	cout << endl;
 
 	// Imprimir fundamental
 	for(int i=0; i<=quantidade-1; i++){
-		nohs[i].triade.getInt1().getN1().ImprimirEmTela();
+		nohs[i].triade.getFundamental().ImprimirEmTela();
 		cout << "\t\t";
 	}
 	cout << endl;
@@ -249,10 +249,10 @@ void UC06(){
 	for(int i=0; i<=quantidade-1; i++){
 
 		if (nohs[i].inversao == 1){
-			nohs[i].triade.getInt1().getN1().ImprimirEmTela();
+			nohs[i].triade.getFundamental().ImprimirEmTela();
 		}
 		else if (nohs[i].inversao == 2){
-			nohs[i].triade.getInt1().getN2().ImprimirEmTela();
+			nohs[i].triade.getTerca().ImprimirEmTela();
 		}
 		cout << "\t" << nohs[i].diff5 << "\t";
 		
@@ -263,10 +263,10 @@ void UC06(){
 	for(int i=0; i<=quantidade-1; i++){
 
 		if (nohs[i].inversao == 1){
-			nohs[i].triade.getInt2().getN2().ImprimirEmTela();
+			nohs[i].triade.getQuinta().ImprimirEmTela();
 		}
 		else if (nohs[i].inversao == 2){
-			nohs[i].triade.getInt1().getN1().ImprimirEmTela();
+			nohs[i].triade.getFundamental().ImprimirEmTela();
 		}
 		cout << "\t" << nohs[i].diff3 << "\t";
 		
@@ -277,10 +277,10 @@ void UC06(){
 	for(int i=0; i<=quantidade-1; i++){
 
 		if (nohs[i].inversao == 1){
-			nohs[i].triade.getInt1().getN2().ImprimirEmTela();
+			nohs[i].triade.getTerca().ImprimirEmTela();
 		}
 		else if (nohs[i].inversao == 2){
-			nohs[i].triade.getInt2().getN2().ImprimirEmTela();
+			nohs[i].triade.getQuinta().ImprimirEmTela();
 		}
 		cout << "\t\t";
 	}
