@@ -106,6 +106,24 @@ void Nota::ImprimirEmTela(){
 
 }
 
+////////////////////////////////////
+// Transformar em operação
+////////////////////////////////////
+bool Nota::ehMaior(Nota n1, Nota n2){
+    bool resposta = false;
+
+    if (n1.getOitava() != n2.getOitava())   
+        resposta = n1.getOitava() > n2.getOitava();
+    else if (n1.getGrau() != n2.getGrau())
+        resposta = n1.getGrau() > n2.getGrau();
+    else if (n1.getAcidente() != n2.getAcidente()) 
+        resposta = n1.getAcidente() > n2.getAcidente();
+
+    return resposta;
+
+}
+
+
 
 /////////////////////////////////////////
 // Implementações Externas
@@ -133,7 +151,6 @@ Nota Nota::qualRelativa(int relativa){
     return resposta;
 
 }
-
 
 /////////////////////////////////////////
 // Implementações Internas
@@ -204,3 +221,4 @@ void MensagemErro( int o, int g, int a, bool mostraValores ){
         }
         cout << endl;
 }
+

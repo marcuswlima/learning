@@ -28,5 +28,6 @@ public:
     void ImprimirEmTela();
 // Implementações
     Nota qualRelativa(int);
+    bool ehMaior(Nota n1, Nota n2);
 }; 
 #endif

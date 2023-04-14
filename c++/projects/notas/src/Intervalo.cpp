@@ -107,13 +107,10 @@ void Intervalo::ImprimirEmTela(){
 // Implementações Externas
 /////////////////////////////////////////
 void Intervalo::RandomizarSegundaNota(){
-    Nota n1,n2;
-
-    n1 = this->getN1();
+    Nota n2;
     n2.Randomizar();
-    SimplificarIntervalo(n1, n2);
+    SimplificarIntervalo(this->getN1(), n2);
     this->setN2(n2);
-
 }
 
 string Intervalo::RandomizarDescricao(){
@@ -196,11 +193,26 @@ Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemito
 
 void SimplificarIntervalo(Nota n1, Nota &n2){
 
-    if (n1.getGrau() <= n2.getGrau())
-        n2.setOitava(n1.getOitava());
-    else 
-        n2.setOitava(n1.getOitava()+1);
+    int orientacao=1;
+
+    if (n1.ehMaior(n1,n2))
+        orientacao = 1;
+    else
+        orientacao = -1;
+
+    if (orientacao==1) {
+        if (n1.getGrau() <= n2.getGrau())
+            n2.setOitava(n1.getOitava());
+        else 
+            n2.setOitava(n1.getOitava()+1);
+    }
 
 }
 
-
+int RandomizaOrientacao(){
+    int resposta=1;
+    do{
+        resposta = GerarInteiro(-1,1);
+    }while(resposta=0);
+    return resposta;
+}
