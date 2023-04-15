@@ -90,10 +90,9 @@ string Nota::GerarDescricao(){
     int o = this->getOitava();
     int g = this->getGrau();
     int a = this->getAcidente();
-
     if (notaValida(o,g,a))
         strNota = in_GerarDescricao(o,g,a);
-    else
+    else 
         MensagemErro(o,g,a,false);
 
     return strNota;
@@ -105,25 +104,6 @@ void Nota::ImprimirEmTela(){
     cout << this->GerarDescricao()<< " ";
 
 }
-
-////////////////////////////////////
-// Transformar em operação
-////////////////////////////////////
-bool Nota::ehMaior(Nota n1, Nota n2){
-    bool resposta = false;
-
-    if (n1.getOitava() != n2.getOitava())   
-        resposta = n1.getOitava() > n2.getOitava();
-    else if (n1.getGrau() != n2.getGrau())
-        resposta = n1.getGrau() > n2.getGrau();
-    else if (n1.getAcidente() != n2.getAcidente()) 
-        resposta = n1.getAcidente() > n2.getAcidente();
-
-    return resposta;
-
-}
-
-
 
 /////////////////////////////////////////
 // Implementações Externas

@@ -79,7 +79,7 @@ Nota Triade::getQuinta(){
 void Triade::Randomizar(){
 
     int TipoTriade=RandomizarIdTipoTriade();
-    Intervalo i1,i2; // 4 notas randomizadas
+    Intervalo i1,i2; // 2 intervalos ascendentes
 
     MontarTriade(TipoTriade, i1, i2);
 
@@ -146,19 +146,10 @@ string Triade::RandomizarTipoTriade(){
 void MontarTriade(int TipoTriade, Intervalo &i1, Intervalo &i2){
     Nota n;
 
-    if ((TipoTriade==1)||(TipoTriade==3)) // maior ou aumentada
-        i1.setN2("3M");
-    else
-        i1.setN2("3m");     // menor ou diminuta
-    
+    ((TipoTriade==1)||(TipoTriade==3)) ? i1.setN2("3M") : i1.setN2("3m");
     n=i1.getN2();
-
     i2.setN1(n);
-
-    if ((TipoTriade==2)||(TipoTriade==3)) // menor ou aumentada
-        i2.setN2("3M");
-    else
-        i2.setN2("3m");     // maior ou diminuta
+    (TipoTriade==2)||(TipoTriade==3) ? i2.setN2("3M") : i2.setN2("3m");
 }
 
 int RandomizarIdTipoTriade(){

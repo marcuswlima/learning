@@ -22,6 +22,8 @@ void UC03();
 void UC04();
 void UC05();
 void UC06();
+void TestarIntervalo();
+void TestarTriade();
 
 /////////////////////////////////////////
 // Main
@@ -34,7 +36,9 @@ int main ( )
 
 	//UC06(10);
 
-	ChamarMenu();
+	//ChamarMenu();
+	TestarIntervalo();
+	//TestarTriade();
 
     cout << endl;
 	return 0; //indica o fim do programa2
@@ -133,7 +137,8 @@ void UC01(){
 	for(int i=1; i<=quantidade; i++){
 		nota.Randomizar();
 		nota.ImprimirEmTela();
-		cout << intervalo.RandomizarDescricao();
+		cout << intervalo.RandomizarDescricao() << " ";
+		cout << intervalo.RandomizaOrientacao();
 		cout << " / ";
 	}
 }
@@ -247,9 +252,7 @@ void UC06(){
 
 	// Imprimir 5 nota
 	for(int i=0; i<=quantidade-1; i++){
-
-		if      (nohs[i].inversao == 1) nohs[i].triade.getFundamental().ImprimirEmTela();
-		else if (nohs[i].inversao == 2) nohs[i].triade.getTerca().ImprimirEmTela();
+		(nohs[i].inversao == 1) ? nohs[i].triade.getFundamental().ImprimirEmTela() : nohs[i].triade.getTerca().ImprimirEmTela();
 		cout << "\t" << nohs[i].diff5 << "\t";
 		
 	}
@@ -257,9 +260,7 @@ void UC06(){
 
 	// Imprimir 3 nota
 	for(int i=0; i<=quantidade-1; i++){
-
-		if      (nohs[i].inversao == 1) nohs[i].triade.getQuinta().ImprimirEmTela();
-		else if (nohs[i].inversao == 2) nohs[i].triade.getFundamental().ImprimirEmTela();
+		(nohs[i].inversao == 1) ? nohs[i].triade.getQuinta().ImprimirEmTela() : nohs[i].triade.getFundamental().ImprimirEmTela();
 		cout << "\t" << nohs[i].diff3 << "\t";
 		
 	}
@@ -267,12 +268,34 @@ void UC06(){
 
 	// Imprimir o baixo 
 	for(int i=0; i<=quantidade-1; i++){
-
-		if      (nohs[i].inversao == 1) nohs[i].triade.getTerca().ImprimirEmTela();
-		else if (nohs[i].inversao == 2) nohs[i].triade.getQuinta().ImprimirEmTela();
+		(nohs[i].inversao == 1) ? nohs[i].triade.getTerca().ImprimirEmTela() : nohs[i].triade.getQuinta().ImprimirEmTela();
 		cout << "\t\t";
 	}
 
 
 }
 
+void TestarIntervalo(){
+	Intervalo i;
+	for (int z=1; z<=30; z++){
+		i.Randomizar();
+		i.ImprimirEmTela();
+	}
+
+	Nota n1,n2;
+	n1.Randomizar();
+	n2.Randomizar();
+	n1.ImprimirEmTela();
+	n2.ImprimirEmTela();
+	i.SetIntervalo(n1,n2);
+	i.ImprimirEmTela();
+}
+
+void TestarTriade(){
+	Triade t;
+	for (int z=1; z<=60; z++){
+		t.Randomizar();
+		t.ImprimirEmTela();
+		cout << " ";
+	}
+}

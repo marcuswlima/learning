@@ -6,6 +6,8 @@
 void QuantidadesIntervalo(string , int &, int &);
 Nota GerarSegundaNota(Nota , int , int );
 void SimplificarIntervalo(Nota, Nota &);
+bool SegundaMaior(Nota n1, Nota n2);
+int RandomizaOrientacao_inner();
 
 /////////////////////////////////////////
 // construtores
@@ -25,6 +27,7 @@ Intervalo::Intervalo(Nota n)
 
 Intervalo::Intervalo(Nota n1, Nota n2)
 {
+    SimplificarIntervalo(n1,n2);
     this->setN1(n1);
     this->setN2(n2);
 }
@@ -37,6 +40,8 @@ void Intervalo::setN1(Nota n){
 }
 
 void Intervalo::setN2(Nota n){
+    n1 = this->getN1();
+    SimplificarIntervalo(n1,n2);
     n2 = n;
 }
 
@@ -51,6 +56,8 @@ void Intervalo::setN2(string descIntervalo){
     QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
 
     n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons);
+
+    SimplificarIntervalo(n1,n2);
 
     this->setN2(n2);
 
@@ -80,9 +87,21 @@ Nota Intervalo::getN2(){
 // Padrão
 /////////////////////////////////////////
 void Intervalo::Randomizar(){
-    this->getN1().Randomizar();
+    Nota n;
+
+    n.Randomizar();
+    this->setN1(n);
     this->RandomizarSegundaNota();
 }
+
+void Intervalo::Randomizar(int orientacao=1){
+    Nota n;
+
+    n.Randomizar();
+    this->setN1(n);
+    this->RandomizarSegundaNota();
+}
+
 
 string Intervalo::GerarDescricao(){
     string resposta="";
@@ -107,9 +126,9 @@ void Intervalo::ImprimirEmTela(){
 // Implementações Externas
 /////////////////////////////////////////
 void Intervalo::RandomizarSegundaNota(){
+    int orientacao = RandomizaOrientacao_inner();
     Nota n2;
     n2.Randomizar();
-    SimplificarIntervalo(this->getN1(), n2);
     this->setN2(n2);
 }
 
@@ -124,19 +143,24 @@ string Intervalo::RandomizarDescricao(){
 		r += "J";
     else {
         n=GerarInteiro(1,2); 
-        if (n==1)
-            r += "m";
-        else
-            r += "M";
+        (n==1) ? r += "m" : r += "M";
     }
 
     return r;
 }
 
+string Intervalo::RandomizaOrientacao(){
+    return (RandomizaOrientacao_inner()==1) ? "Asc" : "Desc" ;
+}
 
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
+
+int RandomizaOrientacao_inner(){
+    return (GerarInteiro(1,2)==1) ? 1 : -1 ;
+}
+
 void QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiTons){
 
     if      (descricao=="1J"){qdtNotasNaturais=1;qtdSemiTons= 1;}
@@ -181,7 +205,7 @@ Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemito
     if (referencia.getGrau()<relativa.getGrau()){
         diffSemiToms = (sub2-sub1+1);
     }else{
-        diffSemiToms=(12-sub1)+sub2+1;
+        diffSemiToms = (12-sub1)+sub2+1;
     }
     a = quantidadeSemitons - diffSemiToms + referencia.getAcidente();
 
@@ -193,26 +217,43 @@ Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemito
 
 void SimplificarIntervalo(Nota n1, Nota &n2){
 
-    int orientacao=1;
+    int orientacao = SegundaMaior(n1,n2) ? 1 : -1 ;
 
-    if (n1.ehMaior(n1,n2))
-        orientacao = 1;
-    else
-        orientacao = -1;
-
-    if (orientacao==1) {
-        if (n1.getGrau() <= n2.getGrau())
-            n2.setOitava(n1.getOitava());
-        else 
-            n2.setOitava(n1.getOitava()+1);
-    }
+    if (orientacao==1)
+        (n1.getGrau() < n2.getGrau()  ) ? 
+         n2.setOitava(n1.getOitava()  ) : 
+         n2.setOitava(n1.getOitava()+1) ;
+    else 
+        (n1.getGrau() > n2.getGrau()  ) ? 
+         n2.setOitava(n1.getOitava()  ) : 
+         n2.setOitava(n1.getOitava()-1) ;
 
 }
 
-int RandomizaOrientacao(){
-    int resposta=1;
-    do{
-        resposta = GerarInteiro(-1,1);
-    }while(resposta=0);
+////////////////////////////////////
+// Transformar em operação em Nota
+////////////////////////////////////
+bool PrimeiraMaior(Nota n1, Nota n2){
+    bool resposta = false;
+
+    if (n1.getOitava() != n2.getOitava())   
+        resposta = n1.getOitava() > n2.getOitava();
+    else if (n1.getGrau() != n2.getGrau())
+        resposta = n1.getGrau() > n2.getGrau();
+    else if (n1.getAcidente() != n2.getAcidente()) 
+        resposta = n1.getAcidente() > n2.getAcidente();
+
     return resposta;
+
+}
+
+bool NotasIguais(Nota n1, Nota n2){
+    return (n1.getOitava()   == n2.getOitava()  )&&
+           (n1.getGrau()     == n2.getGrau()    )&&
+           (n1.getAcidente() == n2.getAcidente());
+
+}
+
+bool SegundaMaior(Nota n1, Nota n2){
+    return !PrimeiraMaior(n1,n2) && !NotasIguais(n1,n2);
 }

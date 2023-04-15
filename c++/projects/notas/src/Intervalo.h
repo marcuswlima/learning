@@ -19,10 +19,12 @@ public:
     Nota getN2();
 // Padrão
     void Randomizar();
+    void Randomizar(int);
     string GerarDescricao();
     void ImprimirEmTela();
 // Implementações
     void RandomizarSegundaNota();
+    string RandomizaOrientacao();
     string RandomizarDescricao();
     void CalcularQdtNotas();
     void CalcularSemiTons();
