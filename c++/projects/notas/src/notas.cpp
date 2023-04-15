@@ -1,13 +1,5 @@
 #include "Triade.h"
 
-
-/////////////////////////////////////////
-// Objetos Globais
-/////////////////////////////////////////
-Nota nota;
-Intervalo intervalo;
-Triade triade;
-
 /////////////////////////////////////////
 // Prototipações
 /////////////////////////////////////////
@@ -63,16 +55,20 @@ int menu(){
     cout << "*********************\n";
     cout << "** 1) Intervalos   **\n";
     cout << "** 2) Triades      **\n";
+    cout << "** 3) Condigrações **\n";
     cout << "** 0) Sair         **\n";
     cout << "*********************\n";
-	escolha=ObterNumeroNaFaixa("Indique qual módulo [1,2,0] -> ",0,2);
+	escolha=ObterNumeroNaFaixa("Indique qual módulo [1,2,3,0] -> ",0,3);
     return escolha;
 }
 
 void Notas(){
+
+	Nota nota;
+	int quantNotas=ObterNumeroNaFaixa("Digite a quantidade[1:30] -> ",1,30);
+
 	cout << endl << endl;
 	ImprimirTitulo("Notas Soltas");
-	int quantNotas=ObterNumeroNaFaixa("Digite a quantidade[1:30] -> ",1,30);
 	cout << endl;
      
 	for (int i=1;i<=quantNotas;i++){
@@ -80,6 +76,9 @@ void Notas(){
 		nota.ImprimirEmTela();
 	}
 	cout << endl << endl;
+}
+
+void MenuConfiguracoes(){
 }
 
 void MenuIntervalos(){
@@ -132,6 +131,8 @@ void MenuTriades(){
 }
 
 void UC01(){
+	Nota nota;
+	Intervalo intervalo;
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 
 	for(int i=1; i<=quantidade; i++){
@@ -144,6 +145,8 @@ void UC01(){
 }
 
 void UC02(){
+	Intervalo intervalo;
+	Nota nota;
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 
 	for(int i=1; i<=quantidade; i++){
@@ -156,6 +159,7 @@ void UC02(){
 }
 
 void UC03(){
+	Triade triade;
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 
 	for(int i=1; i<=quantidade; i++){
@@ -167,6 +171,7 @@ void UC03(){
 }
 
 void UC04(){
+	Triade triade;
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 
 	for(int i=1; i<=quantidade; i++){
@@ -178,6 +183,7 @@ void UC04(){
 
 void UC05(){
 
+	Triade triade;
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:10] -> ",1,10);
 
 	struct tNoh {
@@ -220,6 +226,7 @@ void UC05(){
 
 void UC06(){
 
+	Triade triade;
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:10] -> ",1,10), inversao;
 
 	struct tNoh {
@@ -277,17 +284,14 @@ void UC06(){
 
 void TestarIntervalo(){
 	Intervalo i;
-	for (int z=1; z<=30; z++){
-		i.Randomizar();
-		i.ImprimirEmTela();
-	}
+	Nota n1;
 
-	Nota n1,n2;
-	n1.Randomizar();
-	n2.Randomizar();
-	n1.ImprimirEmTela();
-	n2.ImprimirEmTela();
-	i.SetIntervalo(n1,n2);
+	n1.setNota(6,2,0);
+	i.setN1(n1);
+	n1.setNota(6,3,0);
+	i.setN2(n1);
+	i.ImprimirEmTela();
+	i.setN2(n1,-1);
 	i.ImprimirEmTela();
 }
 

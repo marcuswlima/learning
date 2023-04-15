@@ -11,9 +11,9 @@ public:
     Intervalo(Nota,Nota);
 // Sets
     void setN1(Nota);
-    void setN2(Nota);
-    void setN2(string);
-    void SetIntervalo(Nota,Nota);
+    void setN2(Nota, int=1);
+    void setN2(string, int=1);
+    void SetIntervalo(Nota,Nota,int=1);
 // Gets
     Nota getN1();
     Nota getN2();

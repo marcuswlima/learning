@@ -4,8 +4,8 @@
 // Prototipações
 /////////////////////////////////////////
 void QuantidadesIntervalo(string , int &, int &);
-Nota GerarSegundaNota(Nota , int , int );
-void SimplificarIntervalo(Nota, Nota &);
+Nota GerarSegundaNota(Nota , int , int, int );
+void SimplificarIntervalo(Nota, Nota &, int=1);
 bool SegundaMaior(Nota n1, Nota n2);
 int RandomizaOrientacao_inner();
 
@@ -14,24 +14,26 @@ int RandomizaOrientacao_inner();
 /////////////////////////////////////////
 Intervalo::Intervalo()
 {
-    string intervaloSimples=this->RandomizarDescricao();
-    this->setN2(intervaloSimples);
+    Nota n;
+    n.Randomizar();
+    this->setN1(n);
+    n.Randomizar();
+    this->setN2(n,RandomizaOrientacao_inner());
 }
 
 Intervalo::Intervalo(Nota n)
 {
     this->setN1(n);
-    string intervaloSimples=this->RandomizarDescricao();
-    this->setN2(intervaloSimples);
+    n.Randomizar();
+    this->setN2(n,RandomizaOrientacao_inner());
 }
 
 Intervalo::Intervalo(Nota n1, Nota n2)
 {
-    SimplificarIntervalo(n1,n2);
     this->setN1(n1);
-    this->setN2(n2);
+    this->setN2(n2,RandomizaOrientacao_inner());
 }
-
+    
 /////////////////////////////////////////
 // Sets
 /////////////////////////////////////////
@@ -39,34 +41,28 @@ void Intervalo::setN1(Nota n){
     this->n1 = n;
 }
 
-void Intervalo::setN2(Nota n){
+void Intervalo::setN2(Nota n, int orientacao){
     n1 = this->getN1();
-    SimplificarIntervalo(n1,n2);
+    SimplificarIntervalo(n1,n, orientacao);
     n2 = n;
 }
 
-/*
-Determinar a segunda nota de um intervalo em função de uma descrição de intervalo
-*/
-void Intervalo::setN2(string descIntervalo){
+void Intervalo::setN2(string descIntervalo, int orientacao){
 
     int qdtNotasNaturais, qtdSemiTons;
     Nota n1=this->getN1(),n2;
 
     QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
 
-    n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons);
-
-    SimplificarIntervalo(n1,n2);
+    n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons, orientacao);
 
     this->setN2(n2);
 
 }
 
-void Intervalo::SetIntervalo(Nota n1, Nota n2){
-    SimplificarIntervalo(n1, n2);
+void Intervalo::SetIntervalo(Nota n1, Nota n2,int orientacao){
     this->setN1(n1);
-    this->setN2(n2);
+    this->setN2(n2,orientacao);
 }
 
 
@@ -194,7 +190,10 @@ int RetornarSubescrito(int n){
 }
 
 
-Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemitons){
+/////////////////////////////////////////////////////
+// Implementar intervalo descrescente
+/////////////////////////////////////////////////////
+Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemitons, int orientacao){
 
 	Nota relativa = referencia.qualRelativa(quantidadeNotas);
     
@@ -215,9 +214,7 @@ Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemito
 	
 }
 
-void SimplificarIntervalo(Nota n1, Nota &n2){
-
-    int orientacao = SegundaMaior(n1,n2) ? 1 : -1 ;
+void SimplificarIntervalo(Nota n1, Nota &n2, int orientacao){
 
     if (orientacao==1)
         (n1.getGrau() < n2.getGrau()  ) ? 

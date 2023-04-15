@@ -146,10 +146,16 @@ string Triade::RandomizarTipoTriade(){
 void MontarTriade(int TipoTriade, Intervalo &i1, Intervalo &i2){
     Nota n;
 
-    ((TipoTriade==1)||(TipoTriade==3)) ? i1.setN2("3M") : i1.setN2("3m");
+    (TipoTriade==1)||(TipoTriade==3) 
+        ? i1.setN2("3M",1) 
+        : i1.setN2("3m",1);
+
     n=i1.getN2();
+
     i2.setN1(n);
-    (TipoTriade==2)||(TipoTriade==3) ? i2.setN2("3M") : i2.setN2("3m");
+    (TipoTriade==2)||(TipoTriade==3) 
+        ? i2.setN2("3M",1) 
+        : i2.setN2("3m",1);
 }
 
 int RandomizarIdTipoTriade(){
