@@ -90,10 +90,9 @@ string Nota::GerarDescricao(){
     int o = this->getOitava();
     int g = this->getGrau();
     int a = this->getAcidente();
-
     if (notaValida(o,g,a))
         strNota = in_GerarDescricao(o,g,a);
-    else
+    else 
         MensagemErro(o,g,a,false);
 
     return strNota;
@@ -105,7 +104,6 @@ void Nota::ImprimirEmTela(){
     cout << this->GerarDescricao()<< " ";
 
 }
-
 
 /////////////////////////////////////////
 // Implementações Externas
@@ -133,7 +131,6 @@ Nota Nota::qualRelativa(int relativa){
     return resposta;
 
 }
-
 
 /////////////////////////////////////////
 // Implementações Internas
@@ -204,3 +201,4 @@ void MensagemErro( int o, int g, int a, bool mostraValores ){
         }
         cout << endl;
 }
+

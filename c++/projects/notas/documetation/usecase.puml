@@ -3,8 +3,8 @@ left to right direction
 skinparam actorStyle awesome
 rectangle "Gerador Exercicio" {
     Package "Intervalo"{
-      "Uma nota e um intervalo simples. \n Qual outra nota?" as (Use01)
-      "Duas Notas, \n Qual intervalo?" as (Use02)
+      "Uma nota, um intervalo simples e uma orientação. \n Qual a segunda nota?" as (Use01)
+      "Duas Notas, \n Qual intervalo simples? Qual orientação?" as (Use02)
     }
     Package "Tríade"{
      "Uma nota fundamental e uma triade (M,m,A,d).\n Qual 3º e 5º ?" as (Use03)
