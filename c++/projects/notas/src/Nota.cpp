@@ -13,7 +13,11 @@ void MensagemErro( int,int, int, bool);
 /////////////////////////////////////////
 Nota::Nota()
 {
-    this->Randomizar();
+} 
+
+Nota::Nota(int dificauldade)
+{
+    this->Randomizar(dificauldade);
 } 
 
 Nota::Nota(int o, int g, int a)
@@ -73,14 +77,22 @@ int Nota::getAcidente(){
 /////////////////////////////////////////
 
 // Randomizar uma nota
-void Nota::Randomizar(){
+void Nota::Randomizar(int dificuldade){
+
+    int acidente;
 
     do{
-          setOitava(GerarInteiro( 1,7));
-            setGrau(GerarInteiro( 1,7));
-        setAcidente(GerarInteiro(-2,2));
-        setAcidente(GerarInteiro(-1,1));
-        setAcidente(0);
+        setOitava(GerarInteiro( 1,7));
+        setGrau(GerarInteiro( 1,7));
+        
+        switch (dificuldade)
+        {
+            case 1:acidente = 0;break;
+            case 2:acidente = GerarInteiro(-1,1);break;
+            case 3:acidente = GerarInteiro(-2,2);break;
+            default:break;
+        }
+        this->setAcidente(acidente);
     }while(!notaValida(this->getOitava(),this->getGrau(),this->getAcidente()));
 
 }

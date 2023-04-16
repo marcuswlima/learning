@@ -20,7 +20,7 @@ public:
     Nota getTerca();
     Nota getQuinta();
 // Padrao
-    void Randomizar();
+    void Randomizar(int dificuldade=1);
     string GerarDescricao();
     void ImprimirEmTela();
 // Implementações
