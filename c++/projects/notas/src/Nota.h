@@ -12,6 +12,7 @@ private:
 public:
 // Constructors
     Nota(); 
+    Nota(int); 
     Nota(int, int, int ); 
 // Sets
     void setOitava(int);
@@ -23,7 +24,7 @@ public:
     int getGrau();
     int getAcidente();
 // Padrão
-    void Randomizar();
+    void Randomizar(int in_dificuldade=1);
     string GerarDescricao();
     void ImprimirEmTela();
 // Implementações

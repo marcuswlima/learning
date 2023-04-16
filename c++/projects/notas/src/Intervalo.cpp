@@ -14,19 +14,25 @@ int RandomizaOrientacao_inner();
 /////////////////////////////////////////
 Intervalo::Intervalo()
 {
+}
+Intervalo::Intervalo(int dificuldade)
+{
     Nota n;
-    n.Randomizar();
+    n.Randomizar(dificuldade);
     this->setN1(n);
-    n.Randomizar();
+    n.Randomizar(dificuldade);
     this->setN2(n,RandomizaOrientacao_inner());
 }
 
-Intervalo::Intervalo(Nota n)
+Intervalo::Intervalo(int dificuldade, int orientacao)
 {
+    Nota n;
+    n.Randomizar(dificuldade = dificuldade);
     this->setN1(n);
-    n.Randomizar();
-    this->setN2(n,RandomizaOrientacao_inner());
+    n.Randomizar(dificuldade);
+    this->setN2(n,orientacao);
 }
+
 
 Intervalo::Intervalo(Nota n1, Nota n2)
 {
@@ -56,7 +62,7 @@ void Intervalo::setN2(string descIntervalo, int orientacao){
 
     n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons, orientacao);
 
-    this->setN2(n2);
+    this->setN2(n2,orientacao);
 
 }
 
@@ -82,22 +88,15 @@ Nota Intervalo::getN2(){
 /////////////////////////////////////////
 // Padrão
 /////////////////////////////////////////
-void Intervalo::Randomizar(){
+void Intervalo::Randomizar(int dificuldade){
     Nota n;
+    int orientacao = RandomizaOrientacao_inner();
 
-    n.Randomizar();
+    n.Randomizar(dificuldade);
     this->setN1(n);
-    this->RandomizarSegundaNota();
+    n.Randomizar(dificuldade);
+    this->setN2(n,orientacao);
 }
-
-void Intervalo::Randomizar(int orientacao=1){
-    Nota n;
-
-    n.Randomizar();
-    this->setN1(n);
-    this->RandomizarSegundaNota();
-}
-
 
 string Intervalo::GerarDescricao(){
     string resposta="";
@@ -121,11 +120,11 @@ void Intervalo::ImprimirEmTela(){
 /////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
-void Intervalo::RandomizarSegundaNota(){
+void Intervalo::RandomizarSegundaNota(int dificuldade){
     int orientacao = RandomizaOrientacao_inner();
     Nota n2;
-    n2.Randomizar();
-    this->setN2(n2);
+    n2.Randomizar(dificuldade);
+    this->setN2(n2,orientacao);
 }
 
 string Intervalo::RandomizarDescricao(){
