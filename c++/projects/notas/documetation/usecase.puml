@@ -2,9 +2,10 @@
 left to right direction
 skinparam actorStyle awesome
 rectangle "Gerador Exercicio" {
+    "Notas Avulsas"as (Use08)
     Package "Intervalo"{
-      "Uma nota e um intervalo simples. \n Qual outra nota?" as (Use01)
-      "Duas Notas, \n Qual intervalo?" as (Use02)
+      "Uma nota, um intervalo simples e uma orientação. \n Qual a segunda nota?" as (Use01)
+      "Duas Notas, \n Qual intervalo simples? Qual orientação?" as (Use02)
     }
     Package "Tríade"{
      "Uma nota fundamental e uma triade (M,m,A,d).\n Qual 3º e 5º ?" as (Use03)
@@ -12,6 +13,7 @@ rectangle "Gerador Exercicio" {
      "Triade Estado Fundamental. \n 1º e 2º Inversão?" as (Use05)
      "Triade Invertida. \n Qual estado fundamental?" as (Use06)
     }
+    "Configurações"as (Use07)
 }
 :Usuário: --> (Use01)
 :Usuário: --> (Use02)
@@ -19,4 +21,6 @@ rectangle "Gerador Exercicio" {
 :Usuário: --> (Use04)
 :Usuário: --> (Use05)
 :Usuário: --> (Use06)
+:Usuário: --> (Use07)
+:Usuário: --> (Use08)
 @enduml

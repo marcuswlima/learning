@@ -1,17 +1,10 @@
 #include "Triade.h"
 
-
-/////////////////////////////////////////
-// Objetos Globais
-/////////////////////////////////////////
-Nota nota;
-Intervalo intervalo;
-Triade triade;
-
 /////////////////////////////////////////
 // Prototipações
 /////////////////////////////////////////
 int menu();
+void MenuConfiguracoes();
 void MenuIntervalos();
 void MenuTriades();
 void ChamarMenu();
@@ -22,6 +15,13 @@ void UC03();
 void UC04();
 void UC05();
 void UC06();
+void TestarIntervalo();
+void TestarTriade();
+
+/////////////////////////////////////////
+// Elelementos Globais
+/////////////////////////////////////////
+int gDificuldade=1;
 
 /////////////////////////////////////////
 // Main
@@ -33,8 +33,9 @@ int main ( )
     ImprimirTitulo("Gerador Exercicios");
 
 	//UC06(10);
-
-	ChamarMenu();
+	//ChamarMenu();
+	TestarIntervalo();
+	//TestarTriade();
 
     cout << endl;
 	return 0; //indica o fim do programa2
@@ -46,9 +47,10 @@ void ChamarMenu(){
         opcao=menu();
 
 		switch(opcao){
-			case 1:MenuIntervalos();break;
-			case 2:MenuTriades();break;
-			case 3:Notas();break;
+			case 1:Notas();break;
+			case 2:MenuIntervalos();break;
+			case 3:MenuTriades();break;
+			case 4:MenuConfiguracoes();break;
 		}
     }while (opcao!=0);
 
@@ -57,25 +59,37 @@ void ChamarMenu(){
 int menu(){
 	int escolha;
     cout << "*********************\n";
-    cout << "** 1) Intervalos   **\n";
-    cout << "** 2) Triades      **\n";
+    cout << "** 1) Notas        **\n";
+    cout << "** 2) Intervalos   **\n";
+    cout << "** 3) Triades      **\n";
+    cout << "** 4) Condigrações **\n";
     cout << "** 0) Sair         **\n";
     cout << "*********************\n";
-	escolha=ObterNumeroNaFaixa("Indique qual módulo [1,2,0] -> ",0,2);
+	escolha=ObterNumeroNaFaixa("Indique qual módulo [1,2,3,4,0] -> ",0,4);
     return escolha;
 }
 
 void Notas(){
+
+	Nota nota;
+	int quantNotas=ObterNumeroNaFaixa("Digite a quantidade[1:30] -> ",1,30);
+
 	cout << endl << endl;
 	ImprimirTitulo("Notas Soltas");
-	int quantNotas=ObterNumeroNaFaixa("Digite a quantidade[1:30] -> ",1,30);
 	cout << endl;
      
 	for (int i=1;i<=quantNotas;i++){
-		nota.Randomizar();
+		nota.Randomizar(gDificuldade);
 		nota.ImprimirEmTela();
 	}
 	cout << endl << endl;
+}
+
+void MenuConfiguracoes(){
+	cout << endl << endl;
+	ImprimirTitulo("Configuracoes");
+	cout << "A dificuladed atualmetnte eh "<<gDificuldade<< endl;
+	gDificuldade=ObterNumeroNaFaixa("Indique o nivel de dificuldade -> [1-facil, 2-medio ou 3-dificil] ->",1,3);
 }
 
 void MenuIntervalos(){
@@ -128,33 +142,35 @@ void MenuTriades(){
 }
 
 void UC01(){
+	Intervalo intervalo;
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 
 	for(int i=1; i<=quantidade; i++){
-		nota.Randomizar();
-		nota.ImprimirEmTela();
-		cout << intervalo.RandomizarDescricao();
+		intervalo.Randomizar(gDificuldade);
+		intervalo.getN1().ImprimirEmTela();
+		cout << intervalo.RandomizarDescricao() << " ";
+		cout << intervalo.RandomizaOrientacao();
 		cout << " / ";
 	}
 }
 
 void UC02(){
+	Intervalo intervalo;
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 
 	for(int i=1; i<=quantidade; i++){
-		nota.Randomizar();
-		intervalo.setN1(nota);
-		intervalo.RandomizarSegundaNota();
+		intervalo.Randomizar(gDificuldade);
 		intervalo.ImprimirEmTela();
 		cout << " / ";
 	}
 }
 
 void UC03(){
+	Triade triade;
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 
 	for(int i=1; i<=quantidade; i++){
-		triade.Randomizar();
+		triade.Randomizar(gDificuldade);
 		triade.ImprimirFundamentalEmTela();
 		cout << " " << triade.RandomizarTipoTriade();
 		cout << " / ";
@@ -162,10 +178,11 @@ void UC03(){
 }
 
 void UC04(){
+	Triade triade;
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
 
 	for(int i=1; i<=quantidade; i++){
-		triade.Randomizar();
+		triade.Randomizar(gDificuldade);
 		triade.ImprimirEmTela();
 		cout << " / ";
 	}
@@ -173,6 +190,7 @@ void UC04(){
 
 void UC05(){
 
+	Triade triade;
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:10] -> ",1,10);
 
 	struct tNoh {
@@ -215,6 +233,7 @@ void UC05(){
 
 void UC06(){
 
+	Triade triade;
 	int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:10] -> ",1,10), inversao;
 
 	struct tNoh {
@@ -247,9 +266,7 @@ void UC06(){
 
 	// Imprimir 5 nota
 	for(int i=0; i<=quantidade-1; i++){
-
-		if      (nohs[i].inversao == 1) nohs[i].triade.getFundamental().ImprimirEmTela();
-		else if (nohs[i].inversao == 2) nohs[i].triade.getTerca().ImprimirEmTela();
+		(nohs[i].inversao == 1) ? nohs[i].triade.getFundamental().ImprimirEmTela() : nohs[i].triade.getTerca().ImprimirEmTela();
 		cout << "\t" << nohs[i].diff5 << "\t";
 		
 	}
@@ -257,9 +274,7 @@ void UC06(){
 
 	// Imprimir 3 nota
 	for(int i=0; i<=quantidade-1; i++){
-
-		if      (nohs[i].inversao == 1) nohs[i].triade.getQuinta().ImprimirEmTela();
-		else if (nohs[i].inversao == 2) nohs[i].triade.getFundamental().ImprimirEmTela();
+		(nohs[i].inversao == 1) ? nohs[i].triade.getQuinta().ImprimirEmTela() : nohs[i].triade.getFundamental().ImprimirEmTela();
 		cout << "\t" << nohs[i].diff3 << "\t";
 		
 	}
@@ -267,12 +282,38 @@ void UC06(){
 
 	// Imprimir o baixo 
 	for(int i=0; i<=quantidade-1; i++){
-
-		if      (nohs[i].inversao == 1) nohs[i].triade.getTerca().ImprimirEmTela();
-		else if (nohs[i].inversao == 2) nohs[i].triade.getQuinta().ImprimirEmTela();
+		(nohs[i].inversao == 1) ? nohs[i].triade.getTerca().ImprimirEmTela() : nohs[i].triade.getQuinta().ImprimirEmTela();
 		cout << "\t\t";
 	}
 
 
 }
 
+void TestarIntervalo(){
+	Intervalo i;
+	Nota n1;
+
+	n1.setNota(4,1,0);
+	i.setN1(n1);
+	n1.setNota(3,7,0);
+	i.setN2(n1);
+	i.ImprimirEmTela();
+	i.ImprimirQdtNotasEmTela();
+/*
+	for (int ii=0; ii<=10; ii++){
+		i.Randomizar();
+		i.ImprimirEmTela();
+		i.ImprimirQdtNotasEmTela();
+		cout << "\t";
+	}
+*/
+}
+
+void TestarTriade(){
+	Triade t;
+	for (int z=1; z<=60; z++){
+		t.Randomizar();
+		t.ImprimirEmTela();
+		cout << " ";
+	}
+}

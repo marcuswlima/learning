@@ -4,31 +4,43 @@
 // Prototipações
 /////////////////////////////////////////
 void QuantidadesIntervalo(string , int &, int &);
-Nota GerarSegundaNota(Nota , int , int );
-void SimplificarIntervalo(Nota, Nota &);
+Nota GerarSegundaNota(Nota , int , int, int );
+void SimplificarIntervalo(Nota, Nota &, int=1);
+bool SegundaMaior(Nota n1, Nota n2);
+int RandomizaOrientacao_inner();
+bool PrimeiraMaior(Nota n1, Nota n2);
 
 /////////////////////////////////////////
 // construtores
 /////////////////////////////////////////
 Intervalo::Intervalo()
 {
-    string intervaloSimples=this->RandomizarDescricao();
-    this->setN2(intervaloSimples);
+}
+Intervalo::Intervalo(int dificuldade)
+{
+    Nota n;
+    n.Randomizar(dificuldade);
+    this->setN1(n);
+    n.Randomizar(dificuldade);
+    this->setN2(n,RandomizaOrientacao_inner());
 }
 
-Intervalo::Intervalo(Nota n)
+Intervalo::Intervalo(int dificuldade, int orientacao)
 {
+    Nota n;
+    n.Randomizar(dificuldade = dificuldade);
     this->setN1(n);
-    string intervaloSimples=this->RandomizarDescricao();
-    this->setN2(intervaloSimples);
+    n.Randomizar(dificuldade);
+    this->setN2(n,orientacao);
 }
+
 
 Intervalo::Intervalo(Nota n1, Nota n2)
 {
     this->setN1(n1);
-    this->setN2(n2);
+    this->setN2(n2,RandomizaOrientacao_inner());
 }
-
+    
 /////////////////////////////////////////
 // Sets
 /////////////////////////////////////////
@@ -36,30 +48,28 @@ void Intervalo::setN1(Nota n){
     this->n1 = n;
 }
 
-void Intervalo::setN2(Nota n){
+void Intervalo::setN2(Nota n, int orientacao){
+    n1 = this->getN1();
+    SimplificarIntervalo(n1,n, orientacao);
     n2 = n;
 }
 
-/*
-Determinar a segunda nota de um intervalo em função de uma descrição de intervalo
-*/
-void Intervalo::setN2(string descIntervalo){
+void Intervalo::setN2(string descIntervalo, int orientacao){
 
     int qdtNotasNaturais, qtdSemiTons;
     Nota n1=this->getN1(),n2;
 
     QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
 
-    n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons);
+    n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons, orientacao);
 
-    this->setN2(n2);
+    this->setN2(n2,orientacao);
 
 }
 
-void Intervalo::SetIntervalo(Nota n1, Nota n2){
-    SimplificarIntervalo(n1, n2);
+void Intervalo::SetIntervalo(Nota n1, Nota n2,int orientacao){
     this->setN1(n1);
-    this->setN2(n2);
+    this->setN2(n2,orientacao);
 }
 
 
@@ -79,9 +89,14 @@ Nota Intervalo::getN2(){
 /////////////////////////////////////////
 // Padrão
 /////////////////////////////////////////
-void Intervalo::Randomizar(){
-    this->getN1().Randomizar();
-    this->RandomizarSegundaNota();
+void Intervalo::Randomizar(int dificuldade){
+    Nota n;
+    int orientacao = RandomizaOrientacao_inner();
+
+    n.Randomizar(dificuldade);
+    this->setN1(n);
+    n.Randomizar(dificuldade);
+    this->setN2(n,orientacao);
 }
 
 string Intervalo::GerarDescricao(){
@@ -106,14 +121,11 @@ void Intervalo::ImprimirEmTela(){
 /////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
-void Intervalo::RandomizarSegundaNota(){
-    Nota n1,n2;
-
-    n1 = this->getN1();
-    n2.Randomizar();
-    SimplificarIntervalo(n1, n2);
-    this->setN2(n2);
-
+void Intervalo::RandomizarSegundaNota(int dificuldade){
+    int orientacao = RandomizaOrientacao_inner();
+    Nota n2;
+    n2.Randomizar(dificuldade);
+    this->setN2(n2,orientacao);
 }
 
 string Intervalo::RandomizarDescricao(){
@@ -127,19 +139,67 @@ string Intervalo::RandomizarDescricao(){
 		r += "J";
     else {
         n=GerarInteiro(1,2); 
-        if (n==1)
-            r += "m";
-        else
-            r += "M";
+        (n==1) ? r += "m" : r += "M";
     }
 
     return r;
 }
 
+int Intervalo::DeduzirQdtNotas(){
+    int resposta;
+    if (this->DeduzirOrientacao() == 1){
+        if (this->getN2().getOitava() == this->getN1().getOitava())
+            resposta = this->getN2().getGrau() - this->getN1().getGrau() + 1;
+        else
+            resposta = 7 - this->getN1().getGrau() + 1 + this->getN2().getGrau();
+    } else if (this->DeduzirOrientacao() == -1){
+        if (this->getN2().getOitava() == this->getN1().getOitava())
+            resposta = this->getN1().getGrau() - this->getN2().getGrau() + 1;
+        else
+            resposta = getN2().getGrau() + this->getN1().getGrau()-7 ;
+    };
+    return resposta;
+}
+
+int Intervalo::DeduzirQtdSemiTons(){
+    return 0;
+}
+
+int Intervalo::DeduzirOrientacao(){
+    return (SegundaMaior(this->getN1(),this->getN2()))
+                 ? 1
+                 : -1;
+}
+
+
+void Intervalo::ImprimirQdtNotasEmTela(){
+    cout << this->DeduzirQdtNotas() << " ";
+}
+
+
+void Intervalo::ImprimirQtdSemiTonsEmTela(){
+    cout << this->DeduzirQtdSemiTons() << " ";
+}
+
+
+void Intervalo::ImprimirOrientacaoEmTela(){
+    cout << this->DeduzirOrientacao() << " ";
+}
+
+
+
+string Intervalo::RandomizaOrientacao(){
+    return (RandomizaOrientacao_inner()==1) ? "Asc" : "Desc" ;
+}
 
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
+
+int RandomizaOrientacao_inner(){
+    return (GerarInteiro(1,2)==1) ? 1 : -1 ;
+}
+
 void QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiTons){
 
     if      (descricao=="1J"){qdtNotasNaturais=1;qtdSemiTons= 1;}
@@ -173,7 +233,10 @@ int RetornarSubescrito(int n){
 }
 
 
-Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemitons){
+/////////////////////////////////////////////////////
+// Implementar intervalo descrescente
+/////////////////////////////////////////////////////
+Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemitons, int orientacao){
 
 	Nota relativa = referencia.qualRelativa(quantidadeNotas);
     
@@ -184,7 +247,7 @@ Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemito
     if (referencia.getGrau()<relativa.getGrau()){
         diffSemiToms = (sub2-sub1+1);
     }else{
-        diffSemiToms=(12-sub1)+sub2+1;
+        diffSemiToms = (12-sub1)+sub2+1;
     }
     a = quantidadeSemitons - diffSemiToms + referencia.getAcidente();
 
@@ -194,13 +257,42 @@ Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemito
 	
 }
 
-void SimplificarIntervalo(Nota n1, Nota &n2){
+void SimplificarIntervalo(Nota n1, Nota &n2, int orientacao){
 
-    if (n1.getGrau() <= n2.getGrau())
-        n2.setOitava(n1.getOitava());
+    if (orientacao==1)
+        (n1.getGrau() < n2.getGrau()  ) ? 
+         n2.setOitava(n1.getOitava()  ) : 
+         n2.setOitava(n1.getOitava()+1) ;
     else 
-        n2.setOitava(n1.getOitava()+1);
+        (n1.getGrau() > n2.getGrau()  ) ? 
+         n2.setOitava(n1.getOitava()  ) : 
+         n2.setOitava(n1.getOitava()-1) ;
 
 }
 
+////////////////////////////////////
+// Transformar em operação em Nota
+////////////////////////////////////
+bool PrimeiraMaior(Nota n1, Nota n2){
+    bool resposta = false;
 
+    if (n1.getOitava() != n2.getOitava())   
+        resposta = n1.getOitava() > n2.getOitava();
+    else if (n1.getGrau() != n2.getGrau())
+        resposta = n1.getGrau() > n2.getGrau();
+    else if (n1.getAcidente() != n2.getAcidente()) 
+        resposta = n1.getAcidente() > n2.getAcidente();
+    return resposta;
+
+}
+
+bool NotasIguais(Nota n1, Nota n2){
+    return (n1.getOitava()   == n2.getOitava()  )&&
+           (n1.getGrau()     == n2.getGrau()    )&&
+           (n1.getAcidente() == n2.getAcidente());
+
+}
+
+bool SegundaMaior(Nota n1, Nota n2){
+    return !PrimeiraMaior(n1,n2) && !NotasIguais(n1,n2);
+}
