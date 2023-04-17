@@ -33,9 +33,8 @@ int main ( )
     ImprimirTitulo("Gerador Exercicios");
 
 	//UC06(10);
-
-	ChamarMenu();
-	//TestarIntervalo();
+	//ChamarMenu();
+	TestarIntervalo();
 	//TestarTriade();
 
     cout << endl;
@@ -294,13 +293,20 @@ void TestarIntervalo(){
 	Intervalo i;
 	Nota n1;
 
-	n1.setNota(6,2,0);
+	n1.setNota(4,1,0);
 	i.setN1(n1);
-	n1.setNota(6,3,0);
+	n1.setNota(3,7,0);
 	i.setN2(n1);
 	i.ImprimirEmTela();
-	i.setN2(n1,-1);
-	i.ImprimirEmTela();
+	i.ImprimirQdtNotasEmTela();
+/*
+	for (int ii=0; ii<=10; ii++){
+		i.Randomizar();
+		i.ImprimirEmTela();
+		i.ImprimirQdtNotasEmTela();
+		cout << "\t";
+	}
+*/
 }
 
 void TestarTriade(){
