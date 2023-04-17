@@ -8,6 +8,7 @@ Nota GerarSegundaNota(Nota , int , int, int );
 void SimplificarIntervalo(Nota, Nota &, int=1);
 bool SegundaMaior(Nota n1, Nota n2);
 int RandomizaOrientacao_inner();
+bool PrimeiraMaior(Nota n1, Nota n2);
 
 /////////////////////////////////////////
 // construtores
@@ -144,6 +145,49 @@ string Intervalo::RandomizarDescricao(){
     return r;
 }
 
+int Intervalo::DeduzirQdtNotas(){
+    int resposta;
+    if (this->DeduzirOrientacao() == 1){
+        if (this->getN2().getOitava() == this->getN1().getOitava())
+            resposta = this->getN2().getGrau() - this->getN1().getGrau() + 1;
+        else
+            resposta = 7 - this->getN1().getGrau() + 1 + this->getN2().getGrau();
+    } else if (this->DeduzirOrientacao() == -1){
+        if (this->getN2().getOitava() == this->getN1().getOitava())
+            resposta = this->getN1().getGrau() - this->getN2().getGrau() + 1;
+        else
+            resposta = getN2().getGrau() + this->getN1().getGrau()-7 ;
+    };
+    return resposta;
+}
+
+int Intervalo::DeduzirQtdSemiTons(){
+    return 0;
+}
+
+int Intervalo::DeduzirOrientacao(){
+    return (SegundaMaior(this->getN1(),this->getN2()))
+                 ? 1
+                 : -1;
+}
+
+
+void Intervalo::ImprimirQdtNotasEmTela(){
+    cout << this->DeduzirQdtNotas() << " ";
+}
+
+
+void Intervalo::ImprimirQtdSemiTonsEmTela(){
+    cout << this->DeduzirQtdSemiTons() << " ";
+}
+
+
+void Intervalo::ImprimirOrientacaoEmTela(){
+    cout << this->DeduzirOrientacao() << " ";
+}
+
+
+
 string Intervalo::RandomizaOrientacao(){
     return (RandomizaOrientacao_inner()==1) ? "Asc" : "Desc" ;
 }
@@ -238,7 +282,6 @@ bool PrimeiraMaior(Nota n1, Nota n2){
         resposta = n1.getGrau() > n2.getGrau();
     else if (n1.getAcidente() != n2.getAcidente()) 
         resposta = n1.getAcidente() > n2.getAcidente();
-
     return resposta;
 
 }
