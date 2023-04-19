@@ -29,5 +29,9 @@ public:
     void ImprimirEmTela();
 // Implementações
     Nota qualRelativa(int);
+    void up1Semitom();
+    void up1Tom();
+    void down1Semitom();
+    void down1Tom();
 }; 
 #endif

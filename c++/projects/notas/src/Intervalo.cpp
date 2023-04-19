@@ -9,6 +9,8 @@ void SimplificarIntervalo(Nota, Nota &, int=1);
 bool SegundaMaior(Nota n1, Nota n2);
 int RandomizaOrientacao_inner();
 bool PrimeiraMaior(Nota n1, Nota n2);
+Nota i2m(Nota, int =1);
+void i2M(Nota &, int =1);
 
 /////////////////////////////////////////
 // construtores
@@ -55,15 +57,18 @@ void Intervalo::setN2(Nota n, int orientacao){
 }
 
 void Intervalo::setN2(string descIntervalo, int orientacao){
+    Nota n;
+    n = i2m(this->getN1(),orientacao);
+    this->setN2(n);
 
-    int qdtNotasNaturais, qtdSemiTons;
-    Nota n1=this->getN1(),n2;
 
-    QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
+//    int qdtNotasNaturais, qtdSemiTons;
+//    Nota n1=this->getN1(),n2;
+//    QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
+//    n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons, orientacao);
+//    this->setN2(n2,orientacao);
 
-    n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons, orientacao);
 
-    this->setN2(n2,orientacao);
 
 }
 
@@ -295,4 +300,17 @@ bool NotasIguais(Nota n1, Nota n2){
 
 bool SegundaMaior(Nota n1, Nota n2){
     return !PrimeiraMaior(n1,n2) && !NotasIguais(n1,n2);
+}
+
+Nota i2m(Nota n, int orientacao){
+    Nota resposta=n;
+    if (orientacao==1)
+        n.up1Semitom();
+    
+    return n;
+}
+
+void i2M(Nota &n, int orientacao){
+    if (orientacao==1)
+        n.down1Tom();
 }

@@ -144,6 +144,61 @@ Nota Nota::qualRelativa(int relativa){
 
 }
 
+void Nota::up1Semitom(){
+    int acidente=this->getAcidente();
+    int grau=this->getGrau();
+    int oitava=this->getOitava();
+
+    if (acidente==-1){
+        this->setAcidente(0);
+    }else if((acidente==0)){
+        if (grau==3){
+            this->setGrau(++grau);
+        }else if (grau==7){
+            this->setOitava(++oitava);
+            this->setGrau(1);
+        }else{
+            this->setAcidente(1);
+        }
+    }else if((acidente==1)){
+        this->setAcidente(0);
+        this->setGrau(++grau);
+    }
+
+}
+
+void Nota::down1Semitom(){
+    int acidente=this->getAcidente();
+    int grau=this->getGrau();
+    int oitava=this->getOitava();
+    if (acidente==1){
+        this->setAcidente(0);
+    }else if((acidente==0)){
+        if (grau==4){
+            this->setGrau(--grau);
+        }else if (grau==1){
+            this->setOitava(--oitava);
+            this->setGrau(7);
+        }else{
+            this->setAcidente(-1);
+        }
+    }else if((acidente==-1)){
+        this->setAcidente(0);
+        this->setGrau(--grau);
+    }
+}
+
+void Nota:: up1Tom(){
+    this->up1Semitom();
+    this->up1Semitom();
+}
+void Nota::down1Tom(){
+    this->down1Semitom();
+    this->down1Semitom();
+}
+
+
+
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
