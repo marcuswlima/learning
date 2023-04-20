@@ -105,7 +105,7 @@ string Nota::GerarDescricao(){
     if (notaValida(o,g,a))
         strNota = in_GerarDescricao(o,g,a);
     else 
-        MensagemErro(o,g,a,false);
+        MensagemErro(o,g,a,true);
 
     return strNota;
 
@@ -123,17 +123,26 @@ void Nota::ImprimirEmTela(){
 
 
 // Retornar a relativa
-Nota Nota::qualRelativa(int relativa){
+Nota Nota::qualRelativa(int relativa, int orientacao){
     Nota resposta;
 
     int o=this->getOitava()
        ,g=this->getGrau()
        ,a=this->getAcidente();
 
-    g = g + relativa - 1;
-    if (g>=8){
-        g -= 7;
-        o++;
+    if (orientacao==1){
+        g = g + relativa - 1;
+        if (g>=8){
+            g -= 7;
+            o++;
+        }
+    }else if (orientacao==-1){
+        g = g - relativa + 1;
+        if (g<=0){
+            g += 7;
+            o--;
+        }
+
     }
 
     resposta.setOitava(o);
@@ -260,12 +269,12 @@ string in_GerarDescricao( int o, int g, int a ){
 }
 
 void MensagemErro( int o, int g, int a, bool mostraValores ){
-        cout << "Oitava, nota e/ou acidente invalido\t";
+//        cout << "Oitava, nota e/ou acidente invalido\t";
         if (mostraValores){
-             cout << "Oitava -> "   << o << "\t";
-             cout << "Nota -> "     << g << "\t";
-             cout << "Acidente -> " << a;
+             cout << o << '-';
+             cout << g << '-';
+             cout << a;
         }
-        cout << endl;
+//        cout << endl;
 }
 

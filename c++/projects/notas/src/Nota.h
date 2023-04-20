@@ -28,7 +28,7 @@ public:
     string GerarDescricao();
     void ImprimirEmTela();
 // Implementações
-    Nota qualRelativa(int);
+    Nota qualRelativa(int, int =1);
     void up1Semitom();
     void up1Tom();
     void down1Semitom();
