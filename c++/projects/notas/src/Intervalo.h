@@ -26,7 +26,10 @@ public:
     void RandomizarSegundaNota(int);
     string RandomizarDescricao();
     string RandomizaOrientacao();
-    void CalcularQdtNotas();
-    void CalcularSemiTons();
-    void CalcularOrientacao();
+    int DeduzirQdtNotas();
+    int DeduzirQtdSemiTons();
+    int DeduzirOrientacao();
+    void ImprimirQdtNotasEmTela();
+    void ImprimirQtdSemiTonsEmTela();
+    void ImprimirOrientacaoEmTela();
 };

@@ -8,6 +8,9 @@ Nota GerarSegundaNota(Nota , int , int, int );
 void SimplificarIntervalo(Nota, Nota &, int=1);
 bool SegundaMaior(Nota n1, Nota n2);
 int RandomizaOrientacao_inner();
+bool PrimeiraMaior(Nota n1, Nota n2);
+Nota i2m(Nota, int =1);
+Nota i2M(Nota, int =1);
 
 /////////////////////////////////////////
 // construtores
@@ -49,20 +52,36 @@ void Intervalo::setN1(Nota n){
 
 void Intervalo::setN2(Nota n, int orientacao){
     n1 = this->getN1();
-    SimplificarIntervalo(n1,n, orientacao);
+    SimplificarIntervalo(n1,n,orientacao);
     n2 = n;
 }
 
 void Intervalo::setN2(string descIntervalo, int orientacao){
-
+    Nota n1,n2;
     int qdtNotasNaturais, qtdSemiTons;
-    Nota n1=this->getN1(),n2;
 
     QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
 
-    n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons, orientacao);
-
+    n1 = this->getN1();
+    n2 = n1.qualRelativa(qdtNotasNaturais,orientacao);
     this->setN2(n2,orientacao);
+
+//	Nota relativa = referencia.qualRelativa(quantidadeNotas);
+
+//    Nota n1=this->getN1(),n2;
+//    int acidente = this->getN1().getAcidente();
+//    n2 = i2m(n1,orientacao);
+//    //n2.setAcidente(acidente);
+//    this->setN2(n2,orientacao);
+
+
+//    int qdtNotasNaturais, qtdSemiTons;
+//    Nota n1=this->getN1(),n2;
+//    QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
+//    n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons, orientacao);
+//    this->setN2(n2,orientacao);
+
+
 
 }
 
@@ -144,6 +163,49 @@ string Intervalo::RandomizarDescricao(){
     return r;
 }
 
+int Intervalo::DeduzirQdtNotas(){
+    int resposta;
+    if (this->DeduzirOrientacao() == 1){
+        if (this->getN2().getOitava() == this->getN1().getOitava())
+            resposta = this->getN2().getGrau() - this->getN1().getGrau() + 1;
+        else
+            resposta = 7 - this->getN1().getGrau() + 1 + this->getN2().getGrau();
+    } else if (this->DeduzirOrientacao() == -1){
+        if (this->getN2().getOitava() == this->getN1().getOitava())
+            resposta = this->getN1().getGrau() - this->getN2().getGrau() + 1;
+        else
+            resposta = getN2().getGrau() + this->getN1().getGrau()-7 ;
+    };
+    return resposta;
+}
+
+int Intervalo::DeduzirQtdSemiTons(){
+    return 0;
+}
+
+int Intervalo::DeduzirOrientacao(){
+    return (SegundaMaior(this->getN1(),this->getN2()))
+                 ? 1
+                 : -1;
+}
+
+
+void Intervalo::ImprimirQdtNotasEmTela(){
+    cout << this->DeduzirQdtNotas() << " ";
+}
+
+
+void Intervalo::ImprimirQtdSemiTonsEmTela(){
+    cout << this->DeduzirQtdSemiTons() << " ";
+}
+
+
+void Intervalo::ImprimirOrientacaoEmTela(){
+    cout << this->DeduzirOrientacao() << " ";
+}
+
+
+
 string Intervalo::RandomizaOrientacao(){
     return (RandomizaOrientacao_inner()==1) ? "Asc" : "Desc" ;
 }
@@ -216,11 +278,11 @@ Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemito
 void SimplificarIntervalo(Nota n1, Nota &n2, int orientacao){
 
     if (orientacao==1)
-        (n1.getGrau() < n2.getGrau()  ) ? 
+        (n1.getGrau() <= n2.getGrau()  ) ? 
          n2.setOitava(n1.getOitava()  ) : 
          n2.setOitava(n1.getOitava()+1) ;
     else 
-        (n1.getGrau() > n2.getGrau()  ) ? 
+        (n1.getGrau() >= n2.getGrau()  ) ? 
          n2.setOitava(n1.getOitava()  ) : 
          n2.setOitava(n1.getOitava()-1) ;
 
@@ -238,7 +300,6 @@ bool PrimeiraMaior(Nota n1, Nota n2){
         resposta = n1.getGrau() > n2.getGrau();
     else if (n1.getAcidente() != n2.getAcidente()) 
         resposta = n1.getAcidente() > n2.getAcidente();
-
     return resposta;
 
 }
@@ -252,4 +313,18 @@ bool NotasIguais(Nota n1, Nota n2){
 
 bool SegundaMaior(Nota n1, Nota n2){
     return !PrimeiraMaior(n1,n2) && !NotasIguais(n1,n2);
+}
+
+Nota i2m(Nota n, int orientacao){
+    Nota resposta=n;
+    if (orientacao==1)
+        n.up1Semitom();
+    return n;
+}
+
+Nota i2M(Nota n, int orientacao){
+    Nota resposta=n;
+    if (orientacao==1)
+        n.up1Tom();
+    return n;
 }
