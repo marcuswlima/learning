@@ -17,6 +17,7 @@ void UC05();
 void UC06();
 void TestarIntervalo();
 void TestarTriade();
+void TestarNota();
 
 /////////////////////////////////////////
 // Elelementos Globais
@@ -36,6 +37,7 @@ int main ( )
 	//ChamarMenu();
 	TestarIntervalo();
 	//TestarTriade();
+	//TestarNota();
 
     cout << endl;
 	return 0; //indica o fim do programa2
@@ -290,15 +292,27 @@ void UC06(){
 }
 
 void TestarIntervalo(){
+	Nota n1,n2;
 	Intervalo i;
-	Nota n1;
 
-	n1.setNota(4,1,0);
-	i.setN1(n1);
-	n1.setNota(3,7,0);
-	i.setN2(n1);
-	i.ImprimirEmTela();
-	i.ImprimirQdtNotasEmTela();
+	n1.setNota(3,1,0);
+	for (int ii=1; ii<=20; ii++){
+		//n2 = n1.qualRelativa(8,-1);
+		//n2.ImprimirEmTela();
+		//cout << '\t' ;
+
+		n1.ImprimirEmTela();
+		cout << '\t' ;
+
+		i.setN1(n1);
+		i.setN2("2m");
+		i.ImprimirEmTela();
+
+		cout << endl;
+		n1.up1Semitom();
+
+	}
+
 /*
 	for (int ii=0; ii<=10; ii++){
 		i.Randomizar();
@@ -315,5 +329,13 @@ void TestarTriade(){
 		t.Randomizar();
 		t.ImprimirEmTela();
 		cout << " ";
+	}
+}
+
+void TestarNota(){
+	Nota n(3,7,0);
+	for (int i=1;i<30;i++){
+		n.ImprimirEmTela();
+		n.down1Semitom();
 	}
 }
