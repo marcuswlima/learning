@@ -1,5 +1,7 @@
 #include "Intervalo.h"
 
+#ifndef TRIADE_H
+#define TRIADE_H
 class Triade{
 private:
     Intervalo i1;
@@ -27,3 +29,4 @@ public:
     void ImprimirFundamentalEmTela();
     string RandomizarTipoTriade();
 };
+#endif

@@ -2,8 +2,8 @@
 #include "../../lib/BarraTitulo.h"
 #include "../../lib/ObterNumero.h"
 
-#ifndef TIME_H
-#define TIME_H
+#ifndef NOTA_H
+#define NOTA_H
 class Nota {
 private:
     int oitava;     // 0--8 
@@ -18,7 +18,7 @@ public:
     void setOitava(int);
     void setGrau(int);
     void setAcidente(int);
-    void setNota( int, int, int ); 
+    void setNota(int, int, int); 
 //Gets
     int getOitava();
     int getGrau();

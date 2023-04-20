@@ -294,33 +294,45 @@ void UC06(){
 void TestarIntervalo(){
 	Nota n1,n2;
 	Intervalo i;
+	int orientacao=1;
 
 	n1.setNota(3,1,0);
-	for (int ii=1; ii<=20; ii++){
-		//n2 = n1.qualRelativa(8,-1);
-		//n2.ImprimirEmTela();
-		//cout << '\t' ;
 
+
+
+//	i.setN1(n1);
+//	i.setN2("2m",orientacao);
+//	i.ImprimirEmTela();
+
+	cout << "Nota\t2m\t\t2M\t\t3m\t\t3M" << endl;
+	for (int ii=1; ii<=12; ii++){
+
+		orientacao=1;
+
+		i.setN1(n1);
 		n1.ImprimirEmTela();
 		cout << '\t' ;
 
-		i.setN1(n1);
-		i.setN2("2m");
+		i.setN2("2m",orientacao);
 		i.ImprimirEmTela();
+		cout << '\t' ;
+
+		i.setN2("2M",orientacao);
+		i.ImprimirEmTela();
+		cout << '\t' ;
+
+		i.setN2("3m",orientacao);
+		i.ImprimirEmTela();
+		cout << '\t' ;
+
+		i.setN2("3M",orientacao);
+		i.ImprimirEmTela();
+		cout << '\t' ;
 
 		cout << endl;
 		n1.up1Semitom();
 
 	}
-
-/*
-	for (int ii=0; ii<=10; ii++){
-		i.Randomizar();
-		i.ImprimirEmTela();
-		i.ImprimirQdtNotasEmTela();
-		cout << "\t";
-	}
-*/
 }
 
 void TestarTriade(){
