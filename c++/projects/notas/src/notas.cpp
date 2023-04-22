@@ -33,9 +33,9 @@ int main ( )
 
     ImprimirTitulo("Gerador Exercicios");
 
+	ChamarMenu();
 	//UC06(10);
-	//ChamarMenu();
-	TestarIntervalo();
+	//TestarIntervalo();
 	//TestarTriade();
 	//TestarNota();
 
@@ -149,9 +149,9 @@ void UC01(){
 
 	for(int i=1; i<=quantidade; i++){
 		intervalo.Randomizar(gDificuldade);
-		intervalo.getN1().ImprimirEmTela();
-		cout << intervalo.RandomizarDescricao() << " ";
-		cout << intervalo.RandomizaOrientacao();
+		intervalo.ImprimirEmTela();
+		cout << intervalo.DeduzirTipoIntervalo() << " ";
+		intervalo.ImprimirOrientacaoEmTela();
 		cout << " / ";
 	}
 }

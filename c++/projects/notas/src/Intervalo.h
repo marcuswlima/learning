@@ -31,6 +31,7 @@ public:
     int DeduzirQdtNotas();
     int DeduzirQtdSemiTons();
     int DeduzirOrientacao();
+    string DeduzirTipoIntervalo();
     void ImprimirQdtNotasEmTela();
     void ImprimirQtdSemiTonsEmTela();
     void ImprimirOrientacaoEmTela();

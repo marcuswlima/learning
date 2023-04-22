@@ -8,9 +8,37 @@ void SimplificarIntervalo(Nota, Nota &, int=1);
 bool SegundaMaior(Nota n1, Nota n2);
 int RandomizaOrientacao_inner();
 bool PrimeiraMaior(Nota n1, Nota n2);
-Nota i2m(Nota, int =1);
-Nota i2M(Nota, int =1);
 int distanciaEmSemiTons(Nota,Nota);
+
+/////////////////////////////////////////
+// Elementos Globais
+/////////////////////////////////////////
+struct tRecDadosIntervalo {
+    string tipoIntervalo;
+    int qdtNotasNaturais;
+    int qtdSemiTons;
+};
+
+tRecDadosIntervalo DadosIntervalo[]={  //0-15
+                                        {"1J",1, 1},
+                                        {"2m",2, 2},
+                                        {"2M",2, 3},
+                                        {"3m",3, 4},
+                                        {"3M",3, 5},
+                                        {"4D",4, 5},
+                                        {"4J",4, 6},
+                                        {"4A",4, 7},
+                                        {"5D",5, 7},
+                                        {"5J",5, 8},
+                                        {"5A",5, 9},
+                                        {"6m",6, 9},
+                                        {"6M",6,10},
+                                        {"7m",7,11},
+                                        {"7M",7,12},
+                                        {"8J",8,13},
+                                    };
+
+
 /////////////////////////////////////////
 // construtores
 /////////////////////////////////////////
@@ -116,7 +144,7 @@ void Intervalo::Randomizar(int dificuldade){
     n.Randomizar(dificuldade);
     this->setN2(n,orientacao);
 }
-
+ 
 string Intervalo::GerarDescricao(){
     string resposta="";
 
@@ -193,6 +221,19 @@ int Intervalo::DeduzirOrientacao(){
                  : -1;
 }
 
+string Intervalo::DeduzirTipoIntervalo(){
+    string resposta;
+    int qdtNotas = this->DeduzirQdtNotas();
+    int qtdSemiTons = this->DeduzirQtdSemiTons();
+
+    for (int i=0;i<=15;i++){
+        if ((DadosIntervalo[i].qdtNotasNaturais==qdtNotas)&&(DadosIntervalo[i].qtdSemiTons=qtdSemiTons)){
+            resposta = DadosIntervalo[i].tipoIntervalo;
+            break; 
+        }
+    }
+    return resposta;
+}
 
 void Intervalo::ImprimirQdtNotasEmTela(){
     cout << this->DeduzirQdtNotas() << " ";
@@ -205,7 +246,9 @@ void Intervalo::ImprimirQtdSemiTonsEmTela(){
 
 
 void Intervalo::ImprimirOrientacaoEmTela(){
-    cout << this->DeduzirOrientacao() << " ";
+    (this->DeduzirOrientacao()==1) ? 
+        cout << "Asc"              : 
+        cout << "Desc"             ;
 }
 
 
