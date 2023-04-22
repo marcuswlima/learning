@@ -294,44 +294,47 @@ void UC06(){
 void TestarIntervalo(){
 	Nota n1,n2;
 	Intervalo i;
-	int orientacao=1;
+	int orientacao=-1;
 
-	n1.setNota(3,1,0);
+	n1.setNota(4,1,0);
 
+	string intervalos[]={"","2m","2M","3m","3M","4J","4A","5D","5J","6m","6M","7m","7M"};
 
+	
 
-//	i.setN1(n1);
-//	i.setN2("2m",orientacao);
-//	i.ImprimirEmTela();
-
-	cout << "Nota\t2m\t\t2M\t\t3m\t\t3M" << endl;
+	cout << "Nota\t2m\t2M\t3m\t3M\t4J\t4A\t5D\t5J\t6m\t6M\t7m\t7M" << endl;
 	for (int ii=1; ii<=12; ii++){
-
-		orientacao=1;
-
-		i.setN1(n1);
 		n1.ImprimirEmTela();
 		cout << '\t' ;
+		i.setN1(n1);
 
-		i.setN2("2m",orientacao);
-		i.ImprimirEmTela();
-		cout << '\t' ;
-
-		i.setN2("2M",orientacao);
-		i.ImprimirEmTela();
-		cout << '\t' ;
-
-		i.setN2("3m",orientacao);
-		i.ImprimirEmTela();
-		cout << '\t' ;
-
-		i.setN2("3M",orientacao);
-		i.ImprimirEmTela();
-		cout << '\t' ;
+		for (int iii=1;iii<=12;iii++){
+			i.setN2(intervalos[iii],orientacao);
+			i.getN2().ImprimirEmTela();
+			cout << '\t' ;
+			
+		}
 
 		cout << endl;
 		n1.up1Semitom();
 
+	}
+
+	n1.setNota(4,7,-1);
+	for (int ii=1; ii<=11; ii++){
+		n1.ImprimirEmTela();
+		cout << '\t' ;
+		i.setN1(n1);
+
+		for (int iii=1;iii<=12;iii++){
+			i.setN2(intervalos[iii],orientacao);
+			i.getN2().ImprimirEmTela();
+			cout << '\t' ;
+			
+		}
+
+		cout << endl;
+		n1.down1Semitom();
 	}
 }
 

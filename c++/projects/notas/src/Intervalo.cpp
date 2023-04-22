@@ -66,31 +66,23 @@ void Intervalo::setN2(string descIntervalo, int orientacao){
     /// encontrar nova nota
     n1 = this->getN1();
     n2 = n1.qualRelativa(qdtNotasDoIntervaloDesejado,orientacao);
+    //n2.ImprimirEmTela();
 
     /// encontrar novo acidente
     qtdSemiTonsEntreAsDuasNotas = distanciaEmSemiTons(n1,n2);
-    novoAcidente = qtdSemiTonsDoIntervaloDesejado - qtdSemiTonsEntreAsDuasNotas + n1.getAcidente();
+    
+    //cout << endl << "qtdSemiTonsEntreAsDuasNotas:"<<qtdSemiTonsEntreAsDuasNotas<<endl;
+    //cout << "qtdSemiTonsDoIntervaloDesejado:"<<qtdSemiTonsDoIntervaloDesejado<<endl;
+    (orientacao==1)                                                                    ?
+        novoAcidente = qtdSemiTonsDoIntervaloDesejado - qtdSemiTonsEntreAsDuasNotas    :
+        novoAcidente = qtdSemiTonsEntreAsDuasNotas    - qtdSemiTonsDoIntervaloDesejado ;
+
+    novoAcidente += n1.getAcidente();
+
     n2.setAcidente(novoAcidente);
+    //cout << "novoAcidente:"<<novoAcidente<<endl;
     
     this->setN2(n2,orientacao);
-
-/*
-//  Totalmente Bohomil
-    Nota n1=this->getN1(),n2;
-    int acidente = this->getN1().getAcidente();
-    n2 = i2m(n1,orientacao);
-    n2.setAcidente(acidente);
-    this->setN2(n2,orientacao);
-*/
-
-//    Primeira Versao
-//    int qdtNotasNaturais, qtdSemiTons;
-//    Nota n1=this->getN1(),n2;
-//    QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
-//    n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons, orientacao);
-//    this->setN2(n2,orientacao);
-
-
 
 }
 
@@ -130,7 +122,15 @@ string Intervalo::GerarDescricao(){
     string resposta="";
 
     if (getN1().GerarDescricao()!=""){
-        resposta += this->getN1().GerarDescricao() + ":";
+        resposta += this->getN1().GerarDescricao();
+
+/*        
+        if (this->getN1().getAcidente()==0)
+            resposta += " ";
+        if (this->getN1().getGrau()!=0)
+            resposta += " ";
+*/
+        resposta += ":";
         resposta += this->getN2().GerarDescricao() + " ";
     }
     else
@@ -332,22 +332,28 @@ int distanciaEmSemiTons(Nota n1,Nota n2){
         i1   = RetornarSubescrito(g1),
         i2   = RetornarSubescrito(g2),
         resp = 0                     ;
-    
+//    cout << endl;
+//    cout << "i1:" << i1 << endl;
+//    cout << "i2:" << i2 << endl;
+//    n1.ImprimirEmTela();
+//    n2.ImprimirEmTela();
     if (SegundaMaior(n1,n2)){ // intervalo ascendente
         if(g1 < g2){          // primeira nota com grau menor
-            resp = i2 - i1 + 1;
+            resp = (i2-i1+1);
         }
         else if(g1 > g2) {    // segunda nota com grau menor
-
+            resp = (12-i1+1)+i2 ;
         };
-    }
-
-    if (!SegundaMaior(n1,n2)){ // intervalo descendente
+    }else if (PrimeiraMaior(n1,n2)){ // intervalo descendente
         if(g1 < g2){           // primeira nota com grau menor
+            resp = (12-i2+1)+i1 ;
         }
         else if(g1 > g2) {     // segunda nota com grau menor
-
+            resp = (i1-i2+1);
         };
+    }else {  // notas idênticas
+        resp=1;
+
     }
     return resp;
 }
