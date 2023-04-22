@@ -4,7 +4,6 @@
 // Prototipações
 /////////////////////////////////////////
 void QuantidadesIntervalo(string , int &, int &);
-Nota GerarSegundaNota(Nota , int , int, int );
 void SimplificarIntervalo(Nota, Nota &, int=1);
 bool SegundaMaior(Nota n1, Nota n2);
 int RandomizaOrientacao_inner();
@@ -123,13 +122,6 @@ string Intervalo::GerarDescricao(){
 
     if (getN1().GerarDescricao()!=""){
         resposta += this->getN1().GerarDescricao();
-
-/*        
-        if (this->getN1().getAcidente()==0)
-            resposta += " ";
-        if (this->getN1().getGrau()!=0)
-            resposta += " ";
-*/
         resposta += ":";
         resposta += this->getN2().GerarDescricao() + " ";
     }
@@ -189,7 +181,10 @@ int Intervalo::DeduzirQdtNotas(){
 }
 
 int Intervalo::DeduzirQtdSemiTons(){
-    return 0;
+    return distanciaEmSemiTons(
+                               this->getN1()
+                              ,this->getN2()
+                              );
 }
 
 int Intervalo::DeduzirOrientacao(){
@@ -258,30 +253,6 @@ int RetornarSubescrito(int n){
         }
     }
     return resposta;
-}
-
-/////////////////////////////////////////////////////
-// Implementar intervalo descrescente
-/////////////////////////////////////////////////////
-Nota GerarSegundaNota(Nota referencia, int quantidadeNotas, int quantidadeSemitons, int orientacao){
-
-	Nota relativa = referencia.qualRelativa(quantidadeNotas);
-    
-    int sub1, sub2, diffSemiToms, a;
-    sub1=RetornarSubescrito(referencia.getGrau()); //1
-    sub2=RetornarSubescrito(relativa.getGrau()); //5
-
-    if (referencia.getGrau()<relativa.getGrau()){
-        diffSemiToms = (sub2-sub1+1);
-    }else{
-        diffSemiToms = (12-sub1)+sub2+1;
-    }
-    a = quantidadeSemitons - diffSemiToms + referencia.getAcidente();
-
-	relativa.setAcidente(a);
-
-	return relativa;
-	
 }
 
 void SimplificarIntervalo(Nota n1, Nota &n2, int orientacao){
@@ -356,18 +327,4 @@ int distanciaEmSemiTons(Nota n1,Nota n2){
 
     }
     return resp;
-}
-
-Nota i2m(Nota n, int orientacao){
-    Nota resposta=n;
-    if (orientacao==1)
-        n.up1Semitom();
-    return n;
-}
-
-Nota i2M(Nota n, int orientacao){
-    Nota resposta=n;
-    if (orientacao==1)
-        n.up1Tom();
-    return n;
 }
