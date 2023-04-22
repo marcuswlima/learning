@@ -11,7 +11,7 @@ int RandomizaOrientacao_inner();
 bool PrimeiraMaior(Nota n1, Nota n2);
 Nota i2m(Nota, int =1);
 Nota i2M(Nota, int =1);
-
+int distanciaEmSemiTons(Nota,Nota);
 /////////////////////////////////////////
 // construtores
 /////////////////////////////////////////
@@ -50,38 +50,39 @@ void Intervalo::setN1(Nota n){
     this->n1 = n;
 }
 
-void Intervalo::setN2(Nota n, int orientacao){
-    n1 = this->getN1();
-    SimplificarIntervalo(n1,n,orientacao);
-    n2 = n;
+void Intervalo::setN2(Nota in_n2, int orientacao){
+    SimplificarIntervalo(this->n1,in_n2,orientacao);
+    this->n2 = in_n2;
 }
 
 void Intervalo::setN2(string descIntervalo, int orientacao){
+
     Nota n1,n2;
-    int qdtNotasNaturais, qtdSemiTons;
+    int qdtNotasDoIntervaloDesejado, qtdSemiTonsDoIntervaloDesejado,qtdSemiTonsEntreAsDuasNotas, novoAcidente;
 
-    QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
+    /// dados do intervalo desejado
+    QuantidadesIntervalo(descIntervalo,qdtNotasDoIntervaloDesejado,qtdSemiTonsDoIntervaloDesejado);
 
+    /// encontrar nova nota
     n1 = this->getN1();
-    n2 = n1.qualRelativa(qdtNotasNaturais,orientacao);
+    n2 = n1.qualRelativa(qdtNotasDoIntervaloDesejado,orientacao);
+    //n2.ImprimirEmTela();
+
+    /// encontrar novo acidente
+    qtdSemiTonsEntreAsDuasNotas = distanciaEmSemiTons(n1,n2);
+    
+    //cout << endl << "qtdSemiTonsEntreAsDuasNotas:"<<qtdSemiTonsEntreAsDuasNotas<<endl;
+    //cout << "qtdSemiTonsDoIntervaloDesejado:"<<qtdSemiTonsDoIntervaloDesejado<<endl;
+    (orientacao==1)                                                                    ?
+        novoAcidente = qtdSemiTonsDoIntervaloDesejado - qtdSemiTonsEntreAsDuasNotas    :
+        novoAcidente = qtdSemiTonsEntreAsDuasNotas    - qtdSemiTonsDoIntervaloDesejado ;
+
+    novoAcidente += n1.getAcidente();
+
+    n2.setAcidente(novoAcidente);
+    //cout << "novoAcidente:"<<novoAcidente<<endl;
+    
     this->setN2(n2,orientacao);
-
-//	Nota relativa = referencia.qualRelativa(quantidadeNotas);
-
-//    Nota n1=this->getN1(),n2;
-//    int acidente = this->getN1().getAcidente();
-//    n2 = i2m(n1,orientacao);
-//    //n2.setAcidente(acidente);
-//    this->setN2(n2,orientacao);
-
-
-//    int qdtNotasNaturais, qtdSemiTons;
-//    Nota n1=this->getN1(),n2;
-//    QuantidadesIntervalo(descIntervalo,qdtNotasNaturais,qtdSemiTons);
-//    n2=GerarSegundaNota(n1,qdtNotasNaturais,qtdSemiTons, orientacao);
-//    this->setN2(n2,orientacao);
-
-
 
 }
 
@@ -121,7 +122,15 @@ string Intervalo::GerarDescricao(){
     string resposta="";
 
     if (getN1().GerarDescricao()!=""){
-        resposta += this->getN1().GerarDescricao() + "-";
+        resposta += this->getN1().GerarDescricao();
+
+/*        
+        if (this->getN1().getAcidente()==0)
+            resposta += " ";
+        if (this->getN1().getGrau()!=0)
+            resposta += " ";
+*/
+        resposta += ":";
         resposta += this->getN2().GerarDescricao() + " ";
     }
     else
@@ -238,6 +247,7 @@ void QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiT
     else if (descricao=="8J"){qdtNotasNaturais=8;qtdSemiTons=13;}
 }
 
+
 int umaoitava[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
 int RetornarSubescrito(int n){
     int resposta;
@@ -249,7 +259,6 @@ int RetornarSubescrito(int n){
     }
     return resposta;
 }
-
 
 /////////////////////////////////////////////////////
 // Implementar intervalo descrescente
@@ -313,6 +322,40 @@ bool NotasIguais(Nota n1, Nota n2){
 
 bool SegundaMaior(Nota n1, Nota n2){
     return !PrimeiraMaior(n1,n2) && !NotasIguais(n1,n2);
+}
+////////////////////////////////////////////////////////
+
+
+int distanciaEmSemiTons(Nota n1,Nota n2){
+    int g1   = n1.getGrau()          ,
+        g2   = n2.getGrau()          ,
+        i1   = RetornarSubescrito(g1),
+        i2   = RetornarSubescrito(g2),
+        resp = 0                     ;
+//    cout << endl;
+//    cout << "i1:" << i1 << endl;
+//    cout << "i2:" << i2 << endl;
+//    n1.ImprimirEmTela();
+//    n2.ImprimirEmTela();
+    if (SegundaMaior(n1,n2)){ // intervalo ascendente
+        if(g1 < g2){          // primeira nota com grau menor
+            resp = (i2-i1+1);
+        }
+        else if(g1 > g2) {    // segunda nota com grau menor
+            resp = (12-i1+1)+i2 ;
+        };
+    }else if (PrimeiraMaior(n1,n2)){ // intervalo descendente
+        if(g1 < g2){           // primeira nota com grau menor
+            resp = (12-i2+1)+i1 ;
+        }
+        else if(g1 > g2) {     // segunda nota com grau menor
+            resp = (i1-i2+1);
+        };
+    }else {  // notas idênticas
+        resp=1;
+
+    }
+    return resp;
 }
 
 Nota i2m(Nota n, int orientacao){

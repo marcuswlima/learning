@@ -1,5 +1,7 @@
 #include "Nota.h"
 
+#ifndef INTERVALO_H
+#define INTERVALO_H
 class Intervalo {
 private:
     Nota n1;
@@ -33,3 +35,4 @@ public:
     void ImprimirQtdSemiTonsEmTela();
     void ImprimirOrientacaoEmTela();
 };
+#endif

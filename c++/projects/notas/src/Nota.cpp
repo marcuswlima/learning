@@ -1,9 +1,7 @@
 #include "Nota.h"
 
-using namespace std;
-
 /////////////////////////////////////////
-// Declarações
+// Prototipacoes
 /////////////////////////////////////////
 bool notaValida( int, int, int);
 string in_GerarDescricao( int, int, int);
@@ -77,15 +75,15 @@ int Nota::getAcidente(){
 /////////////////////////////////////////
 
 // Randomizar uma nota
-void Nota::Randomizar(int dificuldade){
+void Nota::Randomizar(int in_dificuldade){
 
     int acidente;
 
     do{
-        setOitava(GerarInteiro( 1,7));
-        setGrau(GerarInteiro( 1,7));
+        setOitava(GerarInteiro(1,7));
+        setGrau(GerarInteiro(1,7));
         
-        switch (dificuldade)
+        switch (in_dificuldade)
         {
             case 1:acidente = 0;break;
             case 2:acidente = GerarInteiro(-1,1);break;
@@ -206,8 +204,6 @@ void Nota::down1Tom(){
     this->down1Semitom();
 }
 
-
-
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
@@ -277,4 +273,3 @@ void MensagemErro( int o, int g, int a, bool mostraValores ){
         }
 //        cout << endl;
 }
-
