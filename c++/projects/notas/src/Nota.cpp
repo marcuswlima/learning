@@ -70,6 +70,12 @@ int Nota::getAcidente(){
     return acidente;
 }
 
+double Nota::getId(){
+    return (this->getOitava()*10)+
+            this->getGrau()+
+            (this->getAcidente()/2);
+}
+
 /////////////////////////////////////////
 // Padrão
 /////////////////////////////////////////

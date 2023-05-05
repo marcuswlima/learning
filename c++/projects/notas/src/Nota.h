@@ -23,6 +23,7 @@ public:
     int getOitava();
     int getGrau();
     int getAcidente();
+    double getId();
 // Padrão
     void Randomizar(int in_dificuldade=1);
     string GerarDescricao();

@@ -9,13 +9,14 @@ bool SegundaMaior(Nota n1, Nota n2);
 int RandomizaOrientacao_inner();
 bool PrimeiraMaior(Nota n1, Nota n2);
 int distanciaEmSemiTons(Nota,Nota);
+bool NotasIguais(Nota n1, Nota n2);
 
 /////////////////////////////////////////
 // Elementos Globais
 /////////////////////////////////////////
 struct tRecDadosIntervalo {
     string tipoIntervalo;
-    int qdtNotasNaturais;
+    int qtdNotasNaturais;
     int qtdSemiTons;
 };
 
@@ -78,6 +79,7 @@ void Intervalo::setN1(Nota n){
 }
 
 void Intervalo::setN2(Nota in_n2, int orientacao){
+    this->setOrientacao(orientacao);
     SimplificarIntervalo(this->n1,in_n2,orientacao);
     this->n2 = in_n2;
 }
@@ -118,6 +120,10 @@ void Intervalo::SetIntervalo(Nota n1, Nota n2,int orientacao){
     this->setN2(n2,orientacao);
 }
 
+void Intervalo::setOrientacao(int o){
+    this->orientacao = 0;
+}
+
 
 /////////////////////////////////////////
 // Gets
@@ -129,6 +135,10 @@ Nota Intervalo::getN1(){
 
 Nota Intervalo::getN2(){
     return n2;
+}
+
+int Intervalo::getOrientacao(){
+    return this->orientacao;
 }
 
 
@@ -177,13 +187,13 @@ void Intervalo::RandomizarSegundaNota(int dificuldade){
 
 string Intervalo::RandomizarDescricao(){
     string r;
-	int n;
+    int n;
 
-	n=GerarInteiro(1,8); // gera a nota
+    n=GerarInteiro(1,8); // gera a nota
     r += to_string(n);
     //r += "ª";
-	if ((n==4)||(n==5)||(n==8)||(n==1))
-		r += "J";
+    if ((n==4)||(n==5)||(n==8)||(n==1))
+	r += "J";
     else {
         n=GerarInteiro(1,2); 
         (n==1) ? r += "m" : r += "M";
@@ -222,12 +232,16 @@ int Intervalo::DeduzirOrientacao(){
 }
 
 string Intervalo::DeduzirTipoIntervalo(){
-    string resposta;
-    int qdtNotas = this->DeduzirQdtNotas();
+    string resposta="";
+    int qtdNotas = this->DeduzirQdtNotas();
     int qtdSemiTons = this->DeduzirQtdSemiTons();
 
-    for (int i=0;i<=15;i++){
-        if ((DadosIntervalo[i].qdtNotasNaturais==qdtNotas)&&(DadosIntervalo[i].qtdSemiTons=qtdSemiTons)){
+    cout << endl;
+    cout << "qtdNotas->"<< qtdNotas<< endl;
+    cout << "qdtSemitons->"<< qtdSemiTons<< endl;
+
+    for (int i=0; i<=15; i++){
+        if ((DadosIntervalo[i].qtdNotasNaturais==qtdNotas) && (DadosIntervalo[i].qtdSemiTons==qtdSemiTons)){
             resposta = DadosIntervalo[i].tipoIntervalo;
             break; 
         }
@@ -246,9 +260,13 @@ void Intervalo::ImprimirQtdSemiTonsEmTela(){
 
 
 void Intervalo::ImprimirOrientacaoEmTela(){
-    (this->DeduzirOrientacao()==1) ? 
-        cout << "Asc"              : 
-        cout << "Desc"             ;
+    if (NotasIguais(this->getN1(),this->getN2())){
+	cout << "Unissono";
+    }else{
+	(this->DeduzirOrientacao()==1) ? 
+	    cout << "Asc"              : 
+	    cout << "Desc"             ;
+    }
 }
 
 
@@ -300,14 +318,18 @@ int RetornarSubescrito(int n){
 
 void SimplificarIntervalo(Nota n1, Nota &n2, int orientacao){
 
-    if (orientacao==1)
+cout << endl << "SI-orientacao->" << orientacao << endl;
+
+    if (orientacao==1){
         (n1.getGrau() <= n2.getGrau()  ) ? 
          n2.setOitava(n1.getOitava()  ) : 
          n2.setOitava(n1.getOitava()+1) ;
-    else 
+    }
+    else{
         (n1.getGrau() >= n2.getGrau()  ) ? 
          n2.setOitava(n1.getOitava()  ) : 
          n2.setOitava(n1.getOitava()-1) ;
+    }
 
 }
 

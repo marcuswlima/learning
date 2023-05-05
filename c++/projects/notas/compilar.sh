@@ -7,7 +7,7 @@ BIN=$NOME.sh
 
 set -e
 
-clear 
+#clear 
 echo "BarraTitulo.cpp..."
 g++ -c $LIB/BarraTitulo.cpp           -o $OBJ/BarraTitulo.o
 echo "Mathematics.cpp..."

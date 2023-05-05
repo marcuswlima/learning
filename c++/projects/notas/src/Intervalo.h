@@ -6,6 +6,7 @@ class Intervalo {
 private:
     Nota n1;
     Nota n2;
+    int orientacao;
 public:
 // Constructors
     Intervalo();
@@ -17,9 +18,11 @@ public:
     void setN2(Nota nota,int orientacao=1);
     void setN2(string descIntervalo,int orientacao=1);
     void SetIntervalo(Nota n1,Nota n2,int orientacao=1);
+    void setOrientacao(int);
 // Gets
     Nota getN1();
     Nota getN2();
+    int getOrientacao();
 // Padrão
     void Randomizar(int dificuldade=1);
     string GerarDescricao();
