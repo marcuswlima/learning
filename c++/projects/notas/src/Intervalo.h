@@ -11,13 +11,12 @@ public:
 // Constructors
     Intervalo();
     Intervalo(int dificuldade);
-    Intervalo(int dificuldade, int orientacao);
     Intervalo(Nota,Nota);
 // Sets
     void setN1(Nota nota);
-    void setN2(Nota nota,int orientacao=1);
+    void setN2(Nota nota);
     void setN2(string descIntervalo,int orientacao=1);
-    void SetIntervalo(Nota n1,Nota n2,int orientacao=1);
+    void SetIntervalo(Nota n1,Nota n2);
     void setOrientacao(int);
 // Gets
     Nota getN1();

@@ -4,7 +4,7 @@
 // Prototipações
 /////////////////////////////////////////
 void QuantidadesIntervalo(string , int &, int &);
-void SimplificarIntervalo(Nota, Nota &, int=1);
+void SimplificarIntervalo(Nota, Nota &);
 bool SegundaMaior(Nota n1, Nota n2);
 int RandomizaOrientacao_inner();
 bool PrimeiraMaior(Nota n1, Nota n2);
@@ -46,29 +46,21 @@ tRecDadosIntervalo DadosIntervalo[]={  //0-15
 Intervalo::Intervalo()
 {
 }
+
 Intervalo::Intervalo(int dificuldade)
 {
     Nota n;
     n.Randomizar(dificuldade);
     this->setN1(n);
     n.Randomizar(dificuldade);
-    this->setN2(n,RandomizaOrientacao_inner());
-}
-
-Intervalo::Intervalo(int dificuldade, int orientacao)
-{
-    Nota n;
-    n.Randomizar(dificuldade = dificuldade);
-    this->setN1(n);
-    n.Randomizar(dificuldade);
-    this->setN2(n,orientacao);
+    this->setN2(n);
 }
 
 
 Intervalo::Intervalo(Nota n1, Nota n2)
 {
     this->setN1(n1);
-    this->setN2(n2,RandomizaOrientacao_inner());
+    this->setN2(n2);
 }
     
 /////////////////////////////////////////
@@ -78,9 +70,9 @@ void Intervalo::setN1(Nota n){
     this->n1 = n;
 }
 
-void Intervalo::setN2(Nota in_n2, int orientacao){
+void Intervalo::setN2(Nota in_n2){
     this->setOrientacao(orientacao);
-    SimplificarIntervalo(this->n1,in_n2,orientacao);
+    SimplificarIntervalo(this->n1,in_n2);
     this->n2 = in_n2;
 }
 
@@ -111,13 +103,13 @@ void Intervalo::setN2(string descIntervalo, int orientacao){
     n2.setAcidente(novoAcidente);
     //cout << "novoAcidente:"<<novoAcidente<<endl;
     
-    this->setN2(n2,orientacao);
+    this->setN2(n2);
 
 }
 
-void Intervalo::SetIntervalo(Nota n1, Nota n2,int orientacao){
+void Intervalo::SetIntervalo(Nota n1, Nota n2){
     this->setN1(n1);
-    this->setN2(n2,orientacao);
+    this->setN2(n2);
 }
 
 void Intervalo::setOrientacao(int o){
@@ -152,7 +144,7 @@ void Intervalo::Randomizar(int dificuldade){
     n.Randomizar(dificuldade);
     this->setN1(n);
     n.Randomizar(dificuldade);
-    this->setN2(n,orientacao);
+    this->setN2(n);
 }
  
 string Intervalo::GerarDescricao(){
@@ -182,7 +174,7 @@ void Intervalo::RandomizarSegundaNota(int dificuldade){
     int orientacao = RandomizaOrientacao_inner();
     Nota n2;
     n2.Randomizar(dificuldade);
-    this->setN2(n2,orientacao);
+    this->setN2(n2);
 }
 
 string Intervalo::RandomizarDescricao(){
@@ -316,11 +308,19 @@ int RetornarSubescrito(int n){
     return resposta;
 }
 
-void SimplificarIntervalo(Nota n1, Nota &n2, int orientacao){
+void SimplificarIntervalo(Nota n1, Nota &n2){
+	//Se o intervalo não for simples, simplifica-lo
+	//Como sabe se 2 notas formam um intervalo simples???
+	//
+	
+    if (n1.getOitava()!=n2.getOitava()){
+		if(n1.getGrau()<=n2.getGrau()){
+			n2.setOitava(n1.getOitava());
+		}
+	}
 
-cout << endl << "SI-orientacao->" << orientacao << endl;
+    if (SegundaMaior(n1,n2)){
 
-    if (orientacao==1){
         (n1.getGrau() <= n2.getGrau()  ) ? 
          n2.setOitava(n1.getOitava()  ) : 
          n2.setOitava(n1.getOitava()+1) ;

@@ -128,10 +128,10 @@ string Triade::RandomizarTipoTriade(){
     string descTriade; 
 
     switch (idTriade){
-	case 1:descTriade="M";break;
-	case 2:descTriade="m";break;
-	case 3:descTriade="A";break;
-	case 4:descTriade="d";break;
+		case 1:descTriade="M";break;
+		case 2:descTriade="m";break;
+		case 3:descTriade="A";break;
+		case 4:descTriade="d";break;
     }
 
     return descTriade;
