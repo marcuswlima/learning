@@ -71,7 +71,6 @@ void Intervalo::setN1(Nota n){
 }
 
 void Intervalo::setN2(Nota in_n2){
-    this->setOrientacao(orientacao);
     SimplificarIntervalo(this->n1,in_n2);
     this->n2 = in_n2;
 }
@@ -90,32 +89,11 @@ void Intervalo::setN2(string descIntervalo, int orientacao){
     //n2.ImprimirEmTela();
 
     /// encontrar novo acidente
-    qtdSemiTonsEntreAsDuasNotas = distanciaEmSemiTons(n1,n2);
-    
-    //cout << endl << "qtdSemiTonsEntreAsDuasNotas:"<<qtdSemiTonsEntreAsDuasNotas<<endl;
-    //cout << "qtdSemiTonsDoIntervaloDesejado:"<<qtdSemiTonsDoIntervaloDesejado<<endl;
-    (orientacao==1)                                                                    ?
-        novoAcidente = qtdSemiTonsDoIntervaloDesejado - qtdSemiTonsEntreAsDuasNotas    :
-        novoAcidente = qtdSemiTonsEntreAsDuasNotas    - qtdSemiTonsDoIntervaloDesejado ;
-
-    novoAcidente += n1.getAcidente();
-
-    n2.setAcidente(novoAcidente);
-    //cout << "novoAcidente:"<<novoAcidente<<endl;
-    
-    this->setN2(n2);
-
+    qtdSemiTonsEntreAsDuasNotas = distanciaEmSemiTons(
+                               this->getN1()
+                              ,this->getN2()
+                              );
 }
-
-void Intervalo::SetIntervalo(Nota n1, Nota n2){
-    this->setN1(n1);
-    this->setN2(n2);
-}
-
-void Intervalo::setOrientacao(int o){
-    this->orientacao = 0;
-}
-
 
 /////////////////////////////////////////
 // Gets
@@ -129,11 +107,6 @@ Nota Intervalo::getN2(){
     return n2;
 }
 
-int Intervalo::getOrientacao(){
-    return this->orientacao;
-}
-
-
 /////////////////////////////////////////
 // Padrão
 /////////////////////////////////////////
@@ -146,7 +119,7 @@ void Intervalo::Randomizar(int dificuldade){
     n.Randomizar(dificuldade);
     this->setN2(n);
 }
- 
+
 string Intervalo::GerarDescricao(){
     string resposta="";
 
@@ -162,6 +135,7 @@ string Intervalo::GerarDescricao(){
 
 }
 
+
 void Intervalo::ImprimirEmTela(){
     cout << this->GerarDescricao() << " ";
 }
@@ -170,52 +144,6 @@ void Intervalo::ImprimirEmTela(){
 /////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
-void Intervalo::RandomizarSegundaNota(int dificuldade){
-    int orientacao = RandomizaOrientacao_inner();
-    Nota n2;
-    n2.Randomizar(dificuldade);
-    this->setN2(n2);
-}
-
-string Intervalo::RandomizarDescricao(){
-    string r;
-    int n;
-
-    n=GerarInteiro(1,8); // gera a nota
-    r += to_string(n);
-    //r += "ª";
-    if ((n==4)||(n==5)||(n==8)||(n==1))
-	r += "J";
-    else {
-        n=GerarInteiro(1,2); 
-        (n==1) ? r += "m" : r += "M";
-    }
-
-    return r;
-}
-
-int Intervalo::DeduzirQdtNotas(){
-    int resposta;
-    if (this->DeduzirOrientacao() == 1){
-        if (this->getN2().getOitava() == this->getN1().getOitava())
-            resposta = this->getN2().getGrau() - this->getN1().getGrau() + 1;
-        else
-            resposta = 7 - this->getN1().getGrau() + 1 + this->getN2().getGrau();
-    } else if (this->DeduzirOrientacao() == -1){
-        if (this->getN2().getOitava() == this->getN1().getOitava())
-            resposta = this->getN1().getGrau() - this->getN2().getGrau() + 1;
-        else
-            resposta = getN2().getGrau() + this->getN1().getGrau()-7 ;
-    };
-    return resposta;
-}
-
-int Intervalo::DeduzirQtdSemiTons(){
-    return distanciaEmSemiTons(
-                               this->getN1()
-                              ,this->getN2()
-                              );
-}
 
 int Intervalo::DeduzirOrientacao(){
     return (SegundaMaior(this->getN1(),this->getN2()))
@@ -224,13 +152,13 @@ int Intervalo::DeduzirOrientacao(){
 }
 
 string Intervalo::DeduzirTipoIntervalo(){
-    string resposta="";
+    string resposta="er";
     int qtdNotas = this->DeduzirQdtNotas();
     int qtdSemiTons = this->DeduzirQtdSemiTons();
 
-    cout << endl;
-    cout << "qtdNotas->"<< qtdNotas<< endl;
-    cout << "qdtSemitons->"<< qtdSemiTons<< endl;
+//	cout << endl;
+//    cout << "qtdNotas->"<< qtdNotas<< endl;
+//    cout << "qdtSemitons->"<< qtdSemiTons<< endl;
 
     for (int i=0; i<=15; i++){
         if ((DadosIntervalo[i].qtdNotasNaturais==qtdNotas) && (DadosIntervalo[i].qtdSemiTons==qtdSemiTons)){
@@ -253,19 +181,56 @@ void Intervalo::ImprimirQtdSemiTonsEmTela(){
 
 void Intervalo::ImprimirOrientacaoEmTela(){
     if (NotasIguais(this->getN1(),this->getN2())){
-	cout << "Unissono";
+		cout << "Unissono";
     }else{
-	(this->DeduzirOrientacao()==1) ? 
-	    cout << "Asc"              : 
-	    cout << "Desc"             ;
+		(this->DeduzirOrientacao()==1) ? 
+			cout << "Asc"              : 
+			cout << "Desc"             ;
     }
 }
-
 
 
 string Intervalo::RandomizaOrientacao(){
     return (RandomizaOrientacao_inner()==1) ? "Asc" : "Desc" ;
 }
+
+int Intervalo::DeduzirQdtNotas(){
+    int resposta,
+		g1 = this->getN1().getGrau(),
+		g2 = this->getN2().getGrau()
+		;
+
+	bool ascendente = SegundaMaior(n1,n2) ,
+		 mesmaOitava = this->getN1().getOitava() == this->getN2().getOitava()
+		 ;
+
+
+	if      ( (ascendente) && (mesmaOitava) ){
+		resposta = g2 - g1 + 1;
+	}else if( (ascendente) &&!(mesmaOitava) ){
+//		cout << "acertou" << endl;
+		if (g1==g2){
+			resposta = 8;
+		}
+		else{
+			resposta = (7 - g1) +  g2 +1 ;
+		}
+	}else if(!(ascendente) && (mesmaOitava) ){
+		resposta = g1 - g2 + 1;
+	}else if(!(ascendente) &&!(mesmaOitava) ){
+		resposta = (7 - g2) +  g1 + 1;
+	}
+
+    return resposta;
+}
+
+int Intervalo::DeduzirQtdSemiTons(){
+    return distanciaEmSemiTons(
+                               this->getN1()
+                              ,this->getN2()
+                              );
+}
+
 
 /////////////////////////////////////////
 // Implementações Internas
@@ -309,27 +274,23 @@ int RetornarSubescrito(int n){
 }
 
 void SimplificarIntervalo(Nota n1, Nota &n2){
-	//Se o intervalo não for simples, simplifica-lo
-	//Como sabe se 2 notas formam um intervalo simples???
-	//
 	
     if (n1.getOitava()!=n2.getOitava()){
-		if(n1.getGrau()<=n2.getGrau()){
-			n2.setOitava(n1.getOitava());
+
+		if (SegundaMaior(n1,n2)){//Ascendente
+			if (n2.getGrau()>n1.getGrau()){
+				n2.setOitava(n1.getOitava());
+			}else{
+				n2.setOitava(n1.getOitava()+1);
+			}
+		}else{//Decrscente
+			if (n2.getGrau()>n1.getGrau()){
+				n2.setOitava(n1.getOitava()-1);
+			}else{
+				n2.setOitava(n1.getOitava());
+			}
 		}
 	}
-
-    if (SegundaMaior(n1,n2)){
-
-        (n1.getGrau() <= n2.getGrau()  ) ? 
-         n2.setOitava(n1.getOitava()  ) : 
-         n2.setOitava(n1.getOitava()+1) ;
-    }
-    else{
-        (n1.getGrau() >= n2.getGrau()  ) ? 
-         n2.setOitava(n1.getOitava()  ) : 
-         n2.setOitava(n1.getOitava()-1) ;
-    }
 
 }
 
@@ -368,17 +329,22 @@ int distanciaEmSemiTons(Nota n1,Nota n2){
         i1   = RetornarSubescrito(g1),
         i2   = RetornarSubescrito(g2),
         resp = 0                     ;
-//    cout << endl;
+
+//	cout << endl;
 //    cout << "i1:" << i1 << endl;
 //    cout << "i2:" << i2 << endl;
 //    n1.ImprimirEmTela();
 //    n2.ImprimirEmTela();
-    if (SegundaMaior(n1,n2)){ // intervalo ascendente
+   
+   	if (SegundaMaior(n1,n2)){ // intervalo ascendente
         if(g1 < g2){          // primeira nota com grau menor
             resp = (i2-i1+1);
         }
         else if(g1 > g2) {    // segunda nota com grau menor
             resp = (12-i1+1)+i2 ;
+		}
+		else if(g1=g2){
+			resp=13;
         };
     }else if (PrimeiraMaior(n1,n2)){ // intervalo descendente
         if(g1 < g2){           // primeira nota com grau menor

@@ -32,9 +32,9 @@ int main(){
 
     ImprimirTitulo("Gerador Exercicios");
 
-//    ChamarMenu();
+    ChamarMenu();
 //    UC06(10);
-    TestarIntervalo();
+//	TestarIntervalo();
 //    TestarTriade();
 //    TestarNota();
 
@@ -152,7 +152,8 @@ void UC01(){
 		intervalo.ImprimirEmTela();//alterar para mostrar apenas a primeira nota
 		cout << intervalo.DeduzirTipoIntervalo() << " ";
 		intervalo.ImprimirOrientacaoEmTela();
-		cout << " / ";
+		cout<<endl;
+//		cout << " / ";
     }
 }
 
@@ -300,15 +301,18 @@ void UC06(){
 void TestarIntervalo(){
     Nota n1,n2;
     Intervalo i;
-    int orientacao=-1;
-    n1.setNota(5,2,0);
-    n2.setNota(4,7,0);
+/*
+	int orientacao=-1;
+    n1.setNota(3,1,0);
+    n2.setNota(2,5,0);
 	n1.ImprimirEmTela();
 	n2.ImprimirEmTela();
     i.setN1(n1);
     i.setN2(n2);
     i.ImprimirEmTela();
-    cout << i.DeduzirTipoIntervalo();
+    cout << i.DeduzirTipoIntervalo();a
+*/
+
 /*
     n1.setNota(4,1,0);
 
