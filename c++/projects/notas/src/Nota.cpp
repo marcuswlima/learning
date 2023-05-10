@@ -70,6 +70,12 @@ int Nota::getAcidente(){
     return acidente;
 }
 
+double Nota::getId(){
+    return (this->getOitava()*10)+
+            this->getGrau()+
+            (this->getAcidente()/2);
+}
+
 /////////////////////////////////////////
 // Padrão
 /////////////////////////////////////////
@@ -267,8 +273,8 @@ string in_GerarDescricao( int o, int g, int a ){
 void MensagemErro( int o, int g, int a, bool mostraValores ){
 //        cout << "Oitava, nota e/ou acidente invalido\t";
         if (mostraValores){
-             cout << o << '-';
-             cout << g << '-';
+             cout << o << '/';
+             cout << g << '/';
              cout << a;
         }
 //        cout << endl;
