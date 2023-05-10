@@ -7,27 +7,16 @@
 Nota GerarSegundaNota(Nota, string);
 Nota GerarSegundaNota(Nota , int , int );
 int RandomizarIdTipoTriade();
-void MontarTriade(int TipoTriade, Intervalo &, Intervalo &);
 
 /////////////////////////////////////////
 // construtores
 /////////////////////////////////////////
 
-// Construtor sem arguentos
 Triade::Triade(){
-//    this->Randomizar();
 }
 
-Triade::Triade(Intervalo i1){
-
-    int TipoTriade=RandomizarIdTipoTriade();
-    Intervalo i2; // 4 notas randomizadas
-
-    MontarTriade(TipoTriade, i1, i2);
-
-    this->setInt1(i1);
-    this->setInt2(i2);
-
+Triade::Triade(int dificuldade){
+	this->Randomizar(dificuldade);
 }
 
 Triade::Triade(Intervalo i1, Intervalo i2){
@@ -38,8 +27,6 @@ Triade::Triade(Intervalo i1, Intervalo i2){
 /////////////////////////////////////////
 // Sets
 /////////////////////////////////////////
-
-// setar Int1
 void Triade::setInt1(Intervalo i){
     i1 = i;
 }
@@ -64,10 +51,11 @@ Intervalo Triade::getInt2(){
 Nota Triade::getFundamental(){
     return this->getInt1().getN1();
 }
+
 Nota Triade::getTerca(){
     return this->getInt1().getN2();
-
 }
+
 Nota Triade::getQuinta(){
     return this->getInt2().getN2();
 }
@@ -78,11 +66,22 @@ Nota Triade::getQuinta(){
 
 void Triade::Randomizar(int dificuldade){
 
-    int TipoTriade=RandomizarIdTipoTriade();
-    Intervalo i1(dificuldade,1),i2(dificuldade,1); 
+	int       tipoTriade=RandomizarIdTipoTriade();
+	Nota      n(dificuldade);
+	Intervalo i1,i2;
 
-    MontarTriade(TipoTriade, i1, i2);
+	i1.setN1(n);	
+	(tipoTriade==1)||(tipoTriade==3) 
+        ? i1.setN2("3M",1) 
+        : i1.setN2("3m",1);
 
+    n=i1.getN2();
+
+    i2.setN1(n);
+    (tipoTriade==2)||(tipoTriade==3) 
+        ? i2.setN2("3M",1) 
+        : i2.setN2("3m",1);
+    
     this->setInt1(i1);
     this->setInt2(i2);
 
@@ -117,11 +116,9 @@ void Triade::ImprimirEmTela(){
 /////////////////////////////////////////
 
 
-
 void Triade::ImprimirFundamentalEmTela(){
     cout << this->getFundamental().GerarDescricao();
 }
-
 
 string Triade::RandomizarTipoTriade(){
     int idTriade=RandomizarIdTipoTriade();
@@ -136,6 +133,30 @@ string Triade::RandomizarTipoTriade(){
 
     return descTriade;
 
+}
+
+
+string Triade::DeduzirTipoTriade(){
+	string tipoIntervalo1, tipoIntervalo2, resp;
+
+	tipoIntervalo1 = this->getInt1().DeduzirTipoIntervalo();
+	tipoIntervalo2 = this->getInt2().DeduzirTipoIntervalo();
+
+	resp += tipoIntervalo1;
+	resp += tipoIntervalo2;
+/*
+	if      (resp=="3M3m") resp = "M";
+	else if (resp=="3m3M") resp = "m";
+	else if (resp=="3M3M") resp = "A";
+	else if (resp=="3m3m") resp = "d";
+*/
+	return resp;
+
+}
+
+
+void Triade::ImprimirTipoTriadeEmTela(){
+	cout << this->DeduzirTipoTriade();
 }
 
 

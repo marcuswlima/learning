@@ -33,12 +33,12 @@ int main(){
 
     ImprimirTitulo("Gerador Exercicios");
 
-    ChamarMenu();
-//    UC06(10);
+//	ChamarMenu();
+//	UC06(10);
 //	TestarIntervalo();
 //	TodosIntervalos();
-//    TestarTriade();
-//    TestarNota();
+	TestarTriade();
+//	TestarNota();
 
     cout << endl;
     return 0; //indica o fim do programa2
@@ -152,7 +152,7 @@ void UC01(){
     for(int i=1; i<=quantidade; i++){
 		intervalo.Randomizar(gDificuldade);
 		intervalo.getN1().ImprimirEmTela();//alterar para mostrar apenas a primeira nota
-		cout << intervalo.DeduzirTipoIntervalo() << " ";
+		intervalo.ImprimirTipoIntervaloEmTela();
 		intervalo.ImprimirOrientacaoEmTela();
 		cout << " / ";
     }
@@ -301,9 +301,10 @@ void UC06(){
 
 void TestarTriade(){
     Triade t;
-    for (int z=1; z<=60; z++){
+    for (int z=1; z<=10; z++){
 		t.Randomizar();
 		t.ImprimirEmTela();
+		t.ImprimirTipoTriadeEmTela();
 		cout << " ";
     }
 }
