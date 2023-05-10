@@ -83,21 +83,25 @@ double Nota::getId(){
 // Randomizar uma nota
 void Nota::Randomizar(int in_dificuldade){
 
-    int acidente;
+	int oitava, grau, acidente;
 
-    do{
-        setOitava(GerarInteiro(1,7));
-        setGrau(GerarInteiro(1,7));
-        
-        switch (in_dificuldade)
-        {
-            case 1:acidente = 0;break;
-            case 2:acidente = GerarInteiro(-1,1);break;
-            case 3:acidente = GerarInteiro(-2,2);break;
-            default:break;
-        }
-        this->setAcidente(acidente);
-    }while(!notaValida(this->getOitava(),this->getGrau(),this->getAcidente()));
+	do{
+		oitava = GerarInteiro(1,7);
+		grau = GerarInteiro(1,7);
+
+		switch (in_dificuldade)
+		{
+			case 1:acidente = 0;break;
+			case 2:acidente = GerarInteiro(-1,1);break;
+			case 3:acidente = GerarInteiro(-2,2);break;
+			default:break;
+		}
+
+	}while(!notaValida(oitava, grau, acidente));
+
+	this->setOitava(oitava);
+	this->setGrau(grau);
+	this->setAcidente(acidente);
 
 }
 
