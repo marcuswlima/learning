@@ -37,5 +37,6 @@ public:
     void ImprimirQdtNotasEmTela();
     void ImprimirQtdSemiTonsEmTela();
     void ImprimirOrientacaoEmTela();
+    void TestarIntervalo();
 };
 #endif

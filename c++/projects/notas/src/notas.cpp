@@ -18,6 +18,7 @@ void UC06();
 void TestarIntervalo();
 void TestarTriade();
 void TestarNota();
+void TodosIntervalos();
 
 /////////////////////////////////////////
 // Elelementos Globais
@@ -35,6 +36,7 @@ int main(){
     ChamarMenu();
 //    UC06(10);
 //	TestarIntervalo();
+//	TodosIntervalos();
 //    TestarTriade();
 //    TestarNota();
 
@@ -149,11 +151,10 @@ void UC01(){
 
     for(int i=1; i<=quantidade; i++){
 		intervalo.Randomizar(gDificuldade);
-		intervalo.ImprimirEmTela();//alterar para mostrar apenas a primeira nota
+		intervalo.getN1().ImprimirEmTela();//alterar para mostrar apenas a primeira nota
 		cout << intervalo.DeduzirTipoIntervalo() << " ";
 		intervalo.ImprimirOrientacaoEmTela();
-		cout<<endl;
-//		cout << " / ";
+		cout << " / ";
     }
 }
 
@@ -298,63 +299,6 @@ void UC06(){
 
 }
 
-void TestarIntervalo(){
-    Nota n1,n2;
-    Intervalo i;
-/*
-	int orientacao=-1;
-    n1.setNota(3,1,0);
-    n2.setNota(2,5,0);
-	n1.ImprimirEmTela();
-	n2.ImprimirEmTela();
-    i.setN1(n1);
-    i.setN2(n2);
-    i.ImprimirEmTela();
-    cout << i.DeduzirTipoIntervalo();a
-*/
-
-/*
-    n1.setNota(4,1,0);
-
-    string intervalos[]={"","2m","2M","3m","3M","4J","4A","5D","5J","6m","6M","7m","7M"};
-
-    cout << "Nota\t2m\t2M\t3m\t3M\t4J\t4A\t5D\t5J\t6m\t6M\t7m\t7M" << endl;
-    for (int ii=1; ii<=12; ii++){
-	n1.ImprimirEmTela();
-	cout << '\t' ;
-	i.setN1(n1);
-
-	for (int iii=1;iii<=12;iii++){
-	    i.setN2(intervalos[iii],orientacao);
-	    i.getN2().ImprimirEmTela();
-	    cout << '\t' ;
-		
-	}
-
-	cout << endl;
-	n1.up1Semitom();
-
-    }
-
-    n1.setNota(4,7,-1);
-    for (int ii=1; ii<=11; ii++){
-	n1.ImprimirEmTela();
-	cout << '\t' ;
-	i.setN1(n1);
-
-	for (int iii=1;iii<=12;iii++){
-	    i.setN2(intervalos[iii],orientacao);
-	    i.getN2().ImprimirEmTela();
-	    cout << '\t' ;
-		
-	}
-
-	cout << endl;
-	n1.down1Semitom();
-    }
-*/
-}
-
 void TestarTriade(){
     Triade t;
     for (int z=1; z<=60; z++){
@@ -371,4 +315,90 @@ void TestarNota(){
 		cout << n.getId()<< " ";
 		n.up1Semitom();
     }
+}
+
+
+void TestarIntervalo(){
+    Nota n1,n2;
+    Intervalo i;
+
+	n1.setNota(3,1,0);
+	i.setN1(n1);
+	i.setN2("2M");
+	i.getN2().ImprimirEmTela();
+	i.ImprimirEmTela();
+}
+
+
+void TodosIntervalos(){
+    Nota n1,n2;
+    Intervalo i;
+    string intervalos[]={"","2m","2M","3m","3M","4J","4A","5D","5J","6m","6M","7m","7M"};
+
+	cout << "Nota\t2m\t2M\t3m\t3M\t4J\t4A\t5D\t5J\t6m\t6M\t7m\t7M" << endl;
+
+	cout<<endl;
+	n1.setNota(3,1,0);
+    for (int ii=1; ii<=12; ii++){
+		i.setN1(n1);
+		n1.ImprimirEmTela();
+		cout << '\t' ;
+
+		for (int iii=1;iii<=12;iii++){
+			i.setN2(intervalos[iii]);
+			i.getN2().ImprimirEmTela();
+			cout << '\t' ;
+		}
+		cout << endl;
+		n1.up1Semitom();
+	}
+
+	cout<<endl;
+	n1.setNota(3,7,0);
+    for (int ii=1; ii<=12; ii++){
+		i.setN1(n1);
+		n1.ImprimirEmTela();
+		cout << '\t' ;
+
+		for (int iii=1;iii<=12;iii++){
+			i.setN2(intervalos[iii]);
+			i.getN2().ImprimirEmTela();
+			cout << '\t' ;
+		}
+		cout << endl;
+		n1.down1Semitom();
+	}
+
+
+	cout<<endl;
+	n1.setNota(3,1,0);
+    for (int ii=1; ii<=12; ii++){
+		i.setN1(n1);
+		n1.ImprimirEmTela();
+		cout << '\t' ;
+
+		for (int iii=1;iii<=12;iii++){
+			i.setN2(intervalos[iii],-1);
+			i.getN2().ImprimirEmTela();
+			cout << '\t' ;
+		}
+		cout << endl;
+		n1.up1Semitom();
+	}
+
+	cout<<endl;
+	n1.setNota(3,7,0);
+    for (int ii=1; ii<=12; ii++){
+		i.setN1(n1);
+		n1.ImprimirEmTela();
+		cout << '\t' ;
+
+		for (int iii=1;iii<=12;iii++){
+			i.setN2(intervalos[iii],-1);
+			i.getN2().ImprimirEmTela();
+			cout << '\t' ;
+		}
+		cout << endl;
+		n1.down1Semitom();
+	}
 }

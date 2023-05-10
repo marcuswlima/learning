@@ -36,7 +36,7 @@ tRecDadosIntervalo DadosIntervalo[]={  //0-15
                                         {"6M",6,10},
                                         {"7m",7,11},
                                         {"7M",7,12},
-                                        {"8J",8,13},
+                                        {"8J",8,13}
                                     };
 
 
@@ -89,10 +89,20 @@ void Intervalo::setN2(string descIntervalo, int orientacao){
     //n2.ImprimirEmTela();
 
     /// encontrar novo acidente
-    qtdSemiTonsEntreAsDuasNotas = distanciaEmSemiTons(
-                               this->getN1()
-                              ,this->getN2()
-                              );
+    qtdSemiTonsEntreAsDuasNotas = distanciaEmSemiTons(n1,n2);
+	//cout << endl << "qtdSemiTonsEntreAsDuasNotas:"<<qtdSemiTonsEntreAsDuasNotas<<endl;
+    //cout << "qtdSemiTonsDoIntervaloDesejado:"<<qtdSemiTonsDoIntervaloDesejado<<endl;
+    (orientacao==1)                                                                    ?
+        novoAcidente = qtdSemiTonsDoIntervaloDesejado - qtdSemiTonsEntreAsDuasNotas    :
+        novoAcidente = qtdSemiTonsEntreAsDuasNotas    - qtdSemiTonsDoIntervaloDesejado ;
+
+    novoAcidente += n1.getAcidente();
+
+    n2.setAcidente(novoAcidente);
+    //cout << "novoAcidente:"<<novoAcidente<<endl;
+
+    this->setN2(n2);
+
 }
 
 /////////////////////////////////////////
@@ -112,7 +122,6 @@ Nota Intervalo::getN2(){
 /////////////////////////////////////////
 void Intervalo::Randomizar(int dificuldade){
     Nota n;
-    int orientacao = RandomizaOrientacao_inner();
 
     n.Randomizar(dificuldade);
     this->setN1(n);
@@ -232,6 +241,7 @@ int Intervalo::DeduzirQtdSemiTons(){
 }
 
 
+
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
@@ -241,7 +251,15 @@ int RandomizaOrientacao_inner(){
 }
 
 void QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiTons){
-
+    
+	for (int i=0; i<=15; i++){
+        if (DadosIntervalo[i].tipoIntervalo==descricao){
+			qdtNotasNaturais=DadosIntervalo[i].qtdNotasNaturais;
+			qtdSemiTons=DadosIntervalo[i].qtdSemiTons;
+            break; 
+        }
+    }
+/*
     if      (descricao=="1J"){qdtNotasNaturais=1;qtdSemiTons= 1;}
     else if (descricao=="2m"){qdtNotasNaturais=2;qtdSemiTons= 2;}
     else if (descricao=="2M"){qdtNotasNaturais=2;qtdSemiTons= 3;}
@@ -258,6 +276,7 @@ void QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiT
     else if (descricao=="7m"){qdtNotasNaturais=7;qtdSemiTons=11;}
     else if (descricao=="7M"){qdtNotasNaturais=7;qtdSemiTons=12;}
     else if (descricao=="8J"){qdtNotasNaturais=8;qtdSemiTons=13;}
+*/
 }
 
 
@@ -359,3 +378,5 @@ int distanciaEmSemiTons(Nota n1,Nota n2){
     }
     return resp;
 }
+
+

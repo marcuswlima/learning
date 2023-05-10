@@ -273,8 +273,8 @@ string in_GerarDescricao( int o, int g, int a ){
 void MensagemErro( int o, int g, int a, bool mostraValores ){
 //        cout << "Oitava, nota e/ou acidente invalido\t";
         if (mostraValores){
-             cout << o << '-';
-             cout << g << '-';
+             cout << o << '/';
+             cout << g << '/';
              cout << a;
         }
 //        cout << endl;

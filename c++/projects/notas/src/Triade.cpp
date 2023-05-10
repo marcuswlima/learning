@@ -15,7 +15,7 @@ void MontarTriade(int TipoTriade, Intervalo &, Intervalo &);
 
 // Construtor sem arguentos
 Triade::Triade(){
-    this->Randomizar();
+//    this->Randomizar();
 }
 
 Triade::Triade(Intervalo i1){
