@@ -195,9 +195,9 @@ string Intervalo::DeduzirTipoIntervalo(){
     int qtdNotas = this->DeduzirQdtNotas();
     int qtdSemiTons = this->DeduzirQtdSemiTons();
 
-//	cout << endl;
-//    cout << "qtdNotas->"<< qtdNotas<< endl;
-//    cout << "qdtSemitons->"<< qtdSemiTons<< endl;
+	cout << endl;
+	cout << "qtdNotas->"<< qtdNotas<< endl;
+	cout << "qdtSemitons->"<< qtdSemiTons<< endl;
 
     for (int i=0; i<=15; i++){
         if ((DadosIntervalo[i].qtdNotasNaturais==qtdNotas) && (DadosIntervalo[i].qtdSemiTons==qtdSemiTons)){
@@ -279,6 +279,44 @@ void SimplificarIntervalo(Nota n1, Nota &n2){
 
 }
 
+int distanciaEmSemiTons(Nota n1,Nota n2){
+    int g1   = n1.getGrau()          ,
+        g2   = n2.getGrau()          ,
+        i1   = RetornarSubescrito(g1),
+        i2   = RetornarSubescrito(g2),
+        resp = 0                     ;
+
+//	cout << endl;
+//	cout << "i1:" << i1 << endl;
+//	cout << "i2:" << i2 << endl;
+//	n1.ImprimirEmTela();
+//	n2.ImprimirEmTela();
+   
+   	if (SegundaMaior(n1,n2)){ // intervalo ascendente
+        if(g1 < g2){          // primeira nota com grau menor
+            resp = (i2-i1+1);
+        }
+        else if(g1 > g2) {    // segunda nota com grau menor
+            resp = (12-i1+1)+i2 ;
+		}
+		else if(g1=g2){
+			resp=13;
+        };
+    }else if (PrimeiraMaior(n1,n2)){ // intervalo descendente
+        if(g1 < g2){           // primeira nota com grau menor
+            resp = (12-i2+1)+i1 ;
+        }
+        else if(g1 > g2) {     // segunda nota com grau menor
+            resp = (i1-i2+1);
+        };
+    }else {  // notas idênticas
+        resp=1;
+
+    }
+    return resp;
+}//distanciaEmSemitons
+
+
 ////////////////////////////////////
 // Transformar em operação em Nota
 ////////////////////////////////////
@@ -306,55 +344,4 @@ bool SegundaMaior(Nota n1, Nota n2){
     return !PrimeiraMaior(n1,n2) && !NotasIguais(n1,n2);
 }
 ////////////////////////////////////////////////////////
-
-
-int distanciaEmSemiTons(Nota n1,Nota n2){
-    int g1   = n1.getGrau()          ,
-        g2   = n2.getGrau()          ,
-        i1   = RetornarSubescrito(g1),
-        i2   = RetornarSubescrito(g2),
-        resp = 0                     ;
-
-//	cout << endl;
-//    cout << "i1:" << i1 << endl;
-//    cout << "i2:" << i2 << endl;
-//    n1.ImprimirEmTela();
-//    n2.ImprimirEmTela();
-   
-   	if (SegundaMaior(n1,n2)){ // intervalo ascendente
-        if(g1 < g2){          // primeira nota com grau menor
-            resp = (i2-i1+1);
-        }
-        else if(g1 > g2) {    // segunda nota com grau menor
-            resp = (12-i1+1)+i2 ;
-		}
-		else if(g1=g2){
-			resp=13;
-        };
-    }else if (PrimeiraMaior(n1,n2)){ // intervalo descendente
-        if(g1 < g2){           // primeira nota com grau menor
-            resp = (12-i2+1)+i1 ;
-        }
-        else if(g1 > g2) {     // segunda nota com grau menor
-            resp = (i1-i2+1);
-        };
-    }else {  // notas idênticas
-        resp=1;
-
-    }
-    return resp;
-}
-
-Intervalo RadomizarIntervalo(int dificuldade){
-	Intervalo resp;
-	Nota n;
-
-	n.Randomizar();
-	resp.setN1(n);
-	n.Randomizar();
-	resp.setN2(n);
-
-	return resp;
-}
-
 

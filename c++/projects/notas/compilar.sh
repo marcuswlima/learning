@@ -34,6 +34,9 @@ g++ $OBJ/BarraTitulo.o \
     $OBJ/$NOME.o       \
         -o $OBJ/$BIN
 
-echo "Executando...."
-$OBJ/$BIN
+if [ $1 == "S" ] || [ $1 == "s" ]
+then
+	echo "Executando...."
+	$OBJ/$BIN
+fi
 
