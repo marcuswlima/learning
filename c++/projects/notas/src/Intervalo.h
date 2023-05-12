@@ -1,34 +1,42 @@
 #include "Nota.h"
 
+#ifndef INTERVALO_H
+#define INTERVALO_H
 class Intervalo {
-public:
-// Constructors
-    Intervalo();
-    Intervalo(Nota);
-    Intervalo(Nota,Nota);
-// Sets
-    void setN1(Nota);
-    void setN2(Nota);
-    void setN2(string);
-    void setN2();
-    void setQtdNotasNaturais(int);
-    void setQtdSemiTons(int);
-// Gets
-    Nota getN1();
-    Nota getN2();
-    int  getQtdNotasNaturais();
-    int  GetQtdSemiTons();
-// Implementações
-    void SetIntervalo(Nota,Nota);
-    void CalcularAtributosSecundarios();
-    void RandomizarSegundaNota();
-    string RandomizarDescricao();
-    string GerarDescricao();
-    void ImprimirEmTela();
 private:
     Nota n1;
     Nota n2;
-    int qtdNotasNaturais; //[2-7]
-    int qtdSemiTons;     //[2-12]
-    int orientacao; //[-1 desc, 1 asc]
+    int orientacao;
+public:
+// Constructors
+    Intervalo();
+    Intervalo(int dificuldade);
+    Intervalo(Nota,Nota);
+// Sets
+    void setN1(Nota nota);
+    void setN2(Nota nota);
+    void setN2(string descIntervalo,int orientacao=1);
+    void SetIntervalo(Nota n1,Nota n2);
+    void setOrientacao(int);
+// Gets
+    Nota getN1();
+    Nota getN2();
+    int getOrientacao();
+// Padrão
+    void Randomizar(int dificuldade=1);
+    string GerarDescricao();
+    void ImprimirEmTela();
+// Implementações
+    void RandomizarSegundaNota(int);
+    string RandomizarDescricao();
+    string RandomizaOrientacao();
+    int DeduzirQdtNotas();
+    int DeduzirQtdSemiTons();
+    int DeduzirOrientacao();
+    string DeduzirTipoIntervalo();
+    void ImprimirQdtNotasEmTela();
+    void ImprimirQtdSemiTonsEmTela();
+    void ImprimirOrientacaoEmTela();
+    void TestarIntervalo();
 };
+#endif

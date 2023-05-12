@@ -15,7 +15,7 @@ void MontarTriade(int TipoTriade, Intervalo &, Intervalo &);
 
 // Construtor sem arguentos
 Triade::Triade(){
-    this->RandomizarTriade();
+//    this->Randomizar();
 }
 
 Triade::Triade(Intervalo i1){
@@ -36,7 +36,7 @@ Triade::Triade(Intervalo i1, Intervalo i2){
 }
 
 /////////////////////////////////////////
-// Gets&Sets
+// Sets
 /////////////////////////////////////////
 
 // setar Int1
@@ -44,76 +44,42 @@ void Triade::setInt1(Intervalo i){
     i1 = i;
 }
 
-Intervalo Triade::getInt1(){
-    return i1;
-}
-
 void Triade::setInt2(Intervalo i){
     i2 = i;
+}
+
+
+/////////////////////////////////////////
+// Gets
+/////////////////////////////////////////
+
+Intervalo Triade::getInt1(){
+    return i1;
 }
 
 Intervalo Triade::getInt2(){
     return i2;
 }
 
-void Triade::setTipoTriade(char tt){
-    tipoTriade = tt;
+Nota Triade::getFundamental(){
+    return this->getInt1().getN1();
+}
+Nota Triade::getTerca(){
+    return this->getInt1().getN2();
 
 }
-char Triade::getTipoTriade(){
-    return tipoTriade;
+Nota Triade::getQuinta(){
+    return this->getInt2().getN2();
 }
+
 /////////////////////////////////////////
-// Implementações Externas
+// Padrão
 /////////////////////////////////////////
 
-// ImprimirEmTela
-string Triade::GerarDescricao(){
-	string resposta="[", temp; 
-
-    temp = this->getInt1().getN1().GerarDescricao() + "-";
-    if (temp!="") resposta+=temp;
-
-    temp = this->getInt1().getN2().GerarDescricao() + "-";
-    if (temp!="") resposta+=temp;
-
-    temp = this->getInt2().getN2().GerarDescricao();
-    if (temp!="") resposta+=temp;
-
-    resposta+="]";
-
-	return resposta;
-}
-
-
-void Triade::ImprimirEmTela(){
-	cout << this->GerarDescricao();
-}
-
-void Triade::ImprimirFundamentalEmTela(){
-	cout << this->getInt1().getN1().GerarDescricao();
-}
-
-
-string Triade::RandomizarTipoTriade(){
-	int idTriade=RandomizarIdTipoTriade();
-	string descTriade; 
-
-	switch (idTriade){
-    	case 1:descTriade="M";break;
-    	case 2:descTriade="m";break;
-    	case 3:descTriade="A";break;
-    	case 4:descTriade="d";break;
-	}
-
-	return descTriade;
-
-}
-
-void Triade::RandomizarTriade(){
+void Triade::Randomizar(int dificuldade){
 
     int TipoTriade=RandomizarIdTipoTriade();
-    Intervalo i1,i2; // 4 notas randomizadas
+    Intervalo i1(dificuldade,1),i2(dificuldade,1); 
 
     MontarTriade(TipoTriade, i1, i2);
 
@@ -122,26 +88,74 @@ void Triade::RandomizarTriade(){
 
 }
 
+// ImprimirEmTela
+string Triade::GerarDescricao(){
+    string resposta="[", temp; 
+
+    temp = this->getFundamental().GerarDescricao() + "-";
+    if (temp!="") resposta+=temp;
+
+    temp = this->getTerca().GerarDescricao() + "-";
+    if (temp!="") resposta+=temp;
+
+    temp = this->getQuinta().GerarDescricao();
+    if (temp!="") resposta+=temp;
+
+    resposta+="]";
+
+    return resposta;
+}
+
+void Triade::ImprimirEmTela(){
+    cout << this->GerarDescricao();
+}
+
+
+
+/////////////////////////////////////////
+// Implementações Externas
+/////////////////////////////////////////
+
+
+
+void Triade::ImprimirFundamentalEmTela(){
+    cout << this->getFundamental().GerarDescricao();
+}
+
+
+string Triade::RandomizarTipoTriade(){
+    int idTriade=RandomizarIdTipoTriade();
+    string descTriade; 
+
+    switch (idTriade){
+		case 1:descTriade="M";break;
+		case 2:descTriade="m";break;
+		case 3:descTriade="A";break;
+		case 4:descTriade="d";break;
+    }
+
+    return descTriade;
+
+}
+
+
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
 
 void MontarTriade(int TipoTriade, Intervalo &i1, Intervalo &i2){
-    Nota n;
 
-    if ((TipoTriade==1)||(TipoTriade==3)) // maior ou aumentada
-        i1.setN2("3M");
-    else
-        i1.setN2("3m");     // menor ou diminuta
-    
+    (TipoTriade==1)||(TipoTriade==3) 
+        ? i1.setN2("3M",1) 
+        : i1.setN2("3m",1);
+
+    Nota n;
     n=i1.getN2();
 
     i2.setN1(n);
-
-    if ((TipoTriade==2)||(TipoTriade==3)) // menor ou aumentada
-        i2.setN2("3M");
-    else
-        i2.setN2("3m");     // maior ou diminuta
+    (TipoTriade==2)||(TipoTriade==3) 
+        ? i2.setN2("3M",1) 
+        : i2.setN2("3m",1);
 }
 
 int RandomizarIdTipoTriade(){
