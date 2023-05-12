@@ -2,9 +2,9 @@
 // Utilizando os operadores & e *.
 //#include <iostream>
 //using std::cout;
-//using std::endl;
+//#using std::endl;
 
-#include "../lib/marcusLib.h"
+#include "../../lib/ConsolidatorSystemLib.h"
 
 int main()
 {
@@ -27,8 +27,8 @@ int main()
      cout << "&a     -> "  << &a     << "\n";
      cout << "aPtr   -> "  << aPtr   << "\n"; // valor da variavel
      cout << "*aPtr  -> "  << *aPtr  << "\n";
-     cout << "&aPtr  -> "  << &aPtr   << "\n"; // valor da variavel
-     cout << "*&aPtr -> "  << *&aPtr   << "\n"; // valor da variavel
+     cout << "&aPtr  -> "  << &aPtr  << "\n"; // valor da variavel
+     cout << "*&aPtr -> "  << *&aPtr << "\n"; // valor da variavel
 
 
      cout << "****************************************\n";
