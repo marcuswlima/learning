@@ -240,8 +240,6 @@ int Intervalo::DeduzirQtdSemiTons(){
                               );
 }
 
-
-
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
@@ -377,6 +375,15 @@ int distanciaEmSemiTons(Nota n1,Nota n2){
 
     }
     return resp;
+}
+
+void SimplificarIntervalo(Nota n1, Nota &n2){
+
+    if (n1.getGrau() <= n2.getGrau())
+        n2.setOitava(n1.getOitava());
+    else 
+        n2.setOitava(n1.getOitava()+1);
+
 }
 
 

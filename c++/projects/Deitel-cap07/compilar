@@ -1,21 +1,9 @@
 
 FILE=$1
 
-BIN=/home/marcus/Developer/dados/c++/$FILE.sh
-OBJ=/home/marcus/Developer/dados/c++/$FILE.o
-ML=/home/marcus/Developer/dados/c++/marcusLib.o
-GB=/home/marcus/Developer/dados/c++/GradeBook.o
-
-
-echo " "
-echo "******************************"
-echo "** Deletando...."
-echo "******************************"
-echo " "
-
-rm -v $OBJ
-rm -v $BIN
-rm -v $ML
+SRC=src/$FILE.cpp
+BIN=obj/$FILE.sh
+OBJ=obj/$FILE.o
 
 echo " "
 echo "******************************"
@@ -23,9 +11,7 @@ echo "** Criando compilados         "
 echo "******************************"
 echo " "
 
-g++ -c ../lib/marcusLib.cpp -o $ML
-g++ -c $1.cpp               -o $OBJ
-g++ -c GradeBook.cpp        -o $GB
+g++ -c $SRC -o $OBJ
 
 echo " "
 echo "******************************"
@@ -33,7 +19,7 @@ echo "** Linkando....               "
 echo "******************************"
 echo " "
 
-g++ $OBJ $ML $GB            -o $BIN
+g++ $OBJ -o $BIN
 
 echo " "
 echo "******************************"
