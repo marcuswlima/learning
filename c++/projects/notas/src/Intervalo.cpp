@@ -6,7 +6,6 @@
 void QuantidadesIntervalo(string , int &, int &);
 void SimplificarIntervalo(Nota, Nota &);
 bool SegundaMaior(Nota n1, Nota n2);
-int RandomizaOrientacao_inner();
 bool PrimeiraMaior(Nota n1, Nota n2);
 int distanciaEmSemiTons(Nota,Nota);
 bool NotasIguais(Nota n1, Nota n2);
@@ -47,15 +46,9 @@ Intervalo::Intervalo()
 {
 }
 
-Intervalo::Intervalo(int dificuldade)
-{
-    Nota n;
-    n.Randomizar(dificuldade);
-    this->setN1(n);
-    n.Randomizar(dificuldade);
-    this->setN2(n);
+Intervalo::Intervalo(int dificuldade){
+	this->Randomizar(dificuldade);
 }
-
 
 Intervalo::Intervalo(Nota n1, Nota n2)
 {
@@ -160,49 +153,6 @@ int Intervalo::DeduzirOrientacao(){
                  : -1;
 }
 
-string Intervalo::DeduzirTipoIntervalo(){
-    string resposta="er";
-    int qtdNotas = this->DeduzirQdtNotas();
-    int qtdSemiTons = this->DeduzirQtdSemiTons();
-
-//	cout << endl;
-//    cout << "qtdNotas->"<< qtdNotas<< endl;
-//    cout << "qdtSemitons->"<< qtdSemiTons<< endl;
-
-    for (int i=0; i<=15; i++){
-        if ((DadosIntervalo[i].qtdNotasNaturais==qtdNotas) && (DadosIntervalo[i].qtdSemiTons==qtdSemiTons)){
-            resposta = DadosIntervalo[i].tipoIntervalo;
-            break; 
-        }
-    }
-    return resposta;
-}
-
-void Intervalo::ImprimirQdtNotasEmTela(){
-    cout << this->DeduzirQdtNotas() << " ";
-}
-
-
-void Intervalo::ImprimirQtdSemiTonsEmTela(){
-    cout << this->DeduzirQtdSemiTons() << " ";
-}
-
-
-void Intervalo::ImprimirOrientacaoEmTela(){
-    if (NotasIguais(this->getN1(),this->getN2())){
-		cout << "Unissono";
-    }else{
-		(this->DeduzirOrientacao()==1) ? 
-			cout << "Asc"              : 
-			cout << "Desc"             ;
-    }
-}
-
-
-string Intervalo::RandomizaOrientacao(){
-    return (RandomizaOrientacao_inner()==1) ? "Asc" : "Desc" ;
-}
-
 int Intervalo::DeduzirQdtNotas(){
     int resposta,
 		g1 = this->getN1().getGrau(),
@@ -240,13 +190,49 @@ int Intervalo::DeduzirQtdSemiTons(){
                               );
 }
 
+string Intervalo::DeduzirTipoIntervalo(){
+    string resposta="er";
+    int qtdNotas = this->DeduzirQdtNotas();
+    int qtdSemiTons = this->DeduzirQtdSemiTons();
+
+//	cout << endl;
+//    cout << "qtdNotas->"<< qtdNotas<< endl;
+//    cout << "qdtSemitons->"<< qtdSemiTons<< endl;
+
+    for (int i=0; i<=15; i++){
+        if ((DadosIntervalo[i].qtdNotasNaturais==qtdNotas) && (DadosIntervalo[i].qtdSemiTons==qtdSemiTons)){
+            resposta = DadosIntervalo[i].tipoIntervalo;
+            break; 
+        }
+    }
+    return resposta;
+}
+
+void Intervalo::ImprimirOrientacaoEmTela(){
+    if (NotasIguais(this->getN1(),this->getN2())){
+		cout << "Unissono";
+    }else{
+		(this->DeduzirOrientacao()==1) ? 
+			cout << "Asc"              : 
+			cout << "Desc"             ;
+    }
+}
+
+void Intervalo::ImprimirTipoIntervaloEmTela(){
+	cout << this->DeduzirTipoIntervalo() ;
+}
+
+void Intervalo::ImprimirQdtNotasEmTela(){
+    cout << this->DeduzirQdtNotas() << " ";
+}
+
+void Intervalo::ImprimirQtdSemiTonsEmTela(){
+    cout << this->DeduzirQtdSemiTons() << " ";
+}
+
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
-
-int RandomizaOrientacao_inner(){
-    return (GerarInteiro(1,2)==1) ? 1 : -1 ;
-}
 
 void QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiTons){
     
@@ -257,24 +243,6 @@ void QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiT
             break; 
         }
     }
-/*
-    if      (descricao=="1J"){qdtNotasNaturais=1;qtdSemiTons= 1;}
-    else if (descricao=="2m"){qdtNotasNaturais=2;qtdSemiTons= 2;}
-    else if (descricao=="2M"){qdtNotasNaturais=2;qtdSemiTons= 3;}
-    else if (descricao=="3m"){qdtNotasNaturais=3;qtdSemiTons= 4;}
-    else if (descricao=="3M"){qdtNotasNaturais=3;qtdSemiTons= 5;}
-    else if (descricao=="4D"){qdtNotasNaturais=4;qtdSemiTons= 5;}
-    else if (descricao=="4J"){qdtNotasNaturais=4;qtdSemiTons= 6;}
-    else if (descricao=="4A"){qdtNotasNaturais=4;qtdSemiTons= 7;}
-    else if (descricao=="5D"){qdtNotasNaturais=5;qtdSemiTons= 7;}
-    else if (descricao=="5J"){qdtNotasNaturais=5;qtdSemiTons= 8;}
-    else if (descricao=="5A"){qdtNotasNaturais=5;qtdSemiTons= 9;}
-    else if (descricao=="6m"){qdtNotasNaturais=6;qtdSemiTons= 9;}
-    else if (descricao=="6M"){qdtNotasNaturais=6;qtdSemiTons=10;}
-    else if (descricao=="7m"){qdtNotasNaturais=7;qtdSemiTons=11;}
-    else if (descricao=="7M"){qdtNotasNaturais=7;qtdSemiTons=12;}
-    else if (descricao=="8J"){qdtNotasNaturais=8;qtdSemiTons=13;}
-*/
 }
 
 
@@ -377,13 +345,16 @@ int distanciaEmSemiTons(Nota n1,Nota n2){
     return resp;
 }
 
-void SimplificarIntervalo(Nota n1, Nota &n2){
+Intervalo RadomizarIntervalo(int dificuldade){
+	Intervalo resp;
+	Nota n;
 
-    if (n1.getGrau() <= n2.getGrau())
-        n2.setOitava(n1.getOitava());
-    else 
-        n2.setOitava(n1.getOitava()+1);
+	n.Randomizar();
+	resp.setN1(n);
+	n.Randomizar();
+	resp.setN2(n);
 
+	return resp;
 }
 
 

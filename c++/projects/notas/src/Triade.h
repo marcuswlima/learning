@@ -9,7 +9,8 @@ private:
 public:
 // Constructors
     Triade();
-    Triade(Intervalo);
+    Triade(int);
+    Triade(Nota);
     Triade(Intervalo, Intervalo);
 // Sets
     void setInt1(Intervalo);
@@ -28,5 +29,7 @@ public:
 // Implementações
     void ImprimirFundamentalEmTela();
     string RandomizarTipoTriade();
+	string DeduzirTipoTriade();
+	void ImprimirTipoTriadeEmTela();
 };
 #endif
