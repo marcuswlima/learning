@@ -74,7 +74,6 @@ int menu(){
 }
 
 void Notas(){
-
     Nota nota;
     int quantNotas=ObterNumeroNaFaixa("Digite a quantidade[1:30] -> ",1,30);
 
@@ -105,7 +104,6 @@ void MenuIntervalos(){
     cout << "**********************************************************\n";
     int opcao=ObterNumeroNaFaixa("Indica sua opção [1:2] -> ",1,2);
     cout << endl;
-
 
     switch (opcao)
     {

@@ -10,3 +10,4 @@ T min( T value1, T value2 )
         retorno =  0;
     return retorno;
 } // fim do template de função maximum
+
