@@ -144,7 +144,7 @@ string Triade::DeduzirTipoTriade(){
 	string tipoIntervalo, resp;
 
 //	tipoIntervalo = this->getInt1().DeduzirTipoIntervalo();
-	resp += this->getInt1().GerarDescricao();
+//	resp += this->getInt1().GerarDescricao();
 	resp += this->getInt1().DeduzirTipoIntervalo();
 //	resp += tipoIntervalo;
 	
@@ -177,17 +177,43 @@ int RandomizarIdTipoTriade(){
 
 void MontarTriade(Nota n, int tipoTriade, Intervalo &i1, Intervalo &i2){
 
+	Nota temp;
+
+//	cout << "tipoTriade->"<< tipoTriade<< endl;
+
 	i1.setN1(n);
+	if (tipoTriade==1){
+		i1.setN2("3M");
+		temp.setOitava(i1.getN2().getOitava());
+		temp.setGrau(i1.getN2().getGrau());
+		temp.setAcidente(i1.getN2().getAcidente());
+		i2.setN1(temp);
+		i2.setN2("3m");
+	}else if (tipoTriade==2){
+//		cout << "acertou" << endl;
+		i1.setN2("3m");
+//		i1.ImprimirEmTela();
+		temp.setOitava(i1.getN2().getOitava());
+		temp.setGrau(i1.getN2().getGrau());
+		temp.setAcidente(i1.getN2().getAcidente());
+//		temp.ImprimirEmTela();
+		i2.setN1(temp);
+		i2.setN2("3M");
+	}else if (tipoTriade==3){
+		i1.setN2("3M");
+		temp.setOitava(i1.getN2().getOitava());
+		temp.setGrau(i1.getN2().getGrau());
+		temp.setAcidente(i1.getN2().getAcidente());
+		i2.setN1(temp);
+		i2.setN2("3M");
+	}else if (tipoTriade==4){
+		i1.setN2("3m");
+		temp.setOitava(i1.getN2().getOitava());
+		temp.setGrau(i1.getN2().getGrau());
+		temp.setAcidente(i1.getN2().getAcidente());
+		i2.setN1(temp);
+		i2.setN2("3m");
+	}
 
-    (tipoTriade==1)||(tipoTriade==3) 
-        ? i1.setN2("3M",1) 
-        : i1.setN2("3m",1);
-
-    n=i1.getN2();
-
-    i2.setN1(n);
-    (tipoTriade==2)||(tipoTriade==3) 
-        ? i2.setN2("3M",1) 
-        : i2.setN2("3m",1);
 }
 

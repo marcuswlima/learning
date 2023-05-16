@@ -299,7 +299,8 @@ void UC06(){
 
 void TestarTriade(){
 	Nota n(3,1,0);
-    Triade t(n,2);
+    Triade t;
+	t.setTriade(n,2);
 	t.ImprimirEmTela();
 	t.ImprimirTipoTriadeEmTela();
 	cout << endl;
