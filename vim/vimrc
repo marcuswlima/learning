@@ -1,9 +1,3 @@
-" Execução do gerenciador de plugins
-execute pathogen#infect()
-
-"eschema de cores
-colorscheme Tomorrow-Night-Eighties
-
 " tananho da identação 
 set tabstop=4
 
@@ -32,7 +26,7 @@ set incsearch
 set hlsearch
 
 " highligthing current line and column
-set cursorline
-set cursorcolumn
+"set cursorline
+"set cursorcolumn
 
 
