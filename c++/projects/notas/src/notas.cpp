@@ -31,7 +31,7 @@ int gDificuldade=1;
 int main(){
     srand( time(0) );
 
-    ImprimirTitulo("Gerador Exercicios");
+//    ImprimirTitulo("Gerador Exercicios");
 
 //	ChamarMenu();
 //	UC06(10);
@@ -42,7 +42,7 @@ int main(){
 
     cout << endl;
     return 0; //indica o fim do programa2
-}
+}//main
 
 void ChamarMenu(){
     int opcao=0;
@@ -298,7 +298,7 @@ void UC06(){
 }
 
 void TestarTriade(){
-	Nota n(3,1,0);
+	Nota n(3,1,1);
     Triade t;
 	t.setTriade(n,2);
 	t.ImprimirEmTela();
@@ -312,7 +312,7 @@ void TestarTriade(){
 		cout << " ";
     }
 */	
-}
+}//TestarTriade
 
 void TestarNota(){
     Nota n(3,7,0);

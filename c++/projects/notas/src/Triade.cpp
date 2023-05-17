@@ -56,7 +56,7 @@ void Triade::setTriade(Nota n,int tipoTriade){
 
 Intervalo Triade::getInt1(){
     return i1;
-}
+}//getInt1
 
 Intervalo Triade::getInt2(){
     return i2;
@@ -95,7 +95,20 @@ void Triade::Randomizar(int dificuldade){
 string Triade::GerarDescricao(){
     string resposta="[", temp; 
 
-    temp = this->getFundamental().GerarDescricao() + "-";
+	temp = this->getInt1().getN1().GerarDescricao() + "-";
+    if (temp!="") resposta+=temp;
+
+	temp = this->getInt1().getN2().GerarDescricao() + "-";
+    if (temp!="") resposta+=temp;
+
+	temp = this->getInt2().getN1().GerarDescricao() + "-";
+    if (temp!="") resposta+=temp;
+
+	temp = this->getInt2().getN2().GerarDescricao();
+    if (temp!="") resposta+=temp;
+
+/*
+	temp = this->getFundamental().GerarDescricao() + "-";
     if (temp!="") resposta+=temp;
 
     temp = this->getTerca().GerarDescricao() + "-";
@@ -103,7 +116,7 @@ string Triade::GerarDescricao(){
 
     temp = this->getQuinta().GerarDescricao();
     if (temp!="") resposta+=temp;
-    
+*/   
 	resposta+="]";
 
     return resposta;
@@ -146,6 +159,7 @@ string Triade::DeduzirTipoTriade(){
 //	tipoIntervalo = this->getInt1().DeduzirTipoIntervalo();
 //	resp += this->getInt1().GerarDescricao();
 	resp += this->getInt1().DeduzirTipoIntervalo();
+	//resp += this->getInt2().DeduzirTipoIntervalo();
 //	resp += tipoIntervalo;
 	
 //	tipoIntervalo = this->getInt2().DeduzirTipoIntervalo();
@@ -164,7 +178,7 @@ string Triade::DeduzirTipoTriade(){
 
 void Triade::ImprimirTipoTriadeEmTela(){
 	cout << this->DeduzirTipoTriade();
-}
+}//ImprimirTipoTriadeEmTela
 
 
 /////////////////////////////////////////
