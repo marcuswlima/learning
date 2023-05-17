@@ -298,13 +298,20 @@ void UC06(){
 }
 
 void TestarTriade(){
+	Nota n(3,1,0);
     Triade t;
-    for (int z=1; z<=10; z++){
+	t.setTriade(n,2);
+	t.ImprimirEmTela();
+	t.ImprimirTipoTriadeEmTela();
+	cout << endl;
+/*
+	for (int z=1; z<=10; z++){
 		t.Randomizar();
 		t.ImprimirEmTela();
 		t.ImprimirTipoTriadeEmTela();
 		cout << " ";
     }
+*/	
 }
 
 void TestarNota(){
