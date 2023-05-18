@@ -33,12 +33,12 @@ int main(){
 
 //    ImprimirTitulo("Gerador Exercicios");
 
-	ChamarMenu();
+//	ChamarMenu();
 //	UC06(10);
 //	TestarIntervalo();
 //	TodosIntervalos();
 //	TestarTriade();
-//	TestarNota();
+	TestarNota();
 
     cout << endl;
     return 0; //indica o fim do programa2
@@ -328,11 +328,13 @@ void TestarTriade(){
 }//TestarTriade
 
 void TestarNota(){
-    Nota n(3,7,0);
-    for (int i=1;i<30;i++){
-		n.ImprimirEmTela();
-		n.up1SemiTom();
-    }
+    Nota n1(3,1,-1);
+    Nota n2(3,1,0);
+	if ((n1<n2))
+		cout << "sim-then" << endl;
+	else
+		cout << "nao-else" << endl;
+
 }
 
 

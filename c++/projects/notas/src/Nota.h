@@ -33,5 +33,11 @@ public:
     void up1Tom();
     void down1SemiTom();
     void down1Tom();
+// Operacoes
+	bool operator==(Nota const&);
+	bool operator>(Nota const&);
+	bool operator<(Nota const&);
+	bool operator>=(Nota const&);
+	bool operator<=(Nota const&);
 }; 
 #endif
