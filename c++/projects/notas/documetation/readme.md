@@ -1,15 +1,20 @@
-# Gerador Exercícios
+# Motivação 
+- Prover aos alunos e profesores da EMUFPA uma solução tecnológica com o intuido de auxiliar o aprendizado dos conteúdos ministrados sobre teoria musical na escola. 
+
+# Possibilidades Funcionais
 
 ![Modelo](usecase.png)
 
 ## Intervalos Simples
 
-- 2m(1), 2M(2)
-- 3m(3), 3M(4)
-- 4J(5), 5J(7)
-- 6m(8), 6M(9)
-- 7m(10), 7M(11)
-- 8J(12)
+- Uníssono
+- 2m, 2M
+- 3m, 3M
+- 4J, 4A
+- 5D, 5J
+- 6m, 6M
+- 7m, 7M
+- 8J
 
 ## Tríades
 
@@ -18,20 +23,33 @@
 - Aumentado - 3M + 3M
 - Diminuto - 3m + 3m
 
-## Novas Funcionalidades
-1. Intervalos Descendentes
-1. Tétrades
-1. Inversões de Tétrades
-1. Campo Harmônico Maior
-1. Campo Harmônico Menor (Primitiva, Harmônica e Melódica)
-1. Cifras
-1. Melhoria na interação; com repecção de resposta, correção e avaliação
-1. Opção de Dificuldade
-   1. Facil - randomizar notas sem acidentes
-   1. medio - randomizar notas com 1 acidente (b ou #)
-   1. dificil - randomizar notas com 2 acidente (bb ou *)
-1. Intervalos Compostos
+# Funcionalidades
+## Primerio Grupo
+- Intervalos 
+- Triades
+- Opção de Dificuldade
+  - Facil - randomizar notas sem acidentes
+  - medio - randomizar notas com até 1 acidente (b ou #)
+  - dificil - randomizar notas com até 2 acidente (bb ou *)
+- Interação; com repecção de resposta, correção e avaliação
 
+## Segundo Grupo
+- Inversões de Triades
+- Tétrades e suas inversões
+- Cifras
+  - Campo Harmônico Maior
+  - Campo Harmônico Menor (Primitiva, Harmônica e Melódica)
+- Intervalos Compostos
+
+# Etapa de Desenvolvimento
+
+1. Assegurar viabilidade do primeiro grupo de funcionalidades ainda em modo texto.
+1. Determinar a forma de a solução/aplicação será "entrege" 
+   1. Aplicação Desktop
+   1. Aplicação Web
+   1. Aplicação Mobile
+1. Implementar o segundo grupo de funcionalidedes.
+____
 # Class Diagram
 
 ![Modelo](classDiagram.png)
