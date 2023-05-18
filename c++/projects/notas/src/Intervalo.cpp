@@ -184,10 +184,13 @@ int Intervalo::DeduzirQdtNotas(){
 }
 
 int Intervalo::DeduzirQtdSemiTons(){
-    return distanciaEmSemiTons(
-                               this->getN1()
-                              ,this->getN2()
-                              );
+
+	Nota n1,n2;
+
+	n1=this->getN1();
+	n2=this->getN2();
+
+	return distanciaEmSemiTons(n1,n2);
 }
 
 string Intervalo::DeduzirTipoIntervalo(){
@@ -195,9 +198,9 @@ string Intervalo::DeduzirTipoIntervalo(){
     int qtdNotas = this->DeduzirQdtNotas();
     int qtdSemiTons = this->DeduzirQtdSemiTons();
 
-	cout << endl;
-	cout << "qtdNotas->"<< qtdNotas<< endl;
-	cout << "qdtSemitons->"<< qtdSemiTons<< endl;
+	//cout << endl;
+	//cout << "qtdNotas->"<< qtdNotas<< endl;
+	//cout << "qdtSemitons->"<< qtdSemiTons<< endl;
 
     for (int i=0; i<=15; i++){
         if ((DadosIntervalo[i].qtdNotasNaturais==qtdNotas) && (DadosIntervalo[i].qtdSemiTons==qtdSemiTons)){
@@ -286,6 +289,7 @@ int distanciaEmSemiTons(Nota n1,Nota n2){
         i2   = RetornarSubescrito(g2),
         resp = 0                     ;
 
+
 //	cout << endl;
 //	cout << "i1:" << i1 << endl;
 //	cout << "i2:" << i2 << endl;
@@ -313,6 +317,9 @@ int distanciaEmSemiTons(Nota n1,Nota n2){
         resp=1;
 
     }
+
+	resp -= n1.getAcidente();
+	resp += n2.getAcidente();
     return resp;
 }//distanciaEmSemitons
 

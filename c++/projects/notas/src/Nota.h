@@ -23,16 +23,15 @@ public:
     int getOitava();
     int getGrau();
     int getAcidente();
-    double getId();
 // Padrão
     void Randomizar(int in_dificuldade=1);
     string GerarDescricao();
     void ImprimirEmTela();
 // Implementações
     Nota qualRelativa(int, int =1);
-    void up1Semitom();
+    void up1SemiTom();
     void up1Tom();
-    void down1Semitom();
+    void down1SemiTom();
     void down1Tom();
 }; 
 #endif
