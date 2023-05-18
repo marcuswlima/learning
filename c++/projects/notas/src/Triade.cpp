@@ -7,6 +7,7 @@
 Nota GerarSegundaNota(Nota, string);
 Nota GerarSegundaNota(Nota , int , int );
 int RandomizarIdTipoTriade();
+void MontarTriade(Nota, int, Intervalo &, Intervalo &);
 
 /////////////////////////////////////////
 // construtores
@@ -18,6 +19,11 @@ Triade::Triade(){
 Triade::Triade(int dificuldade){
 	this->Randomizar(dificuldade);
 }
+
+Triade::Triade(Nota n,int tipoTriade){
+	this->setTriade(n,tipoTriade);
+}
+
 
 Triade::Triade(Intervalo i1, Intervalo i2){
     this->setInt1(i1);
@@ -35,6 +41,14 @@ void Triade::setInt2(Intervalo i){
     i2 = i;
 }
 
+void Triade::setTriade(Nota n,int tipoTriade){
+	Intervalo i1, i2;
+
+	MontarTriade(n,tipoTriade,i1,i2);
+    
+	this->setInt1(i1);
+    this->setInt2(i2);
+}//setTriade(Nota n,int tipoTriade)
 
 /////////////////////////////////////////
 // Gets
@@ -42,7 +56,7 @@ void Triade::setInt2(Intervalo i){
 
 Intervalo Triade::getInt1(){
     return i1;
-}
+}//getInt1
 
 Intervalo Triade::getInt2(){
     return i2;
@@ -69,29 +83,18 @@ void Triade::Randomizar(int dificuldade){
 	int       tipoTriade=RandomizarIdTipoTriade();
 	Nota      n(dificuldade);
 	Intervalo i1,i2;
-
-	i1.setN1(n);	
-	(tipoTriade==1)||(tipoTriade==3) 
-        ? i1.setN2("3M",1) 
-        : i1.setN2("3m",1);
-
-    n=i1.getN2();
-
-    i2.setN1(n);
-    (tipoTriade==2)||(tipoTriade==3) 
-        ? i2.setN2("3M",1) 
-        : i2.setN2("3m",1);
+	
+	MontarTriade(n,tipoTriade,i1,i2);
     
-    this->setInt1(i1);
+	this->setInt1(i1);
     this->setInt2(i2);
 
-}
+}//Randomizar
 
-// ImprimirEmTela
 string Triade::GerarDescricao(){
     string resposta="[", temp; 
 
-    temp = this->getFundamental().GerarDescricao() + "-";
+	temp = this->getFundamental().GerarDescricao() + "-";
     if (temp!="") resposta+=temp;
 
     temp = this->getTerca().GerarDescricao() + "-";
@@ -99,22 +102,19 @@ string Triade::GerarDescricao(){
 
     temp = this->getQuinta().GerarDescricao();
     if (temp!="") resposta+=temp;
-
-    resposta+="]";
+	
+	resposta+="]";
 
     return resposta;
-}
+}//GerarDescricao
 
 void Triade::ImprimirEmTela(){
     cout << this->GerarDescricao();
 }
 
-
-
 /////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
-
 
 void Triade::ImprimirFundamentalEmTela(){
     cout << this->getFundamental().GerarDescricao();
@@ -137,49 +137,72 @@ string Triade::RandomizarTipoTriade(){
 
 
 string Triade::DeduzirTipoTriade(){
-	string tipoIntervalo1, tipoIntervalo2, resp;
+	string resp="";
 
-	tipoIntervalo1 = this->getInt1().DeduzirTipoIntervalo();
-	tipoIntervalo2 = this->getInt2().DeduzirTipoIntervalo();
+	resp += this->getInt1().DeduzirTipoIntervalo();
+	resp += this->getInt2().DeduzirTipoIntervalo();
 
-	resp += tipoIntervalo1;
-	resp += tipoIntervalo2;
-/*
 	if      (resp=="3M3m") resp = "M";
 	else if (resp=="3m3M") resp = "m";
 	else if (resp=="3M3M") resp = "A";
 	else if (resp=="3m3m") resp = "d";
-*/
+	
 	return resp;
-
 }
 
 
 void Triade::ImprimirTipoTriadeEmTela(){
 	cout << this->DeduzirTipoTriade();
-}
+}//ImprimirTipoTriadeEmTela
 
 
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
 
-void MontarTriade(int TipoTriade, Intervalo &i1, Intervalo &i2){
-
-    (TipoTriade==1)||(TipoTriade==3) 
-        ? i1.setN2("3M",1) 
-        : i1.setN2("3m",1);
-
-    Nota n;
-    n=i1.getN2();
-
-    i2.setN1(n);
-    (TipoTriade==2)||(TipoTriade==3) 
-        ? i2.setN2("3M",1) 
-        : i2.setN2("3m",1);
-}
-
 int RandomizarIdTipoTriade(){
     return GerarInteiro(1,4);
+}
+
+void MontarTriade(Nota n, int tipoTriade, Intervalo &i1, Intervalo &i2){
+
+	Nota temp;
+
+//	cout << "tipoTriade->"<< tipoTriade<< endl;
+
+	i1.setN1(n);
+	if (tipoTriade==1){
+		i1.setN2("3M");
+		temp.setOitava(i1.getN2().getOitava());
+		temp.setGrau(i1.getN2().getGrau());
+		temp.setAcidente(i1.getN2().getAcidente());
+		i2.setN1(temp);
+		i2.setN2("3m");
+	}else if (tipoTriade==2){
+//		cout << "acertou" << endl;
+		i1.setN2("3m");
+//		i1.ImprimirEmTela();
+		temp.setOitava(i1.getN2().getOitava());
+		temp.setGrau(i1.getN2().getGrau());
+		temp.setAcidente(i1.getN2().getAcidente());
+//		temp.ImprimirEmTela();
+		i2.setN1(temp);
+		i2.setN2("3M");
+	}else if (tipoTriade==3){
+		i1.setN2("3M");
+		temp.setOitava(i1.getN2().getOitava());
+		temp.setGrau(i1.getN2().getGrau());
+		temp.setAcidente(i1.getN2().getAcidente());
+		i2.setN1(temp);
+		i2.setN2("3M");
+	}else if (tipoTriade==4){
+		i1.setN2("3m");
+		temp.setOitava(i1.getN2().getOitava());
+		temp.setGrau(i1.getN2().getGrau());
+		temp.setAcidente(i1.getN2().getAcidente());
+		i2.setN1(temp);
+		i2.setN2("3m");
+	}
+
 }
 
