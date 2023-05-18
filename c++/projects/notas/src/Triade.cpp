@@ -48,7 +48,7 @@ void Triade::setTriade(Nota n,int tipoTriade){
     
 	this->setInt1(i1);
     this->setInt2(i2);
-}
+}//setTriade(Nota n,int tipoTriade)
 
 /////////////////////////////////////////
 // Gets
@@ -91,23 +91,9 @@ void Triade::Randomizar(int dificuldade){
 
 }//Randomizar
 
-// ImprimirEmTela
 string Triade::GerarDescricao(){
     string resposta="[", temp; 
 
-	temp = this->getInt1().getN1().GerarDescricao() + "-";
-    if (temp!="") resposta+=temp;
-
-	temp = this->getInt1().getN2().GerarDescricao() + "-";
-    if (temp!="") resposta+=temp;
-
-	temp = this->getInt2().getN1().GerarDescricao() + "-";
-    if (temp!="") resposta+=temp;
-
-	temp = this->getInt2().getN2().GerarDescricao();
-    if (temp!="") resposta+=temp;
-
-/*
 	temp = this->getFundamental().GerarDescricao() + "-";
     if (temp!="") resposta+=temp;
 
@@ -116,22 +102,19 @@ string Triade::GerarDescricao(){
 
     temp = this->getQuinta().GerarDescricao();
     if (temp!="") resposta+=temp;
-*/   
+	
 	resposta+="]";
 
     return resposta;
-}
+}//GerarDescricao
 
 void Triade::ImprimirEmTela(){
     cout << this->GerarDescricao();
 }
 
-
-
 /////////////////////////////////////////
 // Implementações Externas
 /////////////////////////////////////////
-
 
 void Triade::ImprimirFundamentalEmTela(){
     cout << this->getFundamental().GerarDescricao();
@@ -154,25 +137,17 @@ string Triade::RandomizarTipoTriade(){
 
 
 string Triade::DeduzirTipoTriade(){
-	string tipoIntervalo, resp;
+	string resp="";
 
-//	tipoIntervalo = this->getInt1().DeduzirTipoIntervalo();
-//	resp += this->getInt1().GerarDescricao();
 	resp += this->getInt1().DeduzirTipoIntervalo();
-	//resp += this->getInt2().DeduzirTipoIntervalo();
-//	resp += tipoIntervalo;
-	
-//	tipoIntervalo = this->getInt2().DeduzirTipoIntervalo();
-//	resp += tipoIntervalo;
+	resp += this->getInt2().DeduzirTipoIntervalo();
 
-/*
 	if      (resp=="3M3m") resp = "M";
 	else if (resp=="3m3M") resp = "m";
 	else if (resp=="3M3M") resp = "A";
 	else if (resp=="3m3m") resp = "d";
-*/
+	
 	return resp;
-
 }
 
 

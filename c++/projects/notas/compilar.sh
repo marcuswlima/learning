@@ -14,7 +14,7 @@ g++ -c $LIB/Mathematics.cpp -o $OBJ/Mathematics.o
 echo "ObterNumero.cpp..."
 g++ -c $LIB/ObterNumero.cpp -o $OBJ/ObterNumero.o
 
-if [ $1 == "R" ] || [ $1 == "r" ]
+if [ $1 == "R" ] || [ $1 == "r" ] || [ $1 == "C" ] || [ $1 == "c" ]
 then
 
 	echo "Nota.cpp..."
@@ -26,18 +26,6 @@ then
 	echo "$NOME.cpp..."
 	g++ -c $SRC/$NOME.cpp     -o $OBJ/$NOME.o 
 
-	echo "Linkando...."
-	g++ $OBJ/BarraTitulo.o \
-		$OBJ/Mathematics.o \
-		$OBJ/ObterNumero.o \
-		$OBJ/Nota.o        \
-		$OBJ/Intervalo.o   \
-		$OBJ/Triade.o      \
-		$OBJ/$NOME.o       \
-			-o $OBJ/$APP
-
-	echo "Executando...."
-	$OBJ/$APP
 fi
 
 if [ $1 == "D" ] || [ $1 == "d" ]
@@ -50,19 +38,29 @@ then
 	g++ -g -c $SRC/Triade.cpp    -o $OBJ/Triade.o
 	echo "$NOME.cpp..."
 	g++ -g -c $SRC/$NOME.cpp     -o $OBJ/$NOME.o 
+fi
+
+echo "Linkando...."
+g++ $OBJ/BarraTitulo.o \
+	$OBJ/Mathematics.o \
+	$OBJ/ObterNumero.o \
+	$OBJ/Nota.o        \
+	$OBJ/Intervalo.o   \
+	$OBJ/Triade.o      \
+	$OBJ/$NOME.o       \
+		-o $OBJ/$APP
+
+if [ $1 == "R" ] || [ $1 == "r" ]
+then
+	echo "Executando...."
+	$OBJ/$APP
+fi
+
 	
-	echo "Linkando debugging...."
-	g++ $OBJ/BarraTitulo.o \
-		   $OBJ/Mathematics.o \
-  		   $OBJ/ObterNumero.o \
-		   $OBJ/Nota.o        \
-		   $OBJ/Intervalo.o   \
-		   $OBJ/Triade.o      \
-		   $OBJ/$NOME.o       \
-			  -o $OBJ/$APP
+if [ $1 == "D" ] || [ $1 == "d" ]
+then
 	cd $OBJ
 	echo "Debugging...."
 	gdb $APP
 	cd ..
-
 fi

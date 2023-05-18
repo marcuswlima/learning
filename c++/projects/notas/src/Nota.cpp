@@ -70,12 +70,6 @@ int Nota::getAcidente(){
     return acidente;
 }
 
-double Nota::getId(){
-    return (this->getOitava()*10)+
-            this->getGrau()+
-            (this->getAcidente()/2);
-}
-
 /////////////////////////////////////////
 // Padrão
 /////////////////////////////////////////
@@ -161,7 +155,12 @@ Nota Nota::qualRelativa(int relativa, int orientacao){
 
 }
 
-void Nota::up1Semitom(){
+//////////////////////////////////////
+// Transformar em operacao unaria ++
+// Nota n(3,1,0);
+// n++
+//////////////////////////////////////
+void Nota::up1SemiTom(){
     int acidente=this->getAcidente();
     int grau=this->getGrau();
     int oitava=this->getOitava();
@@ -184,7 +183,12 @@ void Nota::up1Semitom(){
 
 }
 
-void Nota::down1Semitom(){
+//////////////////////////////////////
+// Transformar em operacao unaria 
+// Nota n(3,1,0);
+// n--
+//////////////////////////////////////
+void Nota::down1SemiTom(){
     int acidente=this->getAcidente();
     int grau=this->getGrau();
     int oitava=this->getOitava();
@@ -206,12 +210,12 @@ void Nota::down1Semitom(){
 }
 
 void Nota:: up1Tom(){
-    this->up1Semitom();
-    this->up1Semitom();
+    this->up1SemiTom();
+    this->up1SemiTom();
 }
 void Nota::down1Tom(){
-    this->down1Semitom();
-    this->down1Semitom();
+    this->down1SemiTom();
+    this->down1SemiTom();
 }
 
 /////////////////////////////////////////

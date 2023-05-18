@@ -33,11 +33,11 @@ int main(){
 
 //    ImprimirTitulo("Gerador Exercicios");
 
-//	ChamarMenu();
+	ChamarMenu();
 //	UC06(10);
 //	TestarIntervalo();
 //	TodosIntervalos();
-	TestarTriade();
+//	TestarTriade();
 //	TestarNota();
 
     cout << endl;
@@ -298,28 +298,40 @@ void UC06(){
 }
 
 void TestarTriade(){
-	Nota n(3,1,1);
+	Nota n(3,1,0);
     Triade t;
-	t.setTriade(n,2);
-	t.ImprimirEmTela();
-	t.ImprimirTipoTriadeEmTela();
+	for (int i=1; i<=12; i++){
+
+		for (int tt=1; tt<=4; tt++){
+			t.setTriade(n,tt);
+			t.ImprimirEmTela();
+			t.ImprimirTipoTriadeEmTela();
+			cout << "\t\t";
+		}
+		n.up1SemiTom();
+		cout << endl;
+	}
+
 	cout << endl;
-/*
-	for (int z=1; z<=10; z++){
-		t.Randomizar();
-		t.ImprimirEmTela();
-		t.ImprimirTipoTriadeEmTela();
-		cout << " ";
-    }
-*/	
+	for (int i=1; i<=13; i++){
+
+		for (int tt=1; tt<=4; tt++){
+			t.setTriade(n,tt);
+			t.ImprimirEmTela();
+			t.ImprimirTipoTriadeEmTela();
+			cout << "\t\t";
+		}
+		n.down1SemiTom();
+		cout << endl;
+	}
+
 }//TestarTriade
 
 void TestarNota(){
     Nota n(3,7,0);
     for (int i=1;i<30;i++){
 		n.ImprimirEmTela();
-		cout << n.getId()<< " ";
-		n.up1Semitom();
+		n.up1SemiTom();
     }
 }
 
@@ -356,7 +368,7 @@ void TodosIntervalos(){
 			cout << '\t' ;
 		}
 		cout << endl;
-		n1.up1Semitom();
+		n1.up1SemiTom();
 	}
 
 	cout<<endl;
@@ -372,7 +384,7 @@ void TodosIntervalos(){
 			cout << '\t' ;
 		}
 		cout << endl;
-		n1.down1Semitom();
+		n1.down1SemiTom();
 	}
 
 
@@ -389,7 +401,7 @@ void TodosIntervalos(){
 			cout << '\t' ;
 		}
 		cout << endl;
-		n1.up1Semitom();
+		n1.up1SemiTom();
 	}
 
 	cout<<endl;
@@ -405,6 +417,6 @@ void TodosIntervalos(){
 			cout << '\t' ;
 		}
 		cout << endl;
-		n1.down1Semitom();
+		n1.down1SemiTom();
 	}
 }
