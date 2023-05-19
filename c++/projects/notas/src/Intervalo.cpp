@@ -5,10 +5,7 @@
 /////////////////////////////////////////
 void QuantidadesIntervalo(string , int &, int &);
 void SimplificarIntervalo(Nota, Nota &);
-bool SegundaMaior(Nota n1, Nota n2);
-bool PrimeiraMaior(Nota n1, Nota n2);
 int distanciaEmSemiTons(Nota,Nota);
-bool NotasIguais(Nota n1, Nota n2);
 
 /////////////////////////////////////////
 // Elementos Globais
@@ -148,7 +145,7 @@ void Intervalo::ImprimirEmTela(){
 /////////////////////////////////////////
 
 int Intervalo::DeduzirOrientacao(){
-    return (SegundaMaior(this->getN1(),this->getN2()))
+	return (this->getN1() < this->getN2())
                  ? 1
                  : -1;
 }
@@ -159,24 +156,23 @@ int Intervalo::DeduzirQdtNotas(){
 		g2 = this->getN2().getGrau()
 		;
 
-	bool ascendente = SegundaMaior(n1,n2) ,
-		 mesmaOitava = this->getN1().getOitava() == this->getN2().getOitava()
+	bool bAscendente = (n1 > n2) ,
+		 bMesmaOitava = this->getN1().getOitava() == this->getN2().getOitava()
 		 ;
 
 
-	if      ( (ascendente) && (mesmaOitava) ){
+	if      ( (bAscendente) && (bMesmaOitava) ){
 		resposta = g2 - g1 + 1;
-	}else if( (ascendente) &&!(mesmaOitava) ){
-//		cout << "acertou" << endl;
+	}else if( (bAscendente) &&!(bMesmaOitava) ){
 		if (g1==g2){
 			resposta = 8;
 		}
 		else{
 			resposta = (7 - g1) +  g2 +1 ;
 		}
-	}else if(!(ascendente) && (mesmaOitava) ){
+	}else if(!(bAscendente) && (bMesmaOitava) ){
 		resposta = g1 - g2 + 1;
-	}else if(!(ascendente) &&!(mesmaOitava) ){
+	}else if(!(bAscendente) &&!(bMesmaOitava) ){
 		resposta = (7 - g2) +  g1 + 1;
 	}
 
@@ -212,7 +208,8 @@ string Intervalo::DeduzirTipoIntervalo(){
 }
 
 void Intervalo::ImprimirOrientacaoEmTela(){
-    if (NotasIguais(this->getN1(),this->getN2())){
+    //if (NotasIguais(this->getN1(),this->getN2())){
+    if (this->getN1()==this->getN2()){
 		cout << "Unissono";
     }else{
 		(this->DeduzirOrientacao()==1) ? 
@@ -265,7 +262,7 @@ void SimplificarIntervalo(Nota n1, Nota &n2){
 	
     if (n1.getOitava()!=n2.getOitava()){
 
-		if (SegundaMaior(n1,n2)){//Ascendente
+		if ( n1 < n2 ){//Ascendente
 			if (n2.getGrau()>n1.getGrau()){
 				n2.setOitava(n1.getOitava());
 			}else{
@@ -296,7 +293,7 @@ int distanciaEmSemiTons(Nota n1,Nota n2){
 //	n1.ImprimirEmTela();
 //	n2.ImprimirEmTela();
    
-   	if (SegundaMaior(n1,n2)){ // intervalo ascendente
+   	if (n1 < n2){ // intervalo ascendente
         if(g1 < g2){          // primeira nota com grau menor
             resp = (i2-i1+1);
         }
@@ -306,7 +303,7 @@ int distanciaEmSemiTons(Nota n1,Nota n2){
 		else if(g1=g2){
 			resp=13;
         };
-    }else if (PrimeiraMaior(n1,n2)){ // intervalo descendente
+    }else if (n1 > n2){ // intervalo descendente
         if(g1 < g2){           // primeira nota com grau menor
             resp = (12-i2+1)+i1 ;
         }
@@ -321,34 +318,5 @@ int distanciaEmSemiTons(Nota n1,Nota n2){
 	resp -= n1.getAcidente();
 	resp += n2.getAcidente();
     return resp;
+
 }//distanciaEmSemitons
-
-
-////////////////////////////////////
-// Transformar em operação em Nota
-////////////////////////////////////
-bool PrimeiraMaior(Nota n1, Nota n2){
-    bool resposta = false;
-
-    if (n1.getOitava() != n2.getOitava())   
-        resposta = n1.getOitava() > n2.getOitava();
-    else if (n1.getGrau() != n2.getGrau())
-        resposta = n1.getGrau() > n2.getGrau();
-    else if (n1.getAcidente() != n2.getAcidente()) 
-        resposta = n1.getAcidente() > n2.getAcidente();
-    return resposta;
-
-}
-
-bool NotasIguais(Nota n1, Nota n2){
-    return (n1.getOitava()   == n2.getOitava()  )&&
-           (n1.getGrau()     == n2.getGrau()    )&&
-           (n1.getAcidente() == n2.getAcidente());
-
-}
-
-bool SegundaMaior(Nota n1, Nota n2){
-    return !PrimeiraMaior(n1,n2) && !NotasIguais(n1,n2);
-}
-////////////////////////////////////////////////////////
-

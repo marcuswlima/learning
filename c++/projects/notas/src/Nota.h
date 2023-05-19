@@ -6,38 +6,38 @@
 #define NOTA_H
 class Nota {
 private:
-    int oitava;     // 0--8 
-    int grau;       // 1--7 
-    int acidente;   // [-2,0,2] [bb,b,0,#,*]
+	int oitava;     // 0--8 
+	int grau;       // 1--7 
+	int acidente;   // [-2,0,2] [bb,b,0,#,*]
+	int clave;      // [5-sol,4-fa]
 public:
 // Constructors
-    Nota(); 
-    Nota(int); 
-    Nota(int, int, int ); 
+	Nota(); 
+	Nota(int); 
+	Nota(int, int, int ); 
 // Sets
-    void setOitava(int);
-    void setGrau(int);
-    void setAcidente(int);
-    void setNota(int, int, int); 
+	void setOitava(int);
+	void setGrau(int);
+	void setAcidente(int);
+	void setNota(int, int, int); 
 //Gets
-    int getOitava();
-    int getGrau();
-    int getAcidente();
+	int getOitava();
+	int getGrau();
+	int getAcidente();
+	int getId();
 // Padrão
-    void Randomizar(int in_dificuldade=1);
-    string GerarDescricao();
-    void ImprimirEmTela();
+	void Randomizar(int in_dificuldade=1);
+	string GerarDescricao();
+	void ImprimirEmTela();
 // Implementações
-    Nota qualRelativa(int, int =1);
-    void up1SemiTom();
-    void up1Tom();
-    void down1SemiTom();
-    void down1Tom();
+	Nota qualRelativa(int, int =1);
+	void up1SemiTom();
+	void up1Tom();
+	void down1SemiTom();
+	void down1Tom();
 // Operacoes
 	bool operator==(Nota const&);
 	bool operator>(Nota const&);
 	bool operator<(Nota const&);
-	bool operator>=(Nota const&);
-	bool operator<=(Nota const&);
 }; 
 #endif

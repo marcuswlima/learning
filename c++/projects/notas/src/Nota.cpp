@@ -73,6 +73,13 @@ int Nota::getAcidente(){
     return acidente;
 }
 
+int Nota::getId(){
+	return (this->getOitava()*100)+ 
+		   (this->getGrau()  *10 )+
+		   (this->getAcidente()  )
+			;
+}
+
 /////////////////////////////////////////
 // Padrão
 /////////////////////////////////////////
@@ -222,8 +229,13 @@ void Nota::down1Tom(){
 }
 
 
+//////////////////////////////////////
+//Operacoes 
+//////////////////////////////////////
 bool Nota::operator==(Nota const& other){
 
+	// this-operador1
+	// other-operador2
 	return NotaIgual(this->getOitava(),
 			         this->getGrau(),
 					 this->getAcidente(),
@@ -251,6 +263,8 @@ bool Nota::operator>(Nota const& other){
 
 bool Nota::operator<(Nota const& other){
 
+	// this-operador1
+	// other-operador2
 	return SegundaMaior(this->getOitava(),
 			            this->getGrau(),
 					    this->getAcidente(),
