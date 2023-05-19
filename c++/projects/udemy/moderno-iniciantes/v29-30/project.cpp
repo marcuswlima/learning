@@ -2,8 +2,8 @@
 
 void _help(){
 	std::cout << "Uso: ./a.out [--parametros] [numero]\n"
-		" -- dec2bin: conversao de decimal para binario\n"
-		" -- bin2dec: conversao de binario para decimal\n";
+		" --dec2bin: conversao de decimal para binario\n"
+		" --bin2dec: conversao de binario para decimal\n";
 }//_help
 
 void dec2bin( int number ){
@@ -34,12 +34,12 @@ int bin2dec( int number ){
 		base = base * 2;
 	}
 	return num_dec;
-}bin2dec
+}//bin2dec
 
 bool check_number( char *x ){
 	bool t = {true};
 	for( int i = 0; i < strlen( x ); i++){
-		if( isdigit( x[i] == false ) ){
+		if( isdigit( x[i] /*== false*/ ) ){
 			t = false;
 			break;
 		}
