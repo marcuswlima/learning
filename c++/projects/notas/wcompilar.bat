@@ -4,17 +4,17 @@ set SRC=src
 set LIB=..\lib
 set NOME=notas
 
-echo BarraTitulo.cpp...
-g++ -c %LIB%\BarraTitulo.cpp    -o %OBJ%\BarraTitulo.o
-if %errorlevel% neq 0 exit /b %errorlevel%
+::echo BarraTitulo.cpp...
+::g++ -c %LIB%\BarraTitulo.cpp    -o %OBJ%\BarraTitulo.o
+::if %errorlevel% neq 0 exit /b %errorlevel%
 
-echo Mathematics.cpp...
-g++ -c %LIB%\Mathematics.cpp    -o %OBJ%\Mathematics.o
-if %errorlevel% neq 0 exit /b %errorlevel%
+::echo Mathematics.cpp...
+::g++ -c %LIB%\Mathematics.cpp    -o %OBJ%\Mathematics.o
+::if %errorlevel% neq 0 exit /b %errorlevel%
 
-echo ObterNumero.cpp...
-g++ -c %LIB%\ObterNumero.cpp    -o %OBJ%\ObterNumero.o
-if %errorlevel% neq 0 exit /b %errorlevel%
+::echo ObterNumero.cpp...
+::g++ -c %LIB%\ObterNumero.cpp    -o %OBJ%\ObterNumero.o
+::if %errorlevel% neq 0 exit /b %errorlevel%
 
 echo Nota.cpp...
 g++ -g -c %SRC%\Nota.cpp -o %OBJ%\Nota.o 

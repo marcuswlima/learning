@@ -19,17 +19,29 @@ void TestarIntervalo();
 void TestarTriade();
 void TestarNota();
 void TodosIntervalos();
+void ToShowParameters(int , char *[]);
 
 /////////////////////////////////////////
 // Elelementos Globais
 /////////////////////////////////////////
 int gDificuldade=1;
 
+enum Saidas{
+	sucesso,
+	erro_leitura,
+	erro_permissao
+};
+
+
+
 /////////////////////////////////////////
 // Main
 /////////////////////////////////////////
-int main(){
+int main(int argc, char *argv[] ){
     srand( time(0) );
+	ToShowParameters(argc, argv);
+
+
 
 //    ImprimirTitulo("Gerador Exercicios");
 
@@ -38,11 +50,27 @@ int main(){
 //	TestarIntervalo();
 //	TodosIntervalos();
 //	TestarTriade();
-	TestarNota();
+//	TestarNota();
+	//cout << agc << endl;
+	//iicout << argv[0] << endl;
+	//cout << argv[1] << endl;
+
 
     cout << endl;
     return 0; //indica o fim do programa2
 }//main
+
+void ToShowParameters(int argc, char *argv[]){
+	if (argc > 1){
+		for (size_t i=0 ; i<argc ; i++){
+			cout << "[" << i << "]=" << argv[i] << endl;
+		}
+	}
+	else
+		cout << "sem parametros" << endl;
+
+}
+
 
 void ChamarMenu(){
     int opcao=0;
