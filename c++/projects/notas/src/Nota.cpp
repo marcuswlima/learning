@@ -6,6 +6,9 @@
 bool notaValida( int, int, int);
 string in_GerarDescricao( int, int, int);
 void MensagemErro( int,int, int, bool);
+bool NotaIgual(int , int , int , int , int , int );
+bool PrimeiraMaior(int, int , int , int , int , int );
+bool SegundaMaior(int, int , int , int , int , int );
 /////////////////////////////////////////
 // construtores
 /////////////////////////////////////////
@@ -68,6 +71,13 @@ int Nota::getGrau(){
 
 int Nota::getAcidente(){
     return acidente;
+}
+
+int Nota::getId(){
+	return (this->getOitava()*100)+ 
+		   (this->getGrau()  *10 )+
+		   (this->getAcidente()  )
+			;
 }
 
 /////////////////////////////////////////
@@ -218,6 +228,53 @@ void Nota::down1Tom(){
     this->down1SemiTom();
 }
 
+
+//////////////////////////////////////
+//Operacoes 
+//////////////////////////////////////
+bool Nota::operator==(Nota const& other){
+
+	// this-operador1
+	// other-operador2
+	return NotaIgual(this->getOitava(),
+			         this->getGrau(),
+					 this->getAcidente(),
+					 other.oitava,
+					 other.grau,
+					 other.acidente);
+
+}
+
+bool Nota::operator>(Nota const& other){
+
+	// this-operador1
+	// other-operador2
+
+	return PrimeiraMaior(
+			             this->getOitava(),
+			             this->getGrau(),
+					     this->getAcidente(),
+					     other.oitava,
+					     other.grau,
+					     other.acidente
+						 );
+
+}
+
+bool Nota::operator<(Nota const& other){
+
+	// this-operador1
+	// other-operador2
+	return SegundaMaior(this->getOitava(),
+			            this->getGrau(),
+					    this->getAcidente(),
+					    other.oitava,
+					    other.grau,
+					    other.acidente
+						);
+
+}
+
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
@@ -287,3 +344,27 @@ void MensagemErro( int o, int g, int a, bool mostraValores ){
         }
 //        cout << endl;
 }
+
+bool NotaIgual(int o1, int g1, int a1, int o2, int g2, int a2){
+	return (o1==o2)&&(g1==g2)&&(a1==a2);
+}
+
+bool PrimeiraMaior(int o1, int g1, int a1, int o2, int g2, int a2){
+
+	bool resposta=false;
+
+	if (!NotaIgual(o1, g1, a1, o2, g2, a2)){
+		if      (o1 != o2) resposta = o1 > o2;
+		else if (g1 != g2) resposta = g1 > g2;
+		else if (a1 != a2) resposta = a1 > a2;
+	}
+    return resposta;
+}
+
+
+bool SegundaMaior(int o1, int g1, int a1, int o2, int g2, int a2){
+
+	return !NotaIgual(o1, g1, a1, o2, g2, a2) && !PrimeiraMaior(o1, g1, a1, o2, g2, a2);
+
+}
+
