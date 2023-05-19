@@ -41,7 +41,8 @@ then
 fi
 
 echo "Linkando...."
-g++ $OBJ/BarraTitulo.o \
+g++ -Wextra -Werror    \
+    $OBJ/BarraTitulo.o \
 	$OBJ/Mathematics.o \
 	$OBJ/ObterNumero.o \
 	$OBJ/Nota.o        \

@@ -16,21 +16,20 @@ echo ObterNumero.cpp...
 g++ -c %LIB%\ObterNumero.cpp    -o %OBJ%\ObterNumero.o
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-
 echo Nota.cpp...
-g++ -c %SRC%\Nota.cpp -o %OBJ%\Nota.o 
+g++ -g -c %SRC%\Nota.cpp -o %OBJ%\Nota.o 
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 echo Intervalo.cpp...
-g++ -c %SRC%\Intervalo.cpp -o %OBJ%\Intervalo.o 
+g++ -g -c %SRC%\Intervalo.cpp -o %OBJ%\Intervalo.o 
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 echo Triade.cpp...
-g++ -c %SRC%\Triade.cpp -o %OBJ%\Triade.o 
+g++ -g -c %SRC%\Triade.cpp -o %OBJ%\Triade.o 
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 echo %NOME%.cpp...
-g++ -c %SRC%\%NOME%.cpp -o %OBJ%\%NOME%.o 
+g++ -g -c %SRC%\%NOME%.cpp -o %OBJ%\%NOME%.o 
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 echo linkando tudo...
@@ -42,9 +41,23 @@ g++ -Wextra -Werror      ^
      %OBJ%\Intervalo.o   ^
      %OBJ%\Triade.o      ^
      %OBJ%\%NOME%.o      ^
-        -o %OBJ%\%NOME%.exe        
+        -o %OBJ%\%NOME%.exe
+
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-echo Executando...
-%OBJ%\%NOME%.exe
+if "%1%" EQU "r" ( 
 
+	echo Executando...
+	%OBJ%\%NOME%.exe
+
+)
+
+
+if "%1%" EQU "d" ( 
+
+	cd %OBJ%
+	echo "Debugging...."
+	gdb %NOME%.exe
+	cd ..
+
+)

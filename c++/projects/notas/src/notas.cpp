@@ -60,9 +60,8 @@ void ChamarMenu(){
 
 int menu(){
     int escolha;
-
-
-    cout << "*********************\n";
+    
+	cout << "*********************\n";
     cout << "** 1) Notas        **\n";
     cout << "** 2) Intervalos   **\n";
     cout << "** 3) Triades      **\n";
