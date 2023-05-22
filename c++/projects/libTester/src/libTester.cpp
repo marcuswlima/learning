@@ -17,22 +17,30 @@ void PrintArray();
 void ObterNumero();
 void SystemNumeral();
 void NumeroExtenso();
+void BarraTitulo();	
 
 int main(){
-    srand( time(0) );
-	PrintArray();
-	//ObterNumero();
-	//Mathematics();	
-	//SystemNumeral();
-    //NumeroExtenso();
+	srand( time(0) );
+//PrintArray();
+//	ObterNumero();
+//	Mathematics();	
+//	SystemNumeral();
+//	NumeroExtenso();
+	BarraTitulo();
 }
 
+void BarraTitulo(){	
+	ImprimirTitulo("Marcus William dos santos lima");
+}
+
+/*
 void NumeroExtenso(){
 	ImprimirTitulo("libTester - NumeroExtenso");
 	for(int i=1;i<=999;i++){		
         cout << i << "\t" << ShowNumberEnglishPronuciation (i) << endl;
     }
 }
+*/
 
 void SystemNumeral(){
 	ImprimirTitulo("libTester - SystemNumeral");
