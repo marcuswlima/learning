@@ -43,9 +43,9 @@ int main(int argc, char *argv[] ){
 
 
 
-//    ImprimirTitulo("Gerador Exercicios");
+    ImprimirTitulo("Gerador Exercicios");
 
-//	ChamarMenu();
+	ChamarMenu();
 //	UC06(10);
 //	TestarIntervalo();
 //	TodosIntervalos();

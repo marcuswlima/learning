@@ -23,6 +23,8 @@ then
 	g++ -c $SRC/Intervalo.cpp -o $OBJ/Intervalo.o
 	echo "Triade.cpp..."
 	g++ -c $SRC/Triade.cpp    -o $OBJ/Triade.o
+	echo "Tetrade.cpp..."
+	g++ -c $SRC/Tetrade.cpp    -o $OBJ/Tetrede.o
 	echo "$NOME.cpp..."
 	g++ -c $SRC/$NOME.cpp     -o $OBJ/$NOME.o 
 
