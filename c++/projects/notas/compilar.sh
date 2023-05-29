@@ -51,7 +51,8 @@ g++ -Wextra -Werror    \
 	$OBJ/Intervalo.o   \
 	$OBJ/Triade.o      \
 	$OBJ/$NOME.o       \
-		-o $OBJ/$APP
+		-lncurses -ltinfo \
+			-o $OBJ/$APP
 
 if [ $1 == "R" ] || [ $1 == "r" ]
 then

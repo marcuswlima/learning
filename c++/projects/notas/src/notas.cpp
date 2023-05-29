@@ -20,6 +20,7 @@ void TestarTriade();
 void TestarNota();
 void TodosIntervalos();
 void ToShowParameters(int , char *[]);
+void Splash();
 
 /////////////////////////////////////////
 // Elelementos Globais
@@ -41,35 +42,65 @@ int main(int argc, char *argv[] ){
     srand( time(0) );
 	ToShowParameters(argc, argv);
 
+//	Splash();
+
+	initscr();
+	printw("Primeira mensagem");
+
+	int c=getch();
+
+	printw("%d",c);
 
 
-    ImprimirTitulo("Gerador Exercicios");
+	refresh();
+	getch();
+	endwin();
 
-	ChamarMenu();
+
+//    ImprimirTitulo("Gerador Exercicios");
+
+
+//	ChamarMenu();
 //	UC06(10);
-//	TestarIntervalo();
-//	TodosIntervalos();
-//	TestarTriade();
-//	TestarNota();
-	//cout << agc << endl;
-	//iicout << argv[0] << endl;
-	//cout << argv[1] << endl;
+	//	TestarIntervalo();
+	//	TodosIntervalos();
+	//	TestarTriade();
+	//	TestarNota();
+		//cout << agc << endl;
+		//iicout << argv[0] << endl;
+		//cout << argv[1] << endl;
 
 
-    cout << endl;
-    return 0; //indica o fim do programa2
-}//main
+		cout << endl;
+		return 0; //indica o fim do programa2
+	}//main
 
-void ToShowParameters(int argc, char *argv[]){
-	if (argc > 1){
-		for (size_t i=0 ; i<argc ; i++){
-			cout << "[" << i << "]=" << argv[i] << endl;
+	void Splash(){
+		char mesg[]="Gerados de execícios";
+		int row,col;
+
+		initscr();
+		noecho();
+		getmaxyx(stdscr,row,col);
+		mvprintw(row/2,(col-strlen(mesg))/2,"%s",mesg);
+
+	//	mvprintw(row-2,0,"Essa tela tem %d linhas e %d colunas\n",row,col);
+	//	printw("Tente redimensionar sua janela (se possível) e execute este programa novamente.");
+		refresh();
+		getch();
+		endwin();
+	};
+
+	void ToShowParameters(int argc, char *argv[]){
+		if (argc > 1){
+			for (size_t i=0 ; i<argc ; i++){
+				cout << "[" << i << "]=" << argv[i] << endl;
+			}
 		}
-	}
-	else
-		cout << "sem parametros" << endl;
+		else
+			cout << "sem parametros" << endl;
 
-}
+	}
 
 
 void ChamarMenu(){
