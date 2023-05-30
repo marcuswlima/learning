@@ -21,6 +21,7 @@ void TestarNota();
 void TodosIntervalos();
 void ToShowParameters(int , char *[]);
 void Splash();
+void Ncurses();
 
 /////////////////////////////////////////
 // Elelementos Globais
@@ -39,69 +40,177 @@ enum Saidas{
 // Main
 /////////////////////////////////////////
 int main(int argc, char *argv[] ){
+//	Iniciais
     srand( time(0) );
 	ToShowParameters(argc, argv);
 
-//	Splash();
+//	corpo
+	Ncurses();
 
-	initscr();
-	printw("Primeira mensagem");
+//	finais
+	cout << endl;
+	return 0; //indica o fim do programa2
 
-	int c=getch();
+/*
+ImprimirTitulo("Gerador Exercicios");
+ChamarMenu();
+UC06(10);
+TestarIntervalo();
+TodosIntervalos();
+TestarTriade();
+TestarNota();
+cout << agc << endl;
+iicout << argv[0] << endl;
+cout << argv[1] << endl;
+*/
 
-	printw("%d",c);
+}//main
 
-
+void nCursesUP(int max){
+	WINDOW *barraUp = newwin(3, max,0,0);
 	refresh();
-	getch();
-	endwin();
+	char v = '|';
+	char h = '-';
+	wborder(barraUp,v,v,h,h,'/','\\','\\','/');
+	wrefresh(barraUp);
+	string titulo="Gerador de Exercicio para os alunos";
+	char *prtTitulo = &titulo[0];
+	mvwprintw(barraUp,1,(max/2)-(titulo.length()/2),prtTitulo);
+	wrefresh(barraUp);
+}
 
+int nCursesMenu(string choices[], int arraySize, int max){
 
-//    ImprimirTitulo("Gerador Exercicios");
+	int maiorTamanhoItem=0;
 
-
-//	ChamarMenu();
-//	UC06(10);
-	//	TestarIntervalo();
-	//	TodosIntervalos();
-	//	TestarTriade();
-	//	TestarNota();
-		//cout << agc << endl;
-		//iicout << argv[0] << endl;
-		//cout << argv[1] << endl;
-
-
-		cout << endl;
-		return 0; //indica o fim do programa2
-	}//main
-
-	void Splash(){
-		char mesg[]="Gerados de execícios";
-		int row,col;
-
-		initscr();
-		noecho();
-		getmaxyx(stdscr,row,col);
-		mvprintw(row/2,(col-strlen(mesg))/2,"%s",mesg);
-
-	//	mvprintw(row-2,0,"Essa tela tem %d linhas e %d colunas\n",row,col);
-	//	printw("Tente redimensionar sua janela (se possível) e execute este programa novamente.");
-		refresh();
-		getch();
-		endwin();
-	};
-
-	void ToShowParameters(int argc, char *argv[]){
-		if (argc > 1){
-			for (size_t i=0 ; i<argc ; i++){
-				cout << "[" << i << "]=" << argv[i] << endl;
-			}
+	for (int i=0; i<arraySize; i++){
+		if ( choices[i].length() > maiorTamanhoItem ){
+			maiorTamanhoItem = choices[i].length();
 		}
-		else
-			cout << "sem parametros" << endl;
 
 	}
 
+	WINDOW *menuWin = newwin(arraySize+2, maiorTamanhoItem+2, 3, (max/2)-(maiorTamanhoItem/2));
+	refresh();
+//	box(menuWin, (int)'|', (int)'-');
+	box(menuWin,0,0);
+	wrefresh(menuWin);
+	
+
+	int choice;
+	int highligth=0;
+	while(1){
+		for (int i=0; i<arraySize; i++){
+			if (i==highligth)
+				wattron(menuWin,A_REVERSE);
+			mvwprintw(menuWin, i+1, 1, choices[i].c_str());
+			wattroff(menuWin,A_REVERSE);
+		}
+
+		choice = wgetch(menuWin);
+
+		switch (choice)
+		{
+			case KEY_UP:
+				highligth--;
+				if( highligth == -1 )
+					highligth=0;
+				break;
+			case KEY_DOWN:
+				highligth++;
+				if( highligth == (arraySize+1) )
+					highligth=arraySize;
+				break;
+			default:
+				break;
+		}
+
+		if( choice == 10 )
+			break;
+	}
+
+
+	return 0;
+}
+
+
+
+void Ncurses(){
+
+	initscr();
+	cbreak();
+	
+	int yMax, xMax;
+	getmaxyx(stdscr, yMax, xMax);
+
+	nCursesUP(xMax);
+
+	const int qtdChoices = 4;
+	string choices[qtdChoices]={"Intervalo","Triade","Tetrade","Configuracoes"};
+	int choice=nCursesMenu(choices, qtdChoices, xMax);
+
+	
+
+//	WINDOW *menu = newwin(
+	
+	getch();
+	endwin();
+/*	
+	WINDOW *barraUp = newwin(10, 10,1,1);
+	char v = '|';
+	char h = '_';
+	char b = '*';
+	wborder(barraUp,v,v,h,h,b,b,b,b);
+	wrefresh(barraUp);
+	getch();
+	refresh();
+	endwin();
+
+	int height, width, start_y, start_x;
+	height = 10;
+	width = 20;
+	start_y = start_x = 10;
+
+	WINDOW * win = newwin(height, width, start_y, start_x);
+	refresh();
+
+	box(win,0,0);
+	mvprintw(win, 1, 1, "this is mu box");
+	wrefresh(win);
+	printw("Hello Wordl");
+	refresh();
+	int c = getch();
+	printw("%d",c);
+	getch();
+*/
+}
+
+void Splash(){
+	char mesg[]="Gerados de execícios";
+	int row,col;
+
+	initscr();
+	noecho();
+	getmaxyx(stdscr,row,col);
+	mvprintw(row/2,(col-strlen(mesg))/2,"%s",mesg);
+
+//	mvprintw(row-2,0,"Essa tela tem %d linhas e %d colunas\n",row,col);
+//	printw("Tente redimensionar sua janela (se possível) e execute este programa novamente.");
+	refresh();
+	getch();
+	endwin();
+};
+
+void ToShowParameters(int argc, char *argv[]){
+	if (argc > 1){
+		for (size_t i=0 ; i<argc ; i++){
+			cout << "[" << i << "]=" << argv[i] << endl;
+		}
+	}
+	else
+		cout << "sem parametros" << endl;
+
+}
 
 void ChamarMenu(){
     int opcao=0;
