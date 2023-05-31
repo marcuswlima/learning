@@ -79,28 +79,28 @@ void nCursesUP(int max){
 	wrefresh(barraUp);
 }
 
-int nCursesMenu(string choices[], int arraySize, int max){
-
+int nCursesMenu(const vector <string> &choices, int xMax, int begin_y){
 	int maiorTamanhoItem=0;
+	const int qtdOpcoes=choices.size();
 
-	for (int i=0; i<arraySize; i++){
+	for (int i=0; i<qtdOpcoes; i++){
 		if ( choices[i].length() > maiorTamanhoItem ){
 			maiorTamanhoItem = choices[i].length();
 		}
 
 	}
-
-	WINDOW *menuWin = newwin(arraySize+2, maiorTamanhoItem+2, 3, (max/2)-(maiorTamanhoItem/2));
+	WINDOW *menuWin = newwin(qtdOpcoes+2, maiorTamanhoItem+2, begin_y, (xMax/2)-(maiorTamanhoItem/2));
 	refresh();
 //	box(menuWin, (int)'|', (int)'-');
 	box(menuWin,0,0);
 	wrefresh(menuWin);
+	keypad(menuWin,true);
 	
 
 	int choice;
 	int highligth=0;
 	while(1){
-		for (int i=0; i<arraySize; i++){
+		for (int i=0; i<qtdOpcoes; i++){
 			if (i==highligth)
 				wattron(menuWin,A_REVERSE);
 			mvwprintw(menuWin, i+1, 1, choices[i].c_str());
@@ -118,8 +118,8 @@ int nCursesMenu(string choices[], int arraySize, int max){
 				break;
 			case KEY_DOWN:
 				highligth++;
-				if( highligth == (arraySize+1) )
-					highligth=arraySize;
+				if( highligth == (qtdOpcoes) )
+					highligth = qtdOpcoes - 1;
 				break;
 			default:
 				break;
@@ -129,61 +129,56 @@ int nCursesMenu(string choices[], int arraySize, int max){
 			break;
 	}
 
+	return highligth;
 
-	return 0;
-}
-
-
+}//nCursesMenu
 
 void Ncurses(){
 
 	initscr();
 	cbreak();
+	noecho();
 	
 	int yMax, xMax;
 	getmaxyx(stdscr, yMax, xMax);
 
 	nCursesUP(xMax);
-
-	const int qtdChoices = 4;
-	string choices[qtdChoices]={"Intervalo","Triade","Tetrade","Configuracoes"};
-	int choice=nCursesMenu(choices, qtdChoices, xMax);
-
 	
-
-//	WINDOW *menu = newwin(
+	vector<string> choices;
+	int choice;
 	
-	getch();
+	while( true ){
+		choices={"Notas","Intervalo","Triade","Tetrade","Configuracoes","Sair"};
+		choice=nCursesMenu(choices,xMax,3);
+
+		if( choice==5 )
+			break;
+
+		choices.clear();
+		switch( choice )
+		{
+			case 1:
+				choices.push_back("Uma nota, uma orientacao(asc, desc) e um intervalo simples. Qual outra nota?");
+				choices.push_back("Duas Notas. Qual o intervalo simples?");
+				choices.push_back("Voltar!");
+				choice=nCursesMenu(choices,xMax,11);
+				break;
+			case 2:
+				choices.push_back("Uma nota e uma triade (M,m,A,d). Fundamental, terca e quinta?");
+				choices.push_back("Fundamental, terca e quinta. Qual triade (M,m,A,d)?");
+				choices.push_back("Triade Estado Fundamental. Qual 1º e 2º inversão?");
+				choices.push_back("Uma traide invertida. Qual o Estado Fundamental?");
+				choices.push_back("Voltar!");
+				choice=nCursesMenu(choices,xMax,11);
+				break;
+			default:
+				break;
+		}
+
+	}
 	endwin();
-/*	
-	WINDOW *barraUp = newwin(10, 10,1,1);
-	char v = '|';
-	char h = '_';
-	char b = '*';
-	wborder(barraUp,v,v,h,h,b,b,b,b);
-	wrefresh(barraUp);
-	getch();
-	refresh();
-	endwin();
 
-	int height, width, start_y, start_x;
-	height = 10;
-	width = 20;
-	start_y = start_x = 10;
-
-	WINDOW * win = newwin(height, width, start_y, start_x);
-	refresh();
-
-	box(win,0,0);
-	mvprintw(win, 1, 1, "this is mu box");
-	wrefresh(win);
-	printw("Hello Wordl");
-	refresh();
-	int c = getch();
-	printw("%d",c);
-	getch();
-*/
-}
+}//Ncurses
 
 void Splash(){
 	char mesg[]="Gerados de execícios";
