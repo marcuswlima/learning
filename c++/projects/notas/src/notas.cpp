@@ -1,4 +1,5 @@
 #include "Triade.h"
+#include "Janela.h"
 
 /////////////////////////////////////////
 // Prototipações
@@ -22,6 +23,7 @@ void TodosIntervalos();
 void ToShowParameters(int , char *[]);
 void Splash();
 void Ncurses();
+void TesteJanela();
 
 /////////////////////////////////////////
 // Elelementos Globais
@@ -34,6 +36,8 @@ enum Saidas{
 	erro_permissao
 };
 
+int xMax, yMax;
+Janela jDown(3,xMax,yMax-3,0);
 
 
 /////////////////////////////////////////
@@ -45,7 +49,9 @@ int main(int argc, char *argv[] ){
 	ToShowParameters(argc, argv);
 
 //	corpo
+//	TestarIntervalo();
 	Ncurses();
+//	TesteJanela();
 
 //	finais
 	cout << endl;
@@ -55,7 +61,6 @@ int main(int argc, char *argv[] ){
 ImprimirTitulo("Gerador Exercicios");
 ChamarMenu();
 UC06(10);
-TestarIntervalo();
 TodosIntervalos();
 TestarTriade();
 TestarNota();
@@ -66,19 +71,6 @@ cout << argv[1] << endl;
 
 }//main
 
-void nCursesUP(int max){
-	WINDOW *barraUp = newwin(3, max,0,0);
-	refresh();
-	char v = '|';
-	char h = '-';
-	wborder(barraUp,v,v,h,h,'/','\\','\\','/');
-	wrefresh(barraUp);
-	string titulo="Gerador de Exercicio para os alunos";
-	char *prtTitulo = &titulo[0];
-	mvwprintw(barraUp,1,(max/2)-(titulo.length()/2),prtTitulo);
-	wrefresh(barraUp);
-	barraUp=NULL;
-}
 
 int nCursesMenu(const vector <string> &choices, int xMax, int begin_y){
 	int maiorTamanhoItem=0;
@@ -137,35 +129,49 @@ int nCursesMenu(const vector <string> &choices, int xMax, int begin_y){
 }//nCursesMenu
 
 void nCursesClearScreen(int yMax, int xMax,int begin_y){
-	WINDOW *clsWin = newwin((yMax - begin_y), xMax, begin_y, 0);
+	WINDOW *clsWin = newwin((yMax - begin_y)-4, xMax, begin_y, 0);
 	refresh();
 	wrefresh(clsWin);
+	werase(clsWin);
 	clsWin=NULL;
 }//nCursesClearScreen
 
-int nCursesObterNumero(string mensagem, int begin_y, int xMax){	
+string nCursesObterString(string mensagem, int begin_y, int xMax, int n){	
+	// mensagem - mensagem a ser apresentada
+	// begin_y - posicao y que inicial a winodws
+	// xMax - extensao horizintal onde a window sera criada
+	// n - quantiade de caracteres que poderao ser digitado
 	int tamanhoMensagem = mensagem.length();
 	char *prtMensagem = &mensagem[0];
 
-	char str[80];
+	char digitado[80];
 
 	echo();
+	WINDOW *obterNumeroWin = newwin(3, xMax, begin_y, xMax);
+	werase(obterNumeroWin);
+	refresh();
+	wrefresh(obterNumeroWin);
+	obterNumeroWin=NULL;
 
-	WINDOW *obterNumeroWin = newwin(3, tamanhoMensagem+4, begin_y, (xMax/2)-(tamanhoMensagem/2));
+	obterNumeroWin = newwin(3, tamanhoMensagem+n+3, begin_y, (xMax/2)-(tamanhoMensagem/2));
 	box(obterNumeroWin,0,0);
 	mvwprintw(obterNumeroWin,1,1,prtMensagem);
 	refresh();
 	wrefresh(obterNumeroWin);
-	wgetnstr(obterNumeroWin,str,2);
-	
+	wgetnstr(obterNumeroWin,digitado,n);
 	obterNumeroWin=NULL;
 	noecho();
 
-	return 0;
-}//nCursesObterNumero
+	return digitado;
+}//nCursesObterString
 
+int nCursesObterNumero(string mensagem, int begin_y, int xMax, int n){	
+	string resposta=nCursesObterString(mensagem, begin_y, xMax, n);
+	char *ptrResposta=&resposta[0];
+	return atoi(ptrResposta);
+}
 
-void nCursesMenuIntervalo(int xMax){
+void nCursesMenuIntervalo(int yMax,int xMax){
 	vector<string> choices;
 	int choice, quantidade;
 	
@@ -174,14 +180,78 @@ void nCursesMenuIntervalo(int xMax){
 	choices.push_back("Voltar!");
 	while( true )
 	{
-		choice=nCursesMenu(choices,xMax,11);
+		nCursesClearScreen(yMax, xMax, 3);
+		choice=nCursesMenu(choices,xMax,3);
 		if (choice==2)
 			break;
 
 		// perguntar a quantidade
-		quantidade = nCursesObterNumero("Digite a quantidade de exercicios: " ,16,xMax);
+		do
+		{
+			nCursesClearScreen(yMax, xMax, 3);
+			quantidade = nCursesObterNumero("Digite a quantidade de exercicios [1-10]: " ,3,xMax,2);
+		}while( (quantidade < 1) || (quantidade > 10) );
+
+		//exercicios
+		Intervalo intervalo;
+		string questao, resposta;
+		int colunas, qtdCertas=0, qtdErradas=0;
+		struct tIntervaloResposta {
+			Intervalo intervalo;
+			string questao;
+			string resposta;
+		};
+		tIntervaloResposta intervalosRespostas[quantidade];
+		
+		colunas=10;
+		Janela jContagem(3,colunas,9,(xMax/2)-(colunas/2));
+
+		jContagem.Centralizar("0 de "+to_string(quantidade));
+		for(int i=0; i<=(quantidade-1); i++){
+			intervalo.Randomizar(gDificuldade);
+			questao = intervalo.getN1().Descricao();
+			questao += "/";
+			questao += intervalo.OrientacaoEmString();
+			questao += "/";
+			questao += intervalo.DeduzirTipoIntervalo();
+		//	questao += "/";
+		//	questao += intervalo.getN2().Descricao();
+			questao += ": ";
+
+			do{
+				resposta = nCursesObterString(questao,6,xMax,6);
+			}while (!intervalo.getN1().strEhNota(resposta));
+
+			intervalosRespostas[i].intervalo = intervalo;
+			intervalosRespostas[i].resposta = resposta;
+			intervalosRespostas[i].questao = questao;
+
+			jContagem.Centralizar(to_string(i+1)+" de "+to_string(quantidade));
+		}
+		colunas=40;
+		Janela jResultado(quantidade+6,colunas,12,(xMax/2)-(colunas/2));
+		jResultado.Imprimir(1,1,"Resultados :");
+		string linha;
+		for( int i=0; i<=quantidade-1; i++){
+			linha = to_string(i+1)+") "+intervalosRespostas[i].questao;
+			if( intervalosRespostas[i].resposta==intervalosRespostas[i].intervalo.getN2().Descricao() ){
+				linha += intervalosRespostas[i].resposta;
+				linha += " Certa";
+				qtdCertas++;
+			}
+			else{
+				linha += intervalosRespostas[i].resposta;
+				linha += "->";
+				linha += intervalosRespostas[i].intervalo.getN2().Descricao();
+				qtdErradas++;
+			}
+			jResultado.Imprimir(i+2,1,linha);
+		}
+		jResultado.Imprimir(quantidade+3,1,"Certas: "+to_string(qtdCertas));
+		jResultado.Imprimir(quantidade+4,1,"Erradas: "+to_string(qtdErradas));
+		getch();
+
 	}
-	// charmar caso de uso (switch)
 }//nCursesMenuIntervalo
 
 void nCursesMenuTriade(int xMax){
@@ -200,16 +270,18 @@ void Ncurses(){
 	cbreak();
 	noecho();
 	
-	int yMax, xMax;
+	//int yMax, xMax;
 	getmaxyx(stdscr, yMax, xMax);
 
-	nCursesUP(xMax);
+	Janela jUP(3,xMax,0,0);
+	jUP.Centralizar("Exercicios para os alunos da EMUFPA");
+	
 	
 	vector<string> choices;
 	int choice;
 	
 	while( true ){
-		nCursesClearScreen(yMax, xMax, 11);
+		nCursesClearScreen(yMax, xMax, 3);
 		choices={"Notas","Intervalo","Triade","Tetrade","Configuracoes","Sair"};
 		choice=nCursesMenu(choices,xMax,3);
 
@@ -219,10 +291,18 @@ void Ncurses(){
 		switch( choice )
 		{
 			case 1:
-				nCursesMenuIntervalo(xMax);
+				nCursesMenuIntervalo(yMax,xMax);
 				break;
 			case 2:
 				nCursesMenuTriade(xMax);
+				break;
+			case 4:
+				int dificuldade;
+				do
+				{
+					dificuldade = nCursesObterNumero("Informe a nova dificulade: " ,11,xMax,1);
+				}while( (dificuldade < 1) || (dificuldade>3) );
+				gDificuldade = dificuldade;
 				break;
 			default:
 				break;
@@ -558,8 +638,8 @@ void TestarIntervalo(){
 	n1.setNota(3,1,0);
 	i.setN1(n1);
 	i.setN2("2M");
-	i.getN2().ImprimirEmTela();
 	i.ImprimirEmTela();
+	cout <<	i.DeduzirTipoIntervalo() << endl;
 }
 
 
@@ -634,4 +714,46 @@ void TodosIntervalos(){
 		cout << endl;
 		n1.down1SemiTom();
 	}
+
+}
+
+/*
+class Janela {
+	private:
+		WINDOW *janela;
+	public:
+		Janela(int, int, int , int, bool=false);
+		void imprimir(string);
+		void destruir();
+};
+
+//WINDOW *obterNumeroWin = newwin(3, xMax, begin_y, xMax);
+
+Janela::Janela(int lines, int cols, int begin_y, int begin_x, bool bPersistir){
+	this->janela = newwin(lines, cols, begin_y, begin_x);
+	refresh();
+	char v = '|';
+	char h = '-';
+	wborder(janela,v,v,h,h,'/','\\','\\','/');
+	wrefresh(janela);
+	refresh();
+
+	if (!bPersistir)
+		janela=NULL;
+}
+void Janela::destruir(){
+}
+
+*/
+void TesteJanela(){
+	initscr();
+	Janela jBarraUP(3,100,0,0);
+	jBarraUP.Centralizar("1");
+	getch();
+	jBarraUP.Centralizar("11111111");
+	getch();
+	jBarraUP.Centralizar("2222");
+	getch();
+	endwin();
+
 }

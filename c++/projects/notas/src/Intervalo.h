@@ -10,26 +10,27 @@ private:
 public:
 // Constructors
     Intervalo();
-    Intervalo(int dificuldade);
+    Intervalo(int);
     Intervalo(Nota,Nota);
 // Sets
-    void setN1(Nota nota);
-    void setN2(Nota nota);
-    void setN2(string descIntervalo,int orientacao=1);
-    void SetIntervalo(Nota n1,Nota n2);
+    void setN1(Nota);
+    void setN2(Nota);
+    void setN2(string ,int =1);
+    void SetIntervalo(Nota,Nota);
 // Gets
     Nota getN1();
     Nota getN2();
 // Padrão
-    void Randomizar(int dificuldade=1);
-    string GerarDescricao();
+    void Randomizar(int =1);
+    string Descricao();
     void ImprimirEmTela();
 // Implementações
-    int DeduzirQdtNotas();
+    int DeduzirQdtTons();
     int DeduzirQtdSemiTons();
     int DeduzirOrientacao();
     string DeduzirTipoIntervalo();
-    void ImprimirQdtNotasEmTela();
+	string OrientacaoEmString();
+    void ImprimirQdtTonsEmTela();
     void ImprimirQtdSemiTonsEmTela();
     void ImprimirOrientacaoEmTela();
     void ImprimirTipoIntervaloEmTela();

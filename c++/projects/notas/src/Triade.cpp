@@ -94,13 +94,13 @@ void Triade::Randomizar(int dificuldade){
 string Triade::GerarDescricao(){
     string resposta="[", temp; 
 
-	temp = this->getFundamental().GerarDescricao() + "-";
+	temp = this->getFundamental().Descricao() + "-";
     if (temp!="") resposta+=temp;
 
-    temp = this->getTerca().GerarDescricao() + "-";
+    temp = this->getTerca().Descricao() + "-";
     if (temp!="") resposta+=temp;
 
-    temp = this->getQuinta().GerarDescricao();
+    temp = this->getQuinta().Descricao();
     if (temp!="") resposta+=temp;
 	
 	resposta+="]";
@@ -117,7 +117,7 @@ void Triade::ImprimirEmTela(){
 /////////////////////////////////////////
 
 void Triade::ImprimirFundamentalEmTela(){
-    cout << this->getFundamental().GerarDescricao();
+    cout << this->getFundamental().Descricao();
 }
 
 string Triade::RandomizarTipoTriade(){

@@ -17,14 +17,16 @@ set -e
 if [ $1 == "R" ] || [ $1 == "r" ] || [ $1 == "C" ] || [ $1 == "c" ]
 then
 
+	echo "Janela.cpp..."
+	g++ -c $SRC/Janela.cpp      -o $OBJ/Janela.o
 	echo "Nota.cpp..."
-	g++ -c $SRC/Nota.cpp      -o $OBJ/Nota.o
+#	g++ -c $SRC/Nota.cpp      -o $OBJ/Nota.o
 	echo "Intervalo.cpp..."
-	g++ -c $SRC/Intervalo.cpp -o $OBJ/Intervalo.o
+#	g++ -c $SRC/Intervalo.cpp -o $OBJ/Intervalo.o
 	echo "Triade.cpp..."
-	g++ -c $SRC/Triade.cpp    -o $OBJ/Triade.o
+#	g++ -c $SRC/Triade.cpp    -o $OBJ/Triade.o
 	echo "Tetrade.cpp..."
-	g++ -c $SRC/Tetrade.cpp    -o $OBJ/Tetrede.o
+#	g++ -c $SRC/Tetrade.cpp    -o $OBJ/Tetrede.o
 	echo "$NOME.cpp..."
 	g++ -c $SRC/$NOME.cpp     -o $OBJ/$NOME.o 
 
@@ -50,6 +52,7 @@ g++ -Wextra -Werror    \
 	$OBJ/Nota.o        \
 	$OBJ/Intervalo.o   \
 	$OBJ/Triade.o      \
+	$OBJ/Janela.o      \
 	$OBJ/$NOME.o       \
 		-lncurses -ltinfo \
 			-o $OBJ/$APP

@@ -5,4 +5,6 @@
 #include <iomanip>
 #include <vector>
 #include <ncurses.h>
+#include <algorithm>
+#include <regex>
 using namespace std;

@@ -9,6 +9,13 @@ void MensagemErro( int,int, int, bool);
 bool NotaIgual(int , int , int , int , int , int );
 bool PrimeiraMaior(int, int , int , int , int , int );
 bool SegundaMaior(int, int , int , int , int , int );
+bool EhNota(string nota);	
+
+/////////////////////////////////////////
+// elementos globais
+/////////////////////////////////////////
+string arrNotas[7]={"DO","RE","MI","FA","SOL","LA","SI"};
+
 /////////////////////////////////////////
 // construtores
 /////////////////////////////////////////
@@ -109,7 +116,7 @@ void Nota::Randomizar(int in_dificuldade){
 
 }
 
-string Nota::GerarDescricao(){
+string Nota::Descricao(){
     string strNota;
     int o = this->getOitava();
     int g = this->getGrau();
@@ -125,7 +132,7 @@ string Nota::GerarDescricao(){
 
 void Nota::ImprimirEmTela(){
 
-    cout << this->GerarDescricao()<< " ";
+    cout << this->Descricao()<< " ";
 
 }
 
@@ -219,7 +226,7 @@ void Nota::down1SemiTom(){
     }
 }
 
-void Nota:: up1Tom(){
+void Nota::up1Tom(){
     this->up1SemiTom();
     this->up1SemiTom();
 }
@@ -228,27 +235,54 @@ void Nota::down1Tom(){
     this->down1SemiTom();
 }
 
+bool Nota::strEhNota(string nota){
+	regex re("^[1-7]\(DO|RE|MI|FA|SOL|LA|SI\)");
+	smatch match;
+	transform(nota.begin(), nota.end(), nota.begin(), ::toupper);//toUpperCase
+	return regex_search(nota, match, re);
+	
+	bool resposta = true;
+	int tamanho = nota.size();
+	char oitava=nota[0];
+	string resto, grau, acidente;
+
+
+	if( isdigit(oitava) && (oitava !='0') && (oitava!='8') && (oitava!='9') )
+	{
+		resto = nota.substr(1,nota.length()); //eliminar a oitava da string
+
+		if( EhNota(resto.substr(0,2)) ) {
+			grau = resto.substr(0,2);
+		}
+	}
+	else
+		resposta = false;
+
+	return resposta;
+}
+
 
 //////////////////////////////////////
 //Operacoes 
 //////////////////////////////////////
 bool Nota::operator==(Nota const& other){
+	// this->  operador1
+	// other.  operador2
 
-	// this-operador1
-	// other-operador2
-	return NotaIgual(this->getOitava(),
+	return NotaIgual(
+			         this->getOitava(),
 			         this->getGrau(),
 					 this->getAcidente(),
 					 other.oitava,
 					 other.grau,
-					 other.acidente);
+					 other.acidente
+					 );
 
 }
 
 bool Nota::operator>(Nota const& other){
-
-	// this-operador1
-	// other-operador2
+	// this->  operador1
+	// other.  operador2
 
 	return PrimeiraMaior(
 			             this->getOitava(),
@@ -262,10 +296,11 @@ bool Nota::operator>(Nota const& other){
 }
 
 bool Nota::operator<(Nota const& other){
-
-	// this-operador1
-	// other-operador2
-	return SegundaMaior(this->getOitava(),
+	// this->  operador1
+	// other.  operador2
+	
+	return SegundaMaior(
+			            this->getOitava(),
 			            this->getGrau(),
 					    this->getAcidente(),
 					    other.oitava,
@@ -278,6 +313,20 @@ bool Nota::operator<(Nota const& other){
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
+
+bool EhNota(string nota){	
+	bool resposta = false;
+	for (int i=0; i<=7; i++){
+		if ( arrNotas[i] == nota){
+			resposta=true;
+			break;
+		}
+
+	}
+
+	return resposta;
+}
+
 
 // Validar uma nota
 bool notaValida( int o, int g, int a ){

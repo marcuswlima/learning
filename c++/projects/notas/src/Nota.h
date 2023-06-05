@@ -6,10 +6,10 @@
 #define NOTA_H
 class Nota {
 private:
-	int oitava;     // 0--8 
-	int grau;       // 1--7 
-	int acidente;   // [-2,0,2] [bb,b,0,#,*]
-	int clave;      // [5-sol,4-fa]
+	int oitava;   // 0--8 
+	int grau;     // 1--7 
+	int acidente; // [-2,0,2] [bb,b,0,#,*]
+	int clave;    // [5-sol,4-fa]
 public:
 // Constructors
 	Nota(); 
@@ -26,8 +26,8 @@ public:
 	int getAcidente();
 	int getId();
 // Padrão
-	void Randomizar(int in_dificuldade=1);
-	string GerarDescricao();
+	void Randomizar(int =1);
+	string Descricao();
 	void ImprimirEmTela();
 // Implementações
 	Nota qualRelativa(int, int =1);
@@ -35,6 +35,7 @@ public:
 	void up1Tom();
 	void down1SemiTom();
 	void down1Tom();
+	bool strEhNota(string);
 // Operacoes
 	bool operator==(Nota const&);
 	bool operator>(Nota const&);

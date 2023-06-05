@@ -119,24 +119,24 @@ void Intervalo::Randomizar(int dificuldade){
     this->setN2(n);
 }
 
-string Intervalo::GerarDescricao(){
+string Intervalo::Descricao(){
     string resposta="";
 
-    if (getN1().GerarDescricao()!=""){
-        resposta += this->getN1().GerarDescricao();
+    if (this->getN1().Descricao()!=""){
+        resposta += this->getN1().Descricao();
         resposta += ":";
-        resposta += this->getN2().GerarDescricao() + " ";
+        resposta += this->getN2().Descricao() + " ";
     }
     else
         resposta += "Primeira nota em branco";
 
     return resposta;
 
-}
+}//Intervalo::Descricao
 
 
 void Intervalo::ImprimirEmTela(){
-    cout << this->GerarDescricao() << " ";
+    cout << this->Descricao() << " ";
 }
 
 
@@ -150,13 +150,13 @@ int Intervalo::DeduzirOrientacao(){
                  : -1;
 }
 
-int Intervalo::DeduzirQdtNotas(){
+int Intervalo::DeduzirQdtTons(){
     int resposta,
 		g1 = this->getN1().getGrau(),
 		g2 = this->getN2().getGrau()
 		;
 
-	bool bAscendente = (n1 > n2) ,
+	bool bAscendente = (n1 < n2) ,
 		 bMesmaOitava = this->getN1().getOitava() == this->getN2().getOitava()
 		 ;
 
@@ -191,12 +191,12 @@ int Intervalo::DeduzirQtdSemiTons(){
 
 string Intervalo::DeduzirTipoIntervalo(){
     string resposta="er";
-    int qtdNotas = this->DeduzirQdtNotas();
+    int qtdNotas = this->DeduzirQdtTons();
     int qtdSemiTons = this->DeduzirQtdSemiTons();
 
-	//cout << endl;
-	//cout << "qtdNotas->"<< qtdNotas<< endl;
-	//cout << "qdtSemitons->"<< qtdSemiTons<< endl;
+//	cout << endl;
+//	cout << "qtdNotas->"<< qtdNotas<< endl;
+//	cout << "qdtSemitons->"<< qtdSemiTons<< endl;
 
     for (int i=0; i<=15; i++){
         if ((DadosIntervalo[i].qtdNotasNaturais==qtdNotas) && (DadosIntervalo[i].qtdSemiTons==qtdSemiTons)){
@@ -207,23 +207,29 @@ string Intervalo::DeduzirTipoIntervalo(){
     return resposta;
 }
 
-void Intervalo::ImprimirOrientacaoEmTela(){
-    //if (NotasIguais(this->getN1(),this->getN2())){
+string Intervalo::OrientacaoEmString(){
+	string resposta;
     if (this->getN1()==this->getN2()){
-		cout << "Unissono";
+		resposta = "Unissono";
     }else{
 		(this->DeduzirOrientacao()==1) ? 
-			cout << "Asc"              : 
-			cout << "Desc"             ;
+			resposta = "Asc"           : 
+			resposta = "Desc"          ;
     }
+	return resposta;
+}
+
+
+void Intervalo::ImprimirOrientacaoEmTela(){
+	cout << this->OrientacaoEmString();
 }
 
 void Intervalo::ImprimirTipoIntervaloEmTela(){
 	cout << this->DeduzirTipoIntervalo() ;
 }
 
-void Intervalo::ImprimirQdtNotasEmTela(){
-    cout << this->DeduzirQdtNotas() << " ";
+void Intervalo::ImprimirQdtTonsEmTela(){
+    cout << this->DeduzirQdtTons() << " ";
 }
 
 void Intervalo::ImprimirQtdSemiTonsEmTela(){
