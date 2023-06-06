@@ -32,7 +32,8 @@ public:
 	string OrientacaoEmString();
     void ImprimirQdtTonsEmTela();
     void ImprimirQtdSemiTonsEmTela();
-    void ImprimirOrientacaoEmTela();
+	void ImprimirOrientacaoEmTela();
     void ImprimirTipoIntervaloEmTela();
+	bool strEhIntervalo(string);
 };
 #endif

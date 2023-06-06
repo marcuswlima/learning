@@ -7,7 +7,6 @@ Janela::Janela(int lines, int cols, int begin_y, int begin_x){
 	refresh();
 	Moldurar(this->janela);
 	refresh();
-
 }//construtor
 
 void Janela::Centralizar(string mensagem){
@@ -39,8 +38,4 @@ void Moldurar(WINDOW *janela){
 	wborder(janela,v,v,h,h,'/','\\','\\','/');
 	wrefresh(janela);
 }
-
-char* StrToPtr(string str){
-}
-
 

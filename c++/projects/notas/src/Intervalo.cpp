@@ -22,10 +22,10 @@ tRecDadosIntervalo DadosIntervalo[]={  //0-15
                                         {"2M",2, 3},
                                         {"3m",3, 4},
                                         {"3M",3, 5},
-                                        {"4D",4, 5},
+                                        {"4d",4, 5},
                                         {"4J",4, 6},
                                         {"4A",4, 7},
-                                        {"5D",5, 7},
+                                        {"5d",5, 7},
                                         {"5J",5, 8},
                                         {"5A",5, 9},
                                         {"6m",6, 9},
@@ -235,6 +235,13 @@ void Intervalo::ImprimirQdtTonsEmTela(){
 void Intervalo::ImprimirQtdSemiTonsEmTela(){
     cout << this->DeduzirQtdSemiTons() << " ";
 }
+
+bool Intervalo::strEhIntervalo(string str){
+	regex regra("^[1-8](J|M|m|A|d)$");
+	smatch match;
+	return regex_search(str, match, regra);
+}
+
 
 /////////////////////////////////////////
 // Implementações Internas

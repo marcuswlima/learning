@@ -10,7 +10,6 @@ void MenuIntervalos();
 void MenuTriades();
 void ChamarMenu();
 void Notas();
-void UC01();
 void UC02();
 void UC03();
 void UC04();
@@ -37,8 +36,13 @@ enum Saidas{
 };
 
 int xMax, yMax;
-Janela jDown(3,xMax,yMax-3,0);
+//Janela jDown(3,xMax,yMax-3,0);
 
+struct tIntervaloResposta {
+	Intervalo intervalo;
+	string questao;
+	string resposta;
+};
 
 /////////////////////////////////////////
 // Main
@@ -171,6 +175,127 @@ int nCursesObterNumero(string mensagem, int begin_y, int xMax, int n){
 	return atoi(ptrResposta);
 }
 
+void UC01(int quantidade){
+	//exercicios
+	Intervalo intervalo;
+	string questao, resposta;
+	int colunas, qtdCertas=0, qtdErradas=0;
+	struct tIntervaloResposta {
+		Intervalo intervalo;
+		string questao;
+		string resposta;
+	};
+	tIntervaloResposta intervalosRespostas[quantidade];
+	colunas=10;
+	Janela jContagem(3,colunas,9,(xMax/2)-(colunas/2));
+
+	jContagem.Centralizar("0 de "+to_string(quantidade));
+
+	//perguntas
+	for(int i=0; i<=(quantidade-1); i++){
+		intervalo.Randomizar(gDificuldade);
+		questao = intervalo.getN1().Descricao();
+		questao += "/";
+		questao += intervalo.OrientacaoEmString();
+		questao += "/";
+		questao += intervalo.DeduzirTipoIntervalo();
+		questao += ": ";
+
+		do{
+			resposta = nCursesObterString(questao,6,xMax,6);
+		}while (!intervalo.getN1().strEhNota(resposta));
+
+		intervalosRespostas[i].intervalo = intervalo;
+		intervalosRespostas[i].resposta = resposta;
+		intervalosRespostas[i].questao = questao;
+
+		jContagem.Centralizar(to_string(i+1)+" de "+to_string(quantidade));
+	}
+
+	//resultado
+	colunas=40;
+	Janela jResultado(quantidade+6,colunas,12,(xMax/2)-(colunas/2));
+	jResultado.Imprimir(1,1,"Resultados :");
+	string linha;
+	for( int i=0; i<=quantidade-1; i++){
+		linha = to_string(i+1)+") "+intervalosRespostas[i].questao;
+		if( intervalosRespostas[i].resposta==intervalosRespostas[i].intervalo.getN2().Descricao() ){
+			linha += intervalosRespostas[i].resposta;
+			linha += " Certa";
+			qtdCertas++;
+		}
+		else{
+			linha += intervalosRespostas[i].resposta;
+			linha += "->";
+			linha += intervalosRespostas[i].intervalo.getN2().Descricao();
+			qtdErradas++;
+		}
+		jResultado.Imprimir(i+2,1,linha);
+	}
+	//resumo resultado
+	jResultado.Imprimir(quantidade+3,1,"Certas: "+to_string(qtdCertas));
+	jResultado.Imprimir(quantidade+4,1,"Erradas: "+to_string(qtdErradas));
+	getch();
+}
+
+void UC02(int quantidade){
+	int colunas=10;
+	Intervalo intervalo;
+	string questao, resposta;
+	tIntervaloResposta intervalosRespostas[quantidade];
+	
+	Janela jContagem(3,colunas,9,(xMax/2)-(colunas/2));
+
+	jContagem.Centralizar("0 de "+to_string(quantidade));
+
+
+	//perguntas
+	for(int i=0; i<=(quantidade-1); i++){
+		intervalo.Randomizar(gDificuldade);
+		questao = intervalo.getN1().Descricao();
+		questao += " e ";
+		questao += intervalo.getN2().Descricao();
+		questao += " : ";
+
+		do{
+			resposta = nCursesObterString(questao,6,xMax,2);
+		}while (!intervalo.strEhIntervalo(resposta));
+
+		intervalosRespostas[i].intervalo = intervalo;
+		intervalosRespostas[i].resposta = resposta;
+		intervalosRespostas[i].questao = questao;
+
+		jContagem.Centralizar(to_string(i+1)+" de "+to_string(quantidade));
+	}
+
+	//resultado
+	colunas=40;
+	int qtdCertas=0, qtdErradas=0;
+	Janela jResultado(quantidade+6,colunas,12,(xMax/2)-(colunas/2));
+	jResultado.Imprimir(1,1,"Resultados :");
+	string linha;
+	for( int i=0; i<=quantidade-1; i++){
+		linha = to_string(i+1)+") "+intervalosRespostas[i].questao;
+		if( intervalosRespostas[i].resposta==intervalosRespostas[i].intervalo.DeduzirTipoIntervalo() ){
+			linha += intervalosRespostas[i].resposta;
+			linha += " Certa";
+			qtdCertas++;
+		}
+		else{
+			linha += intervalosRespostas[i].resposta;
+			linha += "->";
+			linha += intervalosRespostas[i].intervalo.DeduzirTipoIntervalo();
+			qtdErradas++;
+		}
+		jResultado.Imprimir(i+2,1,linha);
+	}
+	
+	//resumo resultado
+	jResultado.Imprimir(quantidade+3,1,"Certas: "+to_string(qtdCertas));
+	jResultado.Imprimir(quantidade+4,1,"Erradas: "+to_string(qtdErradas));
+	getch();
+}
+
 void nCursesMenuIntervalo(int yMax,int xMax){
 	vector<string> choices;
 	int choice, quantidade;
@@ -192,71 +317,20 @@ void nCursesMenuIntervalo(int yMax,int xMax){
 			quantidade = nCursesObterNumero("Digite a quantidade de exercicios [1-10]: " ,3,xMax,2);
 		}while( (quantidade < 1) || (quantidade > 10) );
 
-		//exercicios
-		Intervalo intervalo;
-		string questao, resposta;
-		int colunas, qtdCertas=0, qtdErradas=0;
-		struct tIntervaloResposta {
-			Intervalo intervalo;
-			string questao;
-			string resposta;
-		};
-		tIntervaloResposta intervalosRespostas[quantidade];
-		
-		colunas=10;
-		Janela jContagem(3,colunas,9,(xMax/2)-(colunas/2));
-
-		jContagem.Centralizar("0 de "+to_string(quantidade));
-		for(int i=0; i<=(quantidade-1); i++){
-			intervalo.Randomizar(gDificuldade);
-			questao = intervalo.getN1().Descricao();
-			questao += "/";
-			questao += intervalo.OrientacaoEmString();
-			questao += "/";
-			questao += intervalo.DeduzirTipoIntervalo();
-		//	questao += "/";
-		//	questao += intervalo.getN2().Descricao();
-			questao += ": ";
-
-			do{
-				resposta = nCursesObterString(questao,6,xMax,6);
-			}while (!intervalo.getN1().strEhNota(resposta));
-
-			intervalosRespostas[i].intervalo = intervalo;
-			intervalosRespostas[i].resposta = resposta;
-			intervalosRespostas[i].questao = questao;
-
-			jContagem.Centralizar(to_string(i+1)+" de "+to_string(quantidade));
+		switch( choice ){	
+			case 0:UC01(quantidade);break;
+			case 1:UC02(quantidade);break;
+			default:
+				   break;
 		}
-		colunas=40;
-		Janela jResultado(quantidade+6,colunas,12,(xMax/2)-(colunas/2));
-		jResultado.Imprimir(1,1,"Resultados :");
-		string linha;
-		for( int i=0; i<=quantidade-1; i++){
-			linha = to_string(i+1)+") "+intervalosRespostas[i].questao;
-			if( intervalosRespostas[i].resposta==intervalosRespostas[i].intervalo.getN2().Descricao() ){
-				linha += intervalosRespostas[i].resposta;
-				linha += " Certa";
-				qtdCertas++;
-			}
-			else{
-				linha += intervalosRespostas[i].resposta;
-				linha += "->";
-				linha += intervalosRespostas[i].intervalo.getN2().Descricao();
-				qtdErradas++;
-			}
-			jResultado.Imprimir(i+2,1,linha);
-		}
-		jResultado.Imprimir(quantidade+3,1,"Certas: "+to_string(qtdCertas));
-		jResultado.Imprimir(quantidade+4,1,"Erradas: "+to_string(qtdErradas));
-		getch();
+
 
 	}
 }//nCursesMenuIntervalo
 
 void nCursesMenuTriade(int xMax){
 	vector<string> choices;
-	choices.push_back("Uma nota e uma triade (M,m,A,d). Fundamental, terca e quinta?");
+	choices.push_back("Uma nota e uma triade (M,m,A,d). Qual a terca e a quinta?");
 	choices.push_back("Fundamental, terca e quinta. Qual triade (M,m,A,d)?");
 	choices.push_back("Triade estado fundamental. Qual 1º e 2º inversão?");
 	choices.push_back("Uma traide invertida. Qual o Estado Fundamental?");
@@ -400,7 +474,7 @@ void MenuIntervalos(){
 
     switch (opcao)
     {
-		case 1:UC01();break;
+//		case 1:UC01();break;
 		case 2:UC02();break;
 		default:
 		break;
@@ -434,19 +508,6 @@ void MenuTriades(){
     }
 
     cout << endl << endl;
-}
-
-void UC01(){
-    Intervalo intervalo;
-    int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
-
-    for(int i=1; i<=quantidade; i++){
-		intervalo.Randomizar(gDificuldade);
-		intervalo.getN1().ImprimirEmTela();//alterar para mostrar apenas a primeira nota
-		intervalo.ImprimirTipoIntervaloEmTela();
-		intervalo.ImprimirOrientacaoEmTela();
-		cout << " / ";
-    }
 }
 
 void UC02(){
@@ -717,34 +778,6 @@ void TodosIntervalos(){
 
 }
 
-/*
-class Janela {
-	private:
-		WINDOW *janela;
-	public:
-		Janela(int, int, int , int, bool=false);
-		void imprimir(string);
-		void destruir();
-};
-
-//WINDOW *obterNumeroWin = newwin(3, xMax, begin_y, xMax);
-
-Janela::Janela(int lines, int cols, int begin_y, int begin_x, bool bPersistir){
-	this->janela = newwin(lines, cols, begin_y, begin_x);
-	refresh();
-	char v = '|';
-	char h = '-';
-	wborder(janela,v,v,h,h,'/','\\','\\','/');
-	wrefresh(janela);
-	refresh();
-
-	if (!bPersistir)
-		janela=NULL;
-}
-void Janela::destruir(){
-}
-
-*/
 void TesteJanela(){
 	initscr();
 	Janela jBarraUP(3,100,0,0);

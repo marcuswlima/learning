@@ -4,7 +4,7 @@
 // Prototipacoes
 /////////////////////////////////////////
 bool notaValida( int, int, int);
-string in_GerarDescricao( int, int, int);
+string iDescricao( int, int, int);
 void MensagemErro( int,int, int, bool);
 bool NotaIgual(int , int , int , int , int , int );
 bool PrimeiraMaior(int, int , int , int , int , int );
@@ -122,7 +122,7 @@ string Nota::Descricao(){
     int g = this->getGrau();
     int a = this->getAcidente();
     if (notaValida(o,g,a))
-        strNota = in_GerarDescricao(o,g,a);
+        strNota = iDescricao(o,g,a);
     else 
         MensagemErro(o,g,a,true);
 
@@ -236,29 +236,10 @@ void Nota::down1Tom(){
 }
 
 bool Nota::strEhNota(string nota){
-	regex re("^[1-7]\(DO|RE|MI|FA|SOL|LA|SI\)");
+	regex regra("^[1-7](DO|RE|MI|FA|SOL|LA|SI)(#?|B?|BB?|\\*?)$");
 	smatch match;
 	transform(nota.begin(), nota.end(), nota.begin(), ::toupper);//toUpperCase
-	return regex_search(nota, match, re);
-	
-	bool resposta = true;
-	int tamanho = nota.size();
-	char oitava=nota[0];
-	string resto, grau, acidente;
-
-
-	if( isdigit(oitava) && (oitava !='0') && (oitava!='8') && (oitava!='9') )
-	{
-		resto = nota.substr(1,nota.length()); //eliminar a oitava da string
-
-		if( EhNota(resto.substr(0,2)) ) {
-			grau = resto.substr(0,2);
-		}
-	}
-	else
-		resposta = false;
-
-	return resposta;
+	return regex_search(nota, match, regra);
 }
 
 
@@ -352,7 +333,7 @@ bool notaValida( int o, int g, int a ){
 }
 
 
-string in_GerarDescricao( int o, int g, int a ){
+string iDescricao( int o, int g, int a ){
     string strNota;
 
     strNota = to_string(o);
