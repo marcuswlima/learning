@@ -2,18 +2,21 @@
 left to right direction
 skinparam actorStyle awesome
 rectangle "Gerador Exercicio" {
-    "Notas Avulsas"as (Use08)
     Package "Intervalo"{
-      "Uma nota, um intervalo simples e uma orientação. \n Qual a segunda nota?" as (Use01)
-      "Duas Notas, \n Qual intervalo simples? Qual orientação?" as (Use02)
+      "Duas Notas, \n Qual intervalo simples? Qual orientação?" as (Use01)
+      "Primeira nota, um intervalo simples e uma orientação. \n Qual a segunda nota?" as (Use02)
+      "Segunda nota, um intervalo simples e uma orientação. \n Qual a primeira nota?" as (Use03)
+      "Montagem" as (Use04)
     }
     Package "Tríade"{
-     "Uma nota fundamental e uma triade (M,m,A,d).\n Qual 3º e 5º ?" as (Use03)
-     "Nota Fundamental, 3º e 5º. \n Qual a triade (M,m,A,d)?" as (Use04)
-     "Triade Estado Fundamental. \n 1º e 2º Inversão?" as (Use05)
-     "Triade Invertida. \n Qual estado fundamental?" as (Use06)
+     "Nota Fundamental, 3º e 5º. \n Qual a triade (M,m,A,d)?" as (Use05)
+     "Uma nota fundamental e uma triade (M,m,A,d).\n Qual 3º e 5º ?" as (Use06)
+     "Uma terça e uma triade (M,m,A,d).\n Qual Fundamental e 5º ?" as (Use07)
+     "Uma quinta e uma triade (M,m,A,d).\n Qual Fundamental e 3º ?" as (Use08)
+      "Montagem" as (Use09)
     }
-    "Configurações"as (Use07)
+    "Configurações"as (Use10)
+    "Notas Avulsas"as (Use11)
 }
 :Usuário: --> (Use01)
 :Usuário: --> (Use02)
@@ -23,4 +26,5 @@ rectangle "Gerador Exercicio" {
 :Usuário: --> (Use06)
 :Usuário: --> (Use07)
 :Usuário: --> (Use08)
+:Usuário: --> (Use09)
 @enduml

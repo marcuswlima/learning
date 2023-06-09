@@ -2,7 +2,17 @@
 
 void Moldurar(WINDOW *);
 
+Janela::Janela(){
+}
+
 Janela::Janela(int lines, int cols, int begin_y, int begin_x){
+	this->janela = newwin(lines, cols, begin_y, begin_x);
+	refresh();
+	Moldurar(this->janela);
+	refresh();
+}//construtor
+
+void Janela::Instanciar(int lines, int cols, int begin_y, int begin_x){
 	this->janela = newwin(lines, cols, begin_y, begin_x);
 	refresh();
 	Moldurar(this->janela);
@@ -31,6 +41,26 @@ void Janela::Imprimir(int y, int x, string str){
 	wrefresh(this->janela);
 }
 
+void Janela::Imprimir(string str){
+	wprintw(this->janela,&str[0]);
+	wrefresh(this->janela);
+}
+
+void Janela::Limpar(){
+	werase(this->janela);
+	Moldurar(this->janela);
+}
+
+string Janela::CapturarPalavra(int n){
+	//n - quantidade de caracteres permitidos
+	char digitado[80];
+	
+	echo();
+	wgetnstr(this->janela,digitado,n);
+	noecho();
+	
+	return digitado;
+}
 
 void Moldurar(WINDOW *janela){
 	char v = '|';
@@ -38,4 +68,5 @@ void Moldurar(WINDOW *janela){
 	wborder(janela,v,v,h,h,'/','\\','\\','/');
 	wrefresh(janela);
 }
+
 

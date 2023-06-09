@@ -8,10 +8,7 @@
 :tabedit src/Tetrade.cpp
 :38vsplit src/Tetrade.h
 :tabedit src/Janela.cpp
-:48vsplit src/Janela.h
+:49vsplit src/Janela.h
 :tabedit src/notas.cpp
 :tabfirst
-
-
-
 

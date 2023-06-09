@@ -168,8 +168,6 @@ void MontarTriade(Nota n, int tipoTriade, Intervalo &i1, Intervalo &i2){
 
 	Nota temp;
 
-//	cout << "tipoTriade->"<< tipoTriade<< endl;
-
 	i1.setN1(n);
 	if (tipoTriade==1){
 		i1.setN2("3M");
@@ -179,13 +177,10 @@ void MontarTriade(Nota n, int tipoTriade, Intervalo &i1, Intervalo &i2){
 		i2.setN1(temp);
 		i2.setN2("3m");
 	}else if (tipoTriade==2){
-//		cout << "acertou" << endl;
 		i1.setN2("3m");
-//		i1.ImprimirEmTela();
 		temp.setOitava(i1.getN2().getOitava());
 		temp.setGrau(i1.getN2().getGrau());
 		temp.setAcidente(i1.getN2().getAcidente());
-//		temp.ImprimirEmTela();
 		i2.setN1(temp);
 		i2.setN2("3M");
 	}else if (tipoTriade==3){

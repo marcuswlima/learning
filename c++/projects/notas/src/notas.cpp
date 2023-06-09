@@ -10,8 +10,6 @@ void MenuIntervalos();
 void MenuTriades();
 void ChamarMenu();
 void Notas();
-void UC02();
-void UC03();
 void UC04();
 void UC05();
 void UC06();
@@ -27,7 +25,6 @@ void TesteJanela();
 /////////////////////////////////////////
 // Elelementos Globais
 /////////////////////////////////////////
-int gDificuldade=1;
 
 enum Saidas{
 	sucesso,
@@ -35,8 +32,8 @@ enum Saidas{
 	erro_permissao
 };
 
-int xMax, yMax;
-//Janela jDown(3,xMax,yMax-3,0);
+int gDificuldade = 1, xMax, yMax, begin_xMainMenu;
+Janela jUp, jDown;
 
 struct tIntervaloResposta {
 	Intervalo intervalo;
@@ -44,13 +41,25 @@ struct tIntervaloResposta {
 	string resposta;
 };
 
+void SetagensIniciais(){
+    srand( time(0) );
+	initscr();
+	getmaxyx(stdscr, yMax, xMax);
+	jUp.Instanciar(3,xMax,0,0);
+	jUp.Centralizar("Exercicios para os alunos da EMUFPA");
+	jDown.Instanciar(3,xMax,yMax-3,0);
+	jDown.Imprimir(1,1,"Escolha a sua opcao");
+	jDown.Imprimir(1,xMax-15,"Dificuldade: "+to_string(gDificuldade));
+}
+
+
 /////////////////////////////////////////
 // Main
 /////////////////////////////////////////
 int main(int argc, char *argv[] ){
 //	Iniciais
-    srand( time(0) );
 	ToShowParameters(argc, argv);
+	SetagensIniciais();
 
 //	corpo
 //	TestarIntervalo();
@@ -76,7 +85,7 @@ cout << argv[1] << endl;
 }//main
 
 
-int nCursesMenu(const vector <string> &choices, int xMax, int begin_y){
+int nCursesMenu(const vector <string> &choices, int begin_y){
 	int maiorTamanhoItem=0;
 	const int qtdOpcoes=choices.size();
 
@@ -85,8 +94,10 @@ int nCursesMenu(const vector <string> &choices, int xMax, int begin_y){
 			maiorTamanhoItem = choices[i].length();
 		}
 	}
+
+	begin_xMainMenu = (xMax/2)-(maiorTamanhoItem/2);
 	
-	WINDOW *menuWin = newwin(qtdOpcoes+2, maiorTamanhoItem+2, begin_y, (xMax/2)-(maiorTamanhoItem/2));
+	WINDOW *menuWin = newwin(qtdOpcoes+2, maiorTamanhoItem+2, begin_y,begin_xMainMenu);
 	refresh();
 //	box(menuWin, (int)'|', (int)'-');
 	box(menuWin,0,0);
@@ -132,7 +143,7 @@ int nCursesMenu(const vector <string> &choices, int xMax, int begin_y){
 
 }//nCursesMenu
 
-void nCursesClearScreen(int yMax, int xMax,int begin_y){
+void nCursesClearScreen(int begin_y){
 	WINDOW *clsWin = newwin((yMax - begin_y)-4, xMax, begin_y, 0);
 	refresh();
 	wrefresh(clsWin);
@@ -140,114 +151,58 @@ void nCursesClearScreen(int yMax, int xMax,int begin_y){
 	clsWin=NULL;
 }//nCursesClearScreen
 
-string nCursesObterString(string mensagem, int begin_y, int xMax, int n){	
+string nCursesObterString(string mensagem, int begin_y, int begin_x, int n){	
 	// mensagem - mensagem a ser apresentada
 	// begin_y - posicao y que inicial a winodws
-	// xMax - extensao horizintal onde a window sera criada
+	// begin_x - posicao x que inicial a winodws. se 0, será centralizado
 	// n - quantiade de caracteres que poderao ser digitado
 	int tamanhoMensagem = mensagem.length();
+	int tamanhoJanela = tamanhoMensagem+n+3;
+	int iBegin_x;
 	char *prtMensagem = &mensagem[0];
-
 	char digitado[80];
 
-	echo();
-	WINDOW *obterNumeroWin = newwin(3, xMax, begin_y, xMax);
-	werase(obterNumeroWin);
+	if( begin_x == 0){
+		iBegin_x=(xMax/2)-(tamanhoJanela/2);
+	}else{
+		iBegin_x=begin_x;
+	}
+/*	
+	WINDOW *limparWin = newwin(3, xMax, begin_y, iBegin_x);
+	box(limparWin,0,0);
+	werase(limparWin);
+	wrefresh(limparWin);
 	refresh();
-	wrefresh(obterNumeroWin);
-	obterNumeroWin=NULL;
-
-	obterNumeroWin = newwin(3, tamanhoMensagem+n+3, begin_y, (xMax/2)-(tamanhoMensagem/2));
+//	limparWin=NULL;
+*/
+	WINDOW *obterNumeroWin = newwin(3, tamanhoJanela, begin_y, iBegin_x); 
 	box(obterNumeroWin,0,0);
 	mvwprintw(obterNumeroWin,1,1,prtMensagem);
 	refresh();
 	wrefresh(obterNumeroWin);
+	echo();
 	wgetnstr(obterNumeroWin,digitado,n);
-	obterNumeroWin=NULL;
 	noecho();
+	obterNumeroWin=NULL;
 
 	return digitado;
 }//nCursesObterString
 
-int nCursesObterNumero(string mensagem, int begin_y, int xMax, int n){	
-	string resposta=nCursesObterString(mensagem, begin_y, xMax, n);
+int nCursesObterNumero(string mensagem, int begin_y, int begin_x, int n){	
+	string resposta=nCursesObterString(mensagem, begin_y, begin_x, n);
 	char *ptrResposta=&resposta[0];
 	return atoi(ptrResposta);
 }
 
 void UC01(int quantidade){
-	//exercicios
 	Intervalo intervalo;
 	string questao, resposta;
-	int colunas, qtdCertas=0, qtdErradas=0;
-	struct tIntervaloResposta {
-		Intervalo intervalo;
-		string questao;
-		string resposta;
-	};
-	tIntervaloResposta intervalosRespostas[quantidade];
-	colunas=10;
-	Janela jContagem(3,colunas,9,(xMax/2)-(colunas/2));
-
-	jContagem.Centralizar("0 de "+to_string(quantidade));
-
-	//perguntas
-	for(int i=0; i<=(quantidade-1); i++){
-		intervalo.Randomizar(gDificuldade);
-		questao = intervalo.getN1().Descricao();
-		questao += "/";
-		questao += intervalo.OrientacaoEmString();
-		questao += "/";
-		questao += intervalo.DeduzirTipoIntervalo();
-		questao += ": ";
-
-		do{
-			resposta = nCursesObterString(questao,6,xMax,6);
-		}while (!intervalo.getN1().strEhNota(resposta));
-
-		intervalosRespostas[i].intervalo = intervalo;
-		intervalosRespostas[i].resposta = resposta;
-		intervalosRespostas[i].questao = questao;
-
-		jContagem.Centralizar(to_string(i+1)+" de "+to_string(quantidade));
-	}
-
-	//resultado
-	colunas=40;
-	Janela jResultado(quantidade+6,colunas,12,(xMax/2)-(colunas/2));
-	jResultado.Imprimir(1,1,"Resultados :");
+	int qtdCertas=0, qtdErradas=0;
 	string linha;
-	for( int i=0; i<=quantidade-1; i++){
-		linha = to_string(i+1)+") "+intervalosRespostas[i].questao;
-		if( intervalosRespostas[i].resposta==intervalosRespostas[i].intervalo.getN2().Descricao() ){
-			linha += intervalosRespostas[i].resposta;
-			linha += " Certa";
-			qtdCertas++;
-		}
-		else{
-			linha += intervalosRespostas[i].resposta;
-			linha += "->";
-			linha += intervalosRespostas[i].intervalo.getN2().Descricao();
-			qtdErradas++;
-		}
-		jResultado.Imprimir(i+2,1,linha);
-	}
-	//resumo resultado
-	jResultado.Imprimir(quantidade+3,1,"Certas: "+to_string(qtdCertas));
-	jResultado.Imprimir(quantidade+4,1,"Erradas: "+to_string(qtdErradas));
-	getch();
-}
-
-void UC02(int quantidade){
-	int colunas=10;
-	Intervalo intervalo;
-	string questao, resposta;
-	tIntervaloResposta intervalosRespostas[quantidade];
 	
-	Janela jContagem(3,colunas,9,(xMax/2)-(colunas/2));
-
-	jContagem.Centralizar("0 de "+to_string(quantidade));
-
+	nCursesClearScreen(10);
+	Janela jResultado(quantidade+6,40,10,70*(xMax/100));
+	jResultado.Imprimir(1,1,"Questoes:");
 
 	//perguntas
 	for(int i=0; i<=(quantidade-1); i++){
@@ -257,37 +212,24 @@ void UC02(int quantidade){
 		questao += intervalo.getN2().Descricao();
 		questao += " : ";
 
+		linha = to_string(i+1)+") "+questao;
+
+		jResultado.Imprimir(i+2,1,linha);
 		do{
-			resposta = nCursesObterString(questao,6,xMax,2);
+			resposta = jResultado.CapturarPalavra(2);
 		}while (!intervalo.strEhIntervalo(resposta));
 
-		intervalosRespostas[i].intervalo = intervalo;
-		intervalosRespostas[i].resposta = resposta;
-		intervalosRespostas[i].questao = questao;
-
-		jContagem.Centralizar(to_string(i+1)+" de "+to_string(quantidade));
-	}
-
-	//resultado
-	colunas=40;
-	int qtdCertas=0, qtdErradas=0;
-	Janela jResultado(quantidade+6,colunas,12,(xMax/2)-(colunas/2));
-	jResultado.Imprimir(1,1,"Resultados :");
-	string linha;
-	for( int i=0; i<=quantidade-1; i++){
-		linha = to_string(i+1)+") "+intervalosRespostas[i].questao;
-		if( intervalosRespostas[i].resposta==intervalosRespostas[i].intervalo.DeduzirTipoIntervalo() ){
-			linha += intervalosRespostas[i].resposta;
-			linha += " Certa";
+		if( resposta == intervalo.DeduzirTipoIntervalo() ){
+			linha = " Certa";
 			qtdCertas++;
-		}
-		else{
-			linha += intervalosRespostas[i].resposta;
+		}else{
+			linha = " Errada";
 			linha += "->";
-			linha += intervalosRespostas[i].intervalo.DeduzirTipoIntervalo();
+			linha += intervalo.DeduzirTipoIntervalo();
 			qtdErradas++;
 		}
-		jResultado.Imprimir(i+2,1,linha);
+
+		jResultado.Imprimir(i+2,20,linha);
 	}
 	
 	//resumo resultado
@@ -296,39 +238,162 @@ void UC02(int quantidade){
 	getch();
 }
 
-void nCursesMenuIntervalo(int yMax,int xMax){
+void UC02(int quantidade){
+	Intervalo intervalo;
+	string questao, resposta;
+	int qtdCertas=0, qtdErradas=0;
+	string linha;
+	
+	nCursesClearScreen(10);
+	int tamanhoJanela=45;
+	Janela jResultado(quantidade+6,tamanhoJanela,10,(xMax/2)-(tamanhoJanela/2));
+	jResultado.Imprimir(1,1,"Questoes:");
+
+	//perguntas
+	for(int i=0; i<=(quantidade-1); i++){
+		intervalo.Randomizar(gDificuldade);
+		questao = intervalo.getN1().Descricao();
+		questao += "-? ";
+		questao += intervalo.DeduzirTipoIntervalo()+" ";
+		questao += intervalo.OrientacaoEmString();
+		questao += ": ";
+
+		linha = to_string(i+1)+") "+questao;
+
+		jResultado.Imprimir(i+2,1,linha);
+		do{
+			resposta = jResultado.CapturarPalavra(6);
+		}while (!intervalo.getN1().strEhNota(resposta));
+
+		if( resposta == intervalo.getN2().Descricao() ){
+			linha = " Certa";
+			qtdCertas++;
+		}else{
+			linha = " Errada";
+			linha += "->";
+			linha += intervalo.getN2().Descricao();
+			qtdErradas++;
+		}
+
+		jResultado.Imprimir(i+2,30,linha);
+	}
+	
+	//resumo resultado
+	jResultado.Imprimir(quantidade+3,1,"Certas: "+to_string(qtdCertas));
+	jResultado.Imprimir(quantidade+4,1,"Erradas: "+to_string(qtdErradas));
+	getch();
+}
+
+void UC03(int quantidade){
+	Intervalo intervalo;
+	string questao, resposta;
+	int qtdCertas=0, qtdErradas=0;
+	string linha;
+	
+	nCursesClearScreen(10);
+	int tamanhoJanela=48;
+	Janela jResultado(quantidade+6,tamanhoJanela,10,(xMax/2)-(tamanhoJanela/2));
+	jResultado.Imprimir(1,1,"Questoes:");
+
+	//perguntas
+	for(int i=0; i<=(quantidade-1); i++){
+		intervalo.Randomizar(gDificuldade);
+		questao = "? - ";
+		questao += intervalo.getN2().Descricao()+" ";
+		questao += intervalo.DeduzirTipoIntervalo()+" ";
+		questao += intervalo.OrientacaoEmString();
+		questao += ": ";
+
+		linha = to_string(i+1)+") "+questao;
+
+		jResultado.Imprimir(i+2,1,linha);
+		do{
+			resposta = jResultado.CapturarPalavra(6);
+		}while (!intervalo.getN1().strEhNota(resposta));
+
+		if( resposta == intervalo.getN1().Descricao() ){
+			linha = " Certa";
+			qtdCertas++;
+		}else{
+			linha = " Errada";
+			linha += "->";
+			linha += intervalo.getN1().Descricao();
+			qtdErradas++;
+		}
+
+		jResultado.Imprimir(i+2,33,linha);
+	}
+	
+	//resumo resultado
+	jResultado.Imprimir(quantidade+3,1,"Certas: "+to_string(qtdCertas));
+	jResultado.Imprimir(quantidade+4,1,"Erradas: "+to_string(qtdErradas));
+	getch();
+}//uc03
+
+void UC04(int quantidade){
+	nCursesClearScreen(10);
+	int tamanhoJanela=48;
+	string linha, resposta;
+	Intervalo intervalo;
+
+	Janela jResultado(quantidade+6,tamanhoJanela,10,(xMax/2)-(tamanhoJanela/2));
+	jResultado.Imprimir(1,1,"Montagens:");
+	
+	for(int i=0; i<=(quantidade-1); i++){
+		linha = to_string(i+1)+") Nota: ";
+		jResultado.Imprimir(i+2,1,linha);
+
+		do{
+			resposta = jResultado.CapturarPalavra(6);
+		}while (!intervalo.getN1().strEhNota(resposta));
+
+		linha = " Intervalo: ";
+		jResultado.Imprimir(i+2,17," Intervalo: ");
+	}
+	getch();
+}
+
+
+void nCursesMenuIntervalo(){
+	jDown.Limpar();
+	jDown.Imprimir(1,1,"Intervalos");
 	vector<string> choices;
 	int choice, quantidade;
 	
-	choices.push_back("Uma nota, uma orientacao(asc, desc) e um intervalo simples. Qual outra nota?");
-	choices.push_back("Duas Notas. Qual o intervalo simples?");
+	choices.push_back("Duas Notas. Qual orientação? Qual o intervalo simples?");
+	choices.push_back("Primeira Nota, uma orientacao(asc, desc) e um intervalo simples. Qual a segunda nota?");
+	choices.push_back("Segunda Nota, uma orientacao(asc, desc) e um intervalo simples. Qual a primeira nota?");
+	choices.push_back("Montagem");
 	choices.push_back("Voltar!");
 	while( true )
 	{
-		nCursesClearScreen(yMax, xMax, 3);
-		choice=nCursesMenu(choices,xMax,3);
-		if (choice==2)
+		nCursesClearScreen(3);
+		choice=nCursesMenu(choices,3);
+		if (choice==4){
+			jDown.Limpar();
+			jDown.Imprimir(1,1,"Escolha a sua opção");
 			break;
+		}
 
 		// perguntar a quantidade
 		do
 		{
-			nCursesClearScreen(yMax, xMax, 3);
-			quantidade = nCursesObterNumero("Digite a quantidade de exercicios [1-10]: " ,3,xMax,2);
+			quantidade = nCursesObterNumero("Digite a quantidade de exercicios [1-10]: ",10,0, 2);
 		}while( (quantidade < 1) || (quantidade > 10) );
 
 		switch( choice ){	
 			case 0:UC01(quantidade);break;
 			case 1:UC02(quantidade);break;
+			case 2:UC03(quantidade);break;
+			case 3:UC04(quantidade);break;
 			default:
 				   break;
 		}
 
-
 	}
 }//nCursesMenuIntervalo
 
-void nCursesMenuTriade(int xMax){
+void nCursesMenuTriade(){
 	vector<string> choices;
 	choices.push_back("Uma nota e uma triade (M,m,A,d). Qual a terca e a quinta?");
 	choices.push_back("Fundamental, terca e quinta. Qual triade (M,m,A,d)?");
@@ -340,41 +405,33 @@ void nCursesMenuTriade(int xMax){
 
 void Ncurses(){
 
-	initscr();
 	cbreak();
 	noecho();
-	
-	//int yMax, xMax;
-	getmaxyx(stdscr, yMax, xMax);
-
-	Janela jUP(3,xMax,0,0);
-	jUP.Centralizar("Exercicios para os alunos da EMUFPA");
-	
 	
 	vector<string> choices;
 	int choice;
 	
 	while( true ){
-		nCursesClearScreen(yMax, xMax, 3);
-		choices={"Notas","Intervalo","Triade","Tetrade","Configuracoes","Sair"};
-		choice=nCursesMenu(choices,xMax,3);
+		nCursesClearScreen(3);
+		choices={"Intervalo","Triade","Tetrade","Configuracoes","Sair"};
+		choice=nCursesMenu(choices,3);
 
-		if( choice==5 )
+		if( choice==4 )
 			break;
 
 		switch( choice )
 		{
+			case 0:
+				nCursesMenuIntervalo();
+				break;
 			case 1:
-				nCursesMenuIntervalo(yMax,xMax);
+				nCursesMenuTriade();
 				break;
-			case 2:
-				nCursesMenuTriade(xMax);
-				break;
-			case 4:
+			case 3:
 				int dificuldade;
 				do
 				{
-					dificuldade = nCursesObterNumero("Informe a nova dificulade: " ,11,xMax,1);
+					dificuldade = nCursesObterNumero("Informe a nova dificulade: " ,11,10,1);
 				}while( (dificuldade < 1) || (dificuldade>3) );
 				gDificuldade = dificuldade;
 				break;
@@ -475,7 +532,7 @@ void MenuIntervalos(){
     switch (opcao)
     {
 //		case 1:UC01();break;
-		case 2:UC02();break;
+		//case 2:UC02();break;
 		default:
 		break;
     }
@@ -499,7 +556,7 @@ void MenuTriades(){
 
     switch (opcao)
     {
-		case 1:UC03();break;
+		//case 1:UC03();break;
 		case 2:UC04();break;
 		case 3:UC05();break;
 		case 4:UC06();break;
@@ -508,29 +565,6 @@ void MenuTriades(){
     }
 
     cout << endl << endl;
-}
-
-void UC02(){
-    Intervalo intervalo;
-    int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
-
-    for(int i=1; i<=quantidade; i++){
-		intervalo.Randomizar(gDificuldade);
-		intervalo.ImprimirEmTela();
-		cout << " / ";
-    }
-}
-
-void UC03(){
-    Triade triade;
-    int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
-
-    for(int i=1; i<=quantidade; i++){
-		triade.Randomizar(gDificuldade);
-		triade.ImprimirFundamentalEmTela();
-		cout << " " << triade.RandomizarTipoTriade();
-		cout << " / ";
-    }
 }
 
 void UC04(){
