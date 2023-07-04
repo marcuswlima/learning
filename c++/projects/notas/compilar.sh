@@ -7,12 +7,8 @@ APP=$NOME.sh
 
 set -e
 
-#echo "BarraTitulo.cpp..."
-#g++ -c $LIB/BarraTitulo.cpp -o $OBJ/BarraTitulo.o
 #echo "Mathematics.cpp..."
 #g++ -c $LIB/Mathematics.cpp -o $OBJ/Mathematics.o
-#echo "ObterNumero.cpp..."
-#g++ -c $LIB/ObterNumero.cpp -o $OBJ/ObterNumero.o
 
 if [ $1 == "R" ] || [ $1 == "r" ] || [ $1 == "C" ] || [ $1 == "c" ]
 then
@@ -46,9 +42,7 @@ fi
 
 echo "Linkando...."
 g++ -Wextra -Werror    \
-    $OBJ/BarraTitulo.o \
 	$OBJ/Mathematics.o \
-	$OBJ/ObterNumero.o \
 	$OBJ/Nota.o        \
 	$OBJ/Intervalo.o   \
 	$OBJ/Triade.o      \
@@ -56,6 +50,7 @@ g++ -Wextra -Werror    \
 	$OBJ/$NOME.o       \
 		-lncurses -ltinfo \
 			-o $OBJ/$APP
+
 
 if [ $1 == "R" ] || [ $1 == "r" ]
 then

@@ -1,8 +1,7 @@
 // Fig. 8.10: fig08_10.cpp
 // Attempting to modify data through a
 // nonconstant pointer to constant data.
-#include <iostream>
-using namespace std;
+
 void f( const int * ); // prototype
 
 int main()
@@ -18,5 +17,3 @@ void f( const int *xPtr )
 	*xPtr = 100; // error: cannot modify a const object
 //	cout << "teste\n";
 } // end function f
-
-

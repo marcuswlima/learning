@@ -63,6 +63,45 @@ void Nota::setNota( int o, int g, int a )
 
 }
 
+void Nota::setNota(string str){
+	int o, g, a;
+	o = stoi(str.substr(0,1));
+	transform(str.begin(), str.end(), str.begin(), ::toupper);//toUpperCase
+	smatch match;
+	
+	regex regra("DO");
+	for(int i=0; i<=7;i++){
+		regra = arrNotas[i];
+		if ( regex_search(str, match, regra) ){
+			g = i+1;
+			break;
+		}
+	}
+	a=0;
+	regra="#";
+	if ( regex_search(str, match, regra) ){
+		a=1;
+	}else{
+		regra="BB";
+		if ( regex_search(str, match, regra) ){
+			a=-2;
+		}else{
+			regra="B";
+			if ( regex_search(str, match, regra) ){
+				a = -1;
+			}else{
+				regra="\\*";
+				if ( regex_search(str, match, regra) ){
+					a = 2;
+				}
+  	             }
+		     }
+	    }
+	
+	this->setNota(o,g,a);
+
+}//setNota
+
 
 /////////////////////////////////////////
 // Gets

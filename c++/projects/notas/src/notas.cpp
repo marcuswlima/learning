@@ -4,13 +4,6 @@
 /////////////////////////////////////////
 // Prototipações
 /////////////////////////////////////////
-int menu();
-void MenuConfiguracoes();
-void MenuIntervalos();
-void MenuTriades();
-void ChamarMenu();
-void Notas();
-void UC04();
 void UC05();
 void UC06();
 void TestarIntervalo();
@@ -47,9 +40,9 @@ void SetagensIniciais(){
 	getmaxyx(stdscr, yMax, xMax);
 	jUp.Instanciar(3,xMax,0,0);
 	jUp.Centralizar("Exercicios para os alunos da EMUFPA");
-	jDown.Instanciar(3,xMax,yMax-3,0);
-	jDown.Imprimir(1,1,"Escolha a sua opcao");
-	jDown.Imprimir(1,xMax-15,"Dificuldade: "+to_string(gDificuldade));
+//	jDown.Instanciar(3,xMax,yMax-3,0);
+//	jDown.Imprimir(1,1,"Escolha a sua opcao");
+//	jDown.Imprimir(1,xMax-15,"Dificuldade: "+to_string(gDificuldade));
 }
 
 
@@ -59,28 +52,16 @@ void SetagensIniciais(){
 int main(int argc, char *argv[] ){
 //	Iniciais
 	ToShowParameters(argc, argv);
-	SetagensIniciais();
+//	SetagensIniciais();
 
 //	corpo
-//	TestarIntervalo();
-	Ncurses();
+	TestarNota();
+//	Ncurses();
 //	TesteJanela();
 
 //	finais
 	cout << endl;
 	return 0; //indica o fim do programa2
-
-/*
-ImprimirTitulo("Gerador Exercicios");
-ChamarMenu();
-UC06(10);
-TodosIntervalos();
-TestarTriade();
-TestarNota();
-cout << agc << endl;
-iicout << argv[0] << endl;
-cout << argv[1] << endl;
-*/
 
 }//main
 
@@ -201,7 +182,8 @@ void UC01(int quantidade){
 	string linha;
 	
 	nCursesClearScreen(10);
-	Janela jResultado(quantidade+6,40,10,70*(xMax/100));
+	int tamanhoJanela=40;
+	Janela jResultado(quantidade+6,tamanhoJanela,10,(xMax/2)-(tamanhoJanela/2));
 	jResultado.Imprimir(1,1,"Questoes:");
 
 	//perguntas
@@ -236,7 +218,7 @@ void UC01(int quantidade){
 	jResultado.Imprimir(quantidade+3,1,"Certas: "+to_string(qtdCertas));
 	jResultado.Imprimir(quantidade+4,1,"Erradas: "+to_string(qtdErradas));
 	getch();
-}
+}//UC01
 
 void UC02(int quantidade){
 	Intervalo intervalo;
@@ -256,7 +238,7 @@ void UC02(int quantidade){
 		questao += "-? ";
 		questao += intervalo.DeduzirTipoIntervalo()+" ";
 		questao += intervalo.OrientacaoEmString();
-		questao += ": ";
+		questao += ":";
 
 		linha = to_string(i+1)+") "+questao;
 
@@ -282,7 +264,7 @@ void UC02(int quantidade){
 	jResultado.Imprimir(quantidade+3,1,"Certas: "+to_string(qtdCertas));
 	jResultado.Imprimir(quantidade+4,1,"Erradas: "+to_string(qtdErradas));
 	getch();
-}
+}//UC02
 
 void UC03(int quantidade){
 	Intervalo intervalo;
@@ -331,11 +313,12 @@ void UC03(int quantidade){
 }//uc03
 
 void UC04(int quantidade){
-	nCursesClearScreen(10);
-	int tamanhoJanela=48;
+	int tamanhoJanela=60;
 	string linha, resposta;
+	Nota nota;
 	Intervalo intervalo;
 
+	nCursesClearScreen(10);
 	Janela jResultado(quantidade+6,tamanhoJanela,10,(xMax/2)-(tamanhoJanela/2));
 	jResultado.Imprimir(1,1,"Montagens:");
 	
@@ -345,33 +328,46 @@ void UC04(int quantidade){
 
 		do{
 			resposta = jResultado.CapturarPalavra(6);
-		}while (!intervalo.getN1().strEhNota(resposta));
+		}while (!Nota::strEhNota(resposta));
+
+		nota.setNota(resposta);
+		intervalo.setN1(nota);
 
 		linha = " Intervalo: ";
-		jResultado.Imprimir(i+2,17," Intervalo: ");
+		jResultado.Imprimir(i+2,15," Intervalo:");
+		
+		do{
+			resposta = jResultado.CapturarPalavra(2);
+		}while (!intervalo.strEhIntervalo(resposta));
+		
+		intervalo.setN2(resposta,1); //intervalo ascendente
+		jResultado.Imprimir(i+2,30,"Asc:"+intervalo.getN2().Descricao());
+		
+		intervalo.setN2(resposta,-1); //intervalo descendente
+		jResultado.Imprimir(i+2,40,"Desc:"+intervalo.getN2().Descricao());
 	}
 	getch();
-}
+}//UC04
 
 
 void nCursesMenuIntervalo(){
-	jDown.Limpar();
-	jDown.Imprimir(1,1,"Intervalos");
+	//jDown.Limpar();
+	//jDown.Imprimir(1,1,"Intervalos");
 	vector<string> choices;
 	int choice, quantidade;
 	
 	choices.push_back("Duas Notas. Qual orientação? Qual o intervalo simples?");
 	choices.push_back("Primeira Nota, uma orientacao(asc, desc) e um intervalo simples. Qual a segunda nota?");
 	choices.push_back("Segunda Nota, uma orientacao(asc, desc) e um intervalo simples. Qual a primeira nota?");
-	choices.push_back("Montagem");
+	choices.push_back("Montagem de Intervalo");
 	choices.push_back("Voltar!");
-	while( true )
-	{
+
+	while( true ){
 		nCursesClearScreen(3);
 		choice=nCursesMenu(choices,3);
 		if (choice==4){
-			jDown.Limpar();
-			jDown.Imprimir(1,1,"Escolha a sua opção");
+			//jDown.Limpar();
+			//jDown.Imprimir(1,1,"Escolha a sua opção");
 			break;
 		}
 
@@ -391,15 +387,48 @@ void nCursesMenuIntervalo(){
 		}
 
 	}
+
 }//nCursesMenuIntervalo
 
+void UC05(int quantidade){
+	int tamanhoJanela=60;
+	Janela jResultado(quantidade+6,tamanhoJanela,14,(xMax/2)-(tamanhoJanela/2));
+	jResultado.Imprimir(1,1,"Perguntas:");
+	getch();
+}
+
 void nCursesMenuTriade(){
+	int choice, quantidade;
 	vector<string> choices;
+	
 	choices.push_back("Uma nota e uma triade (M,m,A,d). Qual a terca e a quinta?");
-	choices.push_back("Fundamental, terca e quinta. Qual triade (M,m,A,d)?");
+	choices.push_back("Uma fundamental e uma triada(M,m,A,d). Qual a terça e quinta?");
+	choices.push_back("Uma terça e uma triade(M,m,A,d). Qual a fundamental e quinta?");
+	choices.push_back("Uma quinta e uma triade(M,m,A,d). Qual a fundamental e quinta?");
 	choices.push_back("Triade estado fundamental. Qual 1º e 2º inversão?");
 	choices.push_back("Uma traide invertida. Qual o Estado Fundamental?");
+	choices.push_back("Montagem de Triade");
 	choices.push_back("Voltar!");
+	
+	while( true ){
+		nCursesClearScreen(3);
+		choice=nCursesMenu(choices,3);
+		if (choice==5){
+			break;
+		}
+
+		// perguntar a quantidade
+		do
+		{
+			quantidade = nCursesObterNumero("Digite a quantidade de exercicios [1-10]: ",11,0, 2);
+		}while( (quantidade < 1) || (quantidade > 10) );
+		
+		switch( choice ){	
+			case 0:UC05(quantidade);break;
+			default:
+				   break;
+		}
+	}
 }//nCursesMenuTriade
 
 
@@ -469,115 +498,7 @@ void ToShowParameters(int argc, char *argv[]){
 
 }
 
-void ChamarMenu(){
-    int opcao=0;
-    do{
-		opcao=menu();
-
-		switch(opcao){
-			case 1:Notas();break;
-			case 2:MenuIntervalos();break;
-			case 3:MenuTriades();break;
-			case 4:MenuConfiguracoes();break;
-		}
-    }while (opcao!=0);
-}
-
-int menu(){
-    int escolha;
-    
-	cout << "*********************\n";
-    cout << "** 1) Notas        **\n";
-    cout << "** 2) Intervalos   **\n";
-    cout << "** 3) Triades      **\n";
-    cout << "** 4) Condigrações **\n";
-    cout << "** 0) Sair         **\n";
-    cout << "*********************\n";
-    escolha=ObterNumeroNaFaixa("Indique qual módulo [1,2,3,4,0] -> ",0,4);
-    return escolha;
-}
-
-void Notas(){
-    Nota nota;
-    int quantNotas=ObterNumeroNaFaixa("Digite a quantidade[1:30] -> ",1,30);
-
-    cout << endl << endl;
-    ImprimirTitulo("Notas Soltas");
-    cout << endl;
-
-    for (int i=1;i<=quantNotas;i++){
-		nota.Randomizar(gDificuldade);
-		nota.ImprimirEmTela();
-    }
-    cout << endl << endl;
-}
-
-void MenuConfiguracoes(){
-    cout << endl << endl;
-    ImprimirTitulo("Configuracoes");
-    cout << "A dificuladed atualmetnte eh "<<gDificuldade<< endl;
-    gDificuldade=ObterNumeroNaFaixa("Indique o nivel de dificuldade -> [1-facil, 2-medio ou 3-dificil] ->",1,3);
-}
-
-void MenuIntervalos(){
-    cout << endl << endl;
-    ImprimirTitulo("Intervalos");
-    cout << "**********************************************************\n";
-    cout << "** 1) Uma nota e um intervalo simples, qual outra nota? **\n";
-    cout << "** 2) Duas Notas, qual intervalo simples?               **\n";
-    cout << "**********************************************************\n";
-    int opcao=ObterNumeroNaFaixa("Indica sua opção [1:2] -> ",1,2);
-    cout << endl;
-
-    switch (opcao)
-    {
-//		case 1:UC01();break;
-		//case 2:UC02();break;
-		default:
-		break;
-    }
-
-    cout << endl << endl;
-
-}
-
-
-void MenuTriades(){	
-    cout << endl << endl;
-    ImprimirTitulo("Triades");
-    cout << "***********************************************************************\n";
-    cout << "** 1) Uma nota e uma triade (M,m,A,d). Fundamental, terca e quinta ? **\n";
-    cout << "** 2) Fundamental, terca e quinta. Qual triade (M,m,A,d)?            **\n";
-    cout << "** 3) Triade Estado Fundamental. Qual 1º e 2º inversão ?             **\n";
-    cout << "** 4) Uma traide invertida. Qual o Estado Fundamental?               **\n";
-    cout << "***********************************************************************\n";
-    int opcao=ObterNumeroNaFaixa("Indica sua opção [1:4] -> ",1,4);
-    cout << endl;
-
-    switch (opcao)
-    {
-		//case 1:UC03();break;
-		case 2:UC04();break;
-		case 3:UC05();break;
-		case 4:UC06();break;
-		default:
-		break;
-    }
-
-    cout << endl << endl;
-}
-
-void UC04(){
-    Triade triade;
-    int quantidade=ObterNumeroNaFaixa("Informe a quantidade[1:30] -> ",1,30);
-
-    for(int i=1; i<=quantidade; i++){
-		triade.Randomizar(gDificuldade);
-		triade.ImprimirEmTela();
-		cout << " / ";
-    }
-}
-
+/*
 void UC05(){
 
     Triade triade;
@@ -684,7 +605,7 @@ void UC06(){
 
 
 }
-
+*/
 void TestarTriade(){
 	Nota n(3,1,0);
     Triade t;
@@ -716,13 +637,9 @@ void TestarTriade(){
 }//TestarTriade
 
 void TestarNota(){
-    Nota n1(3,1,-1);
-    Nota n2(3,1,0);
-	if ((n1<n2))
-		cout << "sim-then" << endl;
-	else
-		cout << "nao-else" << endl;
-
+    Nota n1;
+	n1.setNota("3Do*");
+	cout << n1.Descricao();
 }
 
 

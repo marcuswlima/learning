@@ -19,7 +19,8 @@ public:
 	void setOitava(int);
 	void setGrau(int);
 	void setAcidente(int);
-	void setNota(int, int, int); 
+	void setNota(int, int, int);
+	void setNota(string);
 //Gets
 	int getOitava();
 	int getGrau();
@@ -35,7 +36,7 @@ public:
 	void up1Tom();
 	void down1SemiTom();
 	void down1Tom();
-	bool strEhNota(string);
+	static bool strEhNota(string);
 // Operacoes
 	bool operator==(Nota const&);
 	bool operator>(Nota const&);

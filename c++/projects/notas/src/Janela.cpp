@@ -17,7 +17,7 @@ void Janela::Instanciar(int lines, int cols, int begin_y, int begin_x){
 	refresh();
 	Moldurar(this->janela);
 	refresh();
-}//construtor
+}//
 
 void Janela::Centralizar(string mensagem){
 
