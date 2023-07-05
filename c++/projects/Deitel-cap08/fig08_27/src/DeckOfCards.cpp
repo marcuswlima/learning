@@ -16,7 +16,7 @@ using std::srand;
 #include <ctime> // protótipo para time
 using std::time;
 
-#include “DeckOfCards.h” // definição da classe DeckOfCards
+#include "DeckOfCards.h" // definição da classe DeckOfCards
 
 // construtor-padrão DeckOfCards inicializa deck
 DeckOfCards::DeckOfCards()
@@ -27,7 +27,7 @@ DeckOfCards::DeckOfCards()
 		// itera pelas colunas do baralho para linha atual
 		for ( int column = 0; column <= 12; column++ )
 		{
-			deck[ row ][ column ] = 0; // inicializa slot de deck como 0
+			this->deck[ row ][ column ] = 0; // inicializa slot de deck como 0
 		} // fim do for interno
 	} // fim do for externo
 
@@ -47,7 +47,7 @@ void DeckOfCards::shuffle()
 		{
 			row = rand() % 4; // seleciona a linha aleatoriamente
 			column = rand() % 13; // seleciona a coluna aleatoriamente
-		} while( deck[ row ][ column ] != 0 ); // fim da instrução do...while
+		} while( this->deck[ row ][ column ] != 0 ); // fim da instrução do...while
 
 		// coloca o número de carta no slot escolhido
 		deck[ row ][ column ] = card;
@@ -58,12 +58,12 @@ void DeckOfCards::shuffle()
 void DeckOfCards::deal()
 {
 	// inicializa o array suit
-	static const char *suit[ 4 ] = { “Hearts”, “Diamonds”, “Clubs”, “Spades” };
+	static const char *suit[ 4 ] = { "Hearts", "Diamonds", "Clubs", "Spades" };
 
 
 	// inicializa o array face
-	static const char *face[ 13 ] = { “Ace”, “Deuce”, “Three”, “Four”, “Five”, “Six”, “Seven”,
-	                                 “Eight”, “Nine”, “Ten”, “Jack”, “Queen”, “King” };
+	static const char *face[ 13 ] = { "Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven",
+	                                  "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
 
 
 	// para cada uma das 52 cartas
@@ -76,13 +76,28 @@ void DeckOfCards::deal()
 			for ( int column = 0; column <= 12; column++ )
 			{
 				// se o slot contiver a carta atual, exibe a carta
-				if ( deck[ row ][ column ] == card )
+				if ( this->deck[ row ][ column ] == card )
 				{
-					cout << setw( 5 ) << right << face[ column ]
-						<< “ of “ << setw( 8 ) << left << suit[ row ]
-						<< ( card % 2 == 0 ? ‘\n’ : ‘\t’ );
+					cout << setw( 5 ) << right << face[ column ] << " of " 
+						 << setw( 8 ) << left  << suit[ row ]
+						 << ( card % 2 == 0 ? '\n' : '\t' );
 				} // fim do if
 			} // fim do for mais interno
 		} // fim do for interno
 	} // fim do for externo
 } // fim da função deal
+
+int DeckOfCards::qualValor(int suit, int face){
+	return this->deck[suit][face];
+}
+
+void DeckOfCards::toShowDeck(){
+	for (int s=0; s<=3; s++){
+		for (int f=0; f<=12; f++)
+			cout << setw(3) << right << this->deck[s][f]<< ' ';
+		cout << '\n';
+	}
+}
+
+
+
