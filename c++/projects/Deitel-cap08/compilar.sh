@@ -8,13 +8,13 @@ APP=$F_OBJ/$1.sh
 set -e
 
 echo "BarraTitulo.cpp..."
-g++ -c $F_LIB/BarraTitulo.cpp -o $F_OBJ/BarraTitulo.o
+#g++ -c $F_LIB/BarraTitulo.cpp -o $F_OBJ/BarraTitulo.o
 echo "Mathematics.cpp..."
-g++ -c $F_LIB/Mathematics.cpp -o $F_OBJ/Mathematics.o
+#g++ -c $F_LIB/Mathematics.cpp -o $F_OBJ/Mathematics.o
 echo "ObterNumero.cpp..."
-g++ -c $F_LIB/ObterNumero.cpp -o $F_OBJ/ObterNumero.o
+#g++ -c $F_LIB/ObterNumero.cpp -o $F_OBJ/ObterNumero.o
 echo "PrintArrey.cpp..."
-g++ -c $F_LIB/PrintArray.cpp  -o $F_OBJ/PrintArray.o
+#g++ -c $F_LIB/PrintArray.cpp  -o $F_OBJ/PrintArray.o
 
 echo "$1.cpp..."
 g++ -c $F_SRC/$1.cpp          -o $F_OBJ/$1.o

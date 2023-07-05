@@ -34,4 +34,4 @@ int main(){
 	cout << *(numbers + 3) << " *(numbers + 3) - offset with array name as pointer\n";
 	cout << nPtr[3] << " nPrt[3] - pointer subscription\n";
 	cout << *(nPtr + 3) << " *(nPrt + 3) - offset with pointer\n";
-}
+}//main
