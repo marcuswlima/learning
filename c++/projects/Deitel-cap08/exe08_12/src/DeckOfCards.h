@@ -12,10 +12,11 @@ public:
 	int qualValor(int,int);
 	void qualCarta(int);
 	void toShowDeck();
-	void dealUmaMao(int);
-	int qualSuite(int);
-	int qualFace(int);
+	void exe12(int);
+	void exe13(int);
 private:
 	int deck[ 4 ][ 13 ]; // representa o baralho de cartas
-	int mao[ 5 ][ 2 ]; // representa o baralho de cartas
+	int qualSuite(int);
+	int qualFace(int);
+	void zerarBaralho();
 }; // fim da classe DeckOfCards

@@ -12,6 +12,9 @@ int main()
 	deckOfCards.shuffle(); // embaralha as cartas
 //	deckOfCards.deal(); // distribui as cartas
 	deckOfCards.toShowDeck();
-	deckOfCards.dealUmaMao(1);
+	//deckOfCards.exe12(1);
+	//deckOfCards.exe13(1);
+
 	return 0; // indica terminação bem-sucedida
 } // fim de main
+
