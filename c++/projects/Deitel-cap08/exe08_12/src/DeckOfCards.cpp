@@ -151,7 +151,6 @@ void DeckOfCards::qualCarta(int card){
 void DeckOfCards::exe12(int inicio){
 	const int SIZE=5;
 	int mao[SIZE][3];
-	int somaSuites[4]={0,0,0,0};
 	int suite, face;
 	bool respostas[6];
 

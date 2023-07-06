@@ -9,8 +9,6 @@ public:
 	DeckOfCards(); // construtor inicializa deck
 	void shuffle(); // embaralha as cartas do baralho
 	void deal(); // distribui as cartas do baralho
-	int qualValor(int,int);
-	void qualCarta(int);
 	void toShowDeck();
 	void exe12(int);
 	void exe13(int);
@@ -19,4 +17,6 @@ private:
 	int qualSuite(int);
 	int qualFace(int);
 	void zerarBaralho();
+	int qualValor(int,int);
+	void qualCarta(int);
 }; // fim da classe DeckOfCards
