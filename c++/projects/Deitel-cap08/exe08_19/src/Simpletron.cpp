@@ -1,17 +1,10 @@
-#include <iostream>
-#include <iomanip>
-
-using namespace std;
-
 #include "Simpletron.h"
-
-
-string pad_left(string const&, size_t );
 
 Simpletron::Simpletron(){
 	//zerar memoria
-	for (int i=0; i<=99; i++)
-		this->setMemory(i,0,0,0,0);
+	for (int x=0; x<=9; x++)
+		for (int y=0; y<=9; y++)
+			this->setMemory(x,y,0,0,0,0);
 }//contructor
 
 void Simpletron::memoryDump(){
@@ -23,18 +16,19 @@ void Simpletron::memoryDump(){
 	cout << '\n';
 
 	//enderecos
-	for (int i=0; i<=99; i++) {
-		cout << i << "->";
-		this->memory2[i].print();
-		cout << ( (i % 9 == 0)&&(i!=0) ? '\n' : '\t' );
+	for (int x=0; x<=9; x++){
+		cout << setw(2) << x*10 << '\t';
+		for (int y=0; y<=9; y++){
+			this->memory2[x][y].print();
+			cout << '\t';
+		}
+		cout << '\n';
 	}
-
-	cout << '\n';
 
 }//memoryDump
 
-void Simpletron::setMemory(int i, int i0, int i1, int i2, int i3){
-	this->memory2[i].setWord2(i0, i1, i2, i3);
+void Simpletron::setMemory(int x, int y, int i0, int i1, int i2, int i3){
+	this->memory2[x][y].setWord2(i0, i1, i2, i3);
 }//setMemory
 
 void Simpletron::setMemory(int x, int y, int value){
@@ -44,13 +38,14 @@ void Simpletron::setMemory(int x, int y, int value){
 Word Simpletron::getWord(int x, int y){
 	return this->memory[x][y];
 }//getWord
- 
 
-string pad_left(string const& str, size_t s)
-{
-    if ( str.size() < s )
-        return std::string(s-str.size(), '0') + str;
-    else
-        return str;
+void Simpletron::loadProgram(Program p){
+	//int i0=p.words[i];
+
+//	cout << &p ;
+
+//for (int i=0; i<=10; i++){
+//		this->setMemory2(0,i,);
+//	}
 }
-
+	 

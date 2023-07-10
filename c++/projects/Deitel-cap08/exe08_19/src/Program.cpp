@@ -15,3 +15,8 @@ void Program::print(){
 	}
 }
 
+int Program::getValue(int i, int value){
+//	return words[i].
+	return 0;
+}
+
