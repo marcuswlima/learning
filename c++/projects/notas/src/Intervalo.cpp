@@ -151,7 +151,7 @@ int Intervalo::DeduzirOrientacao(){
 }
 
 int Intervalo::DeduzirQdtTons(){
-    int resposta,
+    int resposta=0,
 		g1 = this->getN1().getGrau(),
 		g2 = this->getN2().getGrau()
 		;
@@ -261,7 +261,7 @@ void QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiT
 
 int umaoitava[]={0,1,0,2,0,3,4,0,5,0,6,0,7};
 int RetornarSubescrito(int n){
-    int resposta;
+    int resposta=0;
     for (int i=1;i<=12;i++){
         if (umaoitava[i]==n){
             resposta = i;
@@ -299,7 +299,6 @@ int distanciaEmSemiTons(Nota n1,Nota n2){
         i2   = RetornarSubescrito(g2),
         resp = 0                     ;
 
-
 //	cout << endl;
 //	cout << "i1:" << i1 << endl;
 //	cout << "i2:" << i2 << endl;
@@ -313,7 +312,7 @@ int distanciaEmSemiTons(Nota n1,Nota n2){
         else if(g1 > g2) {    // segunda nota com grau menor
             resp = (12-i1+1)+i2 ;
 		}
-		else if(g1=g2){
+		else if(g1==g2){
 			resp=13;
         };
     }else if (n1 > n2){ // intervalo descendente

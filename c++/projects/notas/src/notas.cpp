@@ -67,7 +67,7 @@ int main(int argc, char *argv[] ){
 
 
 int nCursesMenu(const vector <string> &choices, int begin_y){
-	int maiorTamanhoItem=0;
+	size_t maiorTamanhoItem=0;
 	const int qtdOpcoes=choices.size();
 
 	for (int i=0; i<qtdOpcoes; i++){
@@ -489,7 +489,7 @@ void Splash(){
 
 void ToShowParameters(int argc, char *argv[]){
 	if (argc > 1){
-		for (size_t i=0 ; i<argc ; i++){
+		for (int i=0 ; i<argc ; i++){
 			cout << "[" << i << "]=" << argv[i] << endl;
 		}
 	}

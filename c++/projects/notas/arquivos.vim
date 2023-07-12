@@ -1,4 +1,5 @@
-:edit compilar.sh
+//:edit compilar.sh
+:edit Makefile
 :tabedit src/Nota.cpp
 :47vsplit src/Nota.h
 :tabedit src/Intervalo.cpp

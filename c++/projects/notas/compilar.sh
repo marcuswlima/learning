@@ -7,8 +7,8 @@ APP=$NOME.sh
 
 set -e
 
-#echo "Mathematics.cpp..."
-#g++ -c $LIB/Mathematics.cpp -o $OBJ/Mathematics.o
+echo "Mathematics.cpp..."
+g++ -c $LIB/Mathematics.cpp -o $OBJ/Mathematics.o
 
 if [ $1 == "R" ] || [ $1 == "r" ] || [ $1 == "C" ] || [ $1 == "c" ]
 then

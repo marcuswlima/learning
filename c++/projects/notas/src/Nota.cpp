@@ -64,7 +64,7 @@ void Nota::setNota( int o, int g, int a )
 }
 
 void Nota::setNota(string str){
-	int o, g, a;
+	int o, g=0, a;
 	o = stoi(str.substr(0,1));
 	transform(str.begin(), str.end(), str.begin(), ::toupper);//toUpperCase
 	smatch match;
@@ -133,7 +133,7 @@ int Nota::getId(){
 // Randomizar uma nota
 void Nota::Randomizar(int in_dificuldade){
 
-	int oitava, grau, acidente;
+	int oitava, grau, acidente=0;
 
 	do{
 		oitava = GerarInteiro(1,7);

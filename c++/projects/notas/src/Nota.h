@@ -1,6 +1,4 @@
 #include "../../lib/Mathematics.h"
-#include "../../lib/BarraTitulo.h"
-#include "../../lib/ObterNumero.h"
 
 #ifndef NOTA_H
 #define NOTA_H
@@ -30,7 +28,7 @@ public:
 	void Randomizar(int =1);
 	string Descricao();
 	void ImprimirEmTela();
-// Implementações
+// Implementacoes
 	Nota qualRelativa(int, int =1);
 	void up1SemiTom();
 	void up1Tom();

@@ -32,7 +32,7 @@ bool multiple (int n1, int n2){
 
 
 int CalcMdc(int x, int y){
-    int maior,menor;
+    int maior=0,menor=0;
 
     if (x>y){
         maior=x;
