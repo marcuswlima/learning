@@ -55,9 +55,11 @@ int main(int argc, char *argv[] ){
 //	SetagensIniciais();
 
 //	corpo
-	TestarNota();
-//	Ncurses();
+//	TestarNota();
+//	TodosIntervalos();
+	Ncurses();
 //	TesteJanela();
+//  TestarIntervalo();
 
 //	finais
 	cout << endl;
@@ -649,16 +651,15 @@ void TestarIntervalo(){
 
 	n1.setNota(3,1,0);
 	i.setN1(n1);
-	i.setN2("2M");
-	i.ImprimirEmTela();
-	cout <<	i.DeduzirTipoIntervalo() << endl;
+	i.setN2("5D");
+	i.getN2().ImprimirEmTela();
 }
 
 
 void TodosIntervalos(){
     Nota n1,n2;
     Intervalo i;
-    string intervalos[]={"","2m","2M","3m","3M","4J","4A","5D","5J","6m","6M","7m","7M"};
+    string intervalos[]={"","2m","2M","3m","3M","4J","4A","5d","5J","6m","6M","7m","7M"};
 
 	cout << "Nota\t2m\t2M\t3m\t3M\t4J\t4A\t5D\t5J\t6m\t6M\t7m\t7M" << endl;
 
