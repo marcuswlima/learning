@@ -1,5 +1,5 @@
-//:edit compilar.sh
-:edit Makefile
+:edit src/includes.h
+:97vsplit Makefile
 :tabedit src/Nota.cpp
 :47vsplit src/Nota.h
 :tabedit src/Intervalo.cpp
@@ -10,6 +10,6 @@
 :38vsplit src/Tetrade.h
 :tabedit src/Janela.cpp
 :49vsplit src/Janela.h
-:tabedit src/notas.cpp
+:tabedit src/main.cpp
 :tabfirst
 

@@ -56,8 +56,8 @@ int main(int argc, char *argv[] ){
 
 //	corpo
 //	TestarNota();
-//	TodosIntervalos();
-	Ncurses();
+	TodosIntervalos();
+//	Ncurses();
 //	TesteJanela();
 //  TestarIntervalo();
 

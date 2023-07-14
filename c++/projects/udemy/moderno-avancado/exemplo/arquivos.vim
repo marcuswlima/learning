@@ -1,6 +1,6 @@
 //:edit compilar.sh
 :edit Makefile
-:tabedit exemplo.cpp
-:47vsplit exemplo.hh
-:tabedit main.cpp
+:tabedit src/exemplo.cpp
+:47vsplit src/exemplo.hh
+:tabedit src/main.cpp
 :tabfirst

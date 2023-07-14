@@ -12,11 +12,6 @@ bool SegundaMaior(int, int , int , int , int , int );
 bool EhNota(string nota);	
 
 /////////////////////////////////////////
-// elementos globais
-/////////////////////////////////////////
-string arrNotas[7]={"DO","RE","MI","FA","SOL","LA","SI"};
-
-/////////////////////////////////////////
 // construtores
 /////////////////////////////////////////
 Nota::Nota()
@@ -71,7 +66,7 @@ void Nota::setNota(string str){
 	
 	regex regra("DO");
 	for(int i=0; i<=7;i++){
-		regra = arrNotas[i];
+		regra = this->DescNota[i];
 		if ( regex_search(str, match, regra) ){
 			g = i+1;
 			break;
@@ -334,10 +329,10 @@ bool Nota::operator<(Nota const& other){
 // Implementações Internas
 /////////////////////////////////////////
 
-bool EhNota(string nota){	
+bool Nota::EhNota(string nota){	
 	bool resposta = false;
 	for (int i=0; i<=7; i++){
-		if ( arrNotas[i] == nota){
+		if ( this->DescNota[i] == nota){
 			resposta=true;
 			break;
 		}
@@ -436,4 +431,3 @@ bool SegundaMaior(int o1, int g1, int a1, int o2, int g2, int a2){
 	return !NotaIgual(o1, g1, a1, o2, g2, a2) && !PrimeiraMaior(o1, g1, a1, o2, g2, a2);
 
 }
-

@@ -5,26 +5,42 @@ OPT=-O2
 WARN=-Wall
 CCFLAGS=$(DEBUG) $(OPT) $(WARN)
 LD=g++
-OBJS=obj/Nota.o obj/Intervalo.o obj/notas.o obj/Mathematics.o obj/Janela.o obj/Triade.o
+OBJS=obj/Mathematics.o          \
+	 obj/Nota.o obj/Intervalo.o \
+	 obj/Triade.o obj/Tetrade.o \
+	 obj/Janela.o obj/main.o     
+
 all: $(OBJS)
 	$(LD) -o $(TARGET) $(OBJS) -lncurses
  
-obj/Mathematics.o:../lib/Mathematics.cpp 
-	$(CC) -c $(CCFLAGS) ../lib/Mathematics.cpp -o obj/Mathematics.o
+obj/Mathematics.o: src/Mathematics.cpp src/Mathematics.h  
+	cp -v ../lib/Mathematics* src/
+	$(CC) -c $(CCFLAGS) src/Mathematics.cpp -o obj/Mathematics.o
 
-obj/notas.o: src/notas.cpp src/Janela.h src/Triade.h
-	$(CC) -c $(CCFLAGS) src/notas.cpp -o obj/notas.o
-
-obj/Nota.o: src/Nota.cpp ../lib/Mathematics.cpp  
+obj/Nota.o: src/Nota.cpp src/Nota.h src/includes.h src/Mathematics.h
 	$(CC) -c $(CCFLAGS) src/Nota.cpp -o obj/Nota.o
 
-obj/Intervalo.o: src/Intervalo.cpp 
+obj/Intervalo.o: src/Intervalo.cpp src/Intervalo.h 
 	$(CC) -c $(CCFLAGS) src/Intervalo.cpp -o obj/Intervalo.o
 
-obj/Janela.o: src/Janela.cpp 
+obj/Triade.o: src/Triade.cpp src/Triade.h 
+	$(CC) -c $(CCFLAGS) src/Triade.cpp    -o obj/Triade.o
+
+obj/Tetrade.o: src/Tetrade.cpp src/Tetrade.h 
+	$(CC) -c $(CCFLAGS) src/Tetrade.cpp    -o obj/Tetrade.o
+
+obj/Janela.o: src/Janela.cpp src/Janela.h 
 	$(CC) -c $(CCFLAGS) src/Janela.cpp    -o obj/Janela.o
 
-obj/Triade.o: src/Triade.cpp 
-	$(CC) -c $(CCFLAGS) src/Triade.cpp    -o obj/Triade.o
+obj/main.o: src/main.cpp src/Janela.h src/Triade.h
+	$(CC) -c $(CCFLAGS) src/main.cpp -o obj/main.o
+
+d:
+	gdb $(TARGET)
+r:
+	$(LD) -o $(TARGET) $(OBJS) -lncurses
+	$(TARGET)
+c:
+	rm obj/*.o
 
 

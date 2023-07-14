@@ -6,7 +6,15 @@ class Intervalo {
 private:
     Nota n1;
     Nota n2;
-    int orientacao;
+    string DescIntervalo[16]={"1J","2m",
+  		                      "2M","3m",
+						      "3m","4d",
+						      "4J","4A",
+						      "5d","5J",
+						      "5A","6M",
+					  	      "6m","7M",
+							  "7m","8J"
+	                         };
 public:
 // Constructors
     Intervalo();
