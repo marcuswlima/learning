@@ -1,3 +1,4 @@
+#include <regex>
 #include "Nota.h"
 
 #ifndef INTERVALO_H

@@ -6,10 +6,10 @@ WARN=-Wall
 CCFLAGS=$(DEBUG)
 #CCFLAGS=$(DEBUG) $(OPT) $(WARN)
 LD=g++
-OBJS=obj/Mathematics.o            \
-     obj/Nota.o   obj/Intervalo.o \
-	 obj/Triade.o obj/Tetrade.o   \
-	 obj/Janela.o obj/Ncurses.o   \
+OBJS=obj/Mathematics.o                  \
+     obj/Nota.o   obj/Intervalo.o       \
+	 obj/Triade.o obj/Tetrade.o         \
+	 obj/Janela.o obj/ncurses-notas.o   \
      obj/main.o
 
 all: $(OBJS)
@@ -34,8 +34,8 @@ obj/Tetrade.o: src/Tetrade.cpp src/Tetrade.h
 obj/Janela.o: src/Janela.cpp src/Janela.h 
 	$(CC) -c $(CCFLAGS) src/Janela.cpp    -o obj/Janela.o
 
-obj/Ncurses.o: src/Ncurses.cpp src/Ncurses.h 
-	$(CC) -c $(CCFLAGS) src/Ncurses.cpp    -o obj/Ncurses.o
+obj/ncurses-notas.o: src/ncurses-notas.cpp src/ncurses-notas.h 
+	$(CC) -c $(CCFLAGS) src/ncurses-notas.cpp    -o obj/ncurses-notas.o
 
 obj/main.o: src/main.cpp src/Janela.h src/Triade.h
 	$(CC) -c $(CCFLAGS) src/main.cpp -o obj/main.o
@@ -43,10 +43,10 @@ obj/main.o: src/main.cpp src/Janela.h src/Triade.h
 d:
 	$(LD) -o $(TARGET) $(OBJS) -lncurses
 	gdb $(TARGET)
-r:
+run:
 	$(LD) -o $(TARGET) $(OBJS) -lncurses
 	$(TARGET)
-c:
+clean:
 	rm obj/*.o
 
 
