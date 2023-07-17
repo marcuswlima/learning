@@ -32,7 +32,7 @@ Nota::Nota(int o, int g, int a)
 // Sets
 /////////////////////////////////////////
 
-// Setar atributo oitava
+//Setar atributo oitava
 void Nota::setOitava(int o){
     oitava = o;
 }

@@ -1,6 +1,4 @@
-:edit src/includes.h
-:97vsplit Makefile
-:tabedit src/Nota.cpp
+:edit src/Nota.cpp
 :47vsplit src/Nota.h
 :tabedit src/Intervalo.cpp
 :45vsplit src/Intervalo.h
@@ -8,8 +6,5 @@
 :47vsplit src/Triade.h
 :tabedit src/Tetrade.cpp
 :38vsplit src/Tetrade.h
-:tabedit src/Janela.cpp
-:49vsplit src/Janela.h
-:tabedit src/main.cpp
 :tabfirst
 

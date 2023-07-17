@@ -9,8 +9,7 @@ LD=g++
 OBJS=obj/Mathematics.o            \
      obj/Nota.o   obj/Intervalo.o \
 	 obj/Triade.o obj/Tetrade.o   \
-	 obj/Janela.o obj/Ncurses.o   \
-     obj/main.o
+	 obj/Janela.o obj/main.o
 
 all: $(OBJS)
 	$(LD) -o $(TARGET) $(OBJS) -lncurses
@@ -33,9 +32,6 @@ obj/Tetrade.o: src/Tetrade.cpp src/Tetrade.h
 
 obj/Janela.o: src/Janela.cpp src/Janela.h 
 	$(CC) -c $(CCFLAGS) src/Janela.cpp    -o obj/Janela.o
-
-obj/Ncurses.o: src/Ncurses.cpp src/Ncurses.h 
-	$(CC) -c $(CCFLAGS) src/Ncurses.cpp    -o obj/Ncurses.o
 
 obj/main.o: src/main.cpp src/Janela.h src/Triade.h
 	$(CC) -c $(CCFLAGS) src/main.cpp -o obj/main.o

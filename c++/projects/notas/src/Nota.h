@@ -20,7 +20,7 @@ public:
 	Nota(int); 
 	Nota(int, int, int ); 
 // Sets
-	void setOitava(int);
+	void setOitava(int o);
 	void setGrau(int);
 	void setAcidente(int);
 	void setNota(int, int, int);

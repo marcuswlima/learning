@@ -24,5 +24,3 @@ double CalcCatalan(long numero);
 string CalcRealRoots(int a, int b, int c);
 /*Gera um inteiro aleatório dentro de uma faixa de inteiros*/
 int GerarInteiro(int menor, int maior);
-/*Gera um double aleatório dentro de uma faixa de inteiros*/
-double GerarDouble(int menor, int maior);

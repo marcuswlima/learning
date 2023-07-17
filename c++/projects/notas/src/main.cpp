@@ -4,16 +4,17 @@
 /////////////////////////////////////////
 // Prototipações
 /////////////////////////////////////////
-void UC05();
-void UC06();
-void TestarIntervalo();
-void TestarTriade();
-void TestarNota();
-void TodosIntervalos();
+
+//void UC05();
+//void UC06();
+//void TestarIntervalo();
+//void TestarTriade();
+//void TestarNota();
+//void TodosIntervalos();
 void ToShowParameters(int , char *[]);
-void Splash();
+//void Splash();
 void Ncurses();
-void TesteJanela();
+//void TesteJanela();
 
 /////////////////////////////////////////
 // Elelementos Globais
@@ -52,12 +53,12 @@ void SetagensIniciais(){
 int main(int argc, char *argv[] ){
 //	Iniciais
 	ToShowParameters(argc, argv);
-//	SetagensIniciais();
+	SetagensIniciais();
 
 //	corpo
 //	TestarNota();
-	TodosIntervalos();
-//	Ncurses();
+//	TodosIntervalos();
+	Ncurses();
 //	TesteJanela();
 //  TestarIntervalo();
 
@@ -471,6 +472,7 @@ void Ncurses(){
 		}
 
 	}
+
 	endwin();
 
 }//Ncurses
