@@ -1,3 +1,4 @@
+#include "ncurses-notas.h"
 #include "Triade.h"
 #include "Janela.h"
 
@@ -53,12 +54,13 @@ void SetagensIniciais(){
 int main(int argc, char *argv[] ){
 //	Iniciais
 	ToShowParameters(argc, argv);
-	SetagensIniciais();
+	NcursesNotas nc(0);
+//	SetagensIniciais();
 
 //	corpo
 //	TestarNota();
 //	TodosIntervalos();
-	Ncurses();
+//	Ncurses();
 //	TesteJanela();
 //  TestarIntervalo();
 

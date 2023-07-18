@@ -1,33 +1,44 @@
 #include "ncurses-notas.h"
 
-ncursesNotas::ncursesNotas(){
-	initscr();
-	getmaxyx(stdscr, this->yMax, this->xMax);
-	cbreak();
-	noecho();
+NcursesNotas::NcursesNotas(){
+	this->iniciar(0);
 }
 
-ncursesNotas::~ncursesNotas(){
+NcursesNotas::NcursesNotas(int dificuldade){
+	this->iniciar(dificuldade);
+}
+
+void NcursesNotas::iniciar(int dificuldade){
+	initscr();
+	getmaxyx(stdscr, this->yMax, this->xMax);
+	setDificuldade(dificuldade);
+	cbreak();
+	noecho();
+
+	this->menuInicial();
+}
+
+NcursesNotas::~NcursesNotas(){
 	endwin();
 }
 
 
-void ncursesNotas::setDificuldade(int p){
+void NcursesNotas::setDificuldade(int p){
 	this->dificuldade = p;
 }
 
-int ncursesNotas::getDificuldade(){
+int NcursesNotas::getDificuldade(){
 	return this->dificuldade;
 }
 
-void ncursesNotas::MenuInicial(){
-	vector<string> choices;
+void NcursesNotas::menuInicial(){
+//	vector<string> choices;
 	int choice;
+	const char * choices[5]={"Intervalo","Triade","Tetrade","Configuracoes","Sair"};
 	
 	while( true ){
 		this->clearscreen(3);
-		choices={"Intervalo","Triade","Tetrade","Configuracoes","Sair"};
-		choice=nCursesMenu(choices,3);
+		choice=this->montaMenu(choices,3,5);
 
 		if( choice==4 )
 			break;
@@ -56,7 +67,7 @@ void ncursesNotas::MenuInicial(){
 }
 
 
-void ncursesNotas::clearscreen(int begin_y){
+void NcursesNotas::clearscreen(int begin_y){
 	WINDOW *clsWin = newwin((this->yMax - begin_y)-4, this->xMax, begin_y, 0);
 	refresh();
 	wrefresh(clsWin);
@@ -64,21 +75,59 @@ void ncursesNotas::clearscreen(int begin_y){
 	clsWin=NULL;
 }//nCursesClearScreen
 
-int ncursesNotas::montaMenu(const string *prtChoices, int begin_y, const int qtdOpcoes){
+int NcursesNotas::montaMenu(const char **prtChoices, int begin_y, const int qtdOpcoes){
 	size_t maiorTamanhoItem=0;
 
 	for (int i=0; i<qtdOpcoes; i++){
-		if ( prtChoices[i].length() > maiorTamanhoItem ){
-			maiorTamanhoItem = prtChoices[i].length();
+		if ( strlen(prtChoices[i]) > maiorTamanhoItem ){
+			maiorTamanhoItem = strlen(prtChoices[i]);
 		}
 	}
-/*
-	begin_xMainMenu = (xMax/2)-(maiorTamanhoItem/2);
+	this->begin_xMainMenu = (xMax/2)-(maiorTamanhoItem/2);
 	
-	WINDOW *menuWin = newwin(qtdOpcoes+2, maiorTamanhoItem+2, begin_y,begin_xMainMenu);
+	WINDOW *menuWin = newwin(qtdOpcoes+2, maiorTamanhoItem+2, begin_y,this->begin_xMainMenu);
 	refresh();
-	*/
-	return 0;
-}
+//	box(menuWin, (int)'|', (int)'-');
+	box(menuWin,0,0);
+	wrefresh(menuWin);
+	keypad(menuWin,true);
+
+
+	int choice;
+	int highligth=0;
+	while(1){
+		for (int i=0; i<qtdOpcoes; i++){
+			if (i==highligth)
+				wattron(menuWin,A_REVERSE);
+			mvwprintw(menuWin, i+1, 1, prtChoices[i]);
+			wattroff(menuWin,A_REVERSE);
+		}
+
+		choice = wgetch(menuWin);
+
+		switch (choice)
+		{
+			case KEY_UP:
+				highligth--;
+				if( highligth == -1 )
+					highligth=0;
+				break;
+			case KEY_DOWN:
+				highligth++;
+				if( highligth == (qtdOpcoes) )
+					highligth = qtdOpcoes - 1;
+				break;
+			default:
+				break;
+		}
+
+		if( choice == 10 )
+			break;
+	}
+
+	menuWin=NULL;
+
+	return highligth;
+}//montarMenu
 
 

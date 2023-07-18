@@ -3,8 +3,7 @@ CC=g++
 DEBUG=-g
 OPT=-O2
 WARN=-Wall
-CCFLAGS=$(DEBUG)
-#CCFLAGS=$(DEBUG) $(OPT) $(WARN)
+CCFLAGS=$(DEBUG) $(OPT) $(WARN)
 LD=g++
 OBJS=obj/Mathematics.o                  \
      obj/Nota.o   obj/Intervalo.o       \
@@ -26,16 +25,16 @@ obj/Intervalo.o: src/Intervalo.cpp src/Intervalo.h
 	$(CC) -c $(CCFLAGS) src/Intervalo.cpp -o obj/Intervalo.o
 
 obj/Triade.o: src/Triade.cpp src/Triade.h 
-	$(CC) -c $(CCFLAGS) src/Triade.cpp    -o obj/Triade.o
+	$(CC) -c $(CCFLAGS) src/Triade.cpp -o obj/Triade.o
 
 obj/Tetrade.o: src/Tetrade.cpp src/Tetrade.h 
-	$(CC) -c $(CCFLAGS) src/Tetrade.cpp    -o obj/Tetrade.o
+	$(CC) -c $(CCFLAGS) src/Tetrade.cpp -o obj/Tetrade.o
 
 obj/Janela.o: src/Janela.cpp src/Janela.h 
-	$(CC) -c $(CCFLAGS) src/Janela.cpp    -o obj/Janela.o
+	$(CC) -c $(CCFLAGS) src/Janela.cpp -o obj/Janela.o
 
 obj/ncurses-notas.o: src/ncurses-notas.cpp src/ncurses-notas.h 
-	$(CC) -c $(CCFLAGS) src/ncurses-notas.cpp    -o obj/ncurses-notas.o
+	$(CC) -c $(CCFLAGS) src/ncurses-notas.cpp -o obj/ncurses-notas.o
 
 obj/main.o: src/main.cpp src/Janela.h src/Triade.h
 	$(CC) -c $(CCFLAGS) src/main.cpp -o obj/main.o

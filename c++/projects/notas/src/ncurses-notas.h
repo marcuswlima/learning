@@ -1,19 +1,24 @@
 #include <string>
 #include <vector>
 #include <ncurses.h>
+#include <string.h>
+
 using namespace std;
 
-class ncursesNotas{
+class NcursesNotas{
 public:
-	ncursesNotas();
-	~ncursesNotas();
+	NcursesNotas();
+	NcursesNotas(int);
+	~NcursesNotas();
+private:
+	void iniciar(int);
 	void setDificuldade(int);
 	int getDificuldade();
-	void MenuInicial();
-	int montaMenu(const string *, int, const int );
+	void menuInicial();
+	int montaMenu(const char **, int, const int );
 	void clearscreen(int);
-private:
 	int dificuldade=0;
 	int xMax;
 	int yMax;
+	int begin_xMainMenu;
 };
