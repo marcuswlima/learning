@@ -4,8 +4,6 @@
 #define TETRADE_H 
 
 class Tetrade : public Triade{
-private:
-	Intervalo i3;
 public:
 // Constructors
 	Tetrade();
@@ -19,5 +17,7 @@ public:
 	void Randomizar(int =1);
 	string GerarDescricao();
 	void ImprimirEmTela();
+private:
+	Intervalo i3;
 };
 #endif

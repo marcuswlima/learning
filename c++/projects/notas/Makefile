@@ -18,7 +18,7 @@ obj/Mathematics.o: src/Mathematics.cpp src/Mathematics.h
 	cp -v ../lib/Mathematics* src/
 	$(CC) -c $(CCFLAGS) src/Mathematics.cpp -o obj/Mathematics.o
 
-obj/Nota.o: src/Nota.cpp src/Nota.h src/includes.h
+obj/Nota.o: src/Nota.cpp src/Nota.h 
 	$(CC) -c $(CCFLAGS) src/Nota.cpp -o obj/Nota.o
 
 obj/Intervalo.o: src/Intervalo.cpp src/Intervalo.h 
@@ -33,10 +33,10 @@ obj/Tetrade.o: src/Tetrade.cpp src/Tetrade.h
 obj/Janela.o: src/Janela.cpp src/Janela.h 
 	$(CC) -c $(CCFLAGS) src/Janela.cpp -o obj/Janela.o
 
-obj/ncurses-notas.o: src/ncurses-notas.cpp src/ncurses-notas.h 
+obj/ncurses-notas.o: src/ncurses-notas.cpp src/ncurses-notas.h src/Janela.h src/Tetrade.h
 	$(CC) -c $(CCFLAGS) src/ncurses-notas.cpp -o obj/ncurses-notas.o
 
-obj/main.o: src/main.cpp src/Janela.h src/Triade.h
+obj/main.o: src/main.cpp src/ncurses-notas.h
 	$(CC) -c $(CCFLAGS) src/main.cpp -o obj/main.o
 
 d:

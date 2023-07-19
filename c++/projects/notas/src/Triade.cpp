@@ -113,7 +113,7 @@ void Triade::ImprimirEmTela(){
 }
 
 /////////////////////////////////////////
-// Implementações Externas
+// Implementações public
 /////////////////////////////////////////
 
 void Triade::ImprimirFundamentalEmTela(){

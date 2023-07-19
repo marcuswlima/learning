@@ -9,7 +9,6 @@ void MensagemErro( int,int, int, bool);
 bool NotaIgual(int , int , int , int , int , int );
 bool PrimeiraMaior(int, int , int , int , int , int );
 bool SegundaMaior(int, int , int , int , int , int );
-bool EhNota(string nota);	
 
 /////////////////////////////////////////
 // construtores
@@ -45,7 +44,6 @@ void Nota::setAcidente(int a){
     acidente = a;
 }
 
-// atribuir novos valores oitava, nota e acidente
 void Nota::setNota( int o, int g, int a )
 {
     if (notaValida(o,g,a)){
@@ -121,6 +119,54 @@ int Nota::getId(){
 			;
 }
 
+//////////////////////////////////////
+//Operacoes 
+//////////////////////////////////////
+bool Nota::operator==(Nota const& other){
+	// this->  operador1
+	// other.  operador2
+
+	return NotaIgual(
+			         this->getOitava(),
+			         this->getGrau(),
+					 this->getAcidente(),
+					 other.oitava,
+					 other.grau,
+					 other.acidente
+					 );
+
+}
+
+bool Nota::operator>(Nota const& other){
+	// this->  operador1
+	// other.  operador2
+
+	return PrimeiraMaior(
+			             this->getOitava(),
+			             this->getGrau(),
+					     this->getAcidente(),
+					     other.oitava,
+					     other.grau,
+					     other.acidente
+						 );
+
+}
+
+bool Nota::operator<(Nota const& other){
+	// this->  operador1
+	// other.  operador2
+	
+	return SegundaMaior(
+			            this->getOitava(),
+			            this->getGrau(),
+					    this->getAcidente(),
+					    other.oitava,
+					    other.grau,
+					    other.acidente
+						);
+
+}
+
 /////////////////////////////////////////
 // Padrão
 /////////////////////////////////////////
@@ -171,7 +217,7 @@ void Nota::ImprimirEmTela(){
 }
 
 /////////////////////////////////////////
-// Implementações Externas
+// Implementações publics
 /////////////////////////////////////////
 
 
@@ -277,56 +323,9 @@ bool Nota::strEhNota(string nota){
 }
 
 
-//////////////////////////////////////
-//Operacoes 
-//////////////////////////////////////
-bool Nota::operator==(Nota const& other){
-	// this->  operador1
-	// other.  operador2
-
-	return NotaIgual(
-			         this->getOitava(),
-			         this->getGrau(),
-					 this->getAcidente(),
-					 other.oitava,
-					 other.grau,
-					 other.acidente
-					 );
-
-}
-
-bool Nota::operator>(Nota const& other){
-	// this->  operador1
-	// other.  operador2
-
-	return PrimeiraMaior(
-			             this->getOitava(),
-			             this->getGrau(),
-					     this->getAcidente(),
-					     other.oitava,
-					     other.grau,
-					     other.acidente
-						 );
-
-}
-
-bool Nota::operator<(Nota const& other){
-	// this->  operador1
-	// other.  operador2
-	
-	return SegundaMaior(
-			            this->getOitava(),
-			            this->getGrau(),
-					    this->getAcidente(),
-					    other.oitava,
-					    other.grau,
-					    other.acidente
-						);
-
-}
 
 /////////////////////////////////////////
-// Implementações Internas
+// Implementações privates
 /////////////////////////////////////////
 
 bool Nota::EhNota(string nota){	
@@ -342,6 +341,10 @@ bool Nota::EhNota(string nota){
 	return resposta;
 }
 
+
+/////////////////////////////////////////
+// Implementações internas
+/////////////////////////////////////////
 
 // Validar uma nota
 bool notaValida( int o, int g, int a ){

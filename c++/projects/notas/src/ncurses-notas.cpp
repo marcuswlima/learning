@@ -8,6 +8,10 @@ NcursesNotas::NcursesNotas(int dificuldade){
 	this->iniciar(dificuldade);
 }
 
+NcursesNotas::~NcursesNotas(){
+	endwin();
+}
+
 void NcursesNotas::iniciar(int dificuldade){
 	initscr();				
 	getmaxyx(stdscr, this->yMax, this->xMax);
@@ -15,10 +19,6 @@ void NcursesNotas::iniciar(int dificuldade){
 	jUp.Centralizar("Exercicios para os alunos da EMUFPA");
 //	getch();
 	menuInicial();
-}
-
-NcursesNotas::~NcursesNotas(){
-	endwin();
 }
 
 void NcursesNotas::menuInicial(){

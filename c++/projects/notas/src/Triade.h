@@ -3,11 +3,6 @@
 #ifndef TRIADE_H
 #define TRIADE_H
 class Triade{
-private:
-	Intervalo i1;
-	Intervalo i2;
-	void setInt1(Intervalo);
-	void setInt2(Intervalo);
 public:
 // Constructors
 	Triade();
@@ -17,6 +12,8 @@ public:
 // Sets
 	void setTriade(Intervalo, Intervalo);
 	void setTriade(Nota, int);
+	void setInt1(Intervalo);
+	void setInt2(Intervalo);
 //Gets
 	Intervalo getInt1();
 	Intervalo getInt2();
@@ -27,10 +24,13 @@ public:
 	void Randomizar(int dificuldade=1);
 	string GerarDescricao();
 	void ImprimirEmTela();
-// Implementações
+// ------------------------------------
 	void ImprimirFundamentalEmTela();
 	string RandomizarTipoTriade();
 	string DeduzirTipoTriade();
 	void ImprimirTipoTriadeEmTela();
+private:
+	Intervalo i1;
+	Intervalo i2;
 };
 #endif

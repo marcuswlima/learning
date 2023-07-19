@@ -19,9 +19,9 @@ private:
 	void menuInicial();
 	void ClearScreen(int);
 	int montaMenu(vector <string> &, int);
-	void MenuIntervalo();
 	int ObterNumero(string, int , int , int );	
 	string ObterString(string, int , int, int);	
+	void MenuIntervalo();
 	void UC01(int quantidade);
 	void UC02(int quantidade);
 	void UC03(int quantidade);
