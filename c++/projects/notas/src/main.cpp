@@ -1,6 +1,5 @@
 #include "ncurses-notas.h"
 #include "Triade.h"
-#include "Janela.h"
 
 /////////////////////////////////////////
 // Prototipações
@@ -37,7 +36,6 @@ struct tIntervaloResposta {
 };
 
 void SetagensIniciais(){
-    srand( time(0) );
 	initscr();
 	getmaxyx(stdscr, yMax, xMax);
 	jUp.Instanciar(3,xMax,0,0);
@@ -52,15 +50,16 @@ void SetagensIniciais(){
 // Main
 /////////////////////////////////////////
 int main(int argc, char *argv[] ){
+    srand( time(0) );
 //	Iniciais
 	ToShowParameters(argc, argv);
-	NcursesNotas nc(0);
 //	SetagensIniciais();
 
 //	corpo
 //	TestarNota();
 //	TodosIntervalos();
-//	Ncurses();
+	//Ncurses();
+	NcursesNotas nc(0);
 //	TesteJanela();
 //  TestarIntervalo();
 

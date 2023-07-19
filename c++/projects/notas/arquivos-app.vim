@@ -1,5 +1,4 @@
-:edit src/includes.h
-:97vsplit Makefile
+:edit Makefile
 :tabedit src/Janela.cpp
 :49vsplit src/Janela.h
 :tabedit src/ncurses-notas.cpp
