@@ -153,7 +153,7 @@ string Intervalo::OrientacaoEmString(){
 	return resposta;
 }
 
-void Intervalo::getTiposIntervalos(string * const arr){
+void Intervalo::getTiposIntervalo(string * const arr){
 	for (int i=0; i<16; i++){
 		arr[i]=this->DadosIntervalo[i].tipoIntervalo;
 	}

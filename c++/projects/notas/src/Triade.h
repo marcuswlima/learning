@@ -25,12 +25,15 @@ public:
 	string GerarDescricao();
 	void ImprimirEmTela();
 // ------------------------------------
-	void ImprimirFundamentalEmTela();
-	string RandomizarTipoTriade();
-	string DeduzirTipoTriade();
 	void ImprimirTipoTriadeEmTela();
 private:
 	Intervalo i1;
 	Intervalo i2;
+	char tiposTriade[4]={'M','m','d','A'};
+// ------------------------------------
+	void ImprimirFundamentalEmTela();
+	char RandomizarTipoTriade();
+	string DeduzirTipoTriade();
+	void getTiposTriade(const char *);
 };
 #endif

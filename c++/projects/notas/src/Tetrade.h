@@ -17,7 +17,9 @@ public:
 	void Randomizar(int =1);
 	string GerarDescricao();
 	void ImprimirEmTela();
+//---------------------------
 private:
 	Intervalo i3;
+//---------------------------
 };
 #endif

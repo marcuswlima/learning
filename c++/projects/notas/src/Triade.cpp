@@ -4,10 +4,7 @@
 // Prototipações
 /////////////////////////////////////////
 
-Nota GerarSegundaNota(Nota, string);
-Nota GerarSegundaNota(Nota , int , int );
-int RandomizarIdTipoTriade();
-void MontarTriade(Nota, int, Intervalo &, Intervalo &);
+void MontarTriade(Nota, char, Intervalo &, Intervalo &);
 
 /////////////////////////////////////////
 // construtores
@@ -80,7 +77,7 @@ Nota Triade::getQuinta(){
 
 void Triade::Randomizar(int dificuldade){
 
-	int       tipoTriade=RandomizarIdTipoTriade();
+	char      tipoTriade=RandomizarTipoTriade();
 	Nota      n(dificuldade);
 	Intervalo i1,i2;
 	
@@ -116,23 +113,24 @@ void Triade::ImprimirEmTela(){
 // Implementações public
 /////////////////////////////////////////
 
+void Triade::ImprimirTipoTriadeEmTela(){
+	cout << this->DeduzirTipoTriade();
+}//ImprimirTipoTriadeEmTela
+
+/////////////////////////////////////////
+// Implementações privadas
+/////////////////////////////////////////
+
 void Triade::ImprimirFundamentalEmTela(){
     cout << this->getFundamental().Descricao();
 }
 
-string Triade::RandomizarTipoTriade(){
-    int idTriade=RandomizarIdTipoTriade();
-    string descTriade; 
+char Triade::RandomizarTipoTriade(){
+    int aleatorio=GerarInteiro(1,4);
 
-    switch (idTriade){
-		case 1:descTriade="M";break;
-		case 2:descTriade="m";break;
-		case 3:descTriade="A";break;
-		case 4:descTriade="d";break;
-    }
+	aleatorio--; //ajuste indice
 
-    return descTriade;
-
+	return this->tiposTriade[aleatorio];
 }
 
 
@@ -151,46 +149,36 @@ string Triade::DeduzirTipoTriade(){
 }
 
 
-void Triade::ImprimirTipoTriadeEmTela(){
-	cout << this->DeduzirTipoTriade();
-}//ImprimirTipoTriadeEmTela
-
-
 /////////////////////////////////////////
 // Implementações Internas
 /////////////////////////////////////////
-
-int RandomizarIdTipoTriade(){
-    return GerarInteiro(1,4);
-}
-
-void MontarTriade(Nota n, int tipoTriade, Intervalo &i1, Intervalo &i2){
+void MontarTriade(Nota n, char tipoTriade, Intervalo &i1, Intervalo &i2){
 
 	Nota temp;
 
 	i1.setN1(n);
-	if (tipoTriade==1){
+	if (tipoTriade=='M'){
 		i1.setN2("3M");
 		temp.setOitava(i1.getN2().getOitava());
 		temp.setGrau(i1.getN2().getGrau());
 		temp.setAcidente(i1.getN2().getAcidente());
 		i2.setN1(temp);
 		i2.setN2("3m");
-	}else if (tipoTriade==2){
+	}else if (tipoTriade=='m'){
 		i1.setN2("3m");
 		temp.setOitava(i1.getN2().getOitava());
 		temp.setGrau(i1.getN2().getGrau());
 		temp.setAcidente(i1.getN2().getAcidente());
 		i2.setN1(temp);
 		i2.setN2("3M");
-	}else if (tipoTriade==3){
+	}else if (tipoTriade=='A'){
 		i1.setN2("3M");
 		temp.setOitava(i1.getN2().getOitava());
 		temp.setGrau(i1.getN2().getGrau());
 		temp.setAcidente(i1.getN2().getAcidente());
 		i2.setN1(temp);
 		i2.setN2("3M");
-	}else if (tipoTriade==4){
+	}else if (tipoTriade=='d'){
 		i1.setN2("3m");
 		temp.setOitava(i1.getN2().getOitava());
 		temp.setGrau(i1.getN2().getGrau());

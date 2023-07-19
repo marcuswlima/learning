@@ -227,11 +227,10 @@ void TestarIntervalo(){
 void TodosIntervalos(){
     Nota n1,n2;
     Intervalo i;
-    string intervalos[16];
 
-	i.getTiposIntervalos(intervalos);
+	string intervalos[16];
+	i.getTiposIntervalo(intervalos);
 
-	//cout << "Nota\t2m\t2M\t3m\t3M\t4J\t4A\t5D\t5J\t6m\t6M\t7m\t7M" << endl;
 	cout << "Nota\t";
 	for(int i=0; i<16; i++)
 		cout << intervalos[i]<<'\t';
