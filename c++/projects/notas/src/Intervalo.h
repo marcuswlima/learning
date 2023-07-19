@@ -24,7 +24,7 @@ public:
     string DeduzirTipoIntervalo();
 	bool strEhIntervalo(string);
 	string OrientacaoEmString();
-	char** getTiposIntervalos();
+	void getTiposIntervalos(string * const);
 private:
     Nota n1;
     Nota n2;

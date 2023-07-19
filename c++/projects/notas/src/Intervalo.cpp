@@ -153,9 +153,11 @@ string Intervalo::OrientacaoEmString(){
 	return resposta;
 }
 
-char** Intervalo::getTiposIntervalos(){
+void Intervalo::getTiposIntervalos(string * const arr){
+	for (int i=0; i<16; i++){
+		arr[i]=this->DadosIntervalo[i].tipoIntervalo;
+	}
 }
-
 /////////////////////////////////////////
 // Implementation private
 /////////////////////////////////////////
@@ -221,7 +223,6 @@ void Intervalo::ImprimirQtdSemiTonsEmTela(){
     cout << this->DeduzirQtdSemiTons() << " ";
 }
 
-
 void Intervalo::QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, int &qtdSemiTons){
     
 	for (int i=0; i<=15; i++){
@@ -232,7 +233,6 @@ void Intervalo::QuantidadesIntervalo(string descricao, int &qdtNotasNaturais, in
         }
     }
 }
-
 
 /////////////////////////////////
 // Implementações Internas

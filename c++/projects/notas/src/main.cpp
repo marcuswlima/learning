@@ -227,18 +227,23 @@ void TestarIntervalo(){
 void TodosIntervalos(){
     Nota n1,n2;
     Intervalo i;
-    string intervalos[]={"","2m","2M","3m","3M","4J","4A","5d","5J","6m","6M","7m","7M"};
+    string intervalos[16];
 
-	cout << "Nota\t2m\t2M\t3m\t3M\t4J\t4A\t5D\t5J\t6m\t6M\t7m\t7M" << endl;
+	i.getTiposIntervalos(intervalos);
 
-	cout<<endl;
+	//cout << "Nota\t2m\t2M\t3m\t3M\t4J\t4A\t5D\t5J\t6m\t6M\t7m\t7M" << endl;
+	cout << "Nota\t";
+	for(int i=0; i<16; i++)
+		cout << intervalos[i]<<'\t';
+	cout << '\n';
+
 	n1.setNota(3,1,0);
     for (int ii=1; ii<=12; ii++){
 		i.setN1(n1);
 		n1.ImprimirEmTela();
 		cout << '\t' ;
 
-		for (int iii=1;iii<=12;iii++){
+		for (int iii=0;iii<16;iii++){
 			i.setN2(intervalos[iii]);
 			i.getN2().ImprimirEmTela();
 			cout << '\t' ;
@@ -254,7 +259,7 @@ void TodosIntervalos(){
 		n1.ImprimirEmTela();
 		cout << '\t' ;
 
-		for (int iii=1;iii<=12;iii++){
+		for (int iii=0; iii<16; iii++){
 			i.setN2(intervalos[iii]);
 			i.getN2().ImprimirEmTela();
 			cout << '\t' ;
@@ -271,7 +276,7 @@ void TodosIntervalos(){
 		n1.ImprimirEmTela();
 		cout << '\t' ;
 
-		for (int iii=1;iii<=12;iii++){
+		for (int iii=0;iii<16;iii++){
 			i.setN2(intervalos[iii],-1);
 			i.getN2().ImprimirEmTela();
 			cout << '\t' ;
@@ -287,7 +292,7 @@ void TodosIntervalos(){
 		n1.ImprimirEmTela();
 		cout << '\t' ;
 
-		for (int iii=1;iii<=12;iii++){
+		for (int iii=0;iii<16;iii++){
 			i.setN2(intervalos[iii],-1);
 			i.getN2().ImprimirEmTela();
 			cout << '\t' ;
