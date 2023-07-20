@@ -1,51 +1,53 @@
-TARGET=obj/notas.sh
+OBJ=obj/
+SRC=src/
+TARGET=$(OBJ)notas.sh
 CC=g++
 DEBUG=-g
 OPT=-O2
 WARN=-Wall
 CCFLAGS=$(DEBUG) $(OPT) $(WARN)
 LD=g++
-OBJS=obj/Mathematics.o                  \
-     obj/Nota.o   obj/Intervalo.o       \
-	 obj/Triade.o obj/Tetrade.o         \
-	 obj/Janela.o obj/ncurses-notas.o   \
-     obj/main.o
+GTK=$$(pkg-config gtkmm-3.0 --cflags --libs) -export-dynamic
+NCURSES=-lncurses
+OBJS=$(OBJ)Mathematics.o                  \
+     $(OBJ)Nota.o   $(OBJ)Intervalo.o     \
+	 $(OBJ)Triade.o $(OBJ)Tetrade.o       \
+	 $(OBJ)Janela.o $(OBJ)ncurses-notas.o \
+     $(OBJ)main.o
 
 all: $(OBJS)
-	$(LD) -o $(TARGET) $(OBJS) -lncurses
+	$(LD) -o $(TARGET) $(OBJS) $(NCURSES)
  
-obj/Mathematics.o: src/Mathematics.cpp src/Mathematics.h  
-	cp -v ../lib/Mathematics* src/
-	$(CC) -c $(CCFLAGS) src/Mathematics.cpp -o obj/Mathematics.o
+$(OBJ)Mathematics.o: $(SRC)Mathematics.cpp $(SRC)Mathematics.h  
+	cp -v ../lib/Mathematics* $(SRC)
+	$(CC) -c $(CCFLAGS) $(SRC)Mathematics.cpp -o $(OBJ)Mathematics.o
 
-obj/Nota.o: src/Nota.cpp src/Nota.h 
-	$(CC) -c $(CCFLAGS) src/Nota.cpp -o obj/Nota.o
+$(OBJ)Nota.o: $(SRC)Nota.cpp $(SRC)Nota.h 
+	$(CC) -c $(CCFLAGS) $(SRC)Nota.cpp -o $(OBJ)Nota.o
 
-obj/Intervalo.o: src/Intervalo.cpp src/Intervalo.h 
-	$(CC) -c $(CCFLAGS) src/Intervalo.cpp -o obj/Intervalo.o
+$(OBJ)Intervalo.o: $(SRC)Intervalo.cpp $(SRC)Intervalo.h 
+	$(CC) -c $(CCFLAGS) $(SRC)Intervalo.cpp -o $(OBJ)Intervalo.o
 
-obj/Triade.o: src/Triade.cpp src/Triade.h 
-	$(CC) -c $(CCFLAGS) src/Triade.cpp -o obj/Triade.o
+$(OBJ)Triade.o: $(SRC)Triade.cpp $(SRC)Triade.h 
+	$(CC) -c $(CCFLAGS) $(SRC)Triade.cpp -o $(OBJ)Triade.o
 
-obj/Tetrade.o: src/Tetrade.cpp src/Tetrade.h 
-	$(CC) -c $(CCFLAGS) src/Tetrade.cpp -o obj/Tetrade.o
+$(OBJ)Tetrade.o: $(SRC)Tetrade.cpp $(SRC)Tetrade.h 
+	$(CC) -c $(CCFLAGS) $(SRC)Tetrade.cpp -o $(OBJ)Tetrade.o
 
-obj/Janela.o: src/Janela.cpp src/Janela.h 
-	$(CC) -c $(CCFLAGS) src/Janela.cpp -o obj/Janela.o
+$(OBJ)Janela.o: $(SRC)Janela.cpp $(SRC)Janela.h 
+	$(CC) -c $(CCFLAGS) $(SRC)Janela.cpp -o $(OBJ)Janela.o
 
-obj/ncurses-notas.o: src/ncurses-notas.cpp src/ncurses-notas.h src/Janela.h src/Tetrade.h
-	$(CC) -c $(CCFLAGS) src/ncurses-notas.cpp -o obj/ncurses-notas.o
+$(OBJ)ncurses-notas.o: $(SRC)ncurses-notas.cpp $(SRC)ncurses-notas.h $(SRC)Janela.h $(SRC)Tetrade.h
+	$(CC) -c $(CCFLAGS) $(SRC)ncurses-notas.cpp -o $(OBJ)ncurses-notas.o
 
-obj/main.o: src/main.cpp src/ncurses-notas.h
-	$(CC) -c $(CCFLAGS) src/main.cpp -o obj/main.o
+$(OBJ)main.o: $(SRC)main.cpp $(SRC)ncurses-notas.h
+	$(CC) -c $(CCFLAGS) $(SRC)main.cpp -o $(OBJ)main.o
 
-d:
-	$(LD) -o $(TARGET) $(OBJS) -lncurses
+d:all
 	gdb $(TARGET)
-run:
-	$(LD) -o $(TARGET) $(OBJS) -lncurses
-	$(TARGET)
+run:all
+	$(TARGET) par1 par2 par3
 clean:
-	rm obj/*.o
+	rm $(OBJ)*.o
 
 

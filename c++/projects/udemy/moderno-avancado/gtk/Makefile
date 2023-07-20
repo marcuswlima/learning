@@ -1,25 +1,20 @@
-TARGET=obj/soma.sh
+OBJ=obj/
+SRC=src/
+TARGET=$(OBJ)soma.sh
+OBJS=$(OBJ)soma.o
 CC=g++
 DEBUG=-g
 OPT=-O2
 WARN=-Wall
 CCFLAGS=$(DEBUG) $(OPT) $(WARN)
 LD=g++
-OBJS=obj/soma.o
+GTK=$$(pkg-config gtkmm-3.0 --cflags --libs) -export-dynamic
 
 all: $(OBJS)
-	$(LD) -o $(TARGET) $(OBJS) $(pkg-config gtkmm-3.0 --cflags --libsi) -export-dymamic
+	$(LD) -o $(TARGET) $(OBJS) $(GTK) 
  
-obj/soma.o: src/soma.cpp   
-	$(CC) -c $(CCFLAGS) src/soma.cpp -o obj/soma.o $(pkg-config gtkmm-3.0 --cflags --libsi) -export-dynamic
+$(OBJ)soma.o: $(SRC)soma.cpp   
+	$(CC) -c $(CCFLAGS) $(SRC)soma.cpp -o $(OBJ)soma.o $(GTK)
 
-d:
-	$(LD) -o $(TARGET) $(OBJS) $(pkg-config gtkmm-3.0 --cflags --libsi) -export-dymamic
+debug:
 	gdb $(TARGET)
-run:
-	$(LD) -o $(TARGET) $(OBJS) $(pkg-config gtkmm-3.0 --cflags --libsi) -export-dymamic
-	$(TARGET)
-clean:
-	rm obj/*.o
-
-

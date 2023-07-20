@@ -35,8 +35,8 @@ int main(int argc, char *argv[] ){
     srand( time(0) );
 	ToShowParameters(argc, argv);
 
-//	NcursesNotas nc(0);
-	TodosIntervalos();
+	NcursesNotas nc(0);
+//	TodosIntervalos();
 
 	cout << endl;
 	return 0; //indica o fim do programa2

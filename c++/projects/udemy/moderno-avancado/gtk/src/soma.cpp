@@ -28,5 +28,5 @@ int main(int argc, char** argv){
 
 	return 0;
 
-//	g++ simple-gtk.cpp -o simple $(pkg-config gtkmm-3.0 --cflags --libsi) -export-dynamic
+//	g++ soma.cpp -o soma.h $(pkg-config gtkmm-3.0 --cflags --libs) -export-dynamic
 }
