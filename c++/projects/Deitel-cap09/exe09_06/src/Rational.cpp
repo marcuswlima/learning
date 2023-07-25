@@ -9,8 +9,8 @@ int f_mmc(int n1, int n2);
 // construtores
 /////////////////////////////////////////
 
-Rational::Rational(int pr, int pi){
-    this->setRational(pr,pi);
+Rational::Rational(int pn, int pd){
+    this->setRational(pn,pd);
 }
 
 /////////////////////////////////////////
@@ -35,19 +35,17 @@ int Rational::getDenominator(){
     return this->denomitator;
 }
 
+/////////////////////////////////////////
+// public
+/////////////////////////////////////////
 string Rational::print(){
     string resp;
 
     resp += to_string(this->getNumerator());
-    resp += " / ";
+    resp += "/";
     resp += to_string(this->getDenominator());
 
     return resp;
-}
-
-void Rational::setRational(int pn, int pd){
-    this->setNumerator(pn);
-    this->setDenominator(pd);
 }
 
 Rational Rational::add(Rational r1,Rational r2){
@@ -84,7 +82,24 @@ Rational Rational::multiply(Rational r1, Rational r2){
     return resp;
 }
 
+Rational Rational::divide(Rational r1, Rational r2){
+	int n=r2.getNumerator(), d=r2.getDenominator();
+	r2.setRational(d,n);
+	return this->multiply(r1,r2);
+}
 
+
+/////////////////////////////////////////
+// privates
+/////////////////////////////////////////
+void Rational::setRational(int pn, int pd){
+    this->setNumerator(pn);
+    this->setDenominator(pd);
+}
+
+/////////////////////////////////////////
+// internals
+/////////////////////////////////////////
 int GetRemainder(int divisor, int dividendo){
     return divisor % dividendo;
 }

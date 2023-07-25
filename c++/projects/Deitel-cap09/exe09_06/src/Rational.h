@@ -16,6 +16,7 @@ public:
     Rational add(Rational,Rational);
     Rational subtrac(Rational,Rational);
     Rational multiply(Rational,Rational);
+    Rational divide(Rational,Rational);
 private:
     int numerator;
     int denomitator;
