@@ -2,7 +2,7 @@
 
 int main(){
     Rational r1(1,2);
-    Rational r2(1,3);
+    Rational r2(10,3);
     cout << r1.print() << '\n';
     cout << r2.print() << '\n';
 
@@ -15,7 +15,7 @@ int main(){
     
 	resp = r1.multiply(r1,r2);
     cout << "multiply " << resp.print() << '\n';
-	
+
 	resp = r1.divide(r1,r2);
     cout << "divide " << resp.print() << '\n';
     return 0;

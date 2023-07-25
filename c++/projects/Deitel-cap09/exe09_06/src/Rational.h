@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Mathematics.h"
 using namespace std;
 
 class Rational{
@@ -22,5 +23,7 @@ private:
     int denomitator;
 //----------------------
     void setRational(int, int);
+	void negate();
     void reduce();
+	void invert();
 };

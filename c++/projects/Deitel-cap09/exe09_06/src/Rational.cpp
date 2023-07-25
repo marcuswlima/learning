@@ -67,24 +67,25 @@ Rational Rational::add(Rational r1,Rational r2){
         resp.setRational(n1+n2,mmc);
     }
 
+	resp.reduce();
+
     return resp;
 }//add
 
 Rational Rational::subtrac(Rational r1, Rational r2){
-	int n=r2.getNumerator();
-	r2.setNumerator(n*(-1));
+	r2.negate();
 	return this->add(r1,r2);
 }
 
 Rational Rational::multiply(Rational r1, Rational r2){
     Rational resp(1,1);
 	resp.setRational(r1.getNumerator()*r2.getNumerator(),r1.getDenominator()*r2.getDenominator());
+	resp.reduce();
     return resp;
 }
 
 Rational Rational::divide(Rational r1, Rational r2){
-	int n=r2.getNumerator(), d=r2.getDenominator();
-	r2.setRational(d,n);
+	r2.invert();
 	return this->multiply(r1,r2);
 }
 
@@ -97,17 +98,34 @@ void Rational::setRational(int pn, int pd){
     this->setDenominator(pd);
 }
 
+void Rational::negate(){
+	int n=this->getNumerator();
+	this->setNumerator(n*(-1));
+}
+
+void Rational::invert(){
+	int n = this->getNumerator(), d = this->getDenominator();
+	this->setRational(d,n);
+}
+
+void Rational::reduce(){
+	int n = this->getNumerator(), d = this->getDenominator();
+	int reduce=0;
+	int mdc=CalcMdc(n,d);
+
+	if (n>d && GetRemainder(n,d)==0)
+		reduce=d;
+	else if (mdc>0){
+		reduce=mdc;
+	}else{
+		reduce=1;
+	}
+	this->setRational(n/reduce, d/reduce);
+}
+
 /////////////////////////////////////////
 // internals
 /////////////////////////////////////////
-int GetRemainder(int divisor, int dividendo){
-    return divisor % dividendo;
-}
-
-bool HasRemainder(int divisor, int dividendo){
-    return GetRemainder(divisor,dividendo)>0;
-}
-
 int f_maior(int n1, int n2){
     return (n1>n2 ? n1 : n2);
 }
