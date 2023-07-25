@@ -13,9 +13,9 @@ public:
     int getDenominator();
 //----------------------
     string print();    
-    void add(Rational);
-    void subtrac(Rational);
     Rational add(Rational,Rational);
+    Rational subtrac(Rational,Rational);
+    Rational multiply(Rational,Rational);
 private:
     int numerator;
     int denomitator;

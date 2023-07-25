@@ -56,18 +56,34 @@ Rational Rational::add(Rational r1,Rational r2){
     int n1 = r1.getNumerator(),
         d1 = r1.getDenominator(),
         n2 = r2.getNumerator(),
-        d2 = r2.getDenominator();
+        d2 = r2.getDenominator()
+		;
     
     if (d1 == d2){
         resp.setRational(n1+n2,d1);
     }else{
         int mmc=f_mmc(d1,d2);
-        cout << "mmc -> "<< mmc << endl;
-        resp.setRational(mmc,mmc);
+
+		n1 = mmc/d1*n1;
+		n2 = mmc/d2*n2;
+        resp.setRational(n1+n2,mmc);
     }
 
     return resp;
 }//add
+
+Rational Rational::subtrac(Rational r1, Rational r2){
+	int n=r2.getNumerator();
+	r2.setNumerator(n*(-1));
+	return this->add(r1,r2);
+}
+
+Rational Rational::multiply(Rational r1, Rational r2){
+    Rational resp(1,1);
+	resp.setRational(r1.getNumerator()*r2.getNumerator(),r1.getDenominator()*r2.getDenominator());
+    return resp;
+}
+
 
 int GetRemainder(int divisor, int dividendo){
     return divisor % dividendo;
@@ -85,7 +101,7 @@ int f_mmc(int n1, int n2){
     int maior=f_maior(n1,n2);
 
     maior++;
-    while( HasRemainder(maior,n1) && HasRemainder(maior,n2) ){
+    while( HasRemainder(maior,n1) || HasRemainder(maior,n2) ){
        maior++;
     }
     return maior;
