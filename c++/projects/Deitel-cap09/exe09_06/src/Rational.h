@@ -14,6 +14,7 @@ public:
     int getDenominator();
 //----------------------
     string print();    
+    string printd();    
     Rational add(Rational,Rational);
     Rational subtrac(Rational,Rational);
     Rational multiply(Rational,Rational);

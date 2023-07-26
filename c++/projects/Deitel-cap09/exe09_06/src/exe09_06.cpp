@@ -1,7 +1,7 @@
 #include "Rational.h"
 
 int main(){
-    Rational r1(1,2);
+    Rational r1(2,2);
     Rational r2(10,3);
     cout << r1.print() << '\n';
     cout << r2.print() << '\n';
@@ -9,6 +9,7 @@ int main(){
 	Rational resp(1,1);
     resp = r1.add(r1,r2);
     cout << "add " << resp.print() << '\n';
+    cout << "add " << resp.printd() << '\n';
     
 	resp = r1.subtrac(r1,r2);
     cout << "subtrac " << resp.print() << '\n';

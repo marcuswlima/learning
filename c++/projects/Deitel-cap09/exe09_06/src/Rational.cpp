@@ -89,7 +89,11 @@ Rational Rational::divide(Rational r1, Rational r2){
 	return this->multiply(r1,r2);
 }
 
-
+string Rational::printd(){
+	int n = this->getNumerator(), d = this->getDenominator();
+	double resposta=n/d;
+	return to_string(resposta);
+}
 /////////////////////////////////////////
 // privates
 /////////////////////////////////////////
@@ -113,8 +117,9 @@ void Rational::reduce(){
 	int reduce=0;
 	int mdc=CalcMdc(n,d);
 
-	if (n>d && GetRemainder(n,d)==0)
+	if (n>d && GetRemainder(n,d)==0){
 		reduce=d;
+	}
 	else if (mdc>0){
 		reduce=mdc;
 	}else{
