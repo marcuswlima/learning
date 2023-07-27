@@ -4,7 +4,6 @@ using namespace std;
 //--------------------------------------
 // Prototipations
 // -------------------------------------
-void validate(int y, int m, int d);
 int qtdDiasEmUmMes(int y,int  m);
 
 //--------------------------------------
@@ -20,7 +19,9 @@ Date::Date( int y, int m, int d)
 // -------------------------------------
 void Date::print() 
 { 
-   cout << year << '/' << month << '/' << day ; 
+   cout << year << '/' 
+	    << setfill( '0' ) << setw( 2 ) << month << '/' 
+		<< setfill( '0' ) << setw( 2 ) <<  day ; 
 } // end function print
 
 void Date::nextDay(){

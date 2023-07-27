@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <stdexcept>
 #include "Mathematics.h"
 
@@ -8,9 +9,10 @@ class Date
 {
 public:
 	// Constructors
-	Date( int=2000, int=1, int=1);
+	Date(int=2000,int=1,int=1);
 	void print();
 	void nextDay();
+	void setDate(int,int,int);
 private:
 	int month;
 	int day;
@@ -19,7 +21,6 @@ private:
 	void setYear(int);
 	void setMonth(int);
 	void setDay(int,int,int);
-	void setDate(int,int,int);
 	// Gets
 	int getYear();
 	int getMonth();
