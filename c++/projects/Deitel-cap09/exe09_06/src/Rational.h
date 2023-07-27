@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "Mathematics.h"
 using namespace std;
 
@@ -6,15 +7,9 @@ class Rational{
 public:
 //--Construtores
     Rational(int, int);
-//--Sets
-    void setNumerator(int);
-    void setDenominator(int);
-//--Gets
-    int getNumerator();
-    int getDenominator();
 //----------------------
-    string print();    
-    string printd();    
+    void print();    
+    void printd();    
     Rational add(Rational,Rational);
     Rational subtrac(Rational,Rational);
     Rational multiply(Rational,Rational);
@@ -27,4 +22,10 @@ private:
 	void negate();
     void reduce();
 	void invert();
+//--Sets
+    void setNumerator(int);
+    void setDenominator(int);
+//--Gets
+    int getNumerator();
+    int getDenominator();
 };

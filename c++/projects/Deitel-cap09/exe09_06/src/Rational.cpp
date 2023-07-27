@@ -38,14 +38,23 @@ int Rational::getDenominator(){
 /////////////////////////////////////////
 // public
 /////////////////////////////////////////
-string Rational::print(){
+void Rational::print(){
     string resp;
 
     resp += to_string(this->getNumerator());
     resp += "/";
     resp += to_string(this->getDenominator());
 
-    return resp;
+	cout << resp << endl;
+
+}
+
+void Rational::printd(){
+	int n = this->getNumerator(), d = this->getDenominator();
+	double resposta=(double)n/d;
+
+	cout << fixed << setprecision( 2 );
+	cout << resposta << endl;
 }
 
 Rational Rational::add(Rational r1,Rational r2){
@@ -89,11 +98,6 @@ Rational Rational::divide(Rational r1, Rational r2){
 	return this->multiply(r1,r2);
 }
 
-string Rational::printd(){
-	int n = this->getNumerator(), d = this->getDenominator();
-	double resposta=n/d;
-	return to_string(resposta);
-}
 /////////////////////////////////////////
 // privates
 /////////////////////////////////////////
