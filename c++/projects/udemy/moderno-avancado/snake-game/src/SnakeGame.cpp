@@ -1,33 +1,45 @@
 #include "SnakeGame.h"
 
 //---------------------------------------
+// Prototipations
+//---------------------------------------
+int GerarInteiro(const int, const int);
+
+//---------------------------------------
 // Constructors/destructors
 //---------------------------------------
 SnakeGame::SnakeGame(){
 	initscr();
 	nodelay(stdscr, true); // para snake nap parar
 	keypad(stdscr, true);
-	noecho();
-	curs_set( 0 );	
-	
-	this->m_snake_char='o';
-
+	noecho(); //para nao exibir as teclas na tela
+	curs_set( 0 );	//desliga cursor
 	srand(time(NULL));
+	
 
-	this->m_food_char='x';
-
+	//bodas
 	this->m_bordas();
 
-	// desenha o tamanho inicial da snake
-	for (int i=0; i < 13 ; ++i){
-		this->snake.push_back( SnakeType( 20 + i, 10));
-	}
+	// iniciar cobra  
+	int tempx = GerarInteiro(1,this->m_maxwidth-2);
+	int tempy = GerarInteiro(1,this->m_maxheight-2);
+	this->snake.push_back( SnakeType( tempx, tempy));
+	move( snake[0].s_y, snake[0].s_x);
+	addch( m_snake_char );
 
-	//logica para posicionar/desenhar a cobra
-	for ( size_t i=0; i < snake.size(); ++i){
-		move( snake[i].s_y, snake[i].s_x);
-		addch( m_snake_char );
-	}
+	//comida
+	this->m_insert_food();
+	move( v_food.s_y, v_food.s_x);
+	addch(this->m_food_char);
+	
+}
+
+//---------------------------------------
+// publics 
+//---------------------------------------
+void SnakeGame::start(){
+	m_movesnake();
+	usleep( m_delay );
 }
 
 SnakeGame::~SnakeGame(){
@@ -72,13 +84,84 @@ void SnakeGame::m_bordas(){
 
 void SnakeGame::m_insert_food(){
 	while( true ){
-		int tempx = GerarInteiro(1,this->m_maxwidth);
-		int tempy = GerarInteiro(1,this->m_maxheight);
+		int tempx = GerarInteiro(1,this->m_maxwidth-2);
+		int tempy = GerarInteiro(1,this->m_maxheight-2);
 
+		//nao utiliar pontos ocupados pela cobra
+		for (size_t i=0; i < this->snake.size(); ++i){
+
+			if ( snake[i].s_x == tempx && snake[i].s_y == tempy){
+				continue;
+			}
+		}
+
+		this->v_food.s_x = tempx;
+		this->v_food.s_y = tempy;
+		break;
 	}
 }
 
-int SnakeGame::GerarInteiro(int menor, int maior) {
+void SnakeGame::m_movesnake(){
+	int tmp = getch();
+	switch( tmp ){
+		case KEY_LEFT:
+			if( this->m_direction != 'R'){
+				this->m_direction = 'L';
+			}
+			break;
+		case KEY_UP:
+			if( this->m_direction != 'D'){
+				this->m_direction = 'U';
+			}
+			break;
+		case KEY_DOWN:
+			if( this->m_direction != 'U'){
+				this->m_direction = 'D';
+			}
+			break;
+		case KEY_RIGHT:
+			if( this->m_direction != 'L'){
+				this->m_direction = 'R';
+			}
+			break;
+		case 'q':
+			m_direction = 'Q';
+			break;
+	}
+
+	if (!m_tail_stop){
+		move( snake[snake.size()-1].s_y, snake[snake.size() - 1].s_x);
+		printw(" ");
+		refresh();
+		snake.pop_back();
+	}
+
+	if ( m_direction == 'L' ){
+		snake.insert( snake.begin(), SnakeType( snake[0].s_x - 1, snake[0].s_y     ));
+	}
+
+	if ( m_direction == 'R' ){
+		snake.insert( snake.begin(), SnakeType( snake[0].s_x + 1, snake[0].s_y     ));
+	}
+
+	if ( m_direction == 'U' ){
+		snake.insert( snake.begin(), SnakeType( snake[0].s_x    , snake[0].s_y - 1 ));
+	}
+	
+	if ( m_direction == 'D' ){
+		snake.insert( snake.begin(), SnakeType( snake[0].s_x    , snake[0].s_y + 1 ));
+	}
+
+	move( snake[0].s_y, snake[0].s_x);
+	addch( m_snake_char );
+	refresh();
+
+}
+
+//---------------------------------------
+// Internals
+//---------------------------------------
+int GerarInteiro(const int menor, const int maior) {
 
     if (maior > menor){
         int faixa  = (maior - menor + 1);
@@ -89,5 +172,4 @@ int SnakeGame::GerarInteiro(int menor, int maior) {
         return 0;
 
 }
-
 

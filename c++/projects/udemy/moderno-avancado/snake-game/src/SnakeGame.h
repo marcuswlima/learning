@@ -19,17 +19,22 @@ class SnakeGame{
 public:
 	SnakeGame();
 	~SnakeGame();
+	void start();
 protected:
+	const char m_food_char='x';
+	const char m_snake_char='o';
+	const int m_delay=100000;
+
 	int m_maxwidth;
 	int m_maxheight;
 
+	char m_direction='L';//valor inicial
+	bool m_tail_stop=false;
+	
 	std::vector<SnakeType> snake;
-	char m_snake_char;
-
 	SnakeType v_food;
-	char m_food_char;
 private:
 	void m_bordas();
 	void m_insert_food();
-	int GerarInteiro(int, int);
+	void m_movesnake();
 };
