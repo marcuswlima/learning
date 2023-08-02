@@ -9,7 +9,7 @@ private:
 	int width;
 	void setLength(int);
 	void setWidth(int);
-	int getLength();
-	int getWidth();
+	int getLength() const;
+	int getWidth() const;
 	void setRectangle(int,int);
 };

@@ -51,17 +51,17 @@ void Time::setSecond( int s )
 //------------------------------
 // Gets
 //------------------------------
-int Time::getHour()
+int Time::getHour() const 
 {
    return hour;
 } // end function getHour
 
-int Time::getMinute()
+int Time::getMinute() const
 {
    return minute;
 } // end function getMinute
 
-int Time::getSecond()
+int Time::getSecond() const
 {
    return second;
 } // end function getSecond
@@ -69,13 +69,13 @@ int Time::getSecond()
 //------------------------------
 // Publics
 //------------------------------
-void Time::printUniversal()
+void Time::printUniversal() const
 {
    cout << setfill( '0' ) << setw( 2 ) << getHour() << ":"
       << setw( 2 ) << getMinute() << ":" << setw( 2 ) << getSecond();
 } // end function printUniversal
 
-void Time::printStandard()
+void Time::printStandard() const
 {
    cout << ( ( getHour() == 0 || getHour() == 12 ) ? 12 : getHour() % 12 )
       << ":" << setfill( '0' ) << setw( 2 ) << getMinute()

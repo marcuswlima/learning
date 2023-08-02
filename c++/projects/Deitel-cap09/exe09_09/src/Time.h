@@ -13,19 +13,18 @@ public:
    void setSecond( int );
 
    // get functions
-   int getHour(); 
-   int getMinute();
-   int getSecond();
-
-   void printUniversal();
-   void printStandard(); 
+   int getHour() const; 
+   int getMinute() const;
+   int getSecond() const;
+   
+   void printUniversal() const;
+   void printStandard() const; 
    void setCurrentTime();
    void tick();
 private:
    int hour; 
    int minute; 
    int second;
-   
 };
 
 #endif

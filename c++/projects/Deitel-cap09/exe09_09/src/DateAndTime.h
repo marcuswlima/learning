@@ -9,7 +9,8 @@ class DateAndTime
 public:
 	DateAndTime(int=2000,int=1,int=1
 			   ,int=0,int=0,int=0);
-	void printUniversal();
+	DateAndTime(const Date &, const Time &);
+	void printUniversal() const;
 	void tick();
 	void nextDay();
 private:

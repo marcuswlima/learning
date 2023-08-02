@@ -10,7 +10,7 @@ class Date
 public:
 	// Constructors
 	Date(int=2000,int=1,int=1);
-	void print();
+	void print() const;
 	void nextDay();
 	void setDate(int,int,int);
 private:
@@ -22,9 +22,9 @@ private:
 	void setMonth(int);
 	void setDay(int,int,int);
 	// Gets
-	int getYear();
-	int getMonth();
-	int getDay();
+	int getYear() const ;
+	int getMonth() const;
+	int getDay() const;
 }; // end class Date
 
 #endif

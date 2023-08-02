@@ -10,11 +10,16 @@ DateAndTime::DateAndTime(int y, int mo, int d
 	this->time.setTime(h,mi,s);
 }
 
+DateAndTime::DateAndTime(const Date &d, const Time &t)
+	:date(d), time(t)
+{
+}
+
 
 //-----------------------
 // Publics
 // ----------------------
-void DateAndTime::printUniversal(){
+void DateAndTime::printUniversal() const{
 	this->date.print();
 	cout << ' ';
 	this->time.printUniversal();

@@ -36,11 +36,11 @@ void Rectangle::setWidth(int w){
 	this->width = w;
 }
 
-int Rectangle::getLength(){
+int Rectangle::getLength() const{
 	return this->length;
 }
 
-int Rectangle::getWidth(){
+int Rectangle::getWidth()const {
 	return this->width;
 }
 void Rectangle::setRectangle(int l,int w){

@@ -17,7 +17,7 @@ Date::Date( int y, int m, int d)
 //--------------------------------------
 // Publics
 // -------------------------------------
-void Date::print() 
+void Date::print() const 
 { 
    cout << year << '/' 
 	    << setfill( '0' ) << setw( 2 ) << month << '/' 
@@ -78,15 +78,15 @@ void Date::setDate(int y,int m,int d){
 //--------------------------------------
 // Gets
 // -------------------------------------
-int Date::getYear(){
+int Date::getYear() const{
 	return this->year;
 }
 
-int Date::getMonth(){
+int Date::getMonth() const{
 	return this->month;
 }
 
-int Date::getDay(){
+int Date::getDay() const{
 	return this->day;
 }
 
