@@ -23,7 +23,7 @@ public:
 protected:
 	const char m_food_char='x';
 	const char m_snake_char='o';
-	const int m_delay=100000;
+	int m_delay=100000;
 
 	int m_maxwidth;
 	int m_maxheight;
@@ -33,8 +33,11 @@ protected:
 	
 	std::vector<SnakeType> snake;
 	SnakeType v_food;
+
+	int m_score=0;
 private:
 	void m_bordas();
 	void m_insert_food();
 	void m_movesnake();
+	bool _collide();
 };

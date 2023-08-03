@@ -29,8 +29,6 @@ SnakeGame::SnakeGame(){
 
 	//comida
 	this->m_insert_food();
-	move( v_food.s_y, v_food.s_x);
-	addch(this->m_food_char);
 	
 }
 
@@ -38,8 +36,25 @@ SnakeGame::SnakeGame(){
 // publics 
 //---------------------------------------
 void SnakeGame::start(){
-	m_movesnake();
-	usleep( m_delay );
+
+	while (true){
+
+		if (this->_collide()){
+			move( m_maxheight/2, ( m_maxwidth / 2 ) - 4 );
+			printw("GAME OVER");
+			break;
+		}
+
+		this->m_movesnake();
+
+		if ( m_direction == 'Q'){
+			break;
+		}
+
+		usleep( m_delay );
+
+	}
+
 }
 
 SnakeGame::~SnakeGame(){
@@ -54,9 +69,6 @@ SnakeGame::~SnakeGame(){
 void SnakeGame::m_bordas(){
 	this->m_maxheight = getmaxy (stdscr) / 2;
 	this->m_maxwidth = getmaxx (stdscr) / 2 ;
-
-//	m_maxheight = 15;
-//	m_maxwidth = 13;
 
 	for ( int i=0; i < this->m_maxwidth; i++){
 		move(0,i);
@@ -97,6 +109,8 @@ void SnakeGame::m_insert_food(){
 
 		this->v_food.s_x = tempx;
 		this->v_food.s_y = tempy;
+		move( v_food.s_y, v_food.s_x);
+		addch(this->m_food_char);
 		break;
 	}
 }
@@ -157,6 +171,40 @@ void SnakeGame::m_movesnake(){
 	refresh();
 
 }
+
+bool SnakeGame::_collide(){
+	int xCabeca = snake[0].s_x;
+	int yCabeca = snake[0].s_y;
+
+	// colisao com a borda
+	if ( xCabeca==0 || xCabeca==this->m_maxwidth-1 || yCabeca==0 || yCabeca==this->m_maxheight-1){
+		return true;
+	}
+
+	//colisao no corpo
+	for (size_t i=2; i < snake.size() ; ++i){
+		if ( xCabeca==snake[i].s_x && yCabeca==snake[i].s_y){
+			return true;
+		}
+	}
+
+	//colisao de ponto
+	if ( xCabeca==v_food.s_x && yCabeca==v_food.s_y){
+		this->m_tail_stop=true;
+		this->m_insert_food();
+		this->m_score += 10;
+		move( this->m_maxheight-1,0);
+		printw("%d",m_score);
+		if ( (this->m_score % 50 )==0){
+			this->m_delay -= 10000;
+		}
+	}else{
+		m_tail_stop=false;
+	}
+
+	return false;
+}
+
 
 //---------------------------------------
 // Internals
