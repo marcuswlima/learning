@@ -2,11 +2,13 @@
 // Date class member-function definitions.
 #include <iostream>
 #include <stdexcept>
+#include <iomanip>
 #include "Date.h" // include Date class definition
 using namespace std;
 
-// constructor confirms proper value for month; calls
-// utility function checkDay to confirm proper value for day
+//---------------------------------------
+// Public
+//--------------------------------------
 Date::Date( int mn, int dy, int yr )
 {
    if ( mn > 0 && mn <= monthsPerYear ) // validate the month
@@ -17,42 +19,56 @@ Date::Date( int mn, int dy, int yr )
    year = yr; // could validate yr
    day = checkDay( dy ); // validate the day
 
-   // output Date object to show when its constructor is called
-   cout << "Date object constructor for date ";
-   print();                   
-   cout << endl;
 } // end Date constructor
 
-// print Date object in form month/day/year
-void Date::print() const
-{
-   cout << month << '/' << day << '/' << year; 
-} // end function print
-
-// output Date object to show when its destructor is called
 Date::~Date()
 { 
-   cout << "Date object destructor for date ";
-   print();
-   cout << endl;
 } // end ~Date destructor
 
-// utility function to confirm proper day value based on 
-// month and year; handles leap years, too
+void Date::print() const
+{
+	cout << setfill('0') << setw(2) << month << '/' 
+		 << setfill('0') << setw(2) << day   << '/' 
+		 << year; 
+} // end function print
+
+void Date::printExtenso()const
+{
+	cout << meses[month] << " " << day << ", " << year;
+}
+
+void Date::printN2() const
+{
+	int qtdDiasAno = day;
+
+	for (int i=1;i<=month-1; i++){
+		qtdDiasAno += qtdDaysInMonth(year, month);
+	}
+
+
+	cout << qtdDiasAno << ' ' << year;
+}
+
+//---------------------------------------
+// Private
+//--------------------------------------
 int Date::checkDay( int testDay ) const
 {
-   static const int daysPerMonth[ monthsPerYear + 1 ] = 
-      { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
    // determine whether testDay is valid for specified month
-   if ( testDay > 0 && testDay <= daysPerMonth[ month ] )
+   if ( testDay > 0 && testDay <= qtdDaysInMonth(year, month))
       return testDay;
 
-   // February 29 check for leap year 
-   if ( month == 2 && testDay == 29 && ( year % 400 == 0 || 
-      ( year % 4 == 0 && year % 100 != 0 ) ) )
-      return testDay;
 
    throw invalid_argument( "Invalid day for current month and year" );
 } // end function checkDay
+
+int Date::qtdDaysInMonth(int pYear, int pMonth)const{
+   // February 29 check for leap year 
+	if (pMonth == 2 && pYear%4==0){
+		return 29;
+	}else{
+		return daysPerMonth[pMonth];
+	}
+}
+
 
