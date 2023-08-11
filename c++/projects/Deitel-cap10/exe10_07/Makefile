@@ -21,12 +21,10 @@ $(OBJ)Date.o: $(SRC)Date.cpp $(SRC)Date.h
 $(OBJ)main.o: $(SRC)main.cpp 
 	$(CC) -c $(CCFLAGS) $(SRC)main.cpp -o $(OBJ)main.o 
 
-debug: $(OBJS)
+debug:all
 	gdb $(TARGET)
-
-run: $(OBJS)
+run:all
 	$(TARGET) 
-
 clean:
 	rm $(OBJ)*.o
 

@@ -1,74 +1,144 @@
-// Fig. 10.09: Date.cpp
-// Date class member-function definitions.
 #include <iostream>
-#include <stdexcept>
 #include <iomanip>
-#include "Date.h" // include Date class definition
+//#include <ctime>
+#include "Date.h" 
 using namespace std;
+
+//---------------------------------------
+// Construntors
+//--------------------------------------
+Date::Date( int m, int d, int y )
+{
+   this->setDate(y, m, d);
+} 
 
 //---------------------------------------
 // Public
 //--------------------------------------
-Date::Date( int mn, int dy, int yr )
-{
-   if ( mn > 0 && mn <= monthsPerYear ) // validate the month
-      month = mn;
-   else 
-      throw invalid_argument( "month must be 1-12" );
-
-   year = yr; // could validate yr
-   day = checkDay( dy ); // validate the day
-
-} // end Date constructor
-
-Date::~Date()
-{ 
-} // end ~Date destructor
-
 void Date::print() const
 {
-	cout << setfill('0') << setw(2) << month << '/' 
-		 << setfill('0') << setw(2) << day   << '/' 
-		 << year; 
-} // end function print
+	int y = this->getYear();
+	int m = this->getMonth();
+	int d = this->getDay();
+	cout << setfill('0') << setw(2) << m << '/' 
+		 << setfill('0') << setw(2) << d << '/' 
+		 << y; 
+} 
 
 void Date::printExtenso()const
 {
-	cout << meses[month] << " " << day << ", " << year;
+	int y = this->getYear();
+	int m = this->getMonth();
+	int d = this->getDay();
+	
+	const char * const meses[ this->monthsPerYear + 1] = 
+		{ NULL , 
+		 "Janeiro" , "Fevereiro", "Marco"   , "Abril", 
+		 "Maio"    , "Junho"    , "Julho"   , "Agosto", 
+		 "Setembro", "Outubro"  , "Novembro", "Dezembro"
+		};
+	
+	cout << meses[m] << " " << d << ", " << y;
 }
 
 void Date::printN2() const
 {
-	int qtdDiasAno = day;
+	int y = this->getYear();
+	int m = this->getMonth();
+	int d = this->getDay();
 
-	for (int i=1;i<=month-1; i++){
-		qtdDiasAno += qtdDaysInMonth(year, month);
+	for (int i=1;i<=m-1; i++){
+		d += this->qtdDaysInMonth(y, m);
 	}
 
+	cout << d << ' ' << y;
+}
 
-	cout << qtdDiasAno << ' ' << year;
+void Date::nextDay(){
+	int y = this->getYear();
+	int m = this->getMonth();
+	int d = this->getDay();
+	int qtdDias=this->qtdDaysInMonth(y,m);
+
+	d++;
+	if (d>qtdDias){
+		d=1;
+		m++;
+		if (m>12){
+			m=1;
+			y++;
+		}
+
+	}
+	this->setDate(y,m,d);
+}
+
+void Date::setCurrentDate(){
+   time_t agora = time(0);
+   tm * dh = localtime( &agora );
+   cout << dh->tm_year;
+   this->setDate(dh->tm_year,dh->tm_mon,dh->tm_mday);
 }
 
 //---------------------------------------
 // Private
 //--------------------------------------
-int Date::checkDay( int testDay ) const
-{
-   // determine whether testDay is valid for specified month
-   if ( testDay > 0 && testDay <= qtdDaysInMonth(year, month))
-      return testDay;
-
-
-   throw invalid_argument( "Invalid day for current month and year" );
-} // end function checkDay
-
 int Date::qtdDaysInMonth(int pYear, int pMonth)const{
-   // February 29 check for leap year 
-	if (pMonth == 2 && pYear%4==0){
+	const int daysPerMonth[ this->monthsPerYear + 1 ] = 
+		{ 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+	if (pMonth == 2 && pYear%4 == 0){
 		return 29;
 	}else{
 		return daysPerMonth[pMonth];
 	}
+}
+
+//--------------------------------------
+// Sets
+// -------------------------------------
+void Date::setYear(int y){
+	if ( y >= this->menorAno){
+		this->year = y;
+	}else{
+		throw invalid_argument("ano invalido");
+	}
+}
+void Date::setMonth(int m){
+	if (m >= 1 && m <= monthsPerYear){
+		this->month = m;
+	}else{
+		throw invalid_argument("mes invalido");
+	}
+}
+void Date::setDay(int y,int m, int d){
+	int qtdDias = qtdDaysInMonth(y,m);
+	if (d >= 1 && d <= qtdDias){
+		this->day = d;
+	}else{
+		throw invalid_argument("dia invalido");
+	}
+}
+
+void Date::setDate(int y,int m,int d){
+	this->setYear(y);
+	this->setMonth(m);
+	this->setDay(y,m,d);
+}
+
+//--------------------------------------
+// Gets
+// -------------------------------------
+int Date::getYear() const{
+	return this->year;
+}
+
+int Date::getMonth() const{
+	return this->month;
+}
+
+int Date::getDay()const {
+	return this->day;
 }
 
 

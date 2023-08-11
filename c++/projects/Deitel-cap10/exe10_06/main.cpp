@@ -1,17 +1,27 @@
-// Fig. 10.12: fig10_12.cpp
-// Demonstrating composition--an object with member objects.
 #include <iostream>
-#include "Date.h" // Employee class definition
+#include "Date.h" 
 using namespace std;
 
 int main()
 {
-   Date hire( 3,  1, 1974 );
-
+   Date hire( 1,  9, 1980 );
+/*
    hire.print();
    cout << '\n';
    hire.printExtenso();
    cout << '\n';
    hire.printN2();
    cout << '\n';
+
+   hire.nextDay();
+   hire.printExtenso();
+   cout << '\n';
+*/
+   Date data;
+   data.print();
+   cout << '\n';
+   data.setCurrentDate();
+   data.print();
+   cout << '\n';
+
 } // end main
