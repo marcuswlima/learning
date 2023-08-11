@@ -1,7 +1,7 @@
 OBJ=build/
 SRC=./
 LIB=../../lib-cplusplus/src/
-TARGET=$(OBJ)notas.sh
+TARGET=$(OBJ)notas.exe
 CC=g++
 DEBUG=-g
 OPT=-O2
@@ -21,10 +21,10 @@ $(OBJ)Date.o: $(SRC)Date.cpp $(SRC)Date.h
 $(OBJ)main.o: $(SRC)main.cpp 
 	$(CC) -c $(CCFLAGS) $(SRC)main.cpp -o $(OBJ)main.o 
 
-debug: $(OBJS)
+debug: all
 	gdb $(TARGET)
 
-run: $(OBJS)
+run: all
 	$(TARGET) 
 
 clean:

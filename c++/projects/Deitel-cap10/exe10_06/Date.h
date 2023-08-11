@@ -11,6 +11,8 @@ public:
 	void printN2() const;
 	void nextDay();
 	void setCurrentDate();
+	//cascade function call// 
+	Date &setDate(int,int,int);
 private:
 	int month; 
 	int day; 
@@ -23,7 +25,6 @@ private:
 	void setYear(int);
 	void setMonth(int);
 	void setDay(int,int,int);
-	void setDate(int,int,int);
 	// Gets
 	int getYear() const;
 	int getMonth() const;

@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-   Date hire( 1,  9, 1980 );
+//   Date hire( 1,  9, 1980 );
 /*
    hire.print();
    cout << '\n';
@@ -18,8 +18,9 @@ int main()
    cout << '\n';
 */
    Date data;
-   data.print();
+   data.setDate(1975,3,1).print();
    cout << '\n';
+//   data.nextDay();
    data.setCurrentDate();
    data.print();
    cout << '\n';

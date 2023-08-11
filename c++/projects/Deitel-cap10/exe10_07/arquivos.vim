@@ -1,4 +1,4 @@
 :edit Makefile
-:tabedit Date.cpp
-:75 vsplit Date.h
+:tabedit   savingaccount.cpp
+:60 vsplit savingaccount.h
 :tabedit main.cpp

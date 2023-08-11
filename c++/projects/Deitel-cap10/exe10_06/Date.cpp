@@ -1,6 +1,5 @@
 #include <iostream>
 #include <iomanip>
-//#include <ctime>
 #include "Date.h" 
 using namespace std;
 
@@ -20,6 +19,7 @@ void Date::print() const
 	int y = this->getYear();
 	int m = this->getMonth();
 	int d = this->getDay();
+
 	cout << setfill('0') << setw(2) << m << '/' 
 		 << setfill('0') << setw(2) << d << '/' 
 		 << y; 
@@ -61,14 +61,13 @@ void Date::nextDay(){
 	int qtdDias=this->qtdDaysInMonth(y,m);
 
 	d++;
-	if (d>qtdDias){
+	if (d > qtdDias){
 		d=1;
 		m++;
-		if (m>12){
+		if (m > 12){
 			m=1;
 			y++;
 		}
-
 	}
 	this->setDate(y,m,d);
 }
@@ -76,8 +75,16 @@ void Date::nextDay(){
 void Date::setCurrentDate(){
    time_t agora = time(0);
    tm * dh = localtime( &agora );
-   cout << dh->tm_year;
-   this->setDate(dh->tm_year,dh->tm_mon,dh->tm_mday);
+   this->setDate((1900 + dh->tm_year) , (1 + dh->tm_mon) , dh->tm_mday);
+}
+
+//cascade function call//
+Date &Date::setDate(int y,int m,int d){
+	this->setYear(y);
+	this->setMonth(m);
+	this->setDay(y,m,d);
+
+	return *this;
 }
 
 //---------------------------------------
@@ -87,7 +94,7 @@ int Date::qtdDaysInMonth(int pYear, int pMonth)const{
 	const int daysPerMonth[ this->monthsPerYear + 1 ] = 
 		{ 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-	if (pMonth == 2 && pYear%4 == 0){
+	if (pMonth == 2 && (pYear % 4) == 0){
 		return 29;
 	}else{
 		return daysPerMonth[pMonth];
@@ -104,26 +111,22 @@ void Date::setYear(int y){
 		throw invalid_argument("ano invalido");
 	}
 }
+
 void Date::setMonth(int m){
-	if (m >= 1 && m <= monthsPerYear){
+	if (m >= 1 && m <= this->monthsPerYear){
 		this->month = m;
 	}else{
 		throw invalid_argument("mes invalido");
 	}
 }
+
 void Date::setDay(int y,int m, int d){
-	int qtdDias = qtdDaysInMonth(y,m);
+	int qtdDias = this->qtdDaysInMonth(y,m);
 	if (d >= 1 && d <= qtdDias){
 		this->day = d;
 	}else{
 		throw invalid_argument("dia invalido");
 	}
-}
-
-void Date::setDate(int y,int m,int d){
-	this->setYear(y);
-	this->setMonth(m);
-	this->setDay(y,m,d);
 }
 
 //--------------------------------------
@@ -141,4 +144,8 @@ int Date::getDay()const {
 	return this->day;
 }
 
+
+//--------------------------------------
+// internals
+// -------------------------------------
 
