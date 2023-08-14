@@ -1,23 +1,27 @@
-#include <vector>
-#include "Card.h"
+#include "Hand.h"
 
+#ifndef DECKOSCARDS_H
+#define DECKOFCARDS_H
 class DeckOfCards
 {
 public:
 	DeckOfCards(); 
 //---------------------
 	void shuffle();
-	void showDeck()const;
+	void show()const;
 	void dealCard(Card &);
 	bool moreCards()const;
-	void dealHand();
+	void dealHand(Hand &);
 private:
 	void order();
-	int findCard(int,int);
+	int findCard(const int, const int)const;
 	void swapCard(Card &, Card &);
 //---------
 	std::vector <Card> deck;
+	std::vector <Card> hand;
 	int currentCard;
-	static const int qtdCards = Card::qtdSuits * 
-		                        Card::qtdFaces;
+	static const int QTDCARDS = Card::QTDSUITS * 
+		                        Card::QTDFACES;
 }; 
+#endif
+

@@ -4,8 +4,8 @@ using namespace std;
 //-----------------------
 // Construtores
 // ----------------------
-Card::Card(const int s, const int f){
-	setCard(s,f);
+Card::Card(const int f, const int s){
+	setCard(f,s);
 }
 
 
@@ -15,13 +15,13 @@ Card::Card(){
 //-----------------------
 // public
 // ----------------------
-Card &Card::setCard(const int s, const int f){
-	setSuit(s);
+Card &Card::setCard(const int f, const int s){
 	setFace(f);
+	setSuit(s);
 	return *this;
 }
 
-void Card::toString()const{
+void Card::show()const{
 	cout << faces[getFace()] << " of " << suits[getSuit()] ;
 }
 
