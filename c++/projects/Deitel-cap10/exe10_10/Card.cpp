@@ -8,6 +8,10 @@ Card::Card(const int s, const int f){
 	setCard(s,f);
 }
 
+
+Card::Card(){
+}
+
 //-----------------------
 // public
 // ----------------------
@@ -29,10 +33,6 @@ int Card::getFace()const{
 	return face;
 }
 
-bool Card::getShuffled()const{
-	return shuffled;
-}
-
 //-----------------------
 // private
 // ----------------------
@@ -43,9 +43,3 @@ void Card::setSuit(const int s){
 void Card::setFace(const int f){
 	face = f;
 }
-
-void Card::setShuffled(const bool sh){
-	shuffled=sh;
-}
-
-
