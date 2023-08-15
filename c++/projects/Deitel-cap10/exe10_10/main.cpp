@@ -3,8 +3,19 @@
 int main()
 {
 	Card c;
-	Hand h;
+	Hand h1,h2;
 	DeckOfCards doc;
+	doc.shuffle();
+	for (int i=1; i<=5; i++){
+			doc.dealHand(h1);
+			doc.dealHand(h2);
+			h1.show();
+			cout << " / ";
+			h2.show();
+			cout << " / ";
+			cout << h1.peso() << ' ';
+			cout << h2.peso() << '\n';
+	}
 /*
 
 	h.clear();
@@ -23,16 +34,6 @@ int main()
 	
 */
 
-	doc.shuffle();
-	for (int i=1; i<=4; i++){
-
-//		if (doc.moreCards()){
-			doc.dealHand(h);
-			h.show();
-			h.analize();
-			cout << '\n';
-//		}
-	}
 	cout << '\n';
 	return 0; // indica terminação bem-sucedida
 } // fim de main

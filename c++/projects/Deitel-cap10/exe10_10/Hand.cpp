@@ -6,7 +6,7 @@
 int contarPar(const int * const , const int );
 bool contarMesmaFace(const int * const, const int, const int);
 bool isFlush(const int * const , const int);
-bool isStraight(std::vector <Card> );
+bool isStraight(std::vector <Card>,int );
 //-----------------------
 // Construtores
 // ----------------------
@@ -31,7 +31,8 @@ void Hand::show()const{
 	}
 }
 
-void Hand::analize()const{
+
+int Hand::peso()const{
 
 	const int qtdFaces = Card::QTDFACES; 
 	const int qtdSuits = Card::QTDSUITS; 
@@ -56,19 +57,14 @@ void Hand::analize()const{
 //	for (int i=0; i < qtdFaces; i++)
 //		cout << sumFaces[i]<< ' ';
 
-	if ( contarPar(sumFaces,qtdFaces) >= 1 ) 
-		cout << " / contains a pair";
-	if ( contarPar(sumFaces,qtdFaces) >= 2 )
-		cout << " / contains two pairs";
-	if ( contarMesmaFace(sumFaces,3,qtdFaces) )
-		cout << " / contains three of a kind";
-	if ( contarMesmaFace(sumFaces,4,qtdFaces) )
-		cout << " / contains four of a kind";
-	if ( isFlush(sumSuits,qtdSuits) )
-		cout << " / contains flush";
-	if ( isStraight(hand) )
-		cout << " / contains straight";
 
+	if      ( isStraight(hand,SIZE_HAND)           ) return 6;
+	else if ( isFlush(sumSuits,qtdSuits)           ) return 5;
+	else if ( contarMesmaFace(sumFaces,4,qtdFaces) ) return 4;
+	else if ( contarMesmaFace(sumFaces,3,qtdFaces) ) return 3;
+	else if ( contarPar(sumFaces,qtdFaces) >= 2    ) return 2;
+	else if ( contarPar(sumFaces,qtdFaces) >= 1    ) return 1;
+	else return 0;
 }
 
 
@@ -126,16 +122,14 @@ void selectionSort( int * const array, const int size )
     } // end if
 } // end function selectionSort
 
-bool isStraight(std::vector <Card> hand){
-//	const int qtdFaces = SIZE_HAND; 
-	const int qtdHand = 5; 
-	int faces[qtdHand];
+bool isStraight(std::vector <Card> hand, int SIZE){
+	int faces[SIZE];
 
-	for (int i=0; i < qtdHand; i++){
+	for (int i=0; i < SIZE; i++){
 		faces[i]=hand[i].getFace();
 	}
 
-	selectionSort(faces,qtdHand);
+	selectionSort(faces,SIZE);
 
 	if (
 		 faces[0]==(faces[1]-1) &&
