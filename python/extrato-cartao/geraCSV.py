@@ -20,16 +20,12 @@ def tratar_valor(valor):
     else:
         out_valor='-'+out_valor
     
-    out_valor=out_valor.replace(',','')
-    out_valor=out_valor.replace('.',',')
-    return '"'+out_valor+'"'
+    return out_valor
     pass
 
-
-
 def tratar_data(in_data_lancamento):
-    mes_fatura='11'
-    ano_fatura='2023'
+    mes_fatura='07'
+    ano_fatura='2025'
     mes_lancamento = in_data_lancamento[3:]
 
     ano_lancamento = int(ano_fatura)
@@ -41,16 +37,10 @@ def tratar_data(in_data_lancamento):
 
 def func_categoria(descricao):
     resposta=''
-    if 'LIDER' in descricao:
-        resposta = 'Manutenção AP'
     if 'LIDER' in descricao and 'SUPER' in descricao:
         resposta = 'Manutenção AP'
-    elif 'IFOOD' in descricao:
-        resposta = 'Refeição Marcus'
     elif 'IFOOD *IFOOD' in descricao:
         resposta = 'Refeição Marcus'
-    elif 'UNINASSAU' in descricao:
-        resposta = 'Izabel'
     elif 'FACULDADE COSMOPOLITA' in descricao:
         resposta = 'Izabel'
     elif 'AMAZONPRIMEBR' in descricao:
@@ -69,7 +59,7 @@ def func_categoria(descricao):
         resposta = 'Passeios / Lazer'
     elif 'DOM' in descricao and  'BOSCO' in descricao:
         resposta = 'IDB'
-    elif 'BUTEKO' in descricao in descricao:
+    elif 'BUTEKO' in descricao and  'MALLA' in descricao:
         resposta = 'Passeios / Lazer'
     elif '99' in descricao:
         resposta = 'Taxi'
@@ -81,23 +71,26 @@ def func_categoria(descricao):
         or ('TACACA DO RENATO' in descricao) \
         or ('COSANOSTRA' in descricao) \
         or ('EMPORIO DA PRACA' in descricao) \
-        or ('CEARACARNESESERVI' in descricao) \
         or ('GALETO EXPRESS' in descricao):
         resposta = 'Refeição Marcus'
     return resposta
     pass
 
 def gerar_arquivo():
-    nome_arquivo="2023-11.txt"
-    nome_arquivo_csv="C:\\Users\marcus.william\Developer\github\_dados\\"+nome_arquivo.replace('.txt','')+'.cvs'
-    #nome_arquivo_csv="/home/marcus/Developer/github/_dados/"+nome_arquivo.replace('.txt','')+'.cvs'
+    nome_arquivo="2025-07.txt"
+    #nome_arquivo_csv="D:\\Users\marcus.william\Developer\github\_dados\\"+nome_arquivo.replace('.txt','')+'.cvs'
+    nome_arquivo_csv="/home/marcus/Developer/github/_dados/"+nome_arquivo.replace('.txt','')+'.cvs'
 
+    print(nome_arquivo)
     print(nome_arquivo_csv)
-    
-    
+
     arquivo = open(nome_arquivo, "r")
     arquivo_csv = open(nome_arquivo_csv, "w")
 
+
+    for linha in arquivo:
+        print(linha)
+"""
     for linha in arquivo:
         primeiraletra = linha[0:1]
         if primeiraletra in ('1','2','3','4','5','6','7','8','9','0'):
@@ -136,6 +129,7 @@ def gerar_arquivo():
 
     arquivo.close()
     arquivo_csv.close()
+"""
 
 #------------------------------------------
 #print(tratar_data('02/02'))
