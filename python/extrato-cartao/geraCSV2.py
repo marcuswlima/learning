@@ -70,7 +70,7 @@ def tratar_valor(valor):
     pass
 
 def tratar_data(in_data_lancamento):
-    mes_fatura='09'
+    mes_fatura='10'
     ano_fatura='2025'
     mes_lancamento = in_data_lancamento[3:]
 
@@ -82,7 +82,7 @@ def tratar_data(in_data_lancamento):
     pass
 
 # Nome dos arquivos
-nome_arquivo_origem = "2025-09.txt"
+nome_arquivo_origem = "2025-10.txt"
 nome_arquivo_destino = "saida.txt"
 arquivo_csv = open(nome_arquivo_destino, "w")
 
@@ -114,7 +114,7 @@ for linha in linhas:
         valor=linha[linha.rfind(' ')+1:len(linha)-1]
         valor=valor.strip()
 
-        saldoFatura = saldoFatura + float(valor.replace(",", "."))
+#        saldoFatura = saldoFatura + float(valor.replace(",", "."))
 
         linha=linha.replace(dia_mes,'')
         linha=linha.replace(valor,'')
@@ -131,10 +131,8 @@ for linha in linhas:
                         descricao+'\t'+\
                         categoria+'\t'+\
                         valor+'\t'+ \
-                        dia +'\t' + \
-                        mes +'\t' + \
-                        ano +'\t' + \
                         '\n'
+
 
 #        print(nova_linha, end="")
         arquivo_csv.write(nova_linha)
