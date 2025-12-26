@@ -82,7 +82,7 @@ def tratar_data(in_data_lancamento):
     pass
 
 # Nome dos arquivos
-nome_arquivo_origem = "2025-10.txt"
+nome_arquivo_origem = "2025-11.txt"
 nome_arquivo_destino = "saida.txt"
 arquivo_csv = open(nome_arquivo_destino, "w")
 
