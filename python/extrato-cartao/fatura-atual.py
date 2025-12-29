@@ -1,16 +1,7 @@
-# Lê todas as linhas de um arquivo e copia para outro
-
-def extrair_dia(data_lancamento):
-    return data_lancamento[0:2]
-
-def extrair_mes(data_lancamento):
-    return data_lancamento[3:5]
-
-def extrair_ano(data_lancamento):
-    return data_lancamento[6:10]
-
 def func_categoria(descricao):
     resposta=''
+    descricao = descricao.upper()
+    #print(descricao)
     if 'LIDER' in descricao and 'SUPER' in descricao:
         resposta = 'Manutenção AP'
     elif 'IFOOD *IFOOD' in descricao:
@@ -31,15 +22,20 @@ def func_categoria(descricao):
         resposta = 'Livros'
     elif 'FERREGUETE' in descricao:
         resposta = 'Passeios / Lazer'
+    elif 'DOM' in descricao and  'BOSCO' in descricao:
+        resposta = 'IDB'
     elif 'MERCADINHO BRAZAO' in descricao:
         resposta = 'Passeios / Lazer'
     elif 'BUTEKO' in descricao or 'MALLA' in descricao or 'COMPRE BEM CONVENIEN' in descricao:
         resposta = 'Passeios / Lazer'
     elif '99' in descricao:
         resposta = 'Taxi'
+    elif 'PRO-MUSIC' in descricao:
+        resposta = 'Música'
     elif ('SAN TITO' in descricao) \
         or ('BARONCLUB' in descricao) \
         or ('PICANHADPEDY' in descricao) \
+        or ('RESTAURANTE ROTA' in descricao) \
         or ('ACAI' in descricao) \
         or ('RODRIGODECASTRO' in descricao) \
         or ('CAFEDAGRACA' in descricao) \
@@ -48,6 +44,7 @@ def func_categoria(descricao):
         or ('TACACA DO RENATO' in descricao) \
         or ('COSANOSTRA' in descricao) \
         or ('EMPORIO DA PRACA' in descricao) \
+        or ('MP*RMCANTINA' in descricao) \
         or ('GALETO EXPRESS' in descricao):
         resposta = 'Refeição Marcus'
     return resposta
@@ -69,88 +66,38 @@ def tratar_valor(valor):
     return out_valor
     pass
 
-def tratar_data(in_data_lancamento):
-    mes_fatura='12'
-    ano_fatura='2025'
-    mes_lancamento = in_data_lancamento[3:]
 
-    ano_lancamento = int(ano_fatura)
-    if mes_fatura < mes_lancamento:
-        ano_lancamento = int(ano_fatura)-1
-    
-    return in_data_lancamento + '/' + str(ano_lancamento)
-    pass
-
-# Nome dos arquivos
-nome_arquivo_origem = "2025-12.txt"
+nome_arquivo_origem = "2026-01.txt"
 nome_arquivo_destino = "saida.txt"
 arquivo_csv = open(nome_arquivo_destino, "w")
-
 
 # Abrir arquivo de origem para leitura
 with open(nome_arquivo_origem, "r", encoding="utf-8") as origem:
     linhas = origem.readlines()  # Lê todas as linhas como lista
 
-
-
 ## Iniciar registro
 rLinhas = []  # Lista vazia para armazenar os registros
 
-saldoFatura=0
 for linha in linhas:
-    #print(linha, end="")
+    #print("#####",linha, end="")
+    data_lacamento = linha[0:10]
+    descricao = linha[11:linha.find("US$")-1]
+    categoria = func_categoria(descricao)
+    valor = linha[linha.find("R$")+3:len(linha)]
+    valor = tratar_valor(valor)
+    #print(data_lacamento, descricao, categoria, valor, end="")
+    nova_linha =    data_lacamento+'\t'+\
+                    descricao+'\t'+\
+                    categoria+'\t'+\
+                    valor
 
-    primeiraletra = linha[0:1]
-    if primeiraletra in ('1','2','3','4','5','6','7','8','9','0'):
-        inicio=0
-        if linha[1:2]==' ':
-            inicio=2
-        
-        linha = linha[inicio:]
-
-        dia_mes=linha[0:linha.find(' ')]
-        dia_mes=dia_mes.strip()
-
-        valor=linha[linha.rfind(' ')+1:len(linha)-1]
-        valor=valor.strip()
-
-#        saldoFatura = saldoFatura + float(valor.replace(",", "."))
-
-        linha=linha.replace(dia_mes,'')
-        linha=linha.replace(valor,'')
-        descricao=linha.strip()
-        dia_lancamento=tratar_data(dia_mes)
-        valor=tratar_valor(valor)
-        dia = dia_lancamento[0:2]
-        mes = dia_lancamento[3:5]
-        ano = dia_lancamento[6:10]
-
-        categoria=func_categoria(descricao)
-
-        nova_linha =    dia_lancamento+'\t'+\
-                        descricao+'\t'+\
-                        categoria+'\t'+\
-                        valor+'\t'+ \
-                        '\n'
+    rLinhas.append({"data": data_lacamento, "descricao": descricao, "categoria": categoria, "valor": valor})        
 
 
-#        print(nova_linha, end="")
-        arquivo_csv.write(nova_linha)
-        rLinhas.append({"data": dia_lancamento, "descricao": descricao, "categoria": categoria, "valor": valor, "dia" : dia, "mes" : mes, "ano" : ano})        
+    arquivo_csv.write(nova_linha)
+    print(nova_linha, end="")
 
+#ordenados = sorted(rLinhas, key=lambda r: (r["valor"]))
 
-print(saldoFatura)
-
-ordenados = sorted(rLinhas, key=lambda r: (r["ano"], r["mes"], r["dia"]))
-
-for i, r in enumerate(rLinhas):
-    print(f"{r['data']} {r['descricao']} - {r['categoria']} - {r['valor']}")
-
-
-'''
-ordenados = sorted(rLinhas, key=lambda r: r["dia"])
-
-for i, r in enumerate(ordenados):
-    print(f"{i}: {r['dia']} {r['descricao']} - {r['categoria']} - {r['valor']}")
-
-'''
+#for linha in ordenados:
+    #print(linha)

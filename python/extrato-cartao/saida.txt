@@ -1,146 +1,175 @@
-10/05/2025	AMAZONMKTPLC*TNTINFOCO 06/10		-186.69	
-28/06/2025	AMAZONMKTPLC*DAKARSELL 05/10		-21.96	
-07/07/2025	SHOPPING BELEM 04/10		-89.90	
-11/07/2025	JURUNENSE HOME CENTER 04/10		-24.57	
-14/07/2025	CHILLIBEANS 04/10		-123.99	
-18/09/2025	FACIL CONSTRUIR 02/05		-300.90	
-21/09/2025	ORGANIZZE TE*ORGA 02/12		-19.90	
-02/10/2025	FACIL CONSTRUIR 02/04		-51.10	
-03/10/2025	PG *STUDIO SOL 02/12		-9.90	
-30/10/2025	CENTAURO CE112 01/04		-85.00	
-04/10/2025	99*	Taxi	-12.00	
-04/10/2025	99*	Taxi	-13.10	
-05/10/2025	SR FORNERIA PIZZAS		-52.00	
-06/10/2025	SCP MAIS- OUT/25		-14.25	
-06/10/2025	99*	Taxi	-16.40	
-06/10/2025	99*	Taxi	-524.95	
-06/10/2025	99*	Taxi	524.95	
-07/10/2025	RODRIGODECASTRO	Refeição Marcus	-29.00	
-10/10/2025	ROBERTTAMURRIEL		-32.00	
-11/10/2025	RESTAURANTE ROTA 14		-20.00	
-12/10/2025	LIDER SUPERM E MAGAZIN	Manutenção AP	-85.84	
-12/10/2025	COMPRE BEM CONVENIEN	Passeios / Lazer	-16.00	
-12/10/2025	CHURRASCO DO PRETO DEL		-90.98	
-13/10/2025	L C DA SILVA		-32.98	
-16/10/2025	RODRIGODECASTRO	Refeição Marcus	-27.00	
-17/10/2025	MERCADINHO BRAZAO		-16.50	
-17/10/2025	RESTAURANTE ROTA 14		-23.00	
-19/10/2025	GUERREIROS LANCHES		-51.00	
-20/10/2025	RODRIGODECASTRO	Refeição Marcus	-25.00	
-20/10/2025	MP*CAFEDAGRACA	Refeição Marcus	-9.00	
-20/10/2025	POSTO ITEX LTDA		-52.93	
-20/10/2025	COMPRE BEM CONVENIEN	Passeios / Lazer	-17.00	
-21/10/2025	PDV*FARMACIAPOPULAPARA		-55.92	
-21/10/2025	RODRIGODECASTRO	Refeição Marcus	-25.00	
-21/10/2025	PERNAMBUCO LANCHES		-53.00	
-21/10/2025	EXTRAFARMA MARAMBAIA		-87.49	
-22/10/2025	RODRIGODECASTRO	Refeição Marcus	-25.00	
-23/10/2025	FACIL CONSTRUIR		-97.65	
-23/10/2025	RODRIGODECASTRO	Refeição Marcus	-25.00	
-23/10/2025	MERCADINHO BRAZAO		-15.00	
-24/10/2025	RODRIGODECASTRO	Refeição Marcus	-25.00	
-26/10/2025	ESTHER LANCHES		-48.00	
-26/10/2025	MP*SPALHAFATOS		-54.00	
-26/10/2025	LIDER SUPERM E MAGAZIN	Manutenção AP	-60.98	
-27/10/2025	COMPRE BEM CONVENIEN	Passeios / Lazer	-16.00	
-28/10/2025	BRBARBEARIA		-35.00	
-28/10/2025	RESTAURANTE ROTA 14		-27.00	
-29/10/2025	MP*CAFEDAGRACA	Refeição Marcus	-11.00	
-30/10/2025	MERCADINHO BRAZAO		-15.00	
-30/10/2025	RODRIGODECASTRO	Refeição Marcus	-50.00	
-31/10/2025	CEARACARNESESERVI		-30.00	
-01/11/2024	BUTEKO DOS MALLA S BEL	Passeios / Lazer	-17.00	
-05/11/2024	ANUIDADE DIFERENCIADA 02/12		-0.00	
-05/04/2025	FABIO JOIAS 08/10		-460.00	
-02/05/2025	LIDER SUPERM E MAGAZIN 07/10	Manutenção AP	-109.99	
-06/05/2025	FABIO JOIAS 06/10		-174.60	
-05/01/2025	CIA TERNO-LESCHEMISES 10/10		-76.89	
-13/10/2025	RECARGAPAY*IZABELRAMOS 01/03		-1,967.16	
-13/10/2025	RECARGAPAY*IZABELRAMOS 01/03		-1,062.27	
-16/10/2025	IFD*PIPOCA AMERICANA C	Refeição Marcus	-29.99	
-17/10/2025	UBER* TRIP	Taxi	-6.72	
-17/10/2025	UBER* TRIP	Taxi	-22.94	
-18/10/2025	UBER* TRIP	Taxi	-8.95	
-19/10/2025	UBER* TRIP	Taxi	-7.92	
-20/10/2025	UBER* TRIP	Taxi	-15.92	
-20/10/2025	UBER* TRIP	Taxi	-13.97	
-20/10/2025	UBER* TRIP	Taxi	-14.92	
-20/10/2025	UBER* TRIP	Taxi	-8.96	
-21/10/2025	UBER* TRIP	Taxi	-7.97	
-21/10/2025	UBER* TRIP	Taxi	-11.92	
-21/10/2025	UBER* TRIP	Taxi	-9.90	
-21/10/2025	UBER* TRIP	Taxi	-28.89	
-21/10/2025	UBER* TRIP	Taxi	-6.98	
-22/10/2025	UBER* TRIP	Taxi	-17.95	
-22/10/2025	UBER *TRIP HELP UBER COM	Taxi	-9.44	
-23/10/2025	UBER* TRIP	Taxi	-22.92	
-23/10/2025	UBER* TRIP	Taxi	-8.96	
-23/10/2025	UBER* TRIP	Taxi	-3.53	
-23/10/2025	UBER* TRIP	Taxi	-9.98	
-23/10/2025	UBER* TRIP	Taxi	-27.08	
-23/10/2025	UBER* TRIP	Taxi	-7.94	
-23/10/2025	UBER * PENDING	Taxi	-11.92	
-24/10/2025	UBER* TRIP	Taxi	-15.95	
-24/10/2025	UBER* TRIP	Taxi	-10.92	
-24/10/2025	UBER* TRIP	Taxi	-16.99	
-26/10/2025	UBER* TRIP	Taxi	-11.92	
-26/10/2025	UBER* TRIP	Taxi	-7.91	
-26/10/2025	AMAZON DIGITAL BR		-62.00	
-27/10/2025	UBER* TRIP	Taxi	-6.96	
-27/10/2025	UBER * PENDING	Taxi	-7.93	
-28/10/2025	UBER* TRIP	Taxi	-6.96	
-29/10/2025	UBER * PENDING	Taxi	-13.99	
-29/10/2025	UBER* TRIP	Taxi	-10.96	
-29/10/2025	UBER* TRIP	Taxi	-18.93	
-30/10/2025	UBER* TRIP	Taxi	-10.94	
-30/10/2025	UBER* TRIP	Taxi	-13.91	
-31/10/2025	UBER* TRIP	Taxi	-6.33	
-31/10/2025	UBER * PENDING	Taxi	-12.94	
-31/10/2025	UBER* TRIP	Taxi	-15.97	
-31/10/2025	UBER* TRIP	Taxi	-21.94	
-31/10/2025	UBER * PENDING	Taxi	-7.96	
-01/11/2024	UBER* TRIP	Taxi	-7.94	
-01/11/2024	UBER * PENDING	Taxi	-7.95	
-03/11/2024	UBER* TRIP	Taxi	-9.94	
-03/11/2024	UBER * PENDING	Taxi	-6.95	
-03/06/2025	OUROBRAS COMERCIO DE 06/12		-408.33	
-10/06/2025	LAYRA ROSA ESTETICA 05/06		-480.00	
-13/06/2025	ANEWS BOULEVARD 05/05		-193.80	
-17/06/2025	LAYRA ROSA ESTETICA 05/06		-690.00	
-18/06/2025	OUROBRAS COMERCIO DE 05/12		-408.33	
-20/06/2025	JURUNENSE HOME CENTER 05/10		-105.47	
-31/07/2025	LACOSTE PATIO 04/06		-254.50	
-11/08/2025	RECARGAPAY*IZABELRAMOS 03/06		-1,034.94	
-11/08/2025	RECARGAPAY*IZABELRAMOS 03/06		-1,034.94	
-04/09/2025	LIDER SUPERM E MAGAZIN 02/02	Manutenção AP	-35.37	
-19/09/2025	PRECO BAIXO 02/02		-35.32	
-20/09/2025	LIDER SUPERM E MAGAZIN 02/02	Manutenção AP	-45.83	
-29/09/2025	BEL COSMETICOS 02/02		-69.39	
-30/09/2025	LAYRA ROSA ESTETICA 02/04		-325.00	
-03/10/2025	GURIA TECIDOS 02/02		-65.25	
-06/10/2025	LIDER SUPERM E MAGAZIN 01/02	Manutenção AP	-42.93	
-08/10/2025	RAIA DROGASIL SA 01/03		-63.98	
-16/10/2025	LIDER SUPERM E MAGAZIN 01/02	Manutenção AP	-49.62	
-17/10/2025	LIDER SUPERM E MAGAZIN 01/02	Manutenção AP	-90.95	
-18/10/2025	LASA 01/10		-109.90	
-18/10/2025	BEL COSMETICOS 01/02		-58.90	
-21/10/2025	KAROL PREMIUM 01/02		-75.00	
-23/10/2025	PFMCOMERCIALLTDA 01/02		-37.50	
-23/10/2025	FABIO JOIAS 01/02		-64.50	
-24/10/2025	BSC SUPERBELA 01/02		-36.90	
-28/10/2025	EXTRA FARMA 7420 01/02		-145.18	
-01/11/2024	ANEWS BOULEVARD 01/05		-109.80	
-01/11/2024	RIACHUELO FILIAL 149 01/02		-70.00	
-08/10/2025	LIDER SUPERM E MAGAZIN	Manutenção AP	-79.57	
-21/10/2025	KSB ELETRONICA		-8.00	
-21/10/2025	SUPERMERCADO LIDER	Manutenção AP	-20.88	
-22/10/2025	BEL COSMETICOS		-10.00	
-22/10/2025	BELFAST RESTAURANTE LTDA		-41.90	
-22/10/2025	LIDER SUPERM E MAGAZIN	Manutenção AP	-37.76	
-23/10/2025	SUPERMERCADO LIDER	Manutenção AP	-21.80	
-28/10/2025	LIDER SUPERM E MAGAZIN	Manutenção AP	-34.57	
-30/10/2025	LIDER SUPERM E MAGAZIN	Manutenção AP	-20.58	
-31/10/2025	BCP LANCHONETES LTDA		-21.90	
-01/11/2024	JJ COMERCIO VAREJISTA		-89.90	
-02/11/2024	BUTEKO DOS MALLA S BEL	Passeios / Lazer	-89.00	
-03/11/2024	SCP ESSENCIAL- NOV/25		-9.99	
+19/12/2025	Hotel At Booking.Com		-1111,00
+21/12/2025	Mp*Meireles		-10,00
+21/12/2025	Mp*Sucosebolos		-10,00
+15/12/2025	Mp*Rmcantina	Refeição Marcus	-10,00
+05/12/2025	Mp*Rmcantina	Refeição Marcus	-10,00
+04/12/2025	Mp*Rmcantina	Refeição Marcus	-10,00
+21/12/2025	Uber * Pending	Taxi	-10,94
+09/12/2025	Uber * Pending	Taxi	-10,94
+10/12/2025	Uber *Trip Help.Uber.Com	Taxi	-10,97
+15/12/2025	Cemaza-Instituto De (01/04)		-100,42
+07/12/2025	Casa Do Fauno		-102,30
+17/12/2025	Chillibeansloja (01/10)		-103,07
+19/12/2025	Mp*Cafedagraca	Refeição Marcus	-11,00
+06/12/2025	Compre Bem Convenien	Passeios / Lazer	-11,00
+06/12/2025	Uber *Trip Help.Uber.Com	Taxi	-11,00
+15/12/2025	Uber * Pending	Taxi	-11,93
+09/12/2025	Uber * Pending	Taxi	-11,94
+26/12/2025	Uber * Pending	Taxi	-11,95
+14/12/2025	Uber * Pending	Taxi	-11,95
+27/11/2025	Pro-Music (02/06)	Música	-114,35
+08/12/2025	Lider Superm E Magazin	Manutenção AP	-117,30
+21/12/2025	Mp*Leidiane		-12,00
+19/12/2025	Uber * Pending	Taxi	-12,95
+06/12/2025	Uber * Pending	Taxi	-12,95
+23/12/2025	Uber *Trip Help,Uber.Com	Taxi	-12,96
+22/12/2025	Uber * Pending	Taxi	-12,96
+18/12/2025	Uber * Pending	Taxi	-12,96
+11/12/2025	Uber * Pending	Taxi	-12,96
+07/12/2025	Uber * Pending	Taxi	-12,96
+05/12/2025	Uber* Trip	Taxi	-12,96
+07/12/2025	Uber * Pending	Taxi	-13,94
+15/12/2025	Uber *Trip Help.Uber.Com	Taxi	-13,95
+12/12/2025	Uber * Pending	Taxi	-13,95
+10/12/2025	Uber * Pending	Taxi	-13,95
+11/12/2025	Uber * Pending	Taxi	-13,96
+23/12/2025	Havan Belem (01/02)		-131,48
+27/12/2025	Uber * Pending	Taxi	-14,94
+13/12/2025	Uber * Pending	Taxi	-14,94
+05/12/2025	Uber* Trip	Taxi	-14,95
+08/11/2025	Pro-Music (02/10)	Música	-143,00
+16/12/2025	Mercadinho Brazao	Passeios / Lazer	-15,00
+11/12/2025	Mercadinho Brazao	Passeios / Lazer	-15,00
+09/12/2025	Mercadinho Brazao	Passeios / Lazer	-15,00
+19/12/2025	Uber * Pending	Taxi	-15,91
+21/12/2025	Uber * Pending	Taxi	-15,93
+06/12/2025	Uber * Pending	Taxi	-15,94
+27/12/2025	Uber * Pending	Taxi	-15,95
+22/12/2025	Uber * Pending	Taxi	-15,95
+16/11/2025	Adcos (02/02)		-150,00
+26/12/2025	Compre Bem Convenien	Passeios / Lazer	-16,00
+18/12/2025	Compre Bem Convenien	Passeios / Lazer	-16,00
+20/12/2025	Olsondasilvafreit		-16,50
+12/12/2025	Uber * Pending	Taxi	-16,93
+11/12/2025	Uber * Pending	Taxi	-16,95
+11/12/2025	Uber * Pending	Taxi	-16,95
+04/12/2025	Uber *Trip Help,Uber.Com	Taxi	-16,96
+23/12/2025	Lider Superm E Magaz(01/02)	Manutenção AP	-163,71
+14/12/2025	Bf-Boulevard Belem 2(01/05)		-167,96
+24/12/2025	Top Internacional (01/05)		-168,76
+14/12/2025	Buteko Dos Malla S Bel	Passeios / Lazer	-17,00
+05/12/2025	Buteko Dos Malla S Bel	Passeios / Lazer	-17,00
+23/12/2025	Uber * Pending	Taxi	-17,94
+20/12/2025	Uber * Pending	Taxi	-17,94
+18/12/2025	Uber * Pending	Taxi	-17,94
+13/12/2025	Uber * Pending	Taxi	-17,94
+26/12/2025	Otica Americana (01/04)		-175,00
+21/12/2025	Sushi Boulevard Duque		-18,56
+11/12/2025	Lider Superm E Magazin	Manutenção AP	-18,80
+10/12/2025	Uber *Trip Help.Uber.Com	Taxi	-18,95
+21/12/2025	Uber *Trip Help.Uber.Com	Taxi	-18,96
+13/12/2025	Uber * Pending	Taxi	-18,96
+27/12/2025	Uber *Trip Help.Uber.Com	Taxi	-18,97
+20/12/2025	Sushi Boulevard		-185,60
+18/11/2025	Adcos (02/06)		-188,85
+23/12/2025	Compre Bem Convenien	Passeios / Lazer	-19,00
+18/12/2025	Jim.Com Requinte Cafeteri		-19,00
+16/12/2025	Compre Bem Convenien	Passeios / Lazer	-19,00
+04/12/2025	Uber * Pending	Taxi	-19,94
+05/12/2025	Uber * Pending	Taxi	-19,95
+27/11/2025	Anews Boulevard (02/03)		-199,48
+27/12/2025	Quintal Da Rizzo		-199,90
+07/12/2025	Buteko Dos Malla S Bel	Passeios / Lazer	-20,00
+23/12/2025	Uber * Pending	Taxi	-20,95
+13/12/2025	Jj Comercio Varejist(01/02)		-205,00
+06/11/2025	Pro-Music (02/02)	Música	-219,00
+27/12/2025	Jim,Com 54644608 Fernando		-22,00
+18/12/2025	Mp*Noberto		-22,61
+27/11/2025	Top Internacional (02/04)		-222,04
+12/12/2025	Jj Comercio Varejist(01/06)		-224,90
+05/12/2025	Leilacostasilva		-23,00
+24/12/2025	Uber * Pending	Taxi	-24,94
+16/11/2025	Cappta *R V Da Silva(02/02)		-249,50
+23/12/2025	Rodrigodecastro	Refeição Marcus	-25,00
+22/12/2025	Rodrigodecastro	Refeição Marcus	-25,00
+16/12/2025	Rodrigodecastro	Refeição Marcus	-25,00
+11/12/2025	Rodrigodecastro	Refeição Marcus	-25,00
+05/12/2025	Rodrigodecastro	Refeição Marcus	-25,00
+05/12/2025	Uber * Pending	Taxi	-25,96
+13/12/2025	Restaurante Rota 14	Refeição Marcus	-27,00
+17/12/2025	Htm*Cidao Music Tab		-27,00
+19/12/2025	Uber * Pending	Taxi	-27,95
+22/12/2025	Cafe Rainha		-28,60
+17/12/2025	Uber * Pending	Taxi	-28,94
+06/12/2025	Bmb*Equatorial		-286,51
+15/12/2025	Guria Tecidos		-29,50
+15/12/2025	Uber * Pending	Taxi	-29,95
+10/12/2025	Uber * Pending	Taxi	-29,95
+12/11/2025	Fabio Joias (02/02)		-290,00
+20/12/2025	Cafe Rainha		-30,80
+04/12/2025	Belogrill		-32,00
+20/12/2025	Uber * Pending	Taxi	-32,95
+09/12/2025	Belogrill		-33,00
+20/12/2025	Uber *Trip Help.Uber.Com	Taxi	-34,00
+04/12/2025	Cairu		-36,00
+06/12/2025	Buteko Dos Malla S Bel	Passeios / Lazer	-37,50
+20/12/2025	Uber *Trip Help.Uber.Com	Taxi	-38,10
+20/12/2025	Uber * Pending	Taxi	-4,82
+08/12/2025	Cafe Rainha		-40,70
+17/12/2025	Keila Monteiro (01/02)		-400,00
+05/12/2025	Gramophone Cafe		-416,90
+26/12/2025	Lider Superm E Magaz(01/02)	Manutenção AP	-42,42
+07/12/2025	Buteko Dos Malla S Bel	Passeios / Lazer	-44,00
+06/12/2025	Cafe Rainha		-49,50
+29/11/2025	Magalu Fl 1365 (02/10)		-49,90
+13/12/2025	Uber * Pending	Taxi	-5,58
+28/11/2025	Mercadolivre*Mercado(02/06)		-50,43
+23/12/2025	Cafe Rainha		-55,00
+05/12/2025	Lb Shop Belem (01/02)		-57,48
+18/11/2025	Guria Tecidos (02/02)		-59,00
+11/12/2025	Lider Superm E Magazin	Manutenção AP	-6,78
+13/11/2025	Guria Tecidos (02/02)		-61,93
+20/11/2025	Hna (02/02)		-62,44
+22/11/2025	Riachuelo Filial 149(02/03)		-66,66
+17/12/2025	Uber * Pending	Taxi	-7,94
+08/12/2025	Uber *Trip Help,Uber,Com	Taxi	-7,94
+26/12/2025	Uber * Pending	Taxi	-7,95
+18/12/2025	Uber * Pending	Taxi	-7,95
+16/12/2025	Uber * Pending	Taxi	-7,96
+13/12/2025	Uber * Pending	Taxi	-7,96
+08/12/2025	Uber * Pending	Taxi	-7,96
+16/12/2025	Keila Monteiro (01/02)		-700,00
+16/12/2025	Keila Monteiro (01/02)		-725,00
+09/12/2025	Magalu Fl 1365 (01/02)		-79,95
+25/11/2025	Lojas Renner Fl 351 (02/03)		-79,98
+21/12/2025	Uber * Pending	Taxi	-8,90
+22/12/2025	Uber * Pending	Taxi	-8,92
+13/12/2025	Uber * Pending	Taxi	-8,93
+13/12/2025	Uber * Pending	Taxi	-8,94
+04/12/2025	Uber* Trip	Taxi	-8,94
+27/12/2025	Uber * Pending	Taxi	-8,95
+20/12/2025	Uber * Pending	Taxi	-8,95
+15/12/2025	Uber *Trip Help,Uber,Com	Taxi	-8,95
+06/12/2025	Uber * Pending	Taxi	-8,95
+22/12/2025	Uber * Pending	Taxi	-8,96
+08/12/2025	Uber * Pending	Taxi	-8,96
+07/12/2025	Uber * Pending	Taxi	-8,96
+22/12/2025	Zp*Daiso Patio Be		-81,95
+12/12/2025	Guria Tecidos (01/03)		-83,43
+13/12/2025	Bf-Boulevard Belem 2(01/02)		-87,96
+27/12/2025	Uber * Pending	Taxi	-9,94
+19/12/2025	Uber * Pending	Taxi	-9,94
+16/12/2025	Uber * Pending	Taxi	-9,94
+05/12/2025	Uber * Pending	Taxi	-9,94
+06/12/2025	Uber * Pending	Taxi	-9,96
+10/12/2025	Mp*Toctocdononat		-93,50
+10/12/2025	Drogasil 3394 (01/02)		-93,67
+18/11/2025	169 Bf Belem (02/05)		-96,00
+17/12/2025	Htm*Cidao Music Tab		-97,00
+04/12/2025	Di Santinni		-99,99
+27/11/2025	Pro-Music	Música	0,02
+27/11/2025	Top Internacional		0,02
+27/11/2025	Anews Boulevard		0,02
+25/11/2025	Lojas Renner Fl 351		0,02
+18/11/2025	169 Bf Belem		0,02
+18/11/2025	Adcos		0,02
