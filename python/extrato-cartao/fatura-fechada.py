@@ -70,7 +70,7 @@ def tratar_valor(valor):
     pass
 
 def tratar_data(in_data_lancamento):
-    mes_fatura='01'
+    mes_fatura='02'
     ano_fatura='2026'
     mes_lancamento = in_data_lancamento[3:]
 
