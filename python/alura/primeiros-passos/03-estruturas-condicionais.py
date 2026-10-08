@@ -5,7 +5,7 @@ Autor: Marcus William
 Data: 03/10/2026
 """
 
-def um()-> none:
+def um()-> None:
 
 
     """
@@ -18,12 +18,6 @@ def um()-> none:
     Returns:
     """
 
-    with arquivo.open("r", encoding="utf-8") as f:
-        return sum(1 for _ in f)
-
-    print("***********************")
-    print("*** um")
-    print("***********************")
     n1 = float(input('Primeiro Numero: '))
     n2 = float(input('Segundo Numero: '))
     if n1 > n2:
