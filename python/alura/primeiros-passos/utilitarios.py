@@ -1,7 +1,13 @@
 # ==================================================
+# is_inteiro()
+# ==================================================
+def is_inteiro(numero: float) -> bool:
+    return numero % 1 == 0
+
+# ==================================================
 # is_par()
 # ==================================================
-def is_par(numero: int) -> bool:
+def is_par(numero: float) -> bool:
     return numero % 2 == 0
 
 # ==================================================
@@ -30,7 +36,7 @@ def indicar_maior_numero(n1 , n2, n3) -> int:
 # obter_float()
 # ==================================================
 def obter_float(mensagem) -> float:
-    digitado = input(mensagem)
+    digitado = input(mensagem+': ')
     return float(digitado.replace(',','.'))
 
 # ==================================================
@@ -41,10 +47,10 @@ def obter_int(mensagem) -> int:
     Solicita um caractere ao usuário até que seja informada um numero.
     """
     while True:
-        caractere = input(mensagem)
+        caractere = input(mensagem+': ')
 
         if caractere.isnumeric():
-            return caractere
+            return int(caractere)
 
         print("Erro: informe apenas numeros.")
 
