@@ -1,4 +1,22 @@
 # ==================================================
+# eh_primo()
+# ==================================================
+def is_primo(numero: float) -> bool:
+
+    eh_primo=True
+
+    if numero <= 1:
+        eh_primo=False
+    else:
+        for i in range(2,numero):
+            if numero % i == 0:
+                eh_primo=False
+                break
+
+    return eh_primo
+
+
+# ==================================================
 # is_inteiro()
 # ==================================================
 def is_inteiro(numero: float) -> bool:
@@ -40,6 +58,17 @@ def obter_float(mensagem) -> float:
     return float(digitado.replace(',','.'))
 
 # ==================================================
+# obter_float_positivi()
+# ==================================================
+def obter_float_positivito(mensagem) -> float:
+    while True:
+        digitado = obter_float(mensagem)
+        if digitado >= 1:
+            return digitado
+
+        print("Erro: informe apenas valores positivos.")
+
+# ==================================================
 # obter_int()
 # ==================================================
 def obter_int(mensagem) -> int:
@@ -55,15 +84,31 @@ def obter_int(mensagem) -> int:
         print("Erro: informe apenas numeros.")
 
 # ==================================================
+# obter_int_positivo()
+# ==================================================
+def obter_int_positivo(mensagem) -> int:
+    """
+    Solicita um caractere ao usuário até que seja informada um numero e positivo.
+    """
+    while True:
+        numero = obter_int(mensagem)
+
+        if numero > 0:
+            return numero
+
+        print("Erro: informe apenas numeros positivos.")
+
+
+# ==================================================
 # obter_uma_letra()
 # ==================================================
-def obter_uma_letra() -> str:
+def obter_uma_letra(mensagem) -> str:
     """
     Solicita um caractere ao usuário até que seja informada uma letra.
     """
 
     while True:
-        caractere = input("Informe uma letra: ")
+        caractere = input(mensagem+': ')
 
         if len(caractere) == 1 and caractere.isalpha():
             return caractere
@@ -111,6 +156,9 @@ def escrever_linha(tamanho_texto) -> None:
 # titulo
 # ==================================================
 def titulo(mensagem) -> None:
+    """
+    Escrever um título
+    """
     escrever_linha(len(mensagem))
     print("**",mensagem, "**")
     escrever_linha(len(mensagem))

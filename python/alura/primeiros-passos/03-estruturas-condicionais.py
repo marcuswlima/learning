@@ -21,6 +21,9 @@ def treze()-> None:
         - Para variação entre 2% e 20%: pequena bonificação para time de vendas.
         - Para variação entre 2% e -10%: planejamento de políticas de incentivo às vendas.
         - Para variação abaixo de -10%: corte de gastos.
+    Args:
+
+    Returns:
     """
     utl.titulo('Projeto 13')
 
