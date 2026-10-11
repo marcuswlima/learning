@@ -1,4 +1,7 @@
-import utilitarios as utl
+# ==================================================
+# Importacoes
+# ==================================================
+from utilitarios import titulo, is_primo, obter_int_positivo, obter_int, is_par, obter_uma_letra, obter_float_positivito
 from typing import Final
 
 
@@ -20,7 +23,7 @@ def quinze()->None:
     média de idade de cada setor, a idade média geral entre todos os setores e quantas 
     pessoas estão acima da idade média geral.
     """
-    utl.titulo('programa quinze')
+    titulo('programa quinze')
 
     idades = {'Setor A': [22, 26, 30, 30, 35, 38, 40, 56, 57, 65],
               'Setor B': [22, 24, 26, 33, 41, 49, 50, 54, 60, 64],
@@ -61,7 +64,7 @@ def quatorze()->None:
     Escreva um código para calcular a média de espécies por área e identificar a área 
     com a maior diversidade biológica. Dica: use as funções built-in sum() e len().
     """
-    utl.titulo('programa quatorze')
+    titulo('programa quatorze')
 
     dados = {'Área Norte': [2819, 7236],
              'Área Leste': [1440, 9492],
@@ -147,7 +150,7 @@ def treze()->None:
     receberam o abono mínimo e qual o maior valor de abono fornecido.
     """
 
-    utl.titulo('programa treze')
+    titulo('programa treze')
 
     dic_abonos = {} # Dicionário de abonos
     salarios = [1172, 1644, 2617, 5130, 5532, 6341, 6650, 7238, 7685, 7782, 7903,30]
@@ -200,6 +203,7 @@ def doze()->None:
     '''
     Adapte os dados fornecidos para uma estrutura de dicionário. A partir dele, informe o design vencedor e a porcentagem de votos recebidos.
     """
+    titulo('programa doze')
 
     votos={'1':1334,'2':982,'3':1751,'4':210,'5':1811}
 
@@ -228,7 +232,7 @@ def onze()->None:
     {'Produto A': 300, 'Produto B': 80 , 'Produto C': 60,'Produto D': 200, 'Produto E': 250, 'Produto F': 30}
     Escreva um código que calcule o total de vendas e o produto mais vendido.
     """
-    utl.titulo('programa onze')
+    titulo('programa onze')
 
     vendas={'Produto A': 300, 'Produto B': 80 , 'Produto C': 60,'Produto D': 200, 'Produto E': 250, 'Produto F': 30}
 
@@ -261,13 +265,13 @@ def dez()->None:
     Depois, calcule a média anual das temperaturas e mostre todas as temperaturas acima da média anual e em 
     que mês elas ocorreram, mostrando os meses por extenso (Janeiro, Fevereiro, etc.).
     """
-    utl.titulo('programa dez')
+    titulo('programa dez')
 
     meses=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']
     temperaturas=[]
 
     for i in range(0,12):
-        temperaturas.append(utl.obter_float_positivito(f'Informe para o mes de {meses[i]}'))
+        temperaturas.append(obter_float_positivito(f'Informe para o mes de {meses[i]}'))
     
     media_temperatira = sum(temperaturas) / len(temperaturas)
 
@@ -295,13 +299,13 @@ def nove()->None:
     resposta desse(a) aluno(a) para cada questão e é preciso verificar se a resposta foi igual ao gabarito. Cada questão 
     vale um ponto e existem as alternativas A, B, C ou D.
     """
-    utl.titulo('programa nove')
+    titulo('programa nove')
     gabarito = ['D', 'A', 'C', 'B', 'A', 'D', 'C', 'C', 'A', 'B']
     respostas = []
     nota=0
 
     for i in range(0,10):
-        respostas.append(utl.obter_uma_letra(f'Informe a {i+1}° resposa').upper())
+        respostas.append(obter_uma_letra(f'Informe a {i+1}° resposa').upper())
 
     print(gabarito)
     print(respostas)
@@ -323,18 +327,18 @@ def oito()->None:
     inteiros sabendo que os produtos com ID par são doces e os com ID ímpar são amargos. Monte um código 
     que colete 10 IDs. Depois, calcule e mostre a quantidade de produtos doces e amargos.
     """
-    utl.titulo('programa oito')
+    titulo('programa oito')
 
     ids=[]
     doces=0
     amargos=0
 
     for i in range(1,11):
-        ids.append(utl.obter_int(f'Digite o {i}° ID'))
+        ids.append(obter_int(f'Digite o {i}° ID'))
 
     for id in ids:
         print(id)
-        if utl.is_par(id):
+        if is_par(id):
             doces += 1
         else:
             amargos += 1
@@ -354,7 +358,7 @@ def sete()->None:
     cada dia com o número de bactérias do dia anterior. Dica: para calcular o percentual de crescimento usamos a seguinte equação: 
         100 * (amostra_atual - amostra_passada) / (amostra_passada).
     """
-    utl.titulo('programa sete')
+    titulo('programa sete')
 
     amostras=[1.2, 2.1, 3.3, 5.0, 7.8, 11.3, 16.6, 25.1, 37.8, 56.9]
 
@@ -392,13 +396,13 @@ def seis()->None:
     """
     6) Escreva um programa que peça uma data informando o dia, mês e ano e determine se ela é válida para uma análise.
     """
-    utl.titulo('programa 06')
+    titulo('programa 06')
 
     bEhValido=True
     
-    dia = utl.obter_int_positivo('Informe o dia')
-    mes = utl.obter_int_positivo('Informe o mes')
-    ano = utl.obter_int_positivo('Informe o ano')
+    dia = obter_int_positivo('Informe o dia')
+    mes = obter_int_positivo('Informe o mes')
+    ano = obter_int_positivo('Informe o ano')
 
     if mes == 2:
         if ano % 4 == 0 and ( ano % 400 ==0 or ano % 100 != 0):
@@ -429,7 +433,7 @@ def cinco()->None:
     """
     5) Faça um programa que, ao inserir um número qualquer, cria uma lista contendo todos os números primos entre 1 e o número digitado.
     """
-    utl.titulo('programa 05')
+    titulo('programa 05')
 
     primos=[]
 
@@ -437,7 +441,7 @@ def cinco()->None:
 
     for i in range(1,numero):
         #print(i)
-        if utl.is_primo(i):
+        if is_primo(i):
             primos.append(i)
 
     print(primos)
@@ -449,7 +453,7 @@ def quatro()->None:
     """
     4) Colete novamente 5 inteiros e imprima a lista em ordem inversa à enviada.
     """
-    utl.titulo('programa 04')
+    titulo('programa 04')
 
     lista=[]
 
@@ -467,7 +471,7 @@ def tres()->None:
     """
     3) Faça um código que colete em uma lista 5 números inteiros quaisquer e imprima a lista. 
     """
-    utl.titulo('programa 03')
+    titulo('programa 03')
 
     lista=[]
 
@@ -485,7 +489,7 @@ def dois()->None:
     2) Com os mesmos dados da questão anterior, defina quantas compras foram realizadas acima de 3000 
     reais e calcule a porcentagem quanto ao total de compras.
     """
-    utl.titulo('programa 02')
+    titulo('programa 02')
     VALOR_30_MIL : Final[int] = 3000
 
     gastos=[2172.54, 3701.35, 3518.09, 3456.61, 3249.38, 2840.82, 3891.45, 3075.26, 2317.64, 3219.08, 3, 40000.01]
@@ -518,7 +522,7 @@ def um()->None:
     3075.26, 2317.64, 3219.08]. Com esses valores, faça um programa que calcule a média de gastos. 
     Dica: use as funções built-in sum() e len().
     """
-    utl.titulo('programa 01')
+    titulo('programa 01')
     gastos=[2172.54, 3701.35, 3518.09, 3456.61, 3249.38, 2840.82, 3891.45, 3075.26, 2317.64, 3219.08]
 
     soma_gostos=sum(gastos)
@@ -535,7 +539,7 @@ def um()->None:
 # exibir_menu
 # ==================================================
 def exibir_menu()-> None:
-    utl.titulo('MENU PRINCIPAL')
+    titulo('MENU PRINCIPAL')
     print("1 - um")
     print("2 - dois")
     print("3 - Tres")
