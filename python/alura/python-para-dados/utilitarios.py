@@ -1,3 +1,5 @@
+from random import randrange, choice
+from operator import itemgetter
 
 """
 # Documentação do módulo utilitarios.py
@@ -27,7 +29,115 @@ is_primo(numero: float) -> bool
 ```
 """
 
-from operator import itemgetter
+
+NOMES = (
+    "Marcus",
+    "João",
+    "Maria",
+    "Ana",
+    "Carlos",
+    "Pedro",
+    "José",
+    "Paulo",
+    "Luciana",
+    "Fernanda",
+    "Izabel"
+)
+
+SOBRENOMES = (
+    "Silva",
+    "Santos",
+    "Oliveira",
+    "Souza",
+    "Costa",
+    "Lima",
+    "Pereira",
+    "Ferreira",
+    "Rodrigues",
+    "Almeida",
+    "Ramos"
+)
+
+# ==================================================
+# gerar_nome()
+# ==================================================
+def gerar_nome() -> str:
+    """
+    Gera um nome completo aleatório.
+    """
+    return f"{choice(NOMES)} {choice(SOBRENOMES)}"
+
+# ==================================================
+# gerar_tupla_com_inteiros()
+# ==================================================
+def gerar_tupla_com_inteiros(in_start:int, in_stop:int, in_quantidade:int)->tuple:
+    """
+    Gera uma tupla com numeros inteiros
+
+    Args:
+        in_start:
+            Inicio da faixa de valores válidos 
+
+        in_stop:
+            Fim da faixa de valores válidos 
+
+        in_quantidade:
+            quantidade de mumeros gerados
+    Returns:
+        tuple
+    """
+    lista=[]
+    for i in range(in_quantidade):
+        lista.append(randrange(in_start,in_stop))
+
+    return tuple(lista)
+
+# ==================================================
+# gerar_tupla_com_decimais()
+# ==================================================
+def gerar_tupla_com_decimais(in_start:int, in_stop:int, in_quantidade:int)->tuple:
+    """
+    Gera uma tupla com numeros com decimais
+
+    Args:
+        in_start:
+            Inicio da faixa de valores válidos 
+
+        in_stop:
+            Fim da faixa de valores válidos 
+
+        in_quantidade:
+            quantidade de mumeros gerados
+    Returns:
+        tuple
+    """
+    lista=list(gerar_tupla_com_inteiros(in_start, in_stop, in_quantidade))
+    for i in range(len(lista)):
+        decimal=randrange(100)
+        lista[i] += round((decimal/100),2)
+
+    return tuple(lista)
+
+# ==================================================
+# imprimir_tabuada()
+# ==================================================
+def imprimir_tabuada(numero:int)->None:
+    """
+    Imprime a tabuada do numero gerado na tela
+
+    Args:
+        numero:
+            Número para gerar a tabuada
+
+    Returns:
+        Nones
+    """
+    print(f"Tabuada de {numero}:")
+
+    for i in range(11):
+        if i==0:
+            continue
+        print(f'{numero} x {i} = {numero*i}')
 
 
 # ==================================================
@@ -127,10 +237,10 @@ def obter_uma_letra(mensagem: str) -> str:
 
 
 # ==================================================
-# dicio_ordernado_por_valor()
+# ordernar_dicit_por_valor()
 # ==================================================
-def dicio_ordernado_por_valor(in_dicio: dict, in_reverse=False):
-    """dicio_ordernado_por_valor
+def ordernar_dicit_por_valor(in_dicio: dict, in_reverse=False):
+    """ordernar_dicit_por_valor
 
     Returns a new dictionary sorted by value.
     If in_reverse=False then from minor to major, otherwise
@@ -144,9 +254,9 @@ def dicio_ordernado_por_valor(in_dicio: dict, in_reverse=False):
     return out_dicio
 
 # ==================================================
-# imc()
+# calcular_imc()
 # ==================================================
-def imc(peso:int, altura:int) -> float:
+def calcular_imc(peso:int, altura:int) -> float:
     """Prove o IMC
     
     imc em função do peso e da altura
@@ -163,11 +273,17 @@ def escrever_linha(tamanho_texto:int) -> None:
     print("***")
 
 # ==================================================
-# titulo
+# imprimir_titulo
 # ==================================================
-def titulo(mensagem:str) -> None:
+def imprimir_titulo(mensagem:str) -> None:
     """
-    Escrever um título
+    Imprimir um título na tela
+
+    Args:
+        mensagem: Mensagem que será exibida na título
+
+    Returns:
+        None
     """
     escrever_linha(len(mensagem))
     print("**",mensagem, "**")
@@ -176,7 +292,7 @@ def titulo(mensagem:str) -> None:
 # ==================================================
 # int2str
 # ==================================================
-def int2str(inteiro:int) -> str:
+def transformar_int_to_str(inteiro:int) -> str:
     return str(inteiro).ljust(4,' ')
 
 # ==================================================

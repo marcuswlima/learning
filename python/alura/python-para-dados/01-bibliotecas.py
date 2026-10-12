@@ -1,8 +1,18 @@
 from math import sqrt, pi
-from random import choice, randrange
-from utilitarios import titulo, obter_int_positivo, obter_float_positivo
+
+from random import choice,\
+                   randrange
+
+from utilitarios import imprimir_titulo,\
+                        obter_int_positivo,\
+                        obter_float_positivo,\
+                        gerar_lista_com_numeros_aleratorio
+
 from typing import Final
-import numpy as utl
+
+# ==================================================
+# Variaveis
+# ==================================================
 
 
 # ==================================================
@@ -16,12 +26,12 @@ def dez()->None:
         Dica: use a variável pi e o método pow() da biblioteca math. O cálculo da área de um 
         círculo é de: A = π*r^2 (lê-se pi vezes raio ao quadrado).
     """
-    titulo('Execício Dez')
+    imprimir_titulo('Execício Dez')
     VALOR_M2 : Final[int] = 25
     
     raio = obter_float_positivo('Informe o raio do jardin')
-    area_circulo = pi * pow(raio,2)
-    valor_pargamento = area_circulo * VALOR_M2
+    area_circulo = round(pi * pow(raio,2),2)
+    valor_pargamento = round(area_circulo * VALOR_M2,2)
 
     print(f'Area do círculo: {area_circulo}')
     print(f'Valor pagaento : R${valor_pargamento}')
@@ -38,7 +48,7 @@ def nove()->None:
 
     No final, informe quais números possuem raízes inteiras e seus respectivos valores.
     """
-    titulo('Programa Nove')
+    imprimir_titulo('Programa Nove')
 
     numeros = (2, 8, 15, 23, 91, 112, 256, 500, 25, 4, 5, 16)
     raises = []
@@ -46,10 +56,12 @@ def nove()->None:
 
     for numero in numeros:
         raises.append(sqrt(numero))
+    else:
+        print('Calculou as raizes')
 
-    for i in range(len(raises)):
-        if raises[i]//1 == raises[i] :
-            numeros_com_raiz_inteira.append(numeros[i])
+    numeros_com_raiz_inteira = list(
+        filter(lambda n: n // 1 == n, raises)
+    )
 
     print(numeros)
     print(raises)
@@ -70,7 +82,7 @@ def oito()->None:
                  "manga", "coco", "melancia", "mamão",
                  "laranja", "abacaxi", "kiwi", "ameixa"]
     """
-    titulo('Programa Oito')
+    imprimir_titulo('Programa Oito')
     frutas = ["maçã", "banana", "uva", "pêra", "pupunha", "limão", "cupuaçú",
               "manga", "coco", "melancia", "mamão", 
               "laranja", "abacaxi", "kiwi", "ameixa", "açaí", "tabereba"]
@@ -95,7 +107,7 @@ def sete()->None:
     o seu nome e exibe uma mensagem junto a esse token gerado aleatoriamente.
         "Olá, [nome], o seu token de acesso é [token]! Seja bem-vindo(a)!"
     """
-    titulo('Programa Sete')
+    imprimir_titulo('Programa Sete')
     LIMITE_INFERIOR : Final[int] = 1000
     LIMITE_SUPERIOR : Final[int] = 9998
     nome=input('Informe o nome: ')
@@ -112,7 +124,7 @@ def seis()->None:
     com a quantidade de participantes. Peça à pessoa usuária para fornecer o número de participantes do 
     sorteio e devolva para ela o número sorteado.
     """
-    titulo('Programa Seis')
+    imprimir_titulo('Programa Seis')
     participantes = obter_int_positivo('Informe a quantidade de participantes')
     sorteado=randrange(participantes)
     sorteado += 1
@@ -128,7 +140,7 @@ def cinco()->None:
     Crie um programa que solicite à pessoa usuária digitar dois números inteiros e calcular a 
     potência do 1º número elevado ao 2º.
     """
-    titulo('Programa Cinco')
+    imprimir_titulo('Programa Cinco')
     base = obter_int_positivo('Informe a base')
     expoente = obter_int_positivo('Informe o expoente')
 
@@ -142,7 +154,7 @@ def quatro()->None:
     """
     4. Crie um programa que sorteia, aleatoriamente, um número inteiro positivo menor que 100.
     """
-    titulo('Programa Três')
+    imprimir_titulo('Programa Três')
     LIMITE : Final[int] = 100
 
     vezes = obter_int_positivo('Informe a quantidade de sorteios')
@@ -164,7 +176,7 @@ def tres()->None:
     3. Crie um programa que leia a seguinte lista de números e escolha um número desta aleatoriamente.
         lista = [8, 12, 54, 23, 43, 1, 90, 87, 105, 77]
     """
-    titulo('Programa Três')
+    imprimir_titulo('Programa Três')
     lista = [8, 12, 54, 23, 43, 1, 90, 87, 105, 77]
 
     vezes = obter_int_positivo('Informe a quantidade de sorteios')
@@ -191,11 +203,11 @@ def exibir_menu()-> None:
          ,6:'Sorteio em função de uma quantidade de números informada'
          ,7:'Gerando token'
          ,8:'Salada de Fruta suspresa'
-         ,9:'Raiz quandrada de vários números'
+         ,9:'Número com Raiz quandrada exata'
          ,10:'Calculo serviço jardinagem'
          }
 
-    titulo('MENU PRINCIPAL')
+    imprimir_titulo('MENU PRINCIPAL')
 
     for tupla in menu.items():
         print(f'{tupla[0]} - {tupla[1]}')
