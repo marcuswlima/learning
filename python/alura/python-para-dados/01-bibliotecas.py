@@ -3,10 +3,7 @@ from math import sqrt, pi
 from random import choice,\
                    randrange
 
-from utilitarios import imprimir_titulo,\
-                        obter_int_positivo,\
-                        obter_float_positivo,\
-                        gerar_lista_com_numeros_aleratorio
+from utilitarios import imprimir_titulo,obter_inteiro_positivo,obter_racional_positivo,obter_inteiro_nao_negativo
 
 from typing import Final
 
@@ -26,10 +23,10 @@ def dez()->None:
         Dica: use a variável pi e o método pow() da biblioteca math. O cálculo da área de um 
         círculo é de: A = π*r^2 (lê-se pi vezes raio ao quadrado).
     """
-    imprimir_titulo('Execício Dez')
+    imprimir_titulo(in_mensagem='Execício Dez')
     VALOR_M2 : Final[int] = 25
     
-    raio = obter_float_positivo('Informe o raio do jardin')
+    raio = obter_racional_positivo('Informe o raio do jardin')
     area_circulo = round(pi * pow(raio,2),2)
     valor_pargamento = round(area_circulo * VALOR_M2,2)
 
@@ -48,7 +45,7 @@ def nove()->None:
 
     No final, informe quais números possuem raízes inteiras e seus respectivos valores.
     """
-    imprimir_titulo('Programa Nove')
+    imprimir_titulo(in_mensagem='Programa Nove')
 
     numeros = (2, 8, 15, 23, 91, 112, 256, 500, 25, 4, 5, 16)
     raises = []
@@ -82,7 +79,7 @@ def oito()->None:
                  "manga", "coco", "melancia", "mamão",
                  "laranja", "abacaxi", "kiwi", "ameixa"]
     """
-    imprimir_titulo('Programa Oito')
+    imprimir_titulo(in_mensagem='Programa Oito')
     frutas = ["maçã", "banana", "uva", "pêra", "pupunha", "limão", "cupuaçú",
               "manga", "coco", "melancia", "mamão", 
               "laranja", "abacaxi", "kiwi", "ameixa", "açaí", "tabereba"]
@@ -107,7 +104,7 @@ def sete()->None:
     o seu nome e exibe uma mensagem junto a esse token gerado aleatoriamente.
         "Olá, [nome], o seu token de acesso é [token]! Seja bem-vindo(a)!"
     """
-    imprimir_titulo('Programa Sete')
+    imprimir_titulo(in_mensagem='Programa Sete')
     LIMITE_INFERIOR : Final[int] = 1000
     LIMITE_SUPERIOR : Final[int] = 9998
     nome=input('Informe o nome: ')
@@ -124,8 +121,8 @@ def seis()->None:
     com a quantidade de participantes. Peça à pessoa usuária para fornecer o número de participantes do 
     sorteio e devolva para ela o número sorteado.
     """
-    imprimir_titulo('Programa Seis')
-    participantes = obter_int_positivo('Informe a quantidade de participantes')
+    imprimir_titulo(in_mensagem='Programa Seis')
+    participantes = obter_inteiro_positivo('Informe a quantidade de participantes')
     sorteado=randrange(participantes)
     sorteado += 1
     print(f'O valor sorteado foi {sorteado}')
@@ -140,9 +137,9 @@ def cinco()->None:
     Crie um programa que solicite à pessoa usuária digitar dois números inteiros e calcular a 
     potência do 1º número elevado ao 2º.
     """
-    imprimir_titulo('Programa Cinco')
-    base = obter_int_positivo('Informe a base')
-    expoente = obter_int_positivo('Informe o expoente')
+    imprimir_titulo(in_mensagem='Programa Cinco')
+    base = obter_inteiro_positivo('Informe a base')
+    expoente = obter_inteiro_positivo('Informe o expoente')
 
     print(f'A potância da base {base} com expoente {expoente} é {pow(base,expoente)}')
 
@@ -154,10 +151,10 @@ def quatro()->None:
     """
     4. Crie um programa que sorteia, aleatoriamente, um número inteiro positivo menor que 100.
     """
-    imprimir_titulo('Programa Três')
+    imprimir_titulo(in_mensagem='Programa Três')
     LIMITE : Final[int] = 100
 
-    vezes = obter_int_positivo('Informe a quantidade de sorteios')
+    vezes = obter_inteiro_positivo('Informe a quantidade de sorteios')
 
     for i in range(vezes):
         sorteado = randrange(LIMITE+1)
@@ -176,10 +173,10 @@ def tres()->None:
     3. Crie um programa que leia a seguinte lista de números e escolha um número desta aleatoriamente.
         lista = [8, 12, 54, 23, 43, 1, 90, 87, 105, 77]
     """
-    imprimir_titulo('Programa Três')
+    imprimir_titulo(in_mensagem='Programa Três')
     lista = [8, 12, 54, 23, 43, 1, 90, 87, 105, 77]
 
-    vezes = obter_int_positivo('Informe a quantidade de sorteios')
+    vezes = obter_inteiro_positivo('Informe a quantidade de sorteios')
 
     for i in range(vezes):
         sorteado = choice(lista)
@@ -220,7 +217,7 @@ def exibir_menu()-> None:
 def main()-> None:
     while True:
         exibir_menu()
-        opcao=int(input("Escolha uma opção (0 para encerrar): "))
+        opcao=obter_inteiro_nao_negativo("Escolha uma opção (0 para encerrar)")
 
         if opcao==0:
             print('Encerrando...')

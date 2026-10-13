@@ -1,6 +1,3 @@
-from random import randrange, choice
-from operator import itemgetter
-
 """
 # Documentação do módulo utilitarios.py
 
@@ -29,121 +26,142 @@ is_primo(numero: float) -> bool
 ```
 """
 
-
-NOMES = (
-    "Marcus",
-    "João",
-    "Maria",
-    "Ana",
-    "Carlos",
-    "Pedro",
-    "José",
-    "Paulo",
-    "Luciana",
-    "Fernanda",
-    "Izabel"
-)
-
-SOBRENOMES = (
-    "Silva",
-    "Santos",
-    "Oliveira",
-    "Souza",
-    "Costa",
-    "Lima",
-    "Pereira",
-    "Ferreira",
-    "Rodrigues",
-    "Almeida",
-    "Ramos"
-)
+# ==================================================
+# Bibliotecas/Importações
+# ==================================================
+from random import randint, choice
+from operator import itemgetter
 
 # ==================================================
 # gerar_nome()
 # ==================================================
 def gerar_nome() -> str:
     """
-    Gera um nome completo aleatório.
+    Gera um nome aleatório.
     """
-    return f"{choice(NOMES)} {choice(SOBRENOMES)}"
+
+    NOMES = (
+        "Marcus",
+        "João",
+        "Maria",
+        "Ana",
+        "Carlos",
+        "Pedro",
+        "José",
+        "Paulo",
+        "Luciana",
+        "Fernanda",
+        "Izabel"
+    )
+
+    return choice(NOMES)
+
+# ==================================================
+# gerar_sobrenome()
+# ==================================================
+def gerar_sobrenome() -> str:
+
+    """
+    Gera um SOBRENOMES aleatório.
+    """
+    SOBRENOMES = (
+        "Silva",
+        "Santos",
+        "Oliveira",
+        "Souza",
+        "Costa",
+        "Lima",
+        "Pereira",
+        "Ferreira",
+        "Rodrigues",
+        "Almeida",
+        "Ramos"
+    )
+
+    return choice(SOBRENOMES)
+
+
+# ==================================================
+# gerar_nome_completo()
+# ==================================================
+def gerar_nome_completo() -> str:
+    return f"{gerar_nome()} {gerar_sobrenome()}"
+
+# ==================================================
+# gerar_um_inteiro()
+# ==================================================
+def gerar_um_inteiro(in_start:int, in_end:int)->int:
+    return randint(in_start,in_end)
+
+# ==================================================
+# gerar_um_decimal()
+# ==================================================
+def gerar_um_decimal(in_start:float, in_end:float)->float:
+    decimal = gerar_um_inteiro(in_start = int(in_start*100)
+                              ,in_end   = int(in_end*100)
+                              )
+    return decimal/100
 
 # ==================================================
 # gerar_tupla_com_inteiros()
 # ==================================================
-def gerar_tupla_com_inteiros(in_start:int, in_stop:int, in_quantidade:int)->tuple:
+def gerar_tupla_com_inteiros(in_start:int, in_end:int, in_quantidade:int)->tuple:
     """
-    Gera uma tupla com numeros inteiros
+    Gerar uma tupla contendo numeros inteiros
 
     Args:
-        in_start:
+        in_start->int:
             Inicio da faixa de valores válidos 
 
-        in_stop:
+        in_end->int:
             Fim da faixa de valores válidos 
 
-        in_quantidade:
+        in_quantidade->int:
             quantidade de mumeros gerados
     Returns:
         tuple
     """
-    lista=[]
+    inteiros=[]
     for i in range(in_quantidade):
-        lista.append(randrange(in_start,in_stop))
+        inteiros.append(gerar_um_inteiro(in_start = in_start
+                                        ,in_end   = in_end
+                                        )
+                       )
 
-    return tuple(lista)
+    return tuple(inteiros)
 
 # ==================================================
 # gerar_tupla_com_decimais()
 # ==================================================
-def gerar_tupla_com_decimais(in_start:int, in_stop:int, in_quantidade:int)->tuple:
+def gerar_tupla_com_decimais(in_start:float, in_end:float, in_quantidade:int)->tuple:
     """
-    Gera uma tupla com numeros com decimais
+    Gerar uma tupla contendo numeros decimais
 
     Args:
-        in_start:
+        in_start->float:
             Inicio da faixa de valores válidos 
 
-        in_stop:
+        in_end->float:
             Fim da faixa de valores válidos 
 
-        in_quantidade:
+        in_quantidade->int:
             quantidade de mumeros gerados
     Returns:
         tuple
     """
-    lista=list(gerar_tupla_com_inteiros(in_start, in_stop, in_quantidade))
-    for i in range(len(lista)):
-        decimal=randrange(100)
-        lista[i] += round((decimal/100),2)
+    inteiros=gerar_tupla_com_inteiros(in_start      = int(in_start*100), 
+                                      in_end        = int(in_end*100), 
+                                      in_quantidade = in_quantidade
+                                      )
 
-    return tuple(lista)
+    decimais=tuple(map(lambda x: x/100 , inteiros))
 
-# ==================================================
-# imprimir_tabuada()
-# ==================================================
-def imprimir_tabuada(numero:int)->None:
-    """
-    Imprime a tabuada do numero gerado na tela
-
-    Args:
-        numero:
-            Número para gerar a tabuada
-
-    Returns:
-        Nones
-    """
-    print(f"Tabuada de {numero}:")
-
-    for i in range(11):
-        if i==0:
-            continue
-        print(f'{numero} x {i} = {numero*i}')
-
+    return decimais
 
 # ==================================================
-# eh_primo()
+# is_inteiro_primo()
 # ==================================================
-def is_primo(numero: float) -> bool:
+def is_inteiro_primo(numero: int) -> bool:
 
     eh_primo=True
 
@@ -159,64 +177,103 @@ def is_primo(numero: float) -> bool:
 
 
 # ==================================================
+# is_intiero_par()
+# ==================================================
+def is_intiero_par(numero: int) -> bool:
+    return numero % 2 == 0
+
+
+# ==================================================
 # is_inteiro()
 # ==================================================
 def is_inteiro(numero: float) -> bool:
     return numero % 1 == 0
 
 # ==================================================
-# is_par()
+# obter_racional()
 # ==================================================
-def is_par(numero: float) -> bool:
-    return numero % 2 == 0
+def obter_racional(in_mensagem: str) -> float:
 
-# ==================================================
-# obter_float()
-# ==================================================
-def obter_float(mensagem: str) -> float:
-    digitado = input(mensagem+': ')
-    return float(digitado.replace(',','.'))
-
-# ==================================================
-# obter_float_positivo()
-# ==================================================
-def obter_float_positivo(mensagem: str) -> float:
     while True:
-        digitado = obter_float(mensagem)
-        if digitado >= 1:
-            return digitado
+        numero_racional = input(in_mensagem+': ')
 
-        print("Erro: informe apenas valores positivos.")
+        try:
+            numero_racional = float(numero_racional.replace(',','.'))
+            return numero_racional
+
+        except ValueError:
+            print("Erro: o texto informado não representa um numero racional.")
 
 # ==================================================
-# obter_int()
+# obter_racional_positivo()
 # ==================================================
-def obter_int(mensagem: str) -> int:
+def obter_racional_positivo(mensagem: str) -> float:
+    while True:
+        numero_racional = obter_racional(mensagem)
+
+        if numero_racional >= 1:
+            return numero_racional
+
+        print("Erro: o texto informado não representa um numero racional potivio (n>0).")
+
+# ==================================================
+# obter_racional_nao_netativo()
+# ==================================================
+def obter_racional_nao_netativo(mensagem: str) -> float:
+    while True:
+        numero_racional = obter_racional(mensagem)
+
+        if numero_racional >= 0:
+            return numero_racional
+
+        print("Erro: o texto informado não representa um numero racional não negativo (n>=0).")
+
+# ==================================================
+# obter_inteiro()
+# ==================================================
+def obter_inteiro(in_mensagem: str) -> int:
     """
     Solicita um caractere ao usuário até que seja informada um numero.
     """
     while True:
-        caractere = input(mensagem+': ')
+        caractere = input(in_mensagem+': ')
 
-        if caractere.isnumeric():
-            return int(caractere)
+        try:
+            numero = int(caractere)
+            return numero
 
-        print("Erro: informe apenas numeros.")
+        except ValueError:
+            print("Erro: o texto informado não representa um número inteiro.")
 
 # ==================================================
-# obter_int_positivo()
+# obter_inteiro_positivo()
 # ==================================================
-def obter_int_positivo(mensagem: str) -> int:
+def obter_inteiro_positivo(mensagem: str) -> int:
+    """
+    Solicita um caractere ao usuário até que seja informada um numero
+    """
+    while True:
+        inteiro = obter_inteiro(mensagem)
+
+        if inteiro > 0:
+            return inteiro
+
+        print("Erro: o texto digitado não representa um inteiro positivo (n>0).")
+
+# ==================================================
+# obter_inteiro_nao_negativo()
+# ==================================================
+def obter_inteiro_nao_negativo(mensagem: str) -> int:
     """
     Solicita um caractere ao usuário até que seja informada um numero e positivo.
     """
     while True:
-        numero = obter_int(mensagem)
+        numero = obter_inteiro(mensagem)
 
-        if numero > 0:
+        if numero >= 0:
             return numero
 
-        print("Erro: informe apenas numeros positivos.")
+        print("Erro: o texto digitado não representa um inteiro não negativo (n>=0).")
 
 
 # ==================================================
@@ -256,26 +313,17 @@ def ordernar_dicit_por_valor(in_dicio: dict, in_reverse=False):
 # ==================================================
 # calcular_imc()
 # ==================================================
-def calcular_imc(peso:int, altura:int) -> float:
+def calcular_imc(in_peso:float, in_altura:float) -> float:
     """Prove o IMC
     
     imc em função do peso e da altura
     """
-    return peso / ( altura**2 )
-
-# ==================================================
-# escrever_linha
-# ==================================================
-def escrever_linha(tamanho_texto:int) -> None:
-    print("***",end="")
-    for i in range(tamanho_texto):
-        print("*",end="")
-    print("***")
+    return in_peso / ( in_altura**2 )
 
 # ==================================================
 # imprimir_titulo
 # ==================================================
-def imprimir_titulo(mensagem:str) -> None:
+def imprimir_titulo(in_mensagem:str) -> None:
     """
     Imprimir um título na tela
 
@@ -285,20 +333,25 @@ def imprimir_titulo(mensagem:str) -> None:
     Returns:
         None
     """
-    escrever_linha(len(mensagem))
-    print("**",mensagem, "**")
-    escrever_linha(len(mensagem))
 
-# ==================================================
-# int2str
-# ==================================================
-def transformar_int_to_str(inteiro:int) -> str:
-    return str(inteiro).ljust(4,' ')
+    def escrever_linha(in_tamanho_texto:int) -> None:
+        print("***",end="")
+        for i in range(in_tamanho_texto):
+            print("*",end="")
+        print("***")
+
+    escrever_linha(in_tamanho_texto=len(in_mensagem))
+    print("**",in_mensagem, "**")
+    escrever_linha(in_tamanho_texto=len(in_mensagem))
 
 # ==================================================
 # imprime_matriz
 # ==================================================
 def imprime_matriz(matriz):
+
+    def transformar_int_to_str(inteiro:int) -> str:
+        return str(inteiro).ljust(4,' ')
+
     qtd_colunas = 0
     qtd_linhas = len(matriz)
     for linha in matriz:
@@ -308,7 +361,7 @@ def imprime_matriz(matriz):
 
     print("|    ",end="")
     for c in range(qtd_colunas):
-        print('|',int2str(c),sep='',end="")
+        print('|',transformar_int_to_str(c),sep='',end="")
     print()
     for i in range(6+(qtd_colunas*5)):
         print('-',sep='',end='')
@@ -316,8 +369,8 @@ def imprime_matriz(matriz):
 
 
     for l in range(len(matriz)):
-        print('|',int2str(l),sep='',end='')
+        print('|',transformar_int_to_str(l),sep='',end='')
         for c in range(len(matriz[l])):
-            print('|',int2str(matriz[l][c]),sep='',end='')
+            print('|',transformar_int_to_str(matriz[l][c]),sep='',end='')
         print()
 

@@ -1,13 +1,26 @@
+"""
+Instituição: Alura
+Carreira: Engenheiro de Dados
+Curso: "Python para Dados: trabalhando com funções, estruturas de dados e exceções"
+Capítulo: 02-funções
+
+Autor: Marcus William dos Santos Lima
+Data: 12/10/2026
+"""
+
+# ==================================================
+# Bibliotecas/Importações
+# ==================================================
 from typing import Final
 
 from random import randrange,choice
 
 from utilitarios import imprimir_titulo ,\
-                        obter_int_positivo,\
-                        imprimir_tabuada,\
                         gerar_tupla_com_inteiros,\
                         gerar_tupla_com_decimais ,\
-                        gerar_nome
+                        obter_inteiro_positivo, \
+                        gerar_nome ,\
+                        obter_inteiro_nao_negativo    
 
 # ==================================================
 # dez()
@@ -25,7 +38,7 @@ def dez()->None:
 
     Use a frase "Aprender Python aqui na Alura é muito bom" para testar o código.
     """
-    imprimir_titulo('Programa dez')
+    imprimir_titulo(in_mensagem='Programa dez')
 
     frase = '10. Você iniciou um estágio em uma empresa que trabalha com processamento de linguagem natural (NLP). Sua líder requisitou'
     frase = frase.replace(',',' ').replace('.',' ').replace('!',' ').replace('?',' ').split()
@@ -98,7 +111,7 @@ def nove()->None:
     Para testar, simule uma viagem de 3 dias para Salvador partindo de Recife. Considere a viagem de ida e volta de carro.
         "Com base nos gastos definidos, uma viagem de [dias] dias para [cidade] saindo de Recife custaria [gastos] reais"
     """
-    imprimir_titulo('Programa nove')
+    imprimir_titulo(in_mensagem='Programa nove')
     ITERACOES : Final[int] = 5
     
     for i in range(ITERACOES):
@@ -154,7 +167,7 @@ def oito()->None:
     Provável texto exibido:
         "A pontuação do time foi de [pontos] e seu aproveitamento foi de [aprov]%"
     """
-    imprimir_titulo('Programa Oito')
+    imprimir_titulo(in_mensagem='Programa Oito')
     campeonato=[]
     QTD_TIMES : Final[int] = 5
     QTD_RODADAS : Final[int] = 4
@@ -182,7 +195,7 @@ def sete()->None:
         nomes = ["joão", "MaRia", "JOSÉ"]
         sobrenomes = ["SILVA", "souza", "Tavares"]
     """
-    imprimir_titulo('Programa Sete')
+    imprimir_titulo(in_mensagem='Programa Sete')
     nomes = ["joão", "MaRia", "JOSÉ"]
     sobrenomes = ["SILVA", "souza", "Tavares"]
     
@@ -197,9 +210,6 @@ def sete()->None:
     print(nomes)
     print(sobrenomes)
     print(type(nome_completo))
-
-
-
 
 # ==================================================
 # seis()
@@ -232,7 +242,7 @@ def seis()->None:
         "O(a) estudante obteve uma média de [media], com a sua maior nota de [maior] pontos e 
         a menor nota de [menor] pontos e foi [situacao]"
     """
-    imprimir_titulo('Programa seis')
+    imprimir_titulo(in_mensagem='Programa seis')
     competicao={}
     QTD_ALUNOS : Final[int] = 10
     QTD_NOTAS : Final[int] = 4
@@ -284,7 +294,7 @@ def cinco()->None:
     tirar a média das 3 notas que sobraram. Retorne a média para apresentar o texto:
         "Nota da manobra: [media]"
     """
-    imprimir_titulo('Programa cinco')
+    imprimir_titulo(in_mensagem='Programa cinco')
 
     competicao={}
     CONCORRENTES : Final[int] = 10
@@ -312,7 +322,7 @@ def quatro()->None:
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]. Lembre-se de utilizar as funções lambda e 
     map() para calcular o quadrado de cada elemento da lista.
     """
-    imprimir_titulo('Programa quantro')
+    imprimir_titulo(in_mensagem='Programa quantro')
     numeros=gerar_tupla_com_inteiros(1,100,30)
     quadrados = list(
         map(lambda n: pow(n,2), numeros)
@@ -336,7 +346,7 @@ def tres()->None:
 
     Utilize o return na função e salve a nova lista na variável mult_3.
     """
-    imprimir_titulo('Programa três')
+    imprimir_titulo(in_mensagem='Programa três')
 
     # Lista Original-------------------------------
     lista = (97, 80, 94, 88, 80, 1, 16, 53, 62, 32, 24, 99, 3, 15)
@@ -365,6 +375,26 @@ def tres()->None:
 # ==================================================
 # dois()
 # ==================================================
+
+def imprimir_tabuada(numero:int)->None:
+    """
+    Imprime a tabuada do numero gerado na tela
+
+    Args:
+        numero:
+            Número para gerar a tabuada
+
+    Returns:
+        Nones
+    """
+    print(f"Tabuada de {numero}:")
+
+    for i in range(11):
+        if i==0:
+            continue
+        print(f'{numero} x {i} = {numero*i}')
+
+
 def dois()->None:
     """
     2. Escreva uma função que gere a tabuada de um número inteiro de 1 a 10, 
@@ -380,8 +410,8 @@ def dois()->None:
     [...]
     7 x 10 = 70    
     """
-    imprimir_titulo('Programa Dois')
-    numero = obter_int_positivo('Informe um número')
+    imprimir_titulo(in_mensagem='Programa Dois')
+    numero = obter_inteiro_positivo('Informe um número')
     imprimir_tabuada(numero)
 
 
@@ -400,7 +430,7 @@ def um()->None:
         Ao final exiba uma mensagem dizendo:
         "A lista possui [tam] números em que o maior número é [maior] e o menor número é [menor
     """
-    imprimir_titulo('Programa um')
+    imprimir_titulo(in_mensagem='Programa um')
     lista = [16, 14, 63, 65, 17, 99, 70, 11, 20, 48, 79, 32, 17, 89, 12, 25, 66, 3453, -3]
 
     print(f'A lista possiu {len(lista)} números em que \
@@ -440,7 +470,7 @@ def exibir_menu()-> None:
 def main()-> None:
     while True:
         exibir_menu()
-        opcao=int(input("Escolha uma opção (0 para encerrar): "))
+        opcao=obter_inteiro_nao_negativo("Escolha uma opção (0 para encerrar)")
 
         if opcao==0:
             print('Encerrando...')
