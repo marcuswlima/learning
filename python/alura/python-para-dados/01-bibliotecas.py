@@ -3,7 +3,11 @@ from math import sqrt, pi
 from random import choice,\
                    randrange
 
-from utilitarios import imprimir_titulo,obter_inteiro_positivo,obter_racional_positivo,obter_inteiro_nao_negativo
+from utilitarios import imprimir_titulo,\
+                        obter_inteiro_positivo,\
+                        obter_racional_positivo,\
+                        obter_inteiro_nao_negativo,\
+                        gerar_um_inteiro
 
 from typing import Final
 
@@ -108,7 +112,7 @@ def sete()->None:
     LIMITE_INFERIOR : Final[int] = 1000
     LIMITE_SUPERIOR : Final[int] = 9998
     nome=input('Informe o nome: ')
-    token=randrange(LIMITE_INFERIOR,LIMITE_SUPERIOR)
+    token=gerar_um_inteiro(in_star=LIMITE_INFERIOR,in_end=LIMITE_SUPERIOR)
     print(f'Olá, {nome}, o seu token de acesso é {token}! Seja bem-vindo(a)!')
 
 # ==================================================
@@ -123,7 +127,7 @@ def seis()->None:
     """
     imprimir_titulo(in_mensagem='Programa Seis')
     participantes = obter_inteiro_positivo('Informe a quantidade de participantes')
-    sorteado=randrange(participantes)
+    sorteado = gerar_um_inteiro(in_star=1,in_end=participantes)
     sorteado += 1
     print(f'O valor sorteado foi {sorteado}')
 
@@ -157,7 +161,7 @@ def quatro()->None:
     vezes = obter_inteiro_positivo('Informe a quantidade de sorteios')
 
     for i in range(vezes):
-        sorteado = randrange(LIMITE+1)
+        sorteado = gerar_um_inteiro(in_star=1,in_end=vezes)
         if i<vezes-1:
             final_impressao = ', '
         else:

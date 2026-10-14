@@ -375,7 +375,6 @@ def tres()->None:
 # ==================================================
 # dois()
 # ==================================================
-
 def imprimir_tabuada(numero:int)->None:
     """
     Imprime a tabuada do numero gerado na tela
