@@ -24,6 +24,93 @@ from typing import Final
 
 
 # ==================================================
+# seis()
+# ==================================================
+def seis()->None:
+    """
+    6. Uma loja possui um banco de dados com a informação de venda de cada representante e de 
+    cada ano e precisa filtrar somente os dados do ano 2022 com venda maior do que 6000. 
+    A loja forneceu uma amostra contendo apenas as colunas com os anos e os valores de 
+    venda para que você ajude a realizar a filtragem dos dados a partir de um código:
+        vendas = [('2023', 4093), ('2021', 4320), ('2021', 5959), ('2022', 8883)
+                 , ('2023', 9859), ('2022', 5141), ('2022', 7688), ('2022', 9544)
+                 , ('2023', 4794), ('2021', 7178), ('2022', 3030), ('2021', 7471)
+                 , ('2022', 4226), ('2022', 8190), ('2021', 9680), ('2022', 5616)]
+
+    Crie uma lista usando list comprehension para filtrar os valores de 2022 e que sejam 
+    maiores que 6000.
+    """
+    imprimir_titulo(in_mensagem='Programa seis')
+    vendas = [ ('2023', 4093), ('2021', 4320), ('2021', 5959), ('2022', 8883)
+             , ('2023', 9859), ('2022', 5141), ('2022', 7688), ('2022', 9544)
+             , ('2023', 4794), ('2021', 7178), ('2022', 3030), ('2021', 7471)
+             , ('2022', 4226), ('2022', 8190), ('2021', 9680), ('2022', 5616)]
+    print(f'vendas: {type(vendas)} - {vendas}')
+
+    #vendas_interessantes = [tupla[1] for tupla in vendas if tupla[0]==2022 and tupla[1]>6000]
+    vendas_interessantes = [tupla[1] for tupla in vendas if tupla[0]==2022]
+    print(f'vendas_interessantes: {type(vendas_interessantes)} - {vendas_interessantes}')
+
+    for tupla in vendas:
+        print(f'tupla: {type(tupla)} - {tupla}')
+
+
+# ==================================================
+# cinco()
+# ==================================================
+def cinco()->None:
+    """
+    5. Crie um dicionário usando o dict comprehension em que as chaves estão na lista
+      meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'] 
+      e os valores estão em 
+      despesa = [860, 490, 1010, 780, 900, 630, 590, 770, 620, 560, 840, 360].    
+      """
+    imprimir_titulo(in_mensagem='Programa cinco')
+    meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'] 
+    despesa = [860, 490, 1010, 780, 900, 630, 590, 770, 620, 560, 840, 360]
+    print(f'meses: {type(meses)} - {meses}')
+    print(f'despesa: {type(despesa)} - {despesa}')
+
+    dicio=dict(zip(meses,despesa))
+    print(f'dicio: {type(dicio)} - {dicio}')
+
+
+# ==================================================
+# quatro()
+# ==================================================
+def quatro()->None:
+    """
+    4. Crie uma lista usando o list comprehension que armazena somente o valor numérico de cada 
+    tupla caso o primeiro elemento seja 'Apartamento', a partir da seguinte lista de tuplas:
+        aluguel = [('Apartamento', 1700), 
+                   ('Apartamento', 1400), 
+                   ('Casa', 2150), 
+                   ('Apartamento', 1900), 
+                   ('Casa', 1100)
+                   ]
+
+    """
+    imprimir_titulo(in_mensagem='Programa quatro')
+
+    aluguel = [('Apartamento', 1700), 
+                ('Apartamento', 1400), 
+                ('Casa', 2150), 
+                ('Apartamento', 1900), 
+                ('Casa', 1100)
+                ]
+
+    print(f'aluguel: {type(aluguel)} - {aluguel}')
+
+    quatro=[aluguel[i][1] for i in range(len(aluguel)) if aluguel[i][0]=='Apartamento']
+
+    print(f'quatro: {type(quatro)} - {quatro}')
+
+    lista = [tupla[1] for tupla in aluguel if tupla[0]== 'Apartamento']
+    print(f'lista: {type(lista)} - {lista}')
+
+
+
+# ==================================================
 # tres()
 # ==================================================
 def tres()->None:
@@ -116,6 +203,9 @@ def exibir_menu()-> None:
           1:'Atributos Lista'
          ,2:'Acesando lista de tupla'
          ,3:'Acesando lista de tupla'
+         ,4:'list comprehension'
+         ,5:'Class zip'
+         ,6:'Vendas'
          }
 
     imprimir_titulo('MENU PRINCIPAL')
@@ -142,12 +232,12 @@ def main()-> None:
             dois()
         elif opcao==3:
             tres()
-#       elif opcao==4:
-#           quatro()
-#       elif opcao==5:
-#           cinco()
-#       elif opcao==6:
-#           seis()
+        elif opcao==4:
+            quatro()
+        elif opcao==5:
+            cinco()
+        elif opcao==6:
+            seis()
 #       elif opcao==7:
 #           sete()
 #       elif opcao==8:
