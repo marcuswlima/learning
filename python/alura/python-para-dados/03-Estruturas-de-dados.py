@@ -21,7 +21,155 @@ from utilitarios import imprimir_titulo         ,\
                         obter_inteiro_nao_negativo
 from typing import Final
 
+# ==================================================
+# dez()
+# ==================================================
+def dez()->None:
+    """
+    10. Nessa mesma tabela de cadastro de filiais, há uma coluna com as informações da quantidade de pessoas colaboradoras e 
+    o(a) gestor(a) gostaria de ter um agrupamento da soma dessas pessoas para cada estado. As informações contidas na tabela são:
+        
+        funcionarios = [('SP', 16), ('ES', 8), ('MG', 9), ('MG', 6), ('SP', 10), ('MG', 4), ('ES',9), ('ES', 7), ('ES', 12), ('SP', 7), ('SP', 11), ('MG',8), ('ES',8), ('SP',9), ('RJ', 13), ('MG', 5), ('RJ', 9), ('SP', 12), ('MG', 10), ('SP', 7), ('ES', 14), ('SP', 10), ('MG', 12)]
 
+    A partir da lista de tuplas, crie um dicionário em que as chaves são os nomes dos Estados únicos e os valores são as 
+    listas com o número de colaboradores(as) referentes ao Estado. Crie também um dicionário em que as chaves são os nomes dos 
+    Estados e os valores são a soma de colaboradores(as) por Estado.
+
+    Dica: Você pode fazer um passo intermediário para gerar uma lista de listas em que cada uma das listas possui apenas os 
+    valores numéricos de funcionários(as) de cada Estado.
+    """
+    imprimir_titulo(in_mensagem='Programa dez')
+
+    quant_funcionarios_nas_filiais = [('SP', 16), ('ES', 8),  ('MG', 9),  ('MG', 6), ('SP', 10), ('MG', 4),  
+                                      ('ES',9),   ('ES', 7),  ('ES', 12), ('SP', 7),  ('SP', 11), ('MG',8),  
+                                      ('ES',8),   ('SP',9),   ('RJ', 13), ('MG', 5), ('RJ',9), ('SP', 12), 
+                                      ('MG', 10), ('SP', 7), ('ES', 14), ('SP', 10), ('MG', 12)
+                                      ]
+    print(f'quant_funcionarios_nas_filiais: {type(quant_funcionarios_nas_filiais)} - {quant_funcionarios_nas_filiais}')
+
+    estados_do_sudeste = list(set([quant_funcionario_em_uma_filial[0] 
+                                       for quant_funcionario_em_uma_filial in quant_funcionarios_nas_filiais]
+                                 )
+                            )
+    print(f'estados_do_sudeste: {type(estados_do_sudeste)} - {estados_do_sudeste}')
+
+    for estado_do_sudeste in estados_do_sudeste:
+        temp=[quant_funcionario_em_uma_filial[0] 
+                 for quant_funcionario_em_uma_filial in quant_funcionarios_nas_filiais 
+                     if quant_funcionario_em_uma_filial[0]==estado_do_sudeste[0]
+              ]
+
+    estados = {'Bahia': 1, 'São Paulo': 2, 'Goiás': 3}
+    estados["Amazonas"]
+
+
+# ==================================================
+# nove()
+# ==================================================
+def nove()->None:
+    """
+    9. Uma empresa possui filiais espalhadas nos Estados da região Sudeste do Brasil. Em uma das 
+    tabelas de cadastro das filiais há uma coluna contendo a informação de qual é o Estado a que 
+    pertence: 
+    
+    estados = ['SP', 'ES', 'MG', 'MG', 'SP', 'MG', 'ES', 'ES', 'ES', 'SP', 'SP', 'MG', 'ES', 'SP', 'RJ', 'MG', 'RJ', 'SP', 'MG', 'SP', 'ES', 'SP', 'MG'].
+    
+    A empresa sempre está abrindo novas filiais, de modo que a tabela está constantemente recebendo 
+    novos registros e o gestor gostaria de possuir a informação atualizada da quantidade de 
+    filiais em cada Estado.
+
+    A partir da coluna com a informação dos Estados, crie um dicionário usando dict 
+    comprehension com a chave sendo o nome de um Estado e o valor sendo a contagem de vezes 
+    em que o Estado aparece na lista.
+
+    Dica: Você pode fazer um passo intermediário para gerar uma lista de listas em que cada 
+    uma das listas possui o nome de apenas um Estado com valores repetidos.
+    """
+    imprimir_titulo(in_mensagem='Programa nove')
+
+    estados_das_filiais = ['SP', 'ES', 'MG', 'MG', 'SP', 'MG', 
+                           'ES', 'ES', 'ES', 'SP', 'SP', 'MG', 
+                           'ES', 'SP', 'RJ', 'MG', 'RJ', 'SP', 
+                           'MG', 'SP', 'ES', 'SP', 'MG', 'PA'
+                          ]
+
+
+    
+
+    print(f'estados_das_filiais: {type(estados_das_filiais)} - {estados_das_filiais}')
+
+    estados_do_sudeste=['SP','MG','RJ','ES','PA', 'MA']
+    quantidades_por_estado={}
+    for estado_do_sufeste in range(len(estados_do_sudeste)):
+        temp = [estados_do_sudeste[estado_do_sufeste] 
+                    for estado_da_filial in range(len(estados_das_filiais)) 
+                        if estados_das_filiais[estado_da_filial]==estados_do_sudeste[estado_do_sufeste]
+               ]
+        quantidades_por_estado[estados_do_sudeste[estado_do_sufeste]]=len(temp)
+
+    print(f'quantidades_por_estado: {type(quantidades_por_estado)} - {quantidades_por_estado}')
+
+
+
+# ==================================================
+# oito()
+# ==================================================
+def oito()->None:
+    """
+    8. Um e-commerce possui as informações de id de venda, quantidade vendida e preço do produto 
+    divididos nas seguintes listas:
+        id = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        quantidade = [15, 12, 1, 15, 2, 11, 2, 12, 2, 4]
+        preco = [93.0, 102.0, 18.0, 41.0, 122.0, 14.0, 71.0, 48.0, 14.0, 144.0]
+
+    O e-commerce precisa estruturar esses dados em uma tabela contendo o valor total da venda, 
+    que é obtida multiplicando a quantidade pelo preço unitário. Além disso, a tabela precisa 
+    conter um cabeçalho indicando as colunas: 'id', 'quantidade', 'preco' e 'total'.
+
+    Crie uma lista de tuplas em que cada tupla tenha id, quantidade, preço e valor total, 
+    na qual a primeira tupla é o cabeçalho da tabela.
+    """
+    imprimir_titulo(in_mensagem='Programa oito')
+    ids = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    quantidades = [15, 12, 1, 15, 2, 11, 2, 12, 2, 40]
+    precos = [93.0, 102.0, 18.0, 41.0, 122.0, 14.0, 71.0, 48.0, 14.0, 144.0]
+    vendas = [('id', 'quantidade', 'preco' ,'total')]
+    vendas += [(ids[i], quantidades[i], precos[i], quantidades[i]*precos[i]) 
+               for i in range(len(ids))
+              ]
+    print(f'vendas: {type(vendas)} - {vendas}')
+
+
+
+
+# ==================================================
+# sete()
+# ==================================================
+def sete()->None:
+    """
+    7. Uma clínica analisa dados de pacientes e armazena o valor numérico da glicose em um banco 
+    de dados e gostaria de rotular os dados da seguinte maneira:
+
+        -Glicose igual ou inferior a 70: 'Hipoglicemia'
+        -Glicose entre 70 a 99: 'Normal'
+        -Glicose entre 100 e 125: 'Alterada'
+        -Glicose superior a 125: 'Diabetes'
+    
+    A clínica disponibilizou parte dos valores e sua tarefa é criar uma lista de tuplas usando
+     list comprehension contendo o rótulo e o valor da glicemia em cada tupla.
+
+    glicemia = [129, 82, 60, 97, 101, 65, 62, 167, 87, 53, 58, 92, 66, 120, 109, 62, 86, 96, 103, 88, 155, 52, 89, 73]
+    """
+    imprimir_titulo(in_mensagem='Programa sete')
+    glicemia = [129, 82, 60, 97, 101, 65, 62, 167, 87, 53, 58, 92, 66, 120, 109, 62, 86, 96, 103, 88, 155, 52, 89, 73]
+    print(f'glicemia: {type(glicemia)} - {glicemia}')
+
+    rotulos = [('Hipoglicemia', glicose) if glicose <= 70 
+          else ('Normal', glicose)       if glicose < 100 
+          else ('Alterada', glicose)     if glicose < 125 
+          else ('Diabetes', glicose) 
+          for glicose in glicemia]
+    print(f'rotulos: {type(rotulos)} - {rotulos}')
 
 # ==================================================
 # seis()
@@ -47,13 +195,19 @@ def seis()->None:
              , ('2022', 4226), ('2022', 8190), ('2021', 9680), ('2022', 5616)]
     print(f'vendas: {type(vendas)} - {vendas}')
 
-    #vendas_interessantes = [tupla[1] for tupla in vendas if tupla[0]==2022 and tupla[1]>6000]
-    vendas_interessantes = [tupla[1] for tupla in vendas if tupla[0]==2022]
-    print(f'vendas_interessantes: {type(vendas_interessantes)} - {vendas_interessantes}')
+    vendas_2021 = [tupla[1] for tupla in vendas if tupla[0] == '2021']
+    vendas_2022 = [tupla[1] for tupla in vendas if tupla[0] == '2022']
+    vendas_2023 = [tupla[1] for tupla in vendas if tupla[0] == '2023']
 
-    for tupla in vendas:
-        print(f'tupla: {type(tupla)} - {tupla}')
+    print(f'vendas_2021: {type(vendas_2021)} - {vendas_2021}')
+    print(f'vendas_2022: {type(vendas_2022)} - {vendas_2022}')
+    print(f'vendas_2023: {type(vendas_2023)} - {vendas_2023}')
 
+    vendas_interesantes = [tupla[1] if tupla[0] == '2022' and tupla[1] > 6000 
+                                    else '999999'
+                           for tupla in vendas
+                          ]
+    print(f'vendas_interesantes: {type(vendas_interesantes)} - {vendas_interesantes}')
 
 # ==================================================
 # cinco()
@@ -206,6 +360,10 @@ def exibir_menu()-> None:
          ,4:'list comprehension'
          ,5:'Class zip'
          ,6:'Vendas'
+         ,7:'Teste Glicemia'
+         ,8:'Vendas'
+         ,9:'Filiais'
+         ,10:'Filiais'
          }
 
     imprimir_titulo('MENU PRINCIPAL')
@@ -238,14 +396,14 @@ def main()-> None:
             cinco()
         elif opcao==6:
             seis()
-#       elif opcao==7:
-#           sete()
-#       elif opcao==8:
-#           oito()
-#       elif opcao==9:
-#           nove()
-#       elif opcao==10:
-#           dez()
+        elif opcao==7:
+            sete()
+        elif opcao==8:
+            oito()
+        elif opcao==9:
+            nove()
+        elif opcao==10:
+            dez()
 #        elif opcao==11:
 #            onze()
 #        elif opcao==12:
