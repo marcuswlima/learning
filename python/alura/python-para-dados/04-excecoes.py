@@ -12,12 +12,52 @@ Data: 12/10/2026
 # ==================================================
 # Bibliotecas/Importações
 # ==================================================
-from utilitarios import imprimir_titulo,obter_inteiro_nao_negativo,obter_racional_nao_netativo
+from typing import Final
 
+from utilitarios import imprimir_titulo,\
+                        obter_inteiro_nao_negativo,\
+                        obter_racional_nao_netativo,\
+                        gerar_tupla_com_inteiros,\
+                        gerar_nome_completo
 
 # ==================================================
 # cinco()
 # ==================================================
+
+gabarito = ['D', 'A', 'B', 'C', 'A', 'D', 'C', 'A', 'D', 'A']
+quantidade_perguntas = len(gabarito)
+
+def avaliar_provas(in_provas:dict)->dict:
+    resp={}
+    for aluno,notas in in_provas.items():
+        anuladas=0
+        certas=0
+        erradas=0
+        for i in range(quantidade_perguntas):
+            if notas[i] not in gabarito:
+                anuladas += 1
+            else:
+                if notas[i]==gabarito[i]:
+                    certas += 1
+                else:
+                    erradas += 1
+        resp[aluno]=(certas,erradas,anuladas)
+
+    return resp
+
+
+def passar_a_prova(in_quantidade:int, in_qtd_perguntas:int)->dict:
+    resp={}
+    for i in range(in_quantidade):
+        nome = gerar_nome_completo()
+
+        numeros=gerar_tupla_com_inteiros(65,69,in_qtd_perguntas)
+        respostas=[ chr(numero) for numero in numeros]
+
+        resp[nome]=respostas
+
+    return resp
+
 def cinco()->None:
     """
     4. Crie uma função que recebe duas listas como parâmetros e agrupe os elementos 
@@ -26,7 +66,13 @@ def cinco()->None:
     terceiro elemento é a soma dos valores na posição i das listas.
     """
     imprimir_titulo(in_mensagem='Programa cinco')
+    QDT_ALUNOS : Final[int] = 10
 
+    print(f'gabarito: {gabarito}')
+    provas = passar_a_prova(QDT_ALUNOS,quantidade_perguntas)
+    print(f'provas: {provas}')
+    avaliacoes = avaliar_provas(provas)
+    print(f'avaliacoes: {avaliacoes}')
 
 # ==================================================
 # quatro()
@@ -55,7 +101,6 @@ def somar_listas(in_lista1:list, in_lista2:list)->list:
 
     resp = [(in_lista1[i],in_lista2[i],in_lista1[i]+in_lista2[i]) for i in range(len(in_lista1))]
     return resp
-
 
 
 def quatro()->None:
@@ -194,7 +239,7 @@ def exibir_menu()-> None:
          ,2:'Idades'
          ,3:'Converter lista para float'
          ,4:'Somar listas'
-         ,5:'Class zip'
+         ,5:'Correções'
          ,6:'Vendas'
          ,7:'Teste Glicemia'
          ,8:'Vendas'
