@@ -14,11 +14,101 @@ Data: 12/10/2026
 # ==================================================
 from typing import Final
 
-from utilitarios import imprimir_titulo,\
-                        obter_inteiro_nao_negativo,\
-                        obter_racional_nao_netativo,\
-                        gerar_tupla_com_inteiros,\
+from utilitarios import imprimir_titulo,             \
+                        obter_inteiro_nao_negativo,  \
+                        obter_racional_nao_netativo, \
+                        gerar_tupla_com_inteiros,    \
                         gerar_nome_completo
+
+# ==================================================
+# sete()
+# ==================================================
+
+def divisao_colunas(in_lista1:list, in_lista2:list)->list:
+
+    if len(in_lista1)!= len(in_lista2):
+        raise ValueError("As listas precisam ter o mesmo tamanho")
+
+    resp = [ round(a/b,2) for a, b in zip(in_lista1, in_lista2)]
+
+    return resp
+
+def sete()->None:
+    """
+    Condição dos teste laboratoriais
+    """
+    imprimir_titulo(in_mensagem='Programa sete - Condição dos teste laboratoriais')
+
+    pressoes     = [100, 120, 140, 160, 180]
+    temperaturas = [20,  25,  30,  35,  40]
+
+    try:
+        resposta=divisao_colunas(in_lista1=pressoes, in_lista2=temperaturas)
+    except Exception as e:
+        print(e)
+    else:
+        print(resposta)
+
+
+    pressoes     = [60, 120, 140, 160, 180]
+    temperaturas = [0,  25,  30,  35,  40]
+
+    try:
+        resposta=divisao_colunas(in_lista1=pressoes, in_lista2=temperaturas)
+    except Exception as e:
+        print(e)
+    else:
+        print(resposta)
+
+    pressoes     = [100, 120, 140, 160]
+    temperaturas = [20,  25,  30,  35, 40]
+
+    try:
+        resposta=divisao_colunas(in_lista1=pressoes, in_lista2=temperaturas)
+    except Exception as e:
+        print(e)
+    else:
+        print(resposta)
+# ==================================================
+# seis()
+# ==================================================
+def tratar_texto(in_texto:list)->None:
+    #print(in_texto)
+    for palavra in in_texto:
+        #print(palavra)
+        if (',' in palavra) or ('.' in palavra) or ('!' in palavra) or ('?' in palavra):
+            raise ValueError(f'O texto apresenta pontuações na palavra "{palavra}".')
+
+    return "Texto Tratado"
+
+def seis()->None:
+    """
+    Tratamento de palavras
+    """
+    imprimir_titulo(in_mensagem='Programa seis - Tratamento de palavras')
+
+    lista_tratada = ['Python', 'é', 'uma', 'linguagem', 'de', 'programação', 'poderosa', 'versátil',
+                  'e', 'fácil', 'de', 'aprender', 'utilizada', 'em', 'diversos', 'campos', 'desde',
+                  'análise', 'de', 'dados', 'até', 'inteligência', 'artificial']
+
+    lista_nao_tratada = ['Python', 'é', 'uma', 'linguagem', 'de', 'programação', 'poderosa,', 'versátil',
+                    'e', 'fácil,', 'de', 'aprender', 'utilizada', 'em', 'diversos', 'campos,', 'desde',
+                    'análise', 'de', 'dados', 'até', 'inteligência', 'artificial!']
+
+    try:
+        avaliacao = tratar_texto(lista_tratada)
+    except Exception as e:
+        print(e)
+    else:
+        print(avaliacao)
+
+    try:
+        avaliacao = tratar_texto(lista_nao_tratada)
+    except Exception as e:
+        print(e)
+    else:
+        print(avaliacao)
+
 
 # ==================================================
 # cinco()
@@ -113,8 +203,8 @@ def quatro()->None:
     imprimir_titulo(in_mensagem='Programa quatro')
     lista1 = [4,6,1,9,10]
     lista2 = [-4,6,1,7,9]    
+    print(lista1,lista2)
     try:
-        print(lista1,lista2)
         resultado = somar_listas(in_lista1=lista1, in_lista2=lista2)
     except Exception as e:
         print(type(e), f'Erro: {e}')
@@ -123,8 +213,8 @@ def quatro()->None:
 
     lista1 = [4,6,1,9,10,3]
     lista2 = [-4,6,1,7,9]    
+    print(lista1,lista2)
     try:
-        print(lista1,lista2)
         resultado = somar_listas(in_lista1=lista1, in_lista2=lista2)
     except Exception as e:
         print(type(e), f'Erro: {e}')
@@ -133,8 +223,8 @@ def quatro()->None:
 
     lista1 = [4,'a',1,9,10]
     lista2 = [-4,6,1,7,9]    
+    print(lista1,lista2)
     try:
-        print(lista1,lista2)
         resultado = somar_listas(in_lista1=lista1, in_lista2=lista2)
     except Exception as e:
         print(type(e), f'Erro: {e}')
@@ -143,8 +233,8 @@ def quatro()->None:
 
     lista1 = [4,1,1,9,10]
     lista2 = [-4,6,'13r1',7,9]    
+    print(lista1,lista2)
     try:
-        print(lista1,lista2)
         resultado = somar_listas(in_lista1=lista1, in_lista2=lista2)
     except Exception as e:
         print(type(e), f'Erro: {e}')
@@ -201,12 +291,14 @@ def dois()->None:
     """
     imprimir_titulo(in_mensagem='Programa dois')
     idades = {'Júlia': 16, 'Carol': 23, 'Alberto': 19, 'Roberta': 17, 'Marcus': 50}
+    print(f'idades: {idades}')
     digitado = input('informe o nome: ')
     try:
         idade = idades[digitado]
-        print(idade)
     except KeyError:
         print('Nome não encontrado')
+    else:
+        print(f'A idade de {digitado} é {idade}')
 
 
 # ==================================================
@@ -222,13 +314,14 @@ def um()->None:
     utilizando caracteres textuais no input para checar os tipos de erro que ocorrem.
     """
     imprimir_titulo(in_mensagem='Programa um')
+    numerador = obter_racional_nao_netativo(in_mensagem='numerador')
+    denominador = obter_racional_nao_netativo(in_mensagem='denominador')
     try:
-        numerador = obter_racional_nao_netativo(in_mensagem='numerador')
-        denominador = obter_racional_nao_netativo(in_mensagem='denominador')
         divisao = numerador / denominador
-        print(f'divisao {divisao}')
     except Exception as e:
         print(type(e), f'Erro: {e}')
+    else:
+        print(f'divisao {divisao}')
 
 # ==================================================
 # exibir_menu
@@ -240,17 +333,14 @@ def exibir_menu()-> None:
          ,3:'Converter lista para float'
          ,4:'Somar listas'
          ,5:'Correções'
-         ,6:'Vendas'
-         ,7:'Teste Glicemia'
-         ,8:'Vendas'
-         ,9:'Filiais'
-         ,10:'Filiais'
+         ,6:'Tratamento de palavras'
+         ,7:'Condição dos teste laboratoriais'
          }
 
     imprimir_titulo('MENU PRINCIPAL')
 
     for chave,valor in menu.items():
-        print(f'{chave} - {valor}')
+        print(f'{chave}) {valor}')
     print("0 - Sair")
     print()
 

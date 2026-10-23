@@ -338,7 +338,7 @@ def imprimir_titulo(in_mensagem:str) -> None:
         print("***",end="")
         for i in range(in_tamanho_texto):
             print("*",end="")
-        print("***")
+        print("****")
 
     escrever_linha(in_tamanho_texto=len(in_mensagem))
     print("**",in_mensagem, "**")
