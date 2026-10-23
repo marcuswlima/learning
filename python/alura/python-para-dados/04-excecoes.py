@@ -16,9 +16,22 @@ from utilitarios import imprimir_titulo,obter_inteiro_nao_negativo,obter_raciona
 
 
 # ==================================================
+# cinco()
+# ==================================================
+def cinco()->None:
+    """
+    4. Crie uma função que recebe duas listas como parâmetros e agrupe os elementos 
+    um a um das listas, formando uma lista de tuplas de 3 elementos, no 
+    qual o primeiro e segundo elemento da tupla são os valores na posição i das listas e o 
+    terceiro elemento é a soma dos valores na posição i das listas.
+    """
+    imprimir_titulo(in_mensagem='Programa cinco')
+
+
+# ==================================================
 # quatro()
 # ==================================================
-def lista_com_inteiros(in_lista:list)->Boolean:
+def lista_com_inteiros(in_lista:list)->bool:
     resp=False
     try:
         temp=[int(x) for x in in_lista]
@@ -31,18 +44,18 @@ def lista_com_inteiros(in_lista:list)->Boolean:
 
 
 def somar_listas(in_lista1:list, in_lista2:list)->list:
+    if len(in_lista1)!=len(in_lista2):
+        raise IndexError('A quantidade de elementos em cada lista é diferente.')
+
     if not lista_com_inteiros(in_lista1):
         raise TypeError('Primeira Lista inválida')
 
     if not lista_com_inteiros(in_lista2):
         raise TypeError('Segunda Lista inválida')
 
-    if len(in_lista1)==len(in_lista2):
-        resp = [(in_lista1[i],in_lista2[i],in_lista1[i]+in_lista2[i]) for i in range(len(in_lista1))]
-    else:
-        raise IndexError('A quantidade de elementos em cada lista é diferente.')
-
+    resp = [(in_lista1[i],in_lista2[i],in_lista1[i]+in_lista2[i]) for i in range(len(in_lista1))]
     return resp
+
 
 
 def quatro()->None:
@@ -53,17 +66,45 @@ def quatro()->None:
     terceiro elemento é a soma dos valores na posição i das listas.
     """
     imprimir_titulo(in_mensagem='Programa quatro')
-    lista1=[11,12,13,'2']
-    lista2=[21,22,23,3]
+    lista1 = [4,6,1,9,10]
+    lista2 = [-4,6,1,7,9]    
     try:
-        soma=somar_listas(in_lista1=lista1, in_lista2=lista2)
-        print(soma)
-    except TypeError:
-        print('algum elemento não é numero')
+        print(lista1,lista2)
+        resultado = somar_listas(in_lista1=lista1, in_lista2=lista2)
     except Exception as e:
         print(type(e), f'Erro: {e}')
-    
+    else:
+        print(resultado)
 
+    lista1 = [4,6,1,9,10,3]
+    lista2 = [-4,6,1,7,9]    
+    try:
+        print(lista1,lista2)
+        resultado = somar_listas(in_lista1=lista1, in_lista2=lista2)
+    except Exception as e:
+        print(type(e), f'Erro: {e}')
+    else:
+        print(resultado)
+
+    lista1 = [4,'a',1,9,10]
+    lista2 = [-4,6,1,7,9]    
+    try:
+        print(lista1,lista2)
+        resultado = somar_listas(in_lista1=lista1, in_lista2=lista2)
+    except Exception as e:
+        print(type(e), f'Erro: {e}')
+    else:
+        print(resultado)
+
+    lista1 = [4,1,1,9,10]
+    lista2 = [-4,6,'13r1',7,9]    
+    try:
+        print(lista1,lista2)
+        resultado = somar_listas(in_lista1=lista1, in_lista2=lista2)
+    except Exception as e:
+        print(type(e), f'Erro: {e}')
+    else:
+        print(resultado)
 
 
 # ==================================================
