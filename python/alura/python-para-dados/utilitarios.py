@@ -207,9 +207,9 @@ def obter_racional(in_mensagem: str) -> float:
 # ==================================================
 # obter_racional_positivo()
 # ==================================================
-def obter_racional_positivo(mensagem: str) -> float:
+def obter_racional_positivo(in_mensagem: str) -> float:
     while True:
-        numero_racional = obter_racional(mensagem)
+        numero_racional = obter_racional(in_mensagem)
 
         if numero_racional >= 1:
             return numero_racional
@@ -219,9 +219,9 @@ def obter_racional_positivo(mensagem: str) -> float:
 # ==================================================
 # obter_racional_nao_netativo()
 # ==================================================
-def obter_racional_nao_netativo(mensagem: str) -> float:
+def obter_racional_nao_netativo(in_mensagem: str) -> float:
     while True:
-        numero_racional = obter_racional(mensagem)
+        numero_racional = obter_racional(in_mensagem)
 
         if numero_racional >= 0:
             return numero_racional
