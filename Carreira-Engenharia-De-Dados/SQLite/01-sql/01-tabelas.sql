@@ -91,6 +91,10 @@ CREATE TABLE tabelaprodutos (
 
 
 
+---------------------------
+-- tabelaprodutos
+---------------------------
+drop TABLE tabelaclientes ;
 INSERT INTO tabelaclientes
 (ID_Produto 
 ,  Nome_do_Produto 
@@ -163,7 +167,7 @@ VALUES
 (59, 'Impressora a Laser Monocromática', 'Impressora a laser monocromática de alta velocidade', 6, 169.99, 'Unidade', 6, '2021-08-29'),
 (60, 'Servidor de Rede Empresarial', 'Servidor de rede empresarial com suporte 24/7', 19, 1999.99, 'Unidade', 19, '2021-08-30');
 
-
+select * from tabelaclientes;
 
 ---------------------------
 -- tabelapedidosgold
