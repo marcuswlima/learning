@@ -20,8 +20,6 @@ CREATE TABLE colaboradores (
 	cep VARCHAR(8) NOT NULL
 );
 
-
-
 CREATE TABLE fornecedores (
     ID TEXT PRIMARY KEY ,
     Nome VARCHAR(255) NOT NULL,
@@ -60,8 +58,13 @@ CREATE TABLE itenspedidos (
   PRIMARY KEY (idpedido,idproduto),
   FOREIGN KEY (idpedido) REFERENCES pedidos(id) ON DELETE CASCADE,
   FOREIGN KEY (idproduto) REFERENCES produtos(id) ON DELETE CASCADE
-)
+);
 
 
 
-
+CREATE TABLE inscricoes_evento (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20) DEFAULT 'Não fornecido'
+);
