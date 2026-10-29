@@ -1,5 +1,11 @@
+select * 
+from clientes;
 
--- Configuração da saída
-.headers on
-.mode box
-.nullvalue NULL
+.schema clientes
+
+SELECT Nome, Preco
+FROM produtos
+GROUP BY Nome, Preco
+HAVING Preco > (
+SELECT AVG(Preco) 
+FROM produtos);
