@@ -1,0 +1,5 @@
+ma ajuda a construir um arquivo para definir o que é o projeto.
+Ele vai ser um app web para acompanhamento de glicemia. 
+Precisa funcionar tanto na web em computadores em geral e em celulares independente do tamanho da tela.
+me entreviste para me ajudar a definir as promissas deste projeto, salvando tudo isso em um arquivo para use posterior.
+detalhe: meu conhecimento sobre diabetes é limitado, então me ajude a desenvolver esse documento fazendo as perguntas certas
