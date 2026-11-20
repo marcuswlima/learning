@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cp -v -f vimrc /home/marcus/.vimrc
+cp -v -f vimrc $HOME/.vimrc
 
