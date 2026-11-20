@@ -1,0 +1,4 @@
+## Produzir documentação
+a pasta é um projeto em python que controlará as atividades de restaurante. Produza uma 
+documentação apresenando a arquitetura do projeto e a relação das classes envolvidas. o resultado 
+deverá ser o arquivo README.md posicionado na raiz do projeto
