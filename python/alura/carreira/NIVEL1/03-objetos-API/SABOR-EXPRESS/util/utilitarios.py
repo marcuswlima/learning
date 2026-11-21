@@ -244,22 +244,22 @@ def obter_racional(in_mensagem: str) -> float:
 # obter_racional_positivo()
 # ==================================================
 def obter_racional_positivo(in_mensagem: str) -> float:
-    """Lê um número racional maior ou igual a 1, repetindo até a entrada ser válida.
+    """Lê um número racional positivo, repetindo até a entrada ser válida.
 
     Args:
         in_mensagem: Texto exibido ao usuário (seguido de ``": "``).
 
     Returns:
-        O número informado (``>= 1``).
+        O número informado (``> 0``).
     """
     while True:
         numero_racional = obter_racional(in_mensagem)
 
-        if numero_racional >= 1:
+        if numero_racional > 0:
             return numero_racional
 
         print(
-            "Erro: o texto informado não representa um numero racional potivio (n>0)."
+            "Erro: o texto informado não representa um numero racional positivo (n>0)."
         )
 
 
