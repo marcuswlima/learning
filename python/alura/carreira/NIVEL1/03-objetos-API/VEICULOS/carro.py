@@ -1,10 +1,26 @@
+"""Especialização de Veiculo para carros."""
+
 from veiculo import Veiculo
 
+
 class Carro(Veiculo):
-    def __init__(self, marca, modelo, portas):
+    """Carro, um veículo identificado também pela quantidade de portas.
+
+    Attributes:
+        portas: Quantidade de portas do carro.
+    """
+
+    def __init__(self, marca: str, modelo: str, portas: int) -> None:
+        """Cria um carro desligado.
+
+        Args:
+            marca: Fabricante do carro.
+            modelo: Nome do modelo do carro.
+            portas: Quantidade de portas do carro.
+        """
         super().__init__(marca, modelo)
         self.portas = portas
 
-    def __str__(self):
-       return f"{super().__str__()} - {self.portas}"
-
+    def __str__(self) -> str:
+        """Retorna a descrição do veículo acrescida da quantidade de portas."""
+        return f"{super().__str__()} - Portas: {self.portas}"

@@ -16,7 +16,8 @@ VEICULOS/
 ├── veiculo.py   # Classe base Veiculo (atributos e comportamentos comuns)
 ├── carro.py     # Classe Carro, especialização de Veiculo
 ├── moto.py      # Classe Moto, especialização de Veiculo
-├── app.py       # Ponto de entrada: cria objetos e demonstra o uso
+├── app.py       # Ponto de entrada: função main() que cria objetos e demonstra o uso
+├── prompts.txt  # Anotações dos prompts usados para gerar a documentação
 └── README.md
 ```
 
@@ -26,7 +27,7 @@ O projeto segue uma arquitetura simples em duas camadas:
 
 | Camada | Arquivos | Responsabilidade |
 |---|---|---|
-| **Aplicação** | `app.py` | Ponto de entrada. Cria os veículos e exercita seus comportamentos. |
+| **Aplicação** | `app.py` | Ponto de entrada. A função `main()` cria os veículos e exercita seus comportamentos; ela só roda quando o arquivo é executado diretamente (`if __name__ == "__main__":`). |
 | **Domínio (modelo)** | `veiculo.py`, `carro.py`, `moto.py` | Define as entidades da loja e as regras de cada uma. |
 
 Cada classe fica em um módulo próprio, e as dependências vão sempre **da especialização para a
@@ -51,7 +52,8 @@ classDiagram
         +str marca
         +str modelo
         #bool _ligado
-        +__init__(in_marca, in_modelo)
+        +bool ligado
+        +__init__(marca: str, modelo: str) None
         +__str__() str
         +ligar() None
         +desligar() None
@@ -59,13 +61,13 @@ classDiagram
 
     class Carro {
         +int portas
-        +__init__(marca, modelo, portas)
+        +__init__(marca: str, modelo: str, portas: int) None
         +__str__() str
     }
 
     class Moto {
         +str tipo
-        +__init__(marca, modelo, tipo)
+        +__init__(marca: str, modelo: str, tipo: str) None
         +__str__() str
     }
 
@@ -90,10 +92,11 @@ Reúne o que é comum a qualquer veículo da loja.
 |---|---|---|
 | `marca` | atributo público | Fabricante do veículo (ex.: "Toyota"). |
 | `modelo` | atributo público | Modelo do veículo (ex.: "Corolla"). |
-| `_ligado` | atributo protegido | Estado do motor. Começa como `False`. O prefixo `_` indica, por convenção, que ele não deve ser alterado diretamente de fora da classe. |
+| `_ligado` | atributo protegido | Estado do motor. Começa como `False`. O prefixo `_` indica, por convenção, que ele não deve ser acessado diretamente de fora da classe. |
+| `ligado` | property (somente leitura) | Expõe o estado do motor para leitura (`carro.ligado`). Não tem setter, então `carro.ligado = True` gera `AttributeError`. |
 | `ligar()` | método | Muda `_ligado` para `True`. |
 | `desligar()` | método | Muda `_ligado` para `False`. |
-| `__str__()` | método especial | Retorna `"<marca> - <modelo> - <ligado/desligado>"`. |
+| `__str__()` | método especial | Retorna `"Marca: <marca>, Modelo: <modelo>, Status: <ligado/desligado>"`. |
 
 ### `Carro` (`carro.py`): especialização de `Veiculo`
 
@@ -101,7 +104,7 @@ Reúne o que é comum a qualquer veículo da loja.
 |---|---|
 | `portas` | Quantidade de portas do carro. |
 | `__init__` | Chama `super().__init__(marca, modelo)` para inicializar a parte comum e depois define `portas`. |
-| `__str__` | **Sobrescreve** o método da base: reaproveita `super().__str__()` e acrescenta o número de portas. |
+| `__str__` | **Sobrescreve** o método da base: reaproveita `super().__str__()` e acrescenta `" - Portas: <portas>"`. |
 
 ### `Moto` (`moto.py`): especialização de `Veiculo`
 
@@ -109,7 +112,7 @@ Reúne o que é comum a qualquer veículo da loja.
 |---|---|
 | `tipo` | Categoria da moto (ex.: "Esportiva"). |
 | `__init__` | Chama `super().__init__(marca, modelo)` e depois define `tipo`. |
-| `__str__` | **Sobrescreve** o método da base: reaproveita `super().__str__()` e acrescenta o tipo. |
+| `__str__` | **Sobrescreve** o método da base: reaproveita `super().__str__()` e acrescenta `" - Tipo: <tipo>"`. |
 
 ## Conceitos de POO aplicados
 
@@ -117,7 +120,28 @@ Reúne o que é comum a qualquer veículo da loja.
 - **Reuso com `super()`**: as subclasses delegam à base a inicialização e a formatação comuns.
 - **Sobrescrita (override)**: cada subclasse redefine `__str__` para mostrar seus próprios dados.
 - **Polimorfismo**: `print()` chama o `__str__` certo para cada objeto, seja ele `Carro` ou `Moto`.
-- **Encapsulamento por convenção**: o estado do motor (`_ligado`) só muda pelos métodos `ligar()` e `desligar()`.
+- **Encapsulamento**: o estado do motor fica em `_ligado` (privado por convenção). Fora da classe, ele
+  pode ser **lido** pela property `ligado`, mas só **muda** pelos métodos `ligar()` e `desligar()`.
+
+## Padrões de código
+
+- **Type hints** em todos os parâmetros e retornos (ex.: `def ligar(self) -> None:`).
+- **Docstrings** em todos os módulos, classes e métodos, no estilo Google (seções `Args:` e
+  `Attributes:`), seguindo a PEP 257. Elas podem ser consultadas com `help()`:
+
+  ```bash
+  python3 -c "from carro import Carro; help(Carro)"
+  ```
+
+- **Formatação e lint** com o [Ruff](https://docs.astral.sh/ruff/), seguindo a PEP 8:
+
+  ```bash
+  pip install --user ruff   # instalação (uma vez)
+  ruff format --diff .      # mostra o que mudaria, sem alterar
+  ruff format .             # aplica a formatação
+  ruff check .              # aponta problemas de código
+  ruff check --fix .        # corrige automaticamente o que for seguro
+  ```
 
 ## Fluxo de execução (`app.py`)
 
@@ -127,6 +151,7 @@ sequenceDiagram
     participant C as carro1 : Carro
     participant M as moto1 : Moto
 
+    Note over App: executa main()
     App->>C: Carro("Toyota", "Corolla", 4)
     App->>C: print(carro1)  →  __str__()
     App->>C: ligar()
@@ -139,9 +164,7 @@ sequenceDiagram
 
 ## Como executar
 
-Requisito: **Python 3.14 ou superior**. Os métodos usam anotações que citam a própria classe
-(ex.: `self: Veiculo`), e isso só funciona sem `from __future__ import annotations` a partir do
-Python 3.14, que avalia anotações de forma adiada (PEP 649).
+Requisito: **Python 3** (não há dependências externas).
 
 ```bash
 cd VEICULOS
@@ -151,10 +174,10 @@ python3 app.py
 Saída esperada:
 
 ```
-Toyota - Corolla - desligado - 4
-Toyota - Corolla - ligado - 4
-Harley-Davidson - Street 750 - desligado - Esportiva
-Harley-Davidson - Street 750 - ligado - Esportiva
+Marca: Toyota, Modelo: Corolla, Status: desligado - Portas: 4
+Marca: Toyota, Modelo: Corolla, Status: ligado - Portas: 4
+Marca: Harley-Davidson, Modelo: Street 750, Status: desligado - Tipo: Esportiva
+Marca: Harley-Davidson, Modelo: Street 750, Status: ligado - Tipo: Esportiva
 ```
 
 ## Como estender
@@ -164,7 +187,8 @@ Para adicionar um novo tipo de veículo (ex.: `Caminhao`):
 1. Crie `caminhao.py` com `class Caminhao(Veiculo)`.
 2. No `__init__`, chame `super().__init__(marca, modelo)` e defina os atributos próprios (ex.: `capacidade_carga`).
 3. Sobrescreva `__str__` reaproveitando `super().__str__()`.
-4. Importe e use a nova classe em `app.py`.
+4. Mantenha o padrão do projeto: type hints, docstrings e `ruff format .`.
+5. Importe e use a nova classe na função `main()` de `app.py`.
 
 Próximos passos naturais para a loja: uma classe `Loja`/`Estoque` que **agregue** vários
 `Veiculo` (relação "tem um"), além de atributos comerciais como preço, ano e status de venda.
