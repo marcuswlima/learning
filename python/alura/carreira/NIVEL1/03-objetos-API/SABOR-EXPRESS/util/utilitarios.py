@@ -1,29 +1,11 @@
-"""
-# Documentação do módulo utilitarios.py
+"""Funções utilitárias genéricas, independentes do domínio do restaurante.
 
-## Objetivo
+Grupos de funções:
 
-O módulo fornece funções utilitárias para:
-
-- Verificação de números inteiros, pares e primos
-- Entrada de dados validada.
-- Cálculo de IMC.
-- Manipulação e ordenação de dicionários.
-- Impressão formatada de títulos e matrizes.
-
----
-
-# Funções
-
-## is_primo()
-
-### Descrição
-Verifica se um número é primo.
-
-### Sintaxe
-```python
-is_primo(numero: float) -> bool
-```
+- Geração de dados aleatórios: nomes, inteiros, decimais e tuplas.
+- Verificações numéricas: primo, par e inteiro.
+- Entrada validada: leitura repetida via ``input()`` até obter um valor válido.
+- Diversos: ordenação de dicionário, cálculo de IMC e impressão formatada.
 """
 
 # ==================================================
@@ -37,10 +19,11 @@ from random import choice, randint
 # gerar_nome()
 # ==================================================
 def gerar_nome() -> str:
-    """
-    Gera um nome aleatório.
-    """
+    """Sorteia um primeiro nome de uma lista fixa.
 
+    Returns:
+        Um primeiro nome, ex.: ``"Maria"``.
+    """
     NOMES = (
         "Marcus",
         "João",
@@ -62,8 +45,10 @@ def gerar_nome() -> str:
 # gerar_sobrenome()
 # ==================================================
 def gerar_sobrenome() -> str:
-    """
-    Gera um SOBRENOMES aleatório.
+    """Sorteia um sobrenome de uma lista fixa.
+
+    Returns:
+        Um sobrenome, ex.: ``"Silva"``.
     """
     SOBRENOMES = (
         "Silva",
@@ -86,6 +71,11 @@ def gerar_sobrenome() -> str:
 # gerar_nome_completo()
 # ==================================================
 def gerar_nome_completo() -> str:
+    """Gera um nome completo aleatório (nome + sobrenome).
+
+    Returns:
+        Nome e sobrenome separados por espaço.
+    """
     return f"{gerar_nome()} {gerar_sobrenome()}"
 
 
@@ -93,6 +83,15 @@ def gerar_nome_completo() -> str:
 # gerar_um_inteiro()
 # ==================================================
 def gerar_um_inteiro(in_start: int, in_end: int) -> int:
+    """Sorteia um inteiro no intervalo fechado ``[in_start, in_end]``.
+
+    Args:
+        in_start: Menor valor possível.
+        in_end: Maior valor possível.
+
+    Returns:
+        O inteiro sorteado.
+    """
     return randint(in_start, in_end)
 
 
@@ -100,6 +99,15 @@ def gerar_um_inteiro(in_start: int, in_end: int) -> int:
 # gerar_um_decimal()
 # ==================================================
 def gerar_um_decimal(in_start: float, in_end: float) -> float:
+    """Sorteia um número com duas casas decimais no intervalo ``[in_start, in_end]``.
+
+    Args:
+        in_start: Menor valor possível.
+        in_end: Maior valor possível.
+
+    Returns:
+        O número sorteado, com no máximo duas casas decimais.
+    """
     decimal = gerar_um_inteiro(in_start=int(in_start * 100), in_end=int(in_end * 100))
     return decimal / 100
 
@@ -108,20 +116,15 @@ def gerar_um_decimal(in_start: float, in_end: float) -> float:
 # gerar_tupla_com_inteiros()
 # ==================================================
 def gerar_tupla_com_inteiros(in_start: int, in_end: int, in_quantidade: int) -> tuple:
-    """
-    Gerar uma tupla contendo numeros inteiros
+    """Gera uma tupla de inteiros sorteados no intervalo ``[in_start, in_end]``.
 
     Args:
-        in_start->int:
-            Inicio da faixa de valores válidos
+        in_start: Menor valor possível.
+        in_end: Maior valor possível.
+        in_quantidade: Quantidade de números gerados.
 
-        in_end->int:
-            Fim da faixa de valores válidos
-
-        in_quantidade->int:
-            quantidade de mumeros gerados
     Returns:
-        tuple
+        Tupla com ``in_quantidade`` inteiros (pode haver repetidos).
     """
     inteiros = []
     for i in range(in_quantidade):
@@ -136,20 +139,15 @@ def gerar_tupla_com_inteiros(in_start: int, in_end: int, in_quantidade: int) -> 
 def gerar_tupla_com_decimais(
     in_start: float, in_end: float, in_quantidade: int
 ) -> tuple:
-    """
-    Gerar uma tupla contendo numeros decimais
+    """Gera uma tupla de números com duas casas decimais no intervalo ``[in_start, in_end]``.
 
     Args:
-        in_start->float:
-            Inicio da faixa de valores válidos
+        in_start: Menor valor possível.
+        in_end: Maior valor possível.
+        in_quantidade: Quantidade de números gerados.
 
-        in_end->float:
-            Fim da faixa de valores válidos
-
-        in_quantidade->int:
-            quantidade de mumeros gerados
     Returns:
-        tuple
+        Tupla com ``in_quantidade`` números (pode haver repetidos).
     """
     inteiros = gerar_tupla_com_inteiros(
         in_start=int(in_start * 100),
@@ -166,7 +164,14 @@ def gerar_tupla_com_decimais(
 # is_inteiro_primo()
 # ==================================================
 def is_inteiro_primo(numero: int) -> bool:
+    """Verifica se um inteiro é primo.
 
+    Args:
+        numero: Inteiro a verificar.
+
+    Returns:
+        ``True`` se ``numero`` for primo; ``False`` caso contrário (inclusive para ``numero <= 1``).
+    """
     eh_primo = True
 
     if numero <= 1:
@@ -184,6 +189,14 @@ def is_inteiro_primo(numero: int) -> bool:
 # is_intiero_par()
 # ==================================================
 def is_intiero_par(numero: int) -> bool:
+    """Verifica se um inteiro é par.
+
+    Args:
+        numero: Inteiro a verificar.
+
+    Returns:
+        ``True`` se ``numero`` for par.
+    """
     return numero % 2 == 0
 
 
@@ -191,6 +204,14 @@ def is_intiero_par(numero: int) -> bool:
 # is_inteiro()
 # ==================================================
 def is_inteiro(numero: float) -> bool:
+    """Verifica se um número não tem parte fracionária.
+
+    Args:
+        numero: Número a verificar.
+
+    Returns:
+        ``True`` se ``numero`` for inteiro (ex.: ``3.0``).
+    """
     return numero % 1 == 0
 
 
@@ -198,7 +219,16 @@ def is_inteiro(numero: float) -> bool:
 # obter_racional()
 # ==================================================
 def obter_racional(in_mensagem: str) -> float:
+    """Lê um número racional do teclado, repetindo até a entrada ser válida.
 
+    Aceita vírgula ou ponto como separador decimal.
+
+    Args:
+        in_mensagem: Texto exibido ao usuário (seguido de ``": "``).
+
+    Returns:
+        O número informado.
+    """
     while True:
         numero_racional = input(in_mensagem + ": ")
 
@@ -214,6 +244,14 @@ def obter_racional(in_mensagem: str) -> float:
 # obter_racional_positivo()
 # ==================================================
 def obter_racional_positivo(in_mensagem: str) -> float:
+    """Lê um número racional maior ou igual a 1, repetindo até a entrada ser válida.
+
+    Args:
+        in_mensagem: Texto exibido ao usuário (seguido de ``": "``).
+
+    Returns:
+        O número informado (``>= 1``).
+    """
     while True:
         numero_racional = obter_racional(in_mensagem)
 
@@ -229,6 +267,14 @@ def obter_racional_positivo(in_mensagem: str) -> float:
 # obter_racional_nao_netativo()
 # ==================================================
 def obter_racional_nao_netativo(in_mensagem: str) -> float:
+    """Lê um número racional não negativo, repetindo até a entrada ser válida.
+
+    Args:
+        in_mensagem: Texto exibido ao usuário (seguido de ``": "``).
+
+    Returns:
+        O número informado (``>= 0``).
+    """
     while True:
         numero_racional = obter_racional(in_mensagem)
 
@@ -244,8 +290,13 @@ def obter_racional_nao_netativo(in_mensagem: str) -> float:
 # obter_inteiro()
 # ==================================================
 def obter_inteiro(in_mensagem: str) -> int:
-    """
-    Solicita um caractere ao usuário até que seja informada um numero.
+    """Lê um número inteiro do teclado, repetindo até a entrada ser válida.
+
+    Args:
+        in_mensagem: Texto exibido ao usuário (seguido de ``": "``).
+
+    Returns:
+        O inteiro informado.
     """
     while True:
         caractere = input(in_mensagem + ": ")
@@ -262,8 +313,13 @@ def obter_inteiro(in_mensagem: str) -> int:
 # obter_inteiro_positivo()
 # ==================================================
 def obter_inteiro_positivo(mensagem: str) -> int:
-    """
-    Solicita um caractere ao usuário até que seja informada um numero
+    """Lê um inteiro positivo, repetindo até a entrada ser válida.
+
+    Args:
+        mensagem: Texto exibido ao usuário (seguido de ``": "``).
+
+    Returns:
+        O inteiro informado (``> 0``).
     """
     while True:
         inteiro = obter_inteiro(mensagem)
@@ -278,8 +334,13 @@ def obter_inteiro_positivo(mensagem: str) -> int:
 # obter_inteiro_nao_negativo()
 # ==================================================
 def obter_inteiro_nao_negativo(mensagem: str) -> int:
-    """
-    Solicita um caractere ao usuário até que seja informada um numero e positivo.
+    """Lê um inteiro não negativo, repetindo até a entrada ser válida.
+
+    Args:
+        mensagem: Texto exibido ao usuário (seguido de ``": "``).
+
+    Returns:
+        O inteiro informado (``>= 0``).
     """
     while True:
         numero = obter_inteiro(mensagem)
@@ -294,10 +355,14 @@ def obter_inteiro_nao_negativo(mensagem: str) -> int:
 # obter_uma_letra()
 # ==================================================
 def obter_uma_letra(mensagem: str) -> str:
-    """
-    Solicita um caractere ao usuário até que seja informada uma letra.
-    """
+    """Lê uma única letra do teclado, repetindo até a entrada ser válida.
 
+    Args:
+        mensagem: Texto exibido ao usuário (seguido de ``": "``).
+
+    Returns:
+        A letra informada.
+    """
     while True:
         caractere = input(mensagem + ": ")
 
@@ -311,13 +376,16 @@ def obter_uma_letra(mensagem: str) -> str:
 # ordernar_dicit_por_valor()
 # ==================================================
 def ordernar_dicit_por_valor(in_dicio: dict, in_reverse=False):
-    """ordernar_dicit_por_valor
+    """Retorna um novo dicionário ordenado pelos valores.
 
-    Returns a new dictionary sorted by value.
-    If in_reverse=False then from minor to major, otherwise
-    from major to minor (default=False)
+    Args:
+        in_dicio: Dicionário a ordenar (não é alterado).
+        in_reverse: Se ``True``, ordena do maior para o menor valor;
+            se ``False`` (padrão), do menor para o maior.
+
+    Returns:
+        Novo dicionário com as mesmas chaves, na ordem dos valores.
     """
-
     out_dicio = {}
     for item in sorted(in_dicio.items(), key=itemgetter(1), reverse=in_reverse):
         out_dicio[item[0]] = item[1]
@@ -329,9 +397,14 @@ def ordernar_dicit_por_valor(in_dicio: dict, in_reverse=False):
 # calcular_imc()
 # ==================================================
 def calcular_imc(in_peso: float, in_altura: float) -> float:
-    """Prove o IMC
+    """Calcula o Índice de Massa Corporal (IMC).
 
-    imc em função do peso e da altura
+    Args:
+        in_peso: Peso, em quilogramas.
+        in_altura: Altura, em metros.
+
+    Returns:
+        O IMC (``peso / altura²``).
     """
     return in_peso / (in_altura**2)
 
@@ -340,17 +413,14 @@ def calcular_imc(in_peso: float, in_altura: float) -> float:
 # imprimir_titulo
 # ==================================================
 def imprimir_titulo(in_mensagem: str) -> None:
-    """
-    Imprimir um título na tela
+    """Imprime um título emoldurado por asteriscos.
 
     Args:
-        mensagem: Mensagem que será exibida na título
-
-    Returns:
-        None
+        in_mensagem: Texto do título.
     """
 
     def escrever_linha(in_tamanho_texto: int) -> None:
+        """Imprime uma linha de asteriscos proporcional ao tamanho do texto."""
         print("***", end="")
         for i in range(in_tamanho_texto):
             print("*", end="")
@@ -365,8 +435,14 @@ def imprimir_titulo(in_mensagem: str) -> None:
 # imprime_matriz
 # ==================================================
 def imprime_matriz(matriz):
+    """Imprime uma matriz como tabela, com o índice das linhas e das colunas.
+
+    Args:
+        matriz: Lista de listas; as linhas podem ter tamanhos diferentes.
+    """
 
     def transformar_int_to_str(inteiro: int) -> str:
+        """Converte o valor em texto alinhado à esquerda com 4 posições."""
         return str(inteiro).ljust(4, " ")
 
     qtd_colunas = 0
