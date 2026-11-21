@@ -53,8 +53,8 @@ classDiagram
     class Veiculo {
         +str marca
         +str modelo
-        #bool _bEstaligado
-        +bool EstaLigado
+        #bool _esta_ligado
+        +bool esta_ligado
         +__init__(marca: str, modelo: str) None
         +__str__() str
         +ligar() None
@@ -100,11 +100,11 @@ uso previsto seja por meio das subclasses.
 |---|---|---|
 | `marca` | atributo público | Fabricante do veículo (ex.: "Toyota"). |
 | `modelo` | atributo público | Modelo do veículo (ex.: "Corolla"). |
-| `_bEstaligado` | atributo protegido | Estado do motor. Começa como `False`. O prefixo `_` indica, por convenção, que ele não deve ser acessado diretamente de fora da classe. |
-| `EstaLigado` | property somente leitura | Lê o estado do motor (`carro.EstaLigado`). Não tem setter: `carro.EstaLigado = True` gera `AttributeError`. O estado só muda por `ligar()` e `desligar()`. |
-| `ligar()` | método | Liga o veículo (`self._bEstaligado = True`). |
-| `desligar()` | método | Desliga o veículo (`self._bEstaligado = False`). |
-| `__str__()` | método especial | Retorna `"Marca: <marca>, Modelo: <modelo>, Status: <ligado/desligado>"`, lendo o estado pela property `EstaLigado`. |
+| `_esta_ligado` | atributo protegido | Estado do motor. Começa como `False`. O prefixo `_` indica, por convenção, que ele não deve ser acessado diretamente de fora da classe. |
+| `esta_ligado` | property somente leitura | Lê o estado do motor (`carro.esta_ligado`). Não tem setter: `carro.esta_ligado = True` gera `AttributeError`. O estado só muda por `ligar()` e `desligar()`. |
+| `ligar()` | método | Liga o veículo (`self._esta_ligado = True`). |
+| `desligar()` | método | Desliga o veículo (`self._esta_ligado = False`). |
+| `__str__()` | método especial | Retorna `"Marca: <marca>, Modelo: <modelo>, Status: <ligado/desligado>"`, lendo o estado pela property `esta_ligado`. |
 
 ### `Carro` (`carro.py`): especialização de `Veiculo`
 
@@ -123,7 +123,7 @@ uso previsto seja por meio das subclasses.
 | `__init__` | Chama `super().__init__(marca, modelo)` e depois define `tipo`. |
 | `__str__` | **Sobrescreve** o método da base: reaproveita `super().__str__()` e acrescenta `" - Tipo: <tipo>"`. |
 
-`Carro` e `Moto` herdam `ligar()`, `desligar()` e a property `EstaLigado` de `Veiculo` sem
+`Carro` e `Moto` herdam `ligar()`, `desligar()` e a property `esta_ligado` de `Veiculo` sem
 alterações: `carro1.ligar()` executa o método definido na base.
 
 ## Conceitos de POO aplicados
@@ -133,8 +133,8 @@ alterações: `carro1.ligar()` executa o método definido na base.
 - **Reuso com `super()`**: as subclasses delegam à base a inicialização e a formatação comuns.
 - **Sobrescrita (override)**: cada subclasse redefine `__str__` para mostrar seus próprios dados.
 - **Polimorfismo**: `print()` chama o `__str__` certo para cada objeto, seja ele `Carro` ou `Moto`.
-- **Encapsulamento**: o estado do motor fica em `_bEstaligado` (protegido por convenção). De fora,
-  ele é lido pela property `EstaLigado` (somente leitura) e alterado apenas pelos métodos `ligar()` e
+- **Encapsulamento**: o estado do motor fica em `_esta_ligado` (protegido por convenção). De fora,
+  ele é lido pela property `esta_ligado` (somente leitura) e alterado apenas pelos métodos `ligar()` e
   `desligar()`.
 
 ## Padrões de código
