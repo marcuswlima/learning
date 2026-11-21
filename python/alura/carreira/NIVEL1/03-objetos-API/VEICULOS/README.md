@@ -19,7 +19,8 @@ VEICULOS/
 ├── moto.py      # Classe Moto, especialização de Veiculo
 ├── app.py       # Ponto de entrada: função main() que cria objetos e demonstra o uso
 ├── prompts.txt  # Anotações dos prompts usados para gerar a documentação
-└── README.md
+├── README.md
+└── venv/        # Ambiente virtual local (ignorado pelo git)
 ```
 
 ## Arquitetura
@@ -107,6 +108,10 @@ ser instanciadas.
 | `ligar()` | método abstrato | Não tem implementação na base; cada subclasse define como o veículo é ligado. |
 | `__str__()` | método especial | Retorna `"Marca: <marca>, Modelo: <modelo>, Status: <ligado/desligado>"`. |
 
+> **Desligar o veículo:** ainda não existe um método `desligar()`. Há um rascunho comentado no fim
+> de `veiculo.py`; enquanto ele não é ativado, o veículo é desligado pela property:
+> `carro.ligado = False`.
+
 ### `Carro` (`carro.py`): especialização de `Veiculo`
 
 | Membro | Descrição |
@@ -141,7 +146,7 @@ ser instanciadas.
 - **Sobrescrita (override)**: cada subclasse redefine `__str__` para mostrar seus próprios dados e
   implementa `ligar()`.
 - **Polimorfismo**: `print()` chama o `__str__` certo para cada objeto, seja ele `Carro` ou `Moto`.
-- **Encapsulamento**: o estado do motor fica em `_ligado` (privado por convenção). O acesso passa pela
+- **Encapsulamento**: o estado do motor fica em `_ligado` (protegido por convenção). O acesso passa pela
   property `ligado`, cujo setter valida o tipo antes de alterar o estado.
 
 ## Padrões de código
@@ -190,6 +195,14 @@ Requisito: **Python 3** (não há dependências externas).
 ```bash
 cd VEICULOS
 python3 app.py
+```
+
+Opcionalmente, use o ambiente virtual (útil para instalar o Ruff isolado do sistema):
+
+```bash
+python3 -m venv venv          # cria o ambiente (uma vez)
+source venv/bin/activate      # ativa
+pip install ruff
 ```
 
 Saída esperada:
