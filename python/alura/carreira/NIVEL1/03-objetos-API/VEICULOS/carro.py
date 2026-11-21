@@ -27,7 +27,3 @@ class Carro(Veiculo):
     def __str__(self) -> str:
         """Retorna a descrição do veículo acrescida das portas e da cor."""
         return f"{super().__str__()} - Portas: {self.portas} - Cor: {self.cor}"
-
-    def ligar(self) -> None:
-        """Liga o carro."""
-        self.ligado = True
