@@ -15,14 +15,14 @@ O módulo fornece funções utilitárias para:
 
 # Funções
 
-## is_primo()
+## is_inteiro_primo()
 
 ### Descrição
 Verifica se um número é primo.
 
 ### Sintaxe
 ```python
-is_primo(numero: float) -> bool
+is_inteiro_primo(numero: int) -> bool
 ```
 """
 
@@ -181,9 +181,9 @@ def is_inteiro_primo(numero: int) -> bool:
 
 
 # ==================================================
-# is_intiero_par()
+# is_inteiro_par()
 # ==================================================
-def is_intiero_par(numero: int) -> bool:
+def is_inteiro_par(numero: int) -> bool:
     return numero % 2 == 0
 
 
@@ -221,14 +221,14 @@ def obter_racional_positivo(in_mensagem: str) -> float:
             return numero_racional
 
         print(
-            "Erro: o texto informado não representa um numero racional potivio (n>0)."
+            "Erro: o texto informado não representa um numero racional positivo (n>0)."
         )
 
 
 # ==================================================
-# obter_racional_nao_netativo()
+# obter_racional_nao_negativo()
 # ==================================================
-def obter_racional_nao_netativo(in_mensagem: str) -> float:
+def obter_racional_nao_negativo(in_mensagem: str) -> float:
     while True:
         numero_racional = obter_racional(in_mensagem)
 
@@ -308,10 +308,10 @@ def obter_uma_letra(mensagem: str) -> str:
 
 
 # ==================================================
-# ordernar_dicit_por_valor()
+# ordenar_dict_por_valor()
 # ==================================================
-def ordernar_dicit_por_valor(in_dicio: dict, in_reverse=False):
-    """ordernar_dicit_por_valor
+def ordenar_dict_por_valor(in_dicio: dict, in_reverse=False):
+    """ordenar_dict_por_valor
 
     Returns a new dictionary sorted by value.
     If in_reverse=False then from minor to major, otherwise
