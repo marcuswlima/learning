@@ -13,6 +13,7 @@ Aplicação em Python, orientada a objetos, para gerenciar as atividades de rest
 - [Relacionamentos](#relacionamentos)
 - [Fluxo de execução](#fluxo-de-execução)
 - [Como executar](#como-executar)
+- [Qualidade de código](#qualidade-de-código)
 - [Pontos de atenção](#pontos-de-atenção)
 
 ---
@@ -150,7 +151,7 @@ Entidade central do sistema.
 
 | Membro | Tipo | Descrição |
 |---|---|---|
-| `restaurantes` | atributo de classe | Lista com todas as instâncias criadas (registro automático no `__init__`). |
+| `restaurantes` | atributo de classe (`ClassVar`) | Lista com todas as instâncias criadas (registro automático no `__init__`). |
 | `_nome` | atributo | Nome do restaurante, normalizado com `title()`. |
 | `_categoria` | atributo | Categoria, normalizada com `upper()`. |
 | `_ativo` | atributo | Status do restaurante; inicia como `False`. |
@@ -219,10 +220,10 @@ sequenceDiagram
     participant B as Bebida
     participant P as Prato
 
-    App->>R: Restaurante('praça', 'Gourmet')
-    App->>B: Bebida('Suco Melancia', 5.0, 'grande')
+    App->>R: Restaurante("praça", "Gourmet")
+    App->>B: Bebida("Suco Melancia", 5.0, "grande")
     App->>B: aplicar_desconto()  (−5%)
-    App->>P: Prato('Paozinho', 2.00, 'O melhor da cidade')
+    App->>P: Prato("Paozinho", 2.00, "O melhor da cidade")
     App->>P: aplicar_desconto()  (−8%)
     App->>R: adicionar_no_cardapio(bebida)
     App->>R: adicionar_no_cardapio(prato)
@@ -234,7 +235,7 @@ sequenceDiagram
 
 ## Como executar
 
-Requer **Python 3.12+** (o método `listar_restaurantes` usa aspas simples aninhadas dentro de f-strings, recurso disponível a partir do 3.12).
+Requer **Python 3.9+** (o atributo de classe `restaurantes` é anotado com `ClassVar[list["Restaurante"]]`, sintaxe de genéricos nativos disponível a partir do 3.9).
 
 A partir da raiz do projeto:
 
@@ -254,11 +255,28 @@ Cardápio do restaurante Praça
 
 ---
 
+## Qualidade de código
+
+O código é verificado e formatado com o [Ruff](https://docs.astral.sh/ruff/). A partir da raiz do projeto:
+
+```bash
+ruff check .            # lint
+ruff check --fix .      # lint com correções automáticas (ex.: ordenação de imports)
+ruff format .           # formatação (estilo compatível com o Black)
+ruff format --check .   # apenas verifica a formatação, sem alterar arquivos
+```
+
+Convenções resultantes da formatação: aspas duplas, espaços em torno de operadores e após `:` nas anotações de tipo, duas linhas em branco entre definições de nível superior e imports ordenados.
+
+> Em `app.py`, a linha `restaurante_praca.exibir_cardapio` tem `# noqa: B018`: o Ruff a considera uma expressão sem efeito, mas ela aciona a property que imprime o cardápio (veja o item 1 dos [Pontos de atenção](#pontos-de-atenção)).
+
+---
+
 ## Pontos de atenção
 
 Observações identificadas na análise do código, úteis para evoluções futuras:
 
-1. **`exibir_cardapio` como `@property`**: o método apenas imprime (efeito colateral) e é chamado sem parênteses. Seria mais idiomático como método comum (`exibir_cardapio()`).
+1. **`exibir_cardapio` como `@property`**: o método apenas imprime (efeito colateral) e é chamado sem parênteses. Seria mais idiomático como método comum (`exibir_cardapio()`), o que também dispensaria o `# noqa: B018` em `app.py`.
 2. **Distinção de itens por `hasattr`**: `exibir_cardapio` usa `hasattr(item, 'descricao')` para decidir o formato. Como `Sobremesa` também possui `descricao`, ela é exibida como prato e seu `tamanho`/`tipo` não aparecem. Uma alternativa polimórfica seria cada subclasse implementar seu próprio `__str__` detalhado.
 3. **Métodos redundantes**: `adicionar_bebida_no_cardapio` e `adicionar_prato_no_cardapio` foram substituídos por `adicionar_no_cardapio` e podem ser removidos.
 4. **Acesso a atributos protegidos**: `Restaurante` lê `item._nome`, `item._preco` e `avaliacao._nota` diretamente; expor esses valores via `@property` reforçaria o encapsulamento.
