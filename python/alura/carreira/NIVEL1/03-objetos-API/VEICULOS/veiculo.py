@@ -20,22 +20,22 @@ class Veiculo:
         """
         self.marca = marca
         self.modelo = modelo
-        self._ligado = False
+        self._bEstaligado = False
 
     @property
-    def ligado(self) -> bool:
+    def EstaLigado(self) -> bool:
         """Indica se o veículo está ligado."""
-        return self._ligado
+        return self._bEstaligado
 
     def __str__(self) -> str:
         """Retorna a marca, o modelo e o status do veículo em texto legível."""
-        status = "ligado" if self.ligado else "desligado"
+        status = "ligado" if self.EstaLigado else "desligado"
         return f"Marca: {self.marca}, Modelo: {self.modelo}, Status: {status}"
 
     def ligar(self) -> None:
         """Liga o veículo."""
-        self._ligado = True
+        self._bEstaligado = True
 
     def desligar(self) -> None:
         """Desliga o veículo."""
-        self._ligado = False
+        self._bEstaligado = False

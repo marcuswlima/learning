@@ -18,6 +18,7 @@ VEICULOS/
 ├── carro.py     # Classe Carro, especialização de Veiculo
 ├── moto.py      # Classe Moto, especialização de Veiculo
 ├── app.py       # Ponto de entrada: função main() que cria objetos e demonstra o uso
+├── requirements.txt  # Dependências do ambiente virtual (versões fixadas)
 ├── README.md
 └── venv/        # Ambiente virtual local (ignorado pelo git)
 ```
@@ -52,8 +53,8 @@ classDiagram
     class Veiculo {
         +str marca
         +str modelo
-        #bool _ligado
-        +bool ligado
+        #bool _bEstaligado
+        +bool EstaLigado
         +__init__(marca: str, modelo: str) None
         +__str__() str
         +ligar() None
@@ -99,11 +100,11 @@ uso previsto seja por meio das subclasses.
 |---|---|---|
 | `marca` | atributo público | Fabricante do veículo (ex.: "Toyota"). |
 | `modelo` | atributo público | Modelo do veículo (ex.: "Corolla"). |
-| `_ligado` | atributo protegido | Estado do motor. Começa como `False`. O prefixo `_` indica, por convenção, que ele não deve ser acessado diretamente de fora da classe. |
-| `ligado` | property somente leitura | Lê o estado do motor (`carro.ligado`). Não tem setter: `carro.ligado = True` gera `AttributeError`. O estado só muda por `ligar()` e `desligar()`. |
-| `ligar()` | método | Liga o veículo (`self._ligado = True`). |
-| `desligar()` | método | Desliga o veículo (`self._ligado = False`). |
-| `__str__()` | método especial | Retorna `"Marca: <marca>, Modelo: <modelo>, Status: <ligado/desligado>"`, lendo o estado pela property `ligado`. |
+| `_bEstaligado` | atributo protegido | Estado do motor. Começa como `False`. O prefixo `_` indica, por convenção, que ele não deve ser acessado diretamente de fora da classe. |
+| `EstaLigado` | property somente leitura | Lê o estado do motor (`carro.EstaLigado`). Não tem setter: `carro.EstaLigado = True` gera `AttributeError`. O estado só muda por `ligar()` e `desligar()`. |
+| `ligar()` | método | Liga o veículo (`self._bEstaligado = True`). |
+| `desligar()` | método | Desliga o veículo (`self._bEstaligado = False`). |
+| `__str__()` | método especial | Retorna `"Marca: <marca>, Modelo: <modelo>, Status: <ligado/desligado>"`, lendo o estado pela property `EstaLigado`. |
 
 ### `Carro` (`carro.py`): especialização de `Veiculo`
 
@@ -122,7 +123,7 @@ uso previsto seja por meio das subclasses.
 | `__init__` | Chama `super().__init__(marca, modelo)` e depois define `tipo`. |
 | `__str__` | **Sobrescreve** o método da base: reaproveita `super().__str__()` e acrescenta `" - Tipo: <tipo>"`. |
 
-`Carro` e `Moto` herdam `ligar()`, `desligar()` e a property `ligado` de `Veiculo` sem
+`Carro` e `Moto` herdam `ligar()`, `desligar()` e a property `EstaLigado` de `Veiculo` sem
 alterações: `carro1.ligar()` executa o método definido na base.
 
 ## Conceitos de POO aplicados
@@ -132,8 +133,8 @@ alterações: `carro1.ligar()` executa o método definido na base.
 - **Reuso com `super()`**: as subclasses delegam à base a inicialização e a formatação comuns.
 - **Sobrescrita (override)**: cada subclasse redefine `__str__` para mostrar seus próprios dados.
 - **Polimorfismo**: `print()` chama o `__str__` certo para cada objeto, seja ele `Carro` ou `Moto`.
-- **Encapsulamento**: o estado do motor fica em `_ligado` (protegido por convenção). De fora, ele
-  é lido pela property `ligado` (somente leitura) e alterado apenas pelos métodos `ligar()` e
+- **Encapsulamento**: o estado do motor fica em `_bEstaligado` (protegido por convenção). De fora,
+  ele é lido pela property `EstaLigado` (somente leitura) e alterado apenas pelos métodos `ligar()` e
   `desligar()`.
 
 ## Padrões de código
@@ -177,19 +178,24 @@ sequenceDiagram
 
 ## Como executar
 
-Requisito: **Python 3** (não há dependências externas).
+Requisito: **Python 3**. O código usa apenas a biblioteca padrão, então `app.py` roda sem instalar
+nada.
 
 ```bash
 cd VEICULOS
 python3 app.py
 ```
 
-Opcionalmente, use o ambiente virtual (útil para instalar o Ruff isolado do sistema):
+Opcionalmente, use o ambiente virtual. O arquivo `requirements.txt` fixa as versões dos pacotes
+instalados nele (`requests` e suas dependências `certifi`, `charset-normalizer`, `idna` e
+`urllib3`), preparando o projeto para o consumo de APIs nas próximas etapas:
 
 ```bash
-python3 -m venv venv          # cria o ambiente (uma vez)
-source venv/bin/activate      # ativa
-pip install ruff
+python3 -m venv venv               # cria o ambiente (uma vez)
+source venv/bin/activate           # ativa
+pip install -r requirements.txt    # instala as dependências fixadas
+pip install ruff                   # opcional: formatação e lint
+pip freeze > requirements.txt      # regera o arquivo após instalar/atualizar pacotes
 ```
 
 Saída esperada:
