@@ -10,8 +10,8 @@ from moto import Moto
 
 def main() -> None:
     """Cria um carro e uma moto, liga cada um e exibe o estado antes e depois."""
-    carro1 = Carro("Toyota", "Corolla", 4)
 
+    carro1 = Carro("Toyota", "Corolla", 4, "Verde")
     print(carro1)
     carro1.ligar()
     print(carro1)

@@ -1,7 +1,9 @@
 """Classe base dos veículos vendidos pela loja."""
 
+from abc import ABC, abstractmethod
 
-class Veiculo:
+
+class Veiculo(ABC):
     """Veículo genérico, com marca, modelo e estado ligado/desligado.
 
     Serve de base para as especializações ``Carro`` e ``Moto``.
@@ -29,13 +31,28 @@ class Veiculo:
 
     @property
     def ligado(self) -> bool:
-        """Indica se o veículo está ligado (somente leitura)."""
+        """Indica se o veículo está ligado."""
         return self._ligado
 
-    def ligar(self) -> None:
-        """Liga o veículo."""
-        self._ligado = True
+    @ligado.setter
+    def ligado(self, valor: bool) -> None:
+        """Define o estado ligado/desligado do veículo.
 
-    def desligar(self) -> None:
-        """Desliga o veículo."""
-        self._ligado = False
+        Args:
+            valor: ``True`` para ligar o veículo, ``False`` para desligá-lo.
+
+        Raises:
+            TypeError: Se ``valor`` não for um ``bool``.
+        """
+        if not isinstance(valor, bool):
+            raise TypeError(f"'ligado' deve ser bool, não {type(valor).__name__}")
+        self._ligado = valor
+
+    @abstractmethod
+    def ligar(self) -> None:
+        """Liga o veículo. Deve ser implementado pelas subclasses."""
+
+
+#    def desligar(self) -> None:
+#        """Desliga o veículo."""
+#        self.ligado = False

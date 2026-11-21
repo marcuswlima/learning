@@ -24,3 +24,7 @@ class Moto(Veiculo):
     def __str__(self) -> str:
         """Retorna a descrição do veículo acrescida do tipo da moto."""
         return f"{super().__str__()} - Tipo: {self.tipo}"
+
+    def ligar(self) -> None:
+        """Liga a moto."""
+        self.ligado = True
