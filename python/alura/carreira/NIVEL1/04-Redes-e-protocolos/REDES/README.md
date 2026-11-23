@@ -20,7 +20,6 @@ REDES/
 │   └── verificador.py     # VerificadorDeSite e ResultadoAcesso
 ├── tests/
 │   └── test_modelos.py    # Testes unitários dos modelos (unittest)
-├── .gitignore
 └── README.md
 ```
 
