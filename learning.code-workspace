@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "."
+		},
+		{
+			"path": "../numero-secreto"
 		}
 	],
 	"settings": {}
